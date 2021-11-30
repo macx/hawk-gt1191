@@ -5,6 +5,11 @@ if (currentTheme === 'dark') {
   document.body.classList.add('dark-theme');
 } else if (currentTheme === 'light') {
   document.body.classList.add('light-theme');
+} else {
+  var theme = prefersDarkScheme.matches ? 'dark-theme' : 'light-theme';
+
+  document.body.classList.add(theme);
+  localStorage.setItem('theme', theme);
 }
 
 const themeButtons = document.querySelectorAll('.themebutton');
