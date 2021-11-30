@@ -80,6 +80,8 @@ body {
   &.dark-theme {
     --clr-background: #14232d;
     --clr-text: #d9d9d9;
+    --clr-text--light: rgba(217, 217, 217, 0.7);
+    --clr-text--dark: #fff;
     --nav-border: rgba(255, 255, 255, 0.1);
   }
 
