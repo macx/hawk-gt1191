@@ -31,6 +31,7 @@ window.onload = () => {
   document.querySelector('.themebutton').addEventListener('click', () => {
     theme.value = theme.value === 'light' ? 'dark' : 'light';
     applyThemeAttributes();
+    setThemePreference();
   });
 };
 
