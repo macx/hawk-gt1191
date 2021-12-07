@@ -4,7 +4,7 @@ const getThemePreference = () => {
   } else {
     return window.matchMedia('(prefers-color-scheme: dark)').matches
       ? 'dark'
-      : 'light'
+      : 'light';
   }
 };
 
@@ -14,12 +14,13 @@ const setThemePreference = () => {
 };
 
 const applyThemeAttributes = () => {
+  console.log('apply', theme.value);
   document.documentElement.setAttribute('data-theme', theme.value);
   document.querySelector('.themebutton').setAttribute('aria-live', theme.value);
 };
 
 const theme = {
-  value: getThemePreference();
+  value: getThemePreference(),
 };
 
 applyThemeAttributes();
@@ -27,57 +28,18 @@ applyThemeAttributes();
 window.onload = () => {
   applyThemeAttributes();
 
-  document.querySelector('.themebutton').addEventListener('click', e => {
-    theme.value = theme.value === 'light'
-      ? 'dark'
-      : 'light'
+  document.querySelector('.themebutton').addEventListener('click', () => {
+    theme.value = theme.value === 'light' ? 'dark' : 'light';
+    applyThemeAttributes();
   });
-}
+};
 
 window
   .matchMedia('(prefers-color-scheme: dark)')
   .addEventListener('change', () => {
-    theme.value = isDark ? 'dark': 'light';
+    theme.value = isDark ? 'dark' : 'light';
     setThemePreference();
-  };
-
-
-/*
-const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-const currentTheme = localStorage.getItem('theme');
-
-if (currentTheme === 'dark') {
-  document.body.classList.add('dark-theme');
-} else if (currentTheme === 'light') {
-  document.body.classList.add('light-theme');
-} else {
-  var theme = prefersDarkScheme.matches ? 'dark-theme' : 'light-theme';
-
-  document.body.classList.add(theme);
-  localStorage.setItem('theme', theme);
-}
-
-const themeButtons = document.querySelectorAll('.themebutton');
-
-const switchTheme = function () {
-  if (document.body.classList.contains('light-theme')) {
-    document.body.classList.remove('light-theme');
-    document.body.classList.add('dark-theme');
-
-    var theme = 'dark';
-  } else {
-    document.body.classList.remove('dark-theme');
-    document.body.classList.add('light-theme');
-
-    var theme = 'light';
-  }
-
-  localStorage.setItem('theme', theme);
-};
-
-Array.from(themeButtons).forEach((button) => {
-  button.addEventListener('click', switchTheme);
-});
+  });
 
 const navButtons = document.querySelectorAll('.navbutton');
 const navLinks = document.querySelectorAll('.navigation a');
@@ -99,4 +61,3 @@ if (navButtons && navLinks) {
     link.addEventListener('click', closeNavigation);
   });
 }
-*/

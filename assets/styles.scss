@@ -24,8 +24,13 @@
     url('/assets/fonts/rubik-v14-latin-500.woff') format('woff');
 }
 
-// Light Mode
-:root {
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
   color-scheme: light dark;
 
   --spacing: 1.25rem;
@@ -39,24 +44,6 @@
   --transition--button: 120ms cubic-bezier(0.55, 0.09, 0.68, 0.53);
   --transition--navi: 250ms cubic-bezier(1, 0, 0, 1);
 
-  @media (min-width: 600px) {
-    --spacing: 2.5rem;
-    --spacing--large: 4rem;
-  }
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: var(--header-height);
-}
-
-body {
   --clr-background: #eceff1;
   --clr-shade: #cfd8dc;
   --clr-text: rgb(38, 50, 56);
@@ -68,23 +55,37 @@ body {
   --clr-primary--hover: rgba(255, 130, 0, 0.2);
   --clr-button: rgba(255, 255, 255, 1);
 
-  --clr-play-1: rgba(1, 87, 155, 0.1);
-  --clr-play-2: rgba(46, 125, 50, 0.1);
-  --clr-play-3: rgba(255, 196, 0, 0.1);
-  --clr-play-4: rgba(78, 52, 46, 0.1);
+  --clr-play-1: hsla(206, 99%, 31%, 0.1);
+  --clr-play-2: hsla(123, 46%, 34%, 0.1);
+  --clr-play-3: hsla(46, 100%, 50%, 0.1);
+  --clr-play-4: hsla(11, 26%, 24%, 0.1);
 
   --nav-shadow: rgba(0, 0, 0, 0.2);
   --nav-border: rgba(0, 0, 0, 0.1);
 
-  // Dark Theme
-  &.dark-theme {
+  @media (min-width: 600px) {
+    --spacing: 2.5rem;
+    --spacing--large: 4rem;
+  }
+
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height);
+
+  &[data-theme='dark'] {
     --clr-background: #14232d;
     --clr-text: #d9d9d9;
     --clr-text--light: rgba(217, 217, 217, 0.7);
     --clr-text--dark: #fff;
     --nav-border: rgba(255, 255, 255, 0.1);
-  }
 
+    --clr-play-1: hsla(206, 99%, 69%, 0.1);
+    --clr-play-2: hsla(123, 46%, 66%, 0.1);
+    --clr-play-3: hsla(46, 100%, 50%, 0.1);
+    --clr-play-4: hsla(11, 26%, 76%, 0.1);
+  }
+}
+
+body {
   background-color: var(--clr-background);
   color: var(--clr-text);
   margin: 0;
@@ -233,12 +234,6 @@ p {
   &__logo {
     display: block;
 
-    img {
-      display: block;
-      height: 1.25rem;
-      width: auto;
-    }
-
     svg {
       height: 1.25rem;
       width: auto;
@@ -376,8 +371,8 @@ p {
       border: 0;
       cursor: pointer;
 
-      .dark-theme &--dark,
-      .light-theme &--light {
+      [data-theme='dark'] &__icon--light,
+      [data-theme='light'] &__icon--dark {
         display: none;
       }
     }
