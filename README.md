@@ -1,5 +1,8 @@
 # HAWK GT1191
 
+![Maintenance](https://img.shields.io/maintenance/yes/2021)
+![cms](https://img.shields.io/badge/cms-hugo-orange)
+
 "GT 1191" (formerly "4411") is a seminar of the study program Bachelor of Arts (BA) of the Faculty of Design at the HAWK University of Applied Science and Art in Hildesheim.
 
 This is a private project from the lecturer [David Maciejewski](https://macx.io) to support students with informations via the [website](https://hawk-gt1191.de) and is not related to HAWK as a publisher of this information.
