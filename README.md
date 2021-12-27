@@ -18,8 +18,7 @@ $ git clone git@github.com:macx/hawk-gt1191.git && cd hawk-gt1191
 In order to run this project, you need to install the following depenencies with [Homebrew](https://brew.sh/index_de):
 
 ```sh
-$ brew install yarn
-$ brew install hugo
+$ brew install yarn hugo
 $ yarn install
 ```
 

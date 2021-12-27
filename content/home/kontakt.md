@@ -21,7 +21,7 @@ Du erreichst David dienstlich über Discord, StudIP oder per&nbsp;E-Mail.
       target="contact"
       rel="noopener noreferrer"
     >
-      <img src="/assets/images/discord.svg" alt="" />
+      {{< icon "static/images/icons/discord.svg" >}}
     </a>
   </li>
   <li>
@@ -30,14 +30,15 @@ Du erreichst David dienstlich über Discord, StudIP oder per&nbsp;E-Mail.
       target="contact"
       rel="noopener noreferrer"
     >
-      <img src="/assets/images/studip.svg" alt="" />
+      {{< icon "static/images/icons/studip.svg" >}}
     </a>
+
   </li>
   <li>
     <a
       href="mailt&#111;&#58;&#37;64a&#118;%6&#57;&#100;&#46;%6D%61&#99;ie&#106;ew&#115;k&#105;&#64;%68a&#119;k&#46;&#100;e"
     >
-      <img src="/assets/images/email.svg" alt="" />
+      {{< icon "static/images/icons/email.svg" >}}
     </a>
   </li>
 </ul>

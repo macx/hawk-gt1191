@@ -1,0 +1,91 @@
+// ┌──────────────────────────────────┐
+//   BUTTON
+// └──────────────────────────────────┘
+
+.button {
+  position: relative;
+  display: inline-block;
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: none;
+  will-change: transform;
+
+  span {
+    display: block;
+    border: 1px solid var(--clr-primary);
+    background-color: var(--clr-primary);
+    color: var(--clr-inverse);
+    border-radius: var(--border-radius);
+    padding: 0.5rem 1.25rem;
+
+    transform: rotate(0);
+    transform-origin: left bottom;
+    transition: all var(--transition--button);
+  }
+
+  &::before {
+    content: '';
+    display: block;
+    opacity: 0;
+
+    position: absolute;
+    left: 0.4em;
+    bottom: 3px;
+    width: 90%;
+    height: 30%;
+    z-index: 0;
+
+    background: linear-gradient(45deg, rgba(121, 85, 85, 0.5), transparent);
+    border-radius: var(--border-radius);
+    transition: opacity var(--transition--button);
+  }
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+
+    span {
+      color: var(--clr-inverse);
+      background-color: var(--clr-primary);
+      transform: rotate(-10deg);
+    }
+
+    &::before {
+      opacity: 1;
+      transform: skew(-20deg);
+    }
+  }
+
+  &--ghost {
+    span {
+      color: var(--clr-primary);
+      background-color: var(--clr-button);
+      border: 1px solid var(--clr-primary);
+      transform-origin: right bottom;
+    }
+
+    &::before {
+      background: linear-gradient(45deg, transparent, rgba(0, 0, 0, 0.5));
+    }
+
+    &:hover,
+    &:focus {
+      span {
+        color: var(--clr-primary);
+        background-color: var(--clr-button);
+        transform: rotate(10deg);
+      }
+
+      // &::before {
+      //   opacity: 1;
+      //   transform: rotate(-10deg);
+      // }
+    }
+  }
+}
+
+.button-group {
+  display: flex;
+  gap: 1em;
+  margin: var(--spacing) 0 1rem;
+}
