@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="de">
+  {{- partial "head.html" . -}}
+  <body id="top">
+    {{- partial "header.html" . -}}
+
+
+    <main class="stage" aria-role="main">
+      {{- block "main" . }}{{- end }}
+    </main>
+
+    {{- partialCached "footer.html" . -}}
+
+    {{ $js := resources.Get "scripts/main.js" |
+      js.Build (dict "params" (dict "api" "https://example.org/api"))
+    }}    <script type="text/javascript" src="{{ $js.RelPermalink }}" defer></script>
+  </body>
+</html>

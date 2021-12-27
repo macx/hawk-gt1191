@@ -3,25 +3,24 @@
   font-style: normal;
   font-weight: 400;
   src: local(''),
-    url('/assets/fonts/playfair-display-v25-latin-regular.woff2')
-      format('woff2'),
-    url('/assets/fonts/playfair-display-v25-latin-regular.woff') format('woff');
+    url('/fonts/playfair-display-v25-latin-regular.woff2') format('woff2'),
+    url('/fonts/playfair-display-v25-latin-regular.woff') format('woff');
 }
 
 @font-face {
   font-family: 'Rubik';
   font-style: normal;
   font-weight: 300;
-  src: local(''), url('/assets/fonts/rubik-v14-latin-300.woff2') format('woff2'),
-    url('/assets/fonts/rubik-v14-latin-300.woff') format('woff');
+  src: local(''), url('/fonts/rubik-v14-latin-300.woff2') format('woff2'),
+    url('/fonts/rubik-v14-latin-300.woff') format('woff');
 }
 
 @font-face {
   font-family: 'Rubik';
   font-style: normal;
   font-weight: 500;
-  src: local(''), url('/assets/fonts/rubik-v14-latin-500.woff2') format('woff2'),
-    url('/assets/fonts/rubik-v14-latin-500.woff') format('woff');
+  src: local(''), url('/fonts/rubik-v14-latin-500.woff2') format('woff2'),
+    url('/fonts/rubik-v14-latin-500.woff') format('woff');
 }
 
 *,
@@ -318,7 +317,7 @@ p {
         content: '';
         width: 1.5rem;
         height: 1.5rem;
-        background-image: url(/assets/images/arrow-nav.svg);
+        background-image: url(/images/arrow-nav.svg);
         background-repeat: no-repeat;
       }
 

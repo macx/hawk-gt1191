@@ -1,0 +1,13 @@
+{{ define "main" }}
+  {{ range .Pages }}
+    <section id="intro" class="stage__item bgs-1">
+      <div class="content">
+        <h2>{{ .Title }}</h2>
+
+        <p class="lead">LEAD</p>
+
+        {{ .Content }}
+      </div>
+    </section>
+  {{ end }}
+{{ end }}
