@@ -1,0 +1,27 @@
+baseURL: 'https://hawk-gt1191.de/'
+languageCode: 'de-DE'
+title: 'HAWK GT1191'
+
+markup:
+  goldmark:
+    extensions:
+      typographer: true
+    parser:
+      #autoHeadingID: true
+      #autoHeadingIDType: 'github'
+      attribute:
+        block: true
+        title: true
+    renderer:
+      unsafe: true
+
+menu:
+  footer:
+    - identifier: 'impressum'
+      name: 'Impressum'
+      url: '/impressum/'
+      weight: 1
+    - identifier: 'datenschutz'
+      name: 'Datenschutz'
+      url: '/datenschutz/'
+      weight: 2

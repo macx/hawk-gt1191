@@ -3,7 +3,7 @@ title: 'Intro'
 date: 2021-12-08T12:50:13+01:00
 draft: false
 weight: 1
-url: '/#intro'
+id: 'intro'
 class: 'bgs-1'
 ---
 
@@ -18,6 +18,8 @@ pro Semester stark besucht.
 
 Erfahre hier, was im Seminar gelehrt wird und wie du teilnehmen kannst.
 
-<a href="#lehre" class="button">
-  <span>Weiter</span>
-</a>
+<div class="button-group">
+  <a href="#lehre" class="button">
+    <span>Weiter</span>
+  </a>
+</div>

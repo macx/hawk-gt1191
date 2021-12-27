@@ -7,10 +7,9 @@
 
     <main class="stage" aria-role="main">
       {{ range where .Site.Pages "Type" "home" }}
-        <section id="intro" class="stage__item {{ .Params.class }}">
+        <section id="{{ .Params.id }}" class="stage__item {{ .Params.class }}">
           <div class="content">
             {{ .Content }}
-
           </div>
         </section>
       {{ end }}
