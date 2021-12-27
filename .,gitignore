@@ -1,0 +1,8 @@
+# Default stuff
+.DS_Store
+node_modules
+dist
+tmp
+
+# Hugo
+/resources/_gen/

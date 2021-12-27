@@ -1,0 +1,11 @@
+<footer class="footer">
+  <div>© David Maciejewski für HAWK GT 1191</div>
+
+  <nav>
+    {{ range .Site.Menus.footer }}
+      <a href="{{ .URL }}">
+        {{ .Name }}
+      </a>
+    {{ end }}
+  </nav>
+</footer>

@@ -1,0 +1,16 @@
+{
+  "name": "hawk-gt1191",
+  "version": "1.0.0",
+  "main": "public/index.html",
+  "repository": "git@github.com:macx/hawk-gt1191.git",
+  "author": "David Maciejewski <macx@macx.io>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "open -na 'Google Chrome' --args -incognito http://localhost:3000/ && hugo server -DF -p 3000",
+    "build": "hugo"
+  },
+  "devDependencies": {
+    "prettier": "2.5.1",
+    "prettier-plugin-go-template": "0.0.11"
+  }
+}

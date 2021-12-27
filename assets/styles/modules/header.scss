@@ -1,0 +1,65 @@
+// ┌──────────────────────────────────┐
+//   HEADER
+// └──────────────────────────────────┘
+
+.navbutton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  width: var(--header-height);
+  height: var(--header-height);
+  transition: background-color var(--transition);
+
+  svg {
+    transition: fill var(--transition);
+  }
+
+  &:hover,
+  &:focus {
+    background-color: var(--clr-primary--hover);
+
+    svg {
+      fill: var(--clr-primary);
+    }
+  }
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: var(--header-height);
+  width: 100%;
+  z-index: 20;
+
+  background-color: var(--clr-background);
+  border-bottom: 1px solid var(--nav-border);
+  box-shadow: 1.5rem 0 4rem -0.5rem var(--nav-shadow);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0 0 var(--spacing);
+
+  &__logo {
+    display: block;
+
+    svg {
+      height: 1.25rem;
+      width: auto;
+
+      .hawk {
+        fill: #15232d;
+        fill-rule: evenodd;
+      }
+      .gt1191 {
+        fill: #ff8200;
+      }
+    }
+  }
+}

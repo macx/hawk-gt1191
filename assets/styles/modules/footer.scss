@@ -1,0 +1,20 @@
+// ┌──────────────────────────────────┐
+//   FOOTER
+// └──────────────────────────────────┘
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: var(--spacing);
+  font-size: 0.8rem;
+  color: var(--clr-text--light);
+
+  nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1em;
+  }
+}

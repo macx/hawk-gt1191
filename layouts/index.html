@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="de">
+  {{- partial "head.html" . -}}
+  <body id="top">
+    {{- partial "header.html" . -}}
+
+
+    <main class="stage" aria-role="main">
+      {{ range where .Site.Pages "Type" "home" }}
+        <section id="{{ .Params.id }}" class="stage__item {{ .Params.class }}">
+          <div class="content">
+            {{ .Content }}
+          </div>
+        </section>
+      {{ end }}
+    </main>
+
+    {{- partialCached "footer.html" . -}}
+
+    {{ $js := resources.Get "scripts/main.js" |
+      js.Build (dict "params" (dict "api" "https://example.org/api"))
+    }}    <script type="text/javascript" src="{{ $js.RelPermalink }}" defer></script>
+  </body>
+</html>

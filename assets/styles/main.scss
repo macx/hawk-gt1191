@@ -1,0 +1,18 @@
+// ┌──────────────────────────────────┐
+//   BASE
+// └──────────────────────────────────┘
+
+/* prettier-ignore */
+@import 'base/fonts',
+        'base/layout';
+
+// ┌──────────────────────────────────┐
+//   MODULES
+// └──────────────────────────────────┘
+
+/* prettier-ignore */
+@import 'modules/header',
+        'modules/navigation',
+        'modules/button',
+        'modules/social-links',
+        'modules/footer';
