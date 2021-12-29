@@ -33,3 +33,32 @@ $ yarn dev
 # Deploy this site to /public folder
 $ yarn build
 ```
+
+## Deployment
+
+### Auto deploy with git
+
+Prepare your server to pull changes from the main branch of this repository. Then change to public folder of your virtual host to `public` and log into the SSH terminal to install HUGO directly above your document root (mostly `httpdocs`).
+
+```sh
+$ wget https://github.com/gohugoio/hugo/releases/download/v0.91.2/hugo_0.91.2_Linux-64bit.tar.gz
+$ tar zxf hugo_0.91.2_Linux-64bit.tar.gz
+$ rm ./hugo_0.91.2_Linux-64bit.tar.gz
+```
+
+Now, go to your git settings and enable additional deploy settings:
+
+```sh
+cd httpdocs/
+rm -rf ./public
+../hugo
+```
+
+### Deploy script
+
+Alternative use the deploy script of this repository. First, copy `deploy/.sample.env` to `deploy/.env` and fill in the SSH credentials. Use the following commands to deploy your public folder:
+
+```sh
+$ deploy/it dry  # to test it
+$ deploy/it now  # to deploy it
+```

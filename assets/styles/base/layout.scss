@@ -130,7 +130,10 @@ a {
 // └──────────────────────────────────┘
 
 .stage {
+  max-height: calc(100vh - var(--header-height));
+  overflow: scroll;
   scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
 
   &__item {
     scroll-snap-align: start;

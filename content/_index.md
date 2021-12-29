@@ -1,6 +1,4 @@
 ---
-title: 'Monster'
+title: 'HAWK GT1191'
 date: 2021-12-07T18:25:29+01:00
 ---
-
-Monster IDeal

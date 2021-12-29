@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+# This deploy script is using environment variables from
+# the .env file. Please copy .sample.env and rename it
+# to .env. Then change the values and hit save.
+
+source $(dirname "$0")/.env
+
+PROMPT_STRING="
+┌──────────────────────────────────┐
+  DEPLOY SCRIPT
+└──────────────────────────────────┘
+
+To run a test add the \"dry\" paramenter
+or \"now\" for a direct deplocyment.
+"
+
+if [ $# -eq 0 ]
+    then
+        echo "$PROMPT_STRING";
+elif [ $1 == "dry" ]; then
+    echo "Running dry-run"
+    hugo && rsync --dry-run -avz --delete 'public' --include='public**' --exclude='*' ${SSH_USER}@${SSH_HOST}:~/${SSH_DIR}
+elif [ $1 == "now" ]; then
+    echo "Running actual deploy"
+    hugo && rsync -avz --delete 'public' --include='public**' --exclude='*' ${SSH_USER}@${SSH_HOST}:~/${SSH_DIR}
+else
+    echo "$PROMPT_STRING";
+fi
+
+exit 0

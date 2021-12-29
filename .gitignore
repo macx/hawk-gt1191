@@ -6,4 +6,6 @@ tmp
 .vscode
 
 # Hugo
+/deploy/.env
+/public/
 /resources/_gen/
