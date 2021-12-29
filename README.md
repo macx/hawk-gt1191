@@ -41,9 +41,9 @@ $ yarn build
 Prepare your server to pull changes from the main branch of this repository. Then change to public folder of your virtual host to `public` and log into the SSH terminal to install HUGO directly above your document root (mostly `httpdocs`).
 
 ```sh
-$ wget https://github.com/gohugoio/hugo/releases/download/v0.91.2/hugo_0.91.2_Linux-64bit.tar.gz
-$ tar zxf hugo_0.91.2_Linux-64bit.tar.gz
-$ rm ./hugo_0.91.2_Linux-64bit.tar.gz
+$ wget https://github.com/gohugoio/hugo/releases/download/v0.91.2/hugo_extended_0.91.2_Linux-64bit.tar.gz
+$ tar zxf hugo_extended_0.91.2_Linux-64bit.tar.gz
+$ rm ./hugo_extended_0.91.2_Linux-64bit.tar.gz
 ```
 
 Now, go to your git settings and enable additional deploy settings:
