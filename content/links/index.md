@@ -7,24 +7,24 @@ content: 'full'
 
 # Links zum Seminar
 
-Immer häufig treten Fragen nach Tipps zu externen Seiten auf. Hier sind für euch die nützlichsten zusammengestellt, damit ihr das Seminar meistern könnt.
+Regelmäßig treten Fragen auf, welche externen Resourcen ich empfehlen kann. Hier sind für euch die nützlichsten zusammengestellt, damit ihr das Seminar meistern könnt.
 {.lead}
 
-## Für deine Website
+## Inhalte für deine Website
 
 - [Tailwind Color Palette](https://tailwindcolor.com/)\
-  Schöne Farbpalette, bei der ein Klick auf eine Farbe dir den Farbwert für deine IDE kopiert.
+  Schöne Farbpalette. Ein Klick auf eine Farbe kopiert euch den Farbwert in die Zwischenablage.
 
 ### Fonts und Icons
 
 - [Google Fonts](https://fonts.google.com/)\
-  Frei nutzbare Webfonts für deine Website
+  Frei nutzbare Webfonts für deine Website.
 - [Google Material Icons](https://fonts.google.com/icons)\
-  Das Standard-Set, wenn du Icons suchst.
+  Weit verbreitetes Icon-Set direkt von Google.
 - [material Design Icons](https://materialdesignicons.com/)\
-  Wenn dir die Google-Icons gefallen, sie dir aber nicht genug sind. Dann findest du hier alle, die du brauchst.
-- [Simple Icons](https://simpleicons.org/?q=facebook)\
-  Brand-Icons wie Facebook, Instragram und anderen Co.
+  Wenn dir die Google-Icons gefallen, dir dort aber noch Icons fehlen, findest du sie in dieser User-Bibliothek.
+- [Simple Icons](https://simpleicons.org/)\
+  Brand-Icons und deren Corporate Colors wie Facebook, Instragram und anderen. Mit einem Klick bekommt ihr das SVG.
 
 ### Bilder
 
@@ -33,15 +33,15 @@ Immer häufig treten Fragen nach Tipps zu externen Seiten auf. Hier sind für eu
 
 ## Intregierte Entwicklungsumgebung (IDE)
 
-Mit diesen Werkzeugen kannst du Websites entwickeln.
+Mit diesen Werkzeugen kannst du deine Website entwickeln.
 
 - [Visual Studio Code (VSC)](https://code.visualstudio.com/)\
-  Desktop-App für macOS und Windows, mit der wir hauptsächlich arbeiten. Gespeichert werden deine Dateien lokal auf deinem Computer.
-- [VSC im Web](https://vscode.dev/)
-  Visual Studio Code gibt's auch als Browser-Version, falls du gerade nichts installieren kannst.
-- [CodePen](https://codepen.io)\
+  Desktop-App für macOS und Windows, mit der wir hauptsächlich arbeiten. Gespeichert werden deine Dateien lokal auf deinem&nbsp;Computer.
+- [VSC im Web](https://vscode.dev/)\
+  Visual Studio Code gibt's auch in dieser Browser-Variante, ist aber nicht ganz so&nbsp;umfangreich.
+- [CodePen](https://codepen.io)<sup class="ref">[1](#cite-note-1)</sup>\
   Die wohl schnellste Möglichkeit, kleine Websites oder Bereiche davon zu schreiben.
-- [StackBlitz](https://stackblitz.com/)\
+- [StackBlitz](https://stackblitz.com/)<sup class="ref">[1](#cite-note-1)</sup>\
   Wenn dir CodePen nicht reicht, kannst du hier all deinen Dateien speichern und deine Website online betrachten.
 
 ### Plugins für VSC
@@ -54,6 +54,8 @@ Ich empfehle ich folgende Plugins:
   Erstellt aus .scss-Dateien .css-Dateien.
 - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)\
   Formatiert euren Code zur besseren Übersicht.
+- [Cobalt2](https://marketplace.visualstudio.com/items?itemName=wesbos.theme-cobalt2)\
+  Sehr angenehmes und gut lesbares Dark-Theme für VSC.
 
 ## Websites bereitstellen
 
@@ -61,3 +63,7 @@ Wenn du deine Website lokal in deinem Browser oder öffentlich zur Verfügung st
 
 - [Laravel Valet](https://laravel.com/docs/8.x/valet)\
   Entwicklungsumgebung für macOS-Minimalisten. Valet macht aus einem Verzeichnis einen Virtuellen Host unter der \*.test-Domäne.
+
+<!-- prettier-ignore -->
+1. <span id="cite-note-1"></span> Zur Registierung und Login benötigt ihr einen kostenlosen Account von [GitHub](https://github.com/)
+{.references}
