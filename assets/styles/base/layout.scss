@@ -24,6 +24,7 @@ html {
   --clr-text--light: rgba(38, 50, 56, 0.7);
   --clr-text--dark: #000;
   --clr-inverse: #fff;
+  --clr-line: rgba(0, 0, 0, 0.2);
 
   --clr-primary: #ff8200;
   --clr-primary--hover: rgba(255, 130, 0, 0.2);
@@ -50,12 +51,14 @@ html {
     --clr-text: #d9d9d9;
     --clr-text--light: rgba(217, 217, 217, 0.7);
     --clr-text--dark: #fff;
-    --nav-border: rgba(255, 255, 255, 0.1);
+    --clr-line: rgba(255, 255, 255, 0.2);
 
     --clr-play-1: hsla(206, 99%, 69%, 0.1);
     --clr-play-2: hsla(123, 46%, 66%, 0.1);
     --clr-play-3: hsla(46, 100%, 50%, 0.1);
     --clr-play-4: hsla(11, 26%, 76%, 0.1);
+
+    --nav-border: rgba(255, 255, 255, 0.1);
   }
 }
 
@@ -130,10 +133,12 @@ a {
 // └──────────────────────────────────┘
 
 .stage {
-  max-height: calc(100vh - var(--header-height));
-  overflow: scroll;
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
+  &--with-sections {
+    max-height: calc(100vh - var(--header-height));
+    overflow: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+  }
 
   &__item {
     scroll-snap-align: start;
@@ -159,7 +164,6 @@ a {
       left: var(--spacing);
       width: 10rem;
       z-index: 2;
-      border: 1px solid var(--clr-line);
       text-align: right;
 
       h2 {
@@ -191,6 +195,7 @@ a {
 // └──────────────────────────────────┘
 
 .content {
+  min-height: calc(100vh - 3.75rem);
   max-width: var(--content-max-width);
   margin: 0 auto;
   padding: 0 var(--spacing);
@@ -199,7 +204,32 @@ a {
     padding: var(--spacing);
   }
 
-  :is(h1, h2, h2, h3) {
+  h2 {
+    position: relative;
+    border-bottom: 1px solid var(--clr-line);
+    padding-bottom: 0.3em;
+    margin-top: 3em;
+    margin-bottom: 1.2em;
+
+    &::after {
+      display: block;
+      content: '';
+
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 3rem;
+      height: 2px;
+      background-color: var(--clr-primary);
+      transition: width 120ms ease-in-out;
+    }
+
+    &:hover::after {
+      width: 100%;
+    }
+  }
+
+  :is(h1, h2, h2, h3, h4) {
     > .anchor {
       float: left;
       padding: 4px 6px 0 0;
@@ -222,7 +252,7 @@ a {
     }
   }
 
-  ul {
+  ul:not([class]) {
     margin: 0 0 1em;
     padding: 0;
 
