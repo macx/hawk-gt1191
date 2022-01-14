@@ -14,7 +14,6 @@ const setThemePreference = () => {
 };
 
 const applyThemeAttributes = () => {
-  console.log('apply', theme.value);
   document.documentElement.setAttribute('data-theme', theme.value);
   document.querySelector('.themebutton').setAttribute('aria-live', theme.value);
 };
@@ -62,3 +61,12 @@ if (navButtons && navLinks) {
     link.addEventListener('click', closeNavigation);
   });
 }
+
+const externalLinks = document.querySelectorAll('main a[href^="http"]');
+console.log(...externalLinks);
+
+[...externalLinks].forEach((link) => {
+  if (link.hostname != window.location.hostname) {
+    link.target = '_blank';
+  }
+});

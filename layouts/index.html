@@ -6,6 +6,22 @@
 
 
     <main class="stage" aria-role="main">
+      <nav class="stage__navigation">
+        <h2>Das Seminar</h2>
+
+        <ul>
+          {{ range where .Site.Pages "Type" "home" }}
+            {{ if isset .Params "title" }}
+              <li>
+                <a href="/#{{ .Params.id }}">
+                  {{ .Title }}
+                </a>
+              </li>
+            {{ end }}
+          {{ end }}
+        </ul>
+      </nav>
+
       {{ range where .Site.Pages "Type" "home" }}
         {{ if isset .Params "title" }}
           <section

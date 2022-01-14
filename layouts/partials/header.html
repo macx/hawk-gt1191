@@ -19,17 +19,7 @@
         </button>
       </div>
 
-      <ul class="navigation__list">
-        {{ range where .Site.Pages "Type" "home" }}
-          {{ if isset .Params "title" }}
-            <li>
-              <a href="/#{{ .Params.id }}" class="{{ .Params.class }}">
-                {{ .Title }}
-              </a>
-            </li>
-          {{ end }}
-        {{ end }}
-      </ul>
+      {{- partial "navigation.html" . -}}
     </div>
 
     <div class="navigation__tools">

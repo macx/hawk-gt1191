@@ -12,8 +12,6 @@
 
     {{- partialCached "footer.html" . -}}
 
-    {{ $js := resources.Get "scripts/main.js" |
-      js.Build (dict "params" (dict "api" "https://example.org/api"))
-    }}    <script type="text/javascript" src="{{ $js.RelPermalink }}" defer></script>
+    {{ $js := resources.Get "scripts/main.js" | js.Build }}    <script src="{{ $js.RelPermalink }}" defer></script>
   </body>
 </html>

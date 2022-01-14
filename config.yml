@@ -7,8 +7,8 @@ markup:
     extensions:
       typographer: true
     parser:
-      #autoHeadingID: true
-      #autoHeadingIDType: 'github'
+      autoHeadingID: true
+      autoHeadingIDType: 'github'
       attribute:
         block: true
         title: true
@@ -16,6 +16,19 @@ markup:
       unsafe: true
 
 menu:
+  header:
+    - identifier: 'home'
+      name: 'Das Seminar'
+      url: '/'
+      params:
+        class: 'bgs-1'
+      weight: 1
+    - identifier: 'links'
+      name: 'Links'
+      url: '/links/'
+      params:
+        class: 'bgs-3'
+      weight: 3
   footer:
     - identifier: 'impressum'
       name: 'Impressum'

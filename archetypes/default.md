@@ -1,8 +1,6 @@
 ---
 title: "{{ replace .Name "-" " " | title }}"
+description: ""
 date: {{ .Date }}
 draft: false
-menu:
-  - main
-  - footer
 ---
