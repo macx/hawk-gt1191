@@ -27,6 +27,10 @@
       fill: var(--clr-primary);
     }
   }
+
+  @include respond('medium') {
+    display: none;
+  }
 }
 
 .header {
@@ -50,6 +54,7 @@
     display: block;
 
     svg {
+      display: block;
       height: 1.25rem;
       width: auto;
 

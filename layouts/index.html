@@ -6,8 +6,10 @@
 
 
     <main class="stage stage--with-sections" aria-role="main">
-      <nav class="stage__navigation">
-        <h2>Das Seminar</h2>
+      <aside class="stage__navigation">
+        <header>
+          <h2>Das Seminar</h2>
+        </header>
 
         <ul>
           {{ range where .Site.Pages "Type" "home" }}
@@ -20,7 +22,7 @@
             {{ end }}
           {{ end }}
         </ul>
-      </nav>
+      </aside>
 
       {{ range where .Site.Pages "Type" "home" }}
         {{ if isset .Params "title" }}

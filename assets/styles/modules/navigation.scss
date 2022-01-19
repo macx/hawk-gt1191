@@ -124,6 +124,80 @@
       [data-theme='light'] &__icon--dark {
         display: none;
       }
+
+      &:focus {
+        @include focus();
+      }
+    }
+  }
+
+  @include respond('medium') {
+    position: relative;
+    width: auto;
+    transform: unset;
+    flex-direction: row;
+    border-left: 0;
+
+    &__header {
+      display: none;
+    }
+
+    &__list {
+      display: flex;
+
+      a {
+        display: flex;
+        align-items: center;
+        height: var(--header-height);
+        padding: 0 1rem;
+        background: none;
+
+        &::before {
+          display: none;
+        }
+
+        &::after {
+          display: inline-block;
+          content: '';
+          position: absolute;
+          left: 50%;
+          bottom: 0;
+          width: 1rem;
+          height: 2px;
+          z-index: 2;
+          transform: translateX(-50%);
+          background-color: var(--clr-primary);
+          transition: width 120ms ease-in-out;
+        }
+
+        &:hover,
+        &:focus {
+          background-color: transparent;
+
+          &::after {
+            width: calc(100% - 2rem);
+          }
+        }
+
+        &.is-active {
+          font-weight: var(--font-weight--bold);
+        }
+      }
+    }
+
+    &__tools {
+      a {
+        display: none;
+      }
+
+      button {
+        padding: 0 var(--spacing);
+
+        &:hover,
+        &:focus {
+          background-color: transparent;
+        }
+      }
     }
   }
 }

@@ -14,9 +14,10 @@ markup:
         title: true
     renderer:
       unsafe: true
-
+  tableOfContents:
+    endLevel: 2
 menu:
-  header:
+  nav:
     - identifier: 'home'
       name: 'Das Seminar'
       url: '/'

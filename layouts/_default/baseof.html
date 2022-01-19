@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="de">
   {{- partial "head.html" . -}}
+
+
   <body id="top">
     {{- partial "header.html" . -}}
 
@@ -12,6 +14,6 @@
 
     {{- partialCached "footer.html" . -}}
 
-    {{ $js := resources.Get "scripts/main.js" | js.Build }}    <script src="{{ $js.RelPermalink }}" defer></script>
+    {{ $js := resources.Get "scripts/main.js" | js.Build }}<script src="{{ $js.RelPermalink }}" defer></script>
   </body>
 </html>

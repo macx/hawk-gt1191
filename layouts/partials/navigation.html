@@ -1,16 +1,11 @@
 <ul class="navigation__list">
-  {{ $currentPage := . }}
-  {{ range .Site.Menus.header }}
+  {{ $current := . }}
+  {{ range .Site.Menus.nav }}
     <li>
-      <a
-        href="{{ .URL }}"
-        class="{{ with .Params.class }}
-          {{ . }}
-        {{ end }}
-        {{ if $currentPage.HasMenuCurrent "main" . }}
-          is-active
-        {{ end }}"
-      >
+      {{ $active := or ($current.IsMenuCurrent "nav" .) ($current.HasMenuCurrent "nav" .) }}
+      {{ $active = or $active (eq .Name $current.Title) }}
+      <!-- prettier-ignore -->
+      <a href="{{ .URL }}" class="{{ with .Params.class }}{{ . }}{{ end }}{{ if $active }} is-active{{ end }}">
         {{- .Name -}}
       </a>
     </li>
