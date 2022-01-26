@@ -14,6 +14,9 @@
 
     {{- partialCached "footer.html" . -}}
 
+
+    <div id="overlay"></div>
+
     {{ $js := resources.Get "scripts/main.js" | js.Build }}<script src="{{ $js.RelPermalink }}" defer></script>
   </body>
 </html>

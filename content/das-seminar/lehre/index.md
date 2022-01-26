@@ -1,6 +1,7 @@
 ---
 title: 'Lehre'
-date: 2021-12-08T12:50:33+01:00
+description: ''
+date: 2022-01-20T13:40:53+01:00
 draft: false
 weight: 2
 id: 'lehre'

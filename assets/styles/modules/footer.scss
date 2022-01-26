@@ -7,9 +7,14 @@
   justify-content: space-between;
   align-items: center;
 
+  position: relative;
+  z-index: 200;
+
   padding: var(--spacing);
   font-size: 0.8rem;
+  border-top: 1px solid var(--footer-line);
   color: var(--clr-text--light);
+  background: var(--footer-bg);
 
   nav {
     display: flex;

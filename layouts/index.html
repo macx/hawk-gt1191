@@ -1,47 +1,17 @@
-<!DOCTYPE html>
-<html lang="de">
-  {{- partial "head.html" . -}}
-  <body id="top">
-    {{- partial "header.html" . -}}
+{{ define "main" }}
+  {{ if .Params.notoc }}
+    <aside class="stage__navigation">
+      <header>
+        <h2>{{ .Title }}</h2>
+      </header>
+
+      {{ .TableOfContents }}
+    </aside>
+  {{ end }}
 
 
-    <main class="stage stage--with-sections" aria-role="main">
-      <aside class="stage__navigation">
-        <header>
-          <h2>Das Seminar</h2>
-        </header>
-
-        <ul>
-          {{ range where .Site.Pages "Type" "home" }}
-            {{ if isset .Params "title" }}
-              <li>
-                <a href="/#{{ .Params.id }}">
-                  {{ .Title }}
-                </a>
-              </li>
-            {{ end }}
-          {{ end }}
-        </ul>
-      </aside>
-
-      {{ range where .Site.Pages "Type" "home" }}
-        {{ if isset .Params "title" }}
-          <section
-            id="{{ .Params.id }}"
-            class="stage__item {{ .Params.class }}"
-          >
-            <div class="content">
-              {{ .Content }}
-            </div>
-          </section>
-        {{ end }}
-      {{ end }}
-    </main>
-
-    {{- partialCached "footer.html" . -}}
-
-    {{ $js := resources.Get "scripts/main.js" |
-      js.Build (dict "params" (dict "api" "https://example.org/api"))
-    }}    <script type="text/javascript" src="{{ $js.RelPermalink }}" defer></script>
-  </body>
-</html>
+  <!-- prettier-ignore -->
+  <div class="content content--{{ if isset .Params "content" }}{{ .Params.content }}{{ else }}full{{ end }}">
+    {{ .Content }}
+  </div>
+{{ end }}

@@ -1,0 +1,31 @@
+{{ define "main" }}
+  <main class="stage stage--with-sections" aria-role="main">
+    <aside class="stage__navigation">
+      <header>
+        <h2>Das Seminar</h2>
+      </header>
+
+      <ul>
+        {{ range where .Site.Pages "Type" "das-seminar" }}
+          {{ if isset .Params "title" }}
+            <li>
+              <a href="#{{ .Params.id }}">
+                {{ .Title }}
+              </a>
+            </li>
+          {{ end }}
+        {{ end }}
+      </ul>
+    </aside>
+
+    {{ range where .Site.Pages "Type" "das-seminar" }}
+      {{ if isset .Params "title" }}
+        <section id="{{ .Params.id }}" class="stage__item {{ .Params.class }}">
+          <div class="content">
+            {{ .Content }}
+          </div>
+        </section>
+      {{ end }}
+    {{ end }}
+  </main>
+{{ end }}

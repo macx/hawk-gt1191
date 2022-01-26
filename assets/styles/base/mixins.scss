@@ -10,7 +10,7 @@
       @content;
     }
   } @else if $type == 'to' {
-    @media screen and (max-width: map-get($layout-breakpoints, $breakpoint)) {
+    @media screen and (max-width: map-get($layout-breakpoints, $breakpoint)-1) {
       @content;
     }
   }

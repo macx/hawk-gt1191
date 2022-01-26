@@ -1,9 +1,10 @@
 ---
-title: 'Kontakt'
-date: 2021-12-08T12:50:47+01:00
+title: 'Anmeldung'
+description: ''
+date: 2022-01-20T13:40:15+01:00
 draft: false
 weight: 4
-id: 'kontakt'
+id: 'anmeldung'
 class: 'bgs-4'
 ---
 

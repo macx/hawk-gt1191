@@ -1,11 +1,13 @@
 <header class="header">
-  <a href="/" class="header__logo">
-    {{ readFile "static/images/hawk-gt1191.svg" | safeHTML }}
-  </a>
+  <div class="header__bar">
+    <a href="/" class="header__logo">
+      {{ readFile "static/images/hawk-gt1191.svg" | safeHTML }}
+    </a>
 
-  <button type="button" class="navbutton" aria-label="Navigation öffnen">
-    {{ readFile "static/images/icons/menu.svg" | safeHTML }}
-  </button>
+    <button type="button" class="navbutton" aria-label="Navigation öffnen">
+      {{ readFile "static/images/icons/menu.svg" | safeHTML }}
+    </button>
+  </div>
 
   <nav class="navigation">
     <div>

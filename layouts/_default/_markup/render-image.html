@@ -1,0 +1,41 @@
+{{ $src := .Page.Resources.GetMatch (printf "%s" (.Destination | safeURL)) }}
+{{ $alt := .PlainText | safeHTML }}
+{{ $title := .Title | safeHTML }}
+{{ $titleArr := split $title "|" }}
+
+{{ if $src }}
+  {{ $sizeSmall := default "400x225 webp photo smart" }}
+  {{ $sizeLarge := default "600x webp photo smart" }}
+
+  {{/* Resize images */}}
+  {{/* Creating a temp scratch because it's not available in this context */}}
+  {{ $data := newScratch }}
+  {{ $data.Set "small" ($src.Fill $sizeSmall) }}
+  {{ $data.Set "large" ($src.Resize $sizeLarge) }}
+
+  {{/* add the processed images to the scratch */}}
+  {{ $imageSmall := $data.Get "small" }}
+  {{ $imageLarge := $data.Get "large" }}
+
+  {{ if $title }}
+    <figure>
+  {{ end }}
+
+  <picture>
+    <source media="(min-width: 400px)" srcset="{{ with $imageLarge.RelPermalink }}{{ . }}{{ end }}">
+    <img src="{{ with $imageSmall.RelPermalink }}{{ . }}{{ end }}" alt="{{ $alt }}">
+  </picture>
+
+  {{ if $title }}
+      <figcaption>
+        {{ if eq (len $titleArr) 2 }}
+          {{ range $title := $titleArr }}
+            <span>{{ $title }}</span>
+          {{ end }}
+        {{ else }}
+          {{ $title }}
+        {{ end }}
+      </figcaption>
+    </figure>
+  {{ end }}
+{{ end }}

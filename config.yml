@@ -18,17 +18,17 @@ markup:
     endLevel: 2
 menu:
   nav:
-    - identifier: 'home'
+    - identifier: 'das-seminar'
       name: 'Das Seminar'
-      url: '/'
+      url: '/das-seminar/'
       params:
-        class: 'bgs-1'
+        class: ''
       weight: 1
     - identifier: 'links'
       name: 'Links'
       url: '/links/'
       params:
-        class: 'bgs-3'
+        class: ''
       weight: 3
   footer:
     - identifier: 'impressum'

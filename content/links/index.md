@@ -16,16 +16,21 @@ Regelmäßig treten Fragen auf, welche externen Resourcen ich empfehlen kann. Hi
 - [Tailwind Color Palette](https://tailwindcolor.com/)\
   Schöne Farbpalette. Ein Klick auf eine Farbe kopiert euch den Farbwert in die Zwischenablage.
 
-### Fonts und Icons
+### Fonts
 
 - [Google Fonts](https://fonts.google.com/)\
   Frei nutzbare Webfonts für deine Website.
-- [Google Material Icons](https://fonts.google.com/icons)\
-  Weit verbreitetes Icon-Set direkt von Google.
-- [material Design Icons](https://materialdesignicons.com/)\
-  Wenn dir die Google-Icons gefallen, dir dort aber noch Icons fehlen, findest du sie in dieser User-Bibliothek.
+
+### Icons
+
+- [Material Icons](https://fonts.google.com/icons)\
+  Weit verbreitetes Icon-Set von Google, verwendet in Android und den Google-Apps.
+- [Material Design Icons](https://materialdesignicons.com/)\
+  Community-Edition der Google-Icons mit wesentlich mehr Auswahl und Varianten. Auch als Webfont nutzbar.
 - [Simple Icons](https://simpleicons.org/)\
-  Brand-Icons und deren Corporate Colors wie Facebook, Instragram und anderen. Mit einem Klick bekommt ihr das SVG.
+  Brand-Icons bekannter Markern wie Facebook und Instagram. Download als SVG und RGB-Farbton.
+- [Feather Icons](https://feathericons.com/)\
+  Simpel und sauber gestaltet, Export als SVG.
 
 ### Bilder
 
