@@ -6,6 +6,12 @@ markup:
   goldmark:
     extensions:
       typographer: true
+      taskList: true
+      strikethrough: true
+      typographer: true
+      table: true
+      definitionList: true
+      highlight: true
     parser:
       autoHeadingID: true
       autoHeadingIDType: 'github'

@@ -10,7 +10,7 @@ Im Seminar GT 1191 der HAWK Hochschule für angewandte Wissenschaft und Kunst in
 
 ![Tablet im Vordergrund mit Skizze der späteren Website, die im Hintergrund auf dem Laptop angezeigt wird.](pb-design.jpg 'Beim User Centered Design steht der Nutzer und nicht der Designer im Vordergrund.|Foto: DM')
 
-Dir steht eine herausfordernde Zeit bevor, die bei Gelingen mit sechs Punkten belohnt wird. Du lernst die Grundlagen und fortgeschrittene Techniken von einem erfahrenen UI/UX-Consultant.
+Du lernst die Grundlagen von <abbr title="Hypertext Markup Language">HTML</abbr>, <abbr title="Cascading Stylesheets">CSS</abbr> und JavaScript, sowie fortgeschrittene Techniken zur Bild- und Ladezeitoptimierung der Assets. Dich erwarten Best-Practise-Beispiele aus Großprojekten, wie die Gestaltung von Komponenten aus Sicht des User Centered Designs. Du darfst dich kreativ austoben, musst dir zunächst aber die Struktur erarbeiten und am Ball bleiben. Dich erwartet eine herausfordernde Zeit.
 
 Auf dieser Website findest du alle Informationen zum [Links]({{< relref "/das-seminar" >}}), Tutorials und hilfreiche [Links]({{< relref "/links" >}}). Und wenn du magst, kannst du diese auch selbst mitgestalten, denn sie ist im Rahmen dieses Seminars entstanden.
 
