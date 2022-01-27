@@ -8,12 +8,18 @@ id: 'anmeldung'
 class: 'bgs-4'
 ---
 
-# Kontakt zum Dozenten
+# Du möchtest dabei sein?
 
-Du hast organisatorische oder inhaltliche Fragen oder möchtest Feedback zum Seminar geben? Ich freue mich auch über Lob und Kritik.
+Das ist einfacher als du denkst. Setze dich frühzeitig auf die Warteliste und definiere eine hohe Priorität.
 {.lead}
 
-Du erreichst David dienstlich über Discord, StudIP oder per&nbsp;E-Mail.
+<p>
+<a href="https://studip.hawk.de/dispatch.php/course/details?sem_id=4b3efce6a4c286cc0d4956d6451d5ad3&again=yes" class="button">
+  <span>Anmeldung auf StudIP</span>
+</a>
+</p>
+
+Solltest du den Termin verpassen, melde dich einfach bei David. Du erreichst ihn dienstlich über Discord, StudIP oder per&nbsp;E-Mail.
 
 <ul class="social-links">
   <li>

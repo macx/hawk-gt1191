@@ -12,7 +12,7 @@ Im Seminar GT 1191 der HAWK Hochschule für angewandte Wissenschaft und Kunst in
 
 Du lernst die Grundlagen von <abbr title="Hypertext Markup Language">HTML</abbr>, <abbr title="Cascading Stylesheets">CSS</abbr> und JavaScript, sowie fortgeschrittene Techniken zur Bild- und Ladezeitoptimierung der Assets. Dich erwarten Best-Practise-Beispiele aus Großprojekten, wie die Gestaltung von Komponenten aus Sicht des User Centered Designs. Du darfst dich kreativ austoben, musst dir zunächst aber die Struktur erarbeiten und am Ball bleiben. Dich erwartet eine herausfordernde Zeit.
 
-Auf dieser Website findest du alle Informationen zum [Links]({{< relref "/das-seminar" >}}), Tutorials und hilfreiche [Links]({{< relref "/links" >}}). Und wenn du magst, kannst du diese auch selbst mitgestalten, denn sie ist im Rahmen dieses Seminars entstanden.
+Auf dieser Website findest du alle Informationen zum [Seminar]({{< relref "/das-seminar" >}}), Tutorials und hilfreiche [Links]({{< relref "/links" >}}). Und wenn du magst, kannst du sie auch selbst [mitgestalten](https://github.com/macx/hawk-gt1191), denn sie ist im Rahmen dieses Seminars entstanden.
 
 <div class="button-group">
   <a href="{{< relref "/das-seminar" >}}" class="button">

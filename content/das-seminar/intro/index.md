@@ -14,10 +14,8 @@ class: 'bgs-1'
 {.lead}
 
 Das Seminar wird seit 2015 von [David Maciejewski](https://macx.io) (UI/UX
-Consultant bei [IT-P](https://it-p.de/)) gegeben und ist mit über 30 Teilnehmenden
+Consultant bei [IT-P](https://it-p.de/)) gegeben und ist mit rund 30 Teilnehmenden
 pro Semester stark besucht.
-
-Erfahre hier, was im Seminar gelehrt wird und wie du teilnehmen kannst.
 
 <div class="button-group">
   <a href="#lehre" class="button">

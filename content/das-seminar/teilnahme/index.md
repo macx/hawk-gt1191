@@ -23,7 +23,7 @@ Rechtzeitig vor dem Start erhälst du von David über StudIP eine Informationsma
     <span>Zurück</span>
   </a>
 
-  <a href="#kontakt" class="button">
+  <a href="#anmeldung" class="button">
     <span>Weiter</span>
   </a>
 </div>
