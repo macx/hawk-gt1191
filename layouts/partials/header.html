@@ -1,40 +1,38 @@
 <header class="header">
   <div class="header__bar">
-    <div></div>
+    <div>
+      <button
+        type="button"
+        class="header__button header__button--show js-toggle-nav"
+        aria-label="Navigation öffnen"
+      >
+        {{ readFile "static/images/icons/menu.svg" | safeHTML }}
+      </button>
+
+      <button
+        type="button"
+        class="header__button header__button--hide js-toggle-nav"
+        aria-label="Navigation schließen"
+      >
+        {{ readFile "static/images/icons/close.svg" | safeHTML }}
+      </button>
+
+      {{- partial "navigation.html" . -}}
+    </div>
 
     <a href="/" class="header__logo">
       {{ readFile "static/images/hawk-gt1191.svg" | safeHTML }}
     </a>
 
-    <button type="button" class="navbutton" aria-label="Navigation öffnen">
-      {{ readFile "static/images/icons/menu.svg" | safeHTML }}
-    </button>
-  </div>
-
-  <nav class="navigation">
     <div>
-      <div class="navigation__header">
-        <button
-          type="button"
-          class="navbutton"
-          aria-label="Navigation schließen"
-        >
-          {{ readFile "static/images/icons/close.svg" | safeHTML }}
-        </button>
-      </div>
-
-      {{- partial "navigation.html" . -}}
-    </div>
-
-    <div class="navigation__tools">
-      <a href="#top" aria-label="Nach oben scrollen">
-        {{ readFile "static/images/icons/arrow-top.svg" | safeHTML }}
-      </a>
-
-      <button type="button" class="themebutton" aria-label="Theme umschalten">
+      <button
+        type="button"
+        class="header__button themebutton"
+        aria-label="Theme umschalten"
+      >
         {{ readFile "static/images/icons/theme-light.svg" | safeHTML }}
         {{ readFile "static/images/icons/theme-dark.svg" | safeHTML }}
       </button>
     </div>
-  </nav>
+  </div>
 </header>

@@ -1,43 +1,13 @@
-// ┌──────────────────────────────────┐
-//   NAVIGATION
-// └──────────────────────────────────┘
+/*
+┌──────────────────────────────────┐
+  NAVIGATION
+└──────────────────────────────────┘
+*/
 
 .navigation {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: var(--navigation-width);
-  height: 100%;
-  z-index: 30;
-  transform: translateX(120%);
-  transition: transform var(--transition--navi),
-    box-shadow var(--transition--navi);
-
-  background-color: var(--clr-background);
-  box-shadow: 0 0 0 transparent;
-  border-left: 1px solid var(--nav-border);
-
-  .with-opened-navigation & {
-    transform: translateX(0);
-    box-shadow: 0 -1.5rem 3rem var(--nav-shadow);
-  }
-
-  &__header {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    height: var(--header-height);
-    padding: 0 0 0 var(--spacing);
-  }
-
   &__list {
-    justify-self: flex-start;
     margin: 0;
-    padding: 0;
+    padding: var(--spacing);
 
     li {
       list-style: none;
@@ -45,116 +15,59 @@
 
     a {
       position: relative;
-      display: block;
+      display: flex;
+      align-items: center;
+      padding: 0.5rem;
+      background: none;
       color: var(--clr-text);
       text-decoration: none;
-      padding: 0.8rem var(--spacing) 0.8rem 1.8rem;
-
-      &::before {
-        position: absolute;
-        top: 50%;
-        left: 0;
-        z-index: -1;
-        opacity: 0;
-        transform: translate(var(--navigation-width), -50%);
-        transition: all 200ms cubic-bezier(1, 0, 0, 1);
-
-        background-color: var(--clr-inverse);
-        color: var(--clr-text--dark);
-        border-radius: 50%;
-
-        display: block;
-        content: '';
-        width: 1.5rem;
-        height: 1.5rem;
-        background-image: url(/images/arrow-nav.svg);
-        background-repeat: no-repeat;
-      }
 
       &:hover,
       &:focus {
-        &::before {
-          opacity: 1;
-          transform: translate(-50%, -50%);
-          z-index: 2;
-        }
+        background-color: transparent;
+        color: var(--clr-primary);
+      }
 
-        background-color: var(--clr-primary--hover);
-        text-decoration: none;
+      &.is-active {
+        font-weight: var(--font-weight--bold);
+        color: var(--clr-primary);
       }
     }
   }
 
-  &__tools {
-    display: flex;
-    justify-content: space-between;
-    padding: 0;
-    border-top: 1px solid var(--nav-border);
-
-    a,
-    button {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      padding: 0 var(--spacing);
-      flex: 1 0 50%;
-      transition: background-color var(--transition);
-      height: var(--header-height);
-
-      svg {
-        transition: fill var(--transition);
-      }
-
-      &:hover,
-      &:focus {
-        background-color: var(--clr-primary--hover);
-        svg {
-          fill: var(--clr-primary);
-        }
-      }
-    }
-
-    .themebutton {
-      background: none;
-      border: 0;
-      cursor: pointer;
-
-      [data-theme='dark'] &__icon--light,
-      [data-theme='light'] &__icon--dark {
-        display: none;
-      }
-
-      &:focus-visible {
-        @include focus();
-      }
-    }
+  .with-nav & {
+    max-height: 10000px;
   }
 
-  @include respond('medium') {
-    position: relative;
-    width: auto;
-    transform: unset;
-    flex-direction: row;
-    border-left: 0;
+  @include respond('large', 'to') {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    width: 100%;
+    height: calc(100vh - var(--header-height));
+    z-index: 20;
 
-    &__header {
-      display: none;
-    }
+    background-color: var(--clr-header);
+    backdrop-filter: blur(5px);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transition--navi);
 
     &__list {
+      font-size: var(--font-size--large);
+    }
+  }
+
+  @include respond('large') {
+    &__list {
       display: flex;
+      justify-content: start;
+      align-items: center;
+      padding: 0 0 0 var(--spacing--small);
 
       a {
-        display: flex;
-        align-items: center;
         height: var(--header-height);
-        padding: 0 1rem;
-        background: none;
-
-        &::before {
-          display: none;
-        }
+        padding: 0 1em;
 
         &::after {
           display: inline-block;
@@ -172,30 +85,9 @@
 
         &:hover,
         &:focus {
-          background-color: transparent;
-
           &::after {
             width: calc(100% - 2rem);
           }
-        }
-
-        &.is-active {
-          font-weight: var(--font-weight--bold);
-        }
-      }
-    }
-
-    &__tools {
-      a {
-        display: none;
-      }
-
-      button {
-        padding: 0 var(--spacing);
-
-        &:hover,
-        &:focus {
-          background-color: transparent;
         }
       }
     }

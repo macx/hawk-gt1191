@@ -1,6 +1,8 @@
 :root {
   --spacing: 1.25rem;
+  --spacing--small: 1rem;
   --spacing--large: 2rem;
+
   --header-height: 3.75rem;
   --navigation-width: 15rem;
   --content-max-width: 45rem;
@@ -17,6 +19,7 @@
   --clr-text--dark: #000;
   --clr-inverse: #fff;
   --clr-line: rgba(0, 0, 0, 0.2);
+  --clr-header: rgba(236, 239, 241, 0.8);
 
   --clr-primary: #ff8200;
   --clr-primary--hover: rgba(255, 130, 0, 0.2);
@@ -32,6 +35,7 @@
 
   --font-size: 1rem;
   --font-size--small: 0.875rem;
+  --font-size--large: 1.25rem;
   --line-height: 1.3;
   --line-height--small: 1.2;
 
@@ -62,6 +66,7 @@
     --clr-text--light: rgba(217, 217, 217, 0.7);
     --clr-text--dark: #fff;
     --clr-line: rgba(255, 255, 255, 0.2);
+    --clr-header: rgba(20, 35, 45, 0.8);
 
     --clr-play-1: hsla(206, 99%, 69%, 0.1);
     --clr-play-2: hsla(123, 46%, 66%, 0.1);

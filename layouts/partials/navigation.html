@@ -1,13 +1,16 @@
-<ul class="navigation__list">
-  {{ $current := . }}
-  {{ range .Site.Menus.nav }}
-    <li>
-      {{ $active := or ($current.IsMenuCurrent "nav" .) ($current.HasMenuCurrent "nav" .) }}
-      {{ $active = or $active (eq .Name $current.Title) }}
-      <!-- prettier-ignore -->
-      <a href="{{ .URL }}" class="{{ with .Params.class }}{{ . }}{{ end }}{{ if $active }} is-active{{ end }}">
+<nav class="navigation">
+  <ul class="navigation__list">
+    {{ $currentPage := . }}
+    {{ range .Site.Menus.nav }}
+      <li>
+        {{ $active := or ($currentPage.IsMenuCurrent "nav" .) ($currentPage.HasMenuCurrent "nav" .) }}
+        {{ $active = or $active (eq .Name $currentPage.Title) }}
+        {{ $active = or $active (eq $currentPage.URL .URL) }}
+        <!-- prettier-ignore -->
+        <a href="{{ .URL }}" class="{{ with .Params.class }}{{ . }}{{ end }}{{ if $active }} is-active{{ end }}">
         {{- .Name -}}
       </a>
-    </li>
-  {{ end }}
-</ul>
+      </li>
+    {{ end }}
+  </ul>
+</nav>

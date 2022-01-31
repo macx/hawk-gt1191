@@ -10,7 +10,7 @@ const getThemePreference = () => {
 
 const setThemePreference = () => {
   localStorage.setItem('theme', theme.value);
-  reflectPreference();
+  applyThemeAttributes();
 };
 
 const applyThemeAttributes = () => {
@@ -41,29 +41,31 @@ window
     setThemePreference();
   });
 
-const navButtons = document.querySelectorAll('.navbutton');
-const navLinks = document.querySelectorAll('.navigation a');
+const navButtons = document.querySelectorAll('.js-toggle-nav');
+// const navLinks = document.querySelectorAll('.navigation a');
+
+console.log('X');
 
 const toggleNavigation = function () {
-  document.body.classList.toggle('with-opened-navigation');
+  document.body.classList.toggle('with-nav');
 };
 
 const closeNavigation = function () {
-  document.body.classList.remove('with-opened-navigation');
+  document.body.classList.remove('with-nav');
 };
 
-if (navButtons && navLinks) {
+if (navButtons) {
   navButtons.forEach((button) => {
     button.addEventListener('click', toggleNavigation);
   });
 
-  navLinks.forEach((link) => {
-    link.addEventListener('click', closeNavigation);
-  });
+  // navLinks.forEach((link) => {
+  //   link.addEventListener('click', closeNavigation);
+  // });
 }
 
 const externalLinks = document.querySelectorAll('main a[href^="http"]');
-console.log(...externalLinks);
+// console.log(...externalLinks);
 
 [...externalLinks].forEach((link) => {
   if (link.hostname != window.location.hostname) {
