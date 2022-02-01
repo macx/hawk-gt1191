@@ -37,7 +37,16 @@ Regelmäßig treten Fragen auf, welche externen Resourcen ich empfehlen kann. Hi
 - [Unsplash](https://unsplash.com/)\
   Hochauflösende Bilder zur freien Verwendung auf deiner Website.
 
-## Intregierte Entwicklungsumgebung (IDE)
+## Assets optimieren
+
+- [Squoosh](https://squoosh.app/)\
+  Besser als Photoshop und Co optimiert Squoosh alle arten von Bildern und gibt sie auch in neuen Bildformaten aus.
+- [SVGOMG](https://jakearchibald.github.io/svgomg/)\
+  Jedes SVG muss hier durch: Optimiere deine Bilder mit dieser Web-App.
+- [SVGWIZ](https://svgwiz.com/)\
+  Konvertiert SVG-Icons in CSS-Data-URI, um diese als Hintergrundgrafik verwenden zu können.
+
+## Editoren (IDE)
 
 Mit diesen Werkzeugen kannst du deine Website entwickeln.
 
@@ -63,19 +72,12 @@ Ich empfehle ich folgende Plugins:
 - [Cobalt2](https://marketplace.visualstudio.com/items?itemName=wesbos.theme-cobalt2)\
   Sehr angenehmes und gut lesbares Dark-Theme für VSC.
 
-## Websites bereitstellen
+## Apps und Tools
 
 Wenn du deine Website lokal in deinem Browser oder öffentlich zur Verfügung stellen möchtest.
 
-- [Laravel Valet](https://laravel.com/docs/8.x/valet)\
+- [Laravel Valet ](https://laravel.com/docs/8.x/valet)\
   Entwicklungsumgebung für macOS-Minimalisten. Valet macht aus einem Verzeichnis einen Virtuellen Host unter der \*.test-Domäne.
-
-### Assets optimieren
-
-- [SVGOMG](https://jakearchibald.github.io/svgomg/)\
-  Jedes SVG muss hier durch: Optimiere deine Bilder mit dieser Web-App.
-- [Squoosh](https://squoosh.app/)\
-  Besser als Photoshop und Co optimiert Squoosh alle arten von Bildern und gibt sie auch in neuen Bildformaten aus.
 
 <!-- prettier-ignore -->
 1. <span id="cite-note-1"></span> Zur Registierung und Login benötigt ihr einen kostenlosen Account von [GitHub](https://github.com/)
