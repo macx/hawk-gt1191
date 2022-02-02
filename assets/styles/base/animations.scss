@@ -1,0 +1,12 @@
+@keyframes highlight {
+  0% {
+    text-shadow: 1px 1px 2px var(--clr-primary), 0 0 25px var(--clr-primary),
+      0 0 5px var(--clr-text);
+    background-image: url(/images/brush-stroke.png);
+  }
+
+  100% {
+    text-shadow: 0 0 1px transparent;
+    background-image: unset;
+  }
+}

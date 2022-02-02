@@ -1,6 +1,7 @@
 baseURL: 'https://hawk-gt1191.de/'
 languageCode: 'de-DE'
 title: 'HAWK GT1191'
+enableemoji: true
 
 markup:
   goldmark:
@@ -24,6 +25,7 @@ markup:
     endLevel: 2
   highlight:
     noClasses: false
+
 menu:
   nav:
     - identifier: 'das-seminar'
