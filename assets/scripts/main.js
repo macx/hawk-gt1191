@@ -1,3 +1,19 @@
+/*
+┌──────────────────────────────────┐
+  SERVICE WORKER
+└──────────────────────────────────┘
+*/
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js');
+}
+
+/*
+┌──────────────────────────────────┐
+  THEME SWITCHER
+└──────────────────────────────────┘
+*/
+
 const getThemePreference = () => {
   if (localStorage.getItem('theme')) {
     return localStorage.getItem('theme');
@@ -15,7 +31,10 @@ const setThemePreference = () => {
 
 const applyThemeAttributes = () => {
   document.documentElement.setAttribute('data-theme', theme.value);
-  document.querySelector('.themebutton').setAttribute('aria-live', theme.value);
+  // document
+  //   .querySelector('.themebutton')
+  // .setAttribute('aria-live', theme.value)
+  //   .setAttribute('aria-pressed', true);
 };
 
 const theme = {
@@ -41,10 +60,14 @@ window
     setThemePreference();
   });
 
+/*
+┌──────────────────────────────────┐
+  NAVIGATION
+└──────────────────────────────────┘
+*/
+
 const navButtons = document.querySelectorAll('.js-toggle-nav');
 // const navLinks = document.querySelectorAll('.navigation a');
-
-console.log('X');
 
 const toggleNavigation = function () {
   document.body.classList.toggle('with-nav');

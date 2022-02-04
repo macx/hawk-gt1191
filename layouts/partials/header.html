@@ -20,7 +20,7 @@
       {{- partial "navigation.html" . -}}
     </div>
 
-    <a href="/" class="header__logo">
+    <a href="/" class="header__logo" aria-label="HAWK GT1191">
       {{ readFile "static/images/hawk-gt1191.svg" | safeHTML }}
     </a>
 
@@ -28,7 +28,8 @@
       <button
         type="button"
         class="header__button themebutton"
-        aria-label="Theme umschalten"
+        aria-label="Erscheinungsbild hell und dunkel umschalten"
+        aria-pressed="false"
       >
         {{ readFile "static/images/icons/theme-light.svg" | safeHTML }}
         {{ readFile "static/images/icons/theme-dark.svg" | safeHTML }}

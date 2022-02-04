@@ -3,13 +3,6 @@
 // └──────────────────────────────────┘
 
 .footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  position: relative;
-  z-index: 200;
-
   padding: var(--spacing);
   font-size: 0.8rem;
   border-top: 1px solid var(--footer-line);
@@ -17,9 +10,21 @@
   background: var(--footer-bg);
 
   nav {
+    margin-top: 0.5em;
     display: flex;
-    justify-content: flex-end;
+    justify-content: start;
     align-items: center;
     gap: 1em;
+  }
+
+  @include respond('small') {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    nav {
+      margin-top: 0;
+      justify-content: end;
+    }
   }
 }

@@ -31,6 +31,8 @@ Regelmäßig treten Fragen auf, welche Resourcen ich empfehlen kann. Deshalb hab
 
 - [Google Fonts](https://fonts.google.com/)\
   Frei nutzbare Webfonts für deine Website.
+- [Google Webfonts Helper](https://google-webfonts-helper.herokuapp.com/fonts)\
+  Datenschutzrechtlich unbedenktliche Nutzung von Google Fonts.
 
 ### Icons
 
@@ -117,5 +119,16 @@ Du brauchst Code-Beispiele? Gern, hier sind die, die ich gebaut habe. Die sind a
   Moderne Variante eines Bild-Karussells.
 - [Hiding header on scroll event with Headroom.js](https://codepen.io/macx/pen/mdmWEgx)\
   Header, der nach dem scrollen verschwindet.
+
+## Dokumentation
+
+- [HTML-Elemente](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)\
+  Dokumentation aller HTML-Elemente.
+- [CSS-Referenz](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference)\
+  Dokumentation aller CSS-Eigenschaften (Properties).
+- [Progressive web apps (PWAs)](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps)\
+  Einführung in PWA, sowie Leitfaden zur Entwicklung.
+- [Accessibility](https://developer.mozilla.org/en-US/docs/Web/Accessibility)\
+  Einführung und Dokumentation der `aria`-Rollen.
 
 [^1]: Zur Registierung und Login benötigst du einen kostenlosen Account von [GitHub](https://github.com/).
