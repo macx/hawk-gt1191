@@ -22,10 +22,10 @@
           fill: #d9d9d9;
         }
       }
-      [data-theme='dark'] .gt1191brand-hawk {
+      [data-mode='dark'] .gt1191brand-hawk {
         fill: #d9d9d9;
       }
-      [data-theme='light'] .gt1191brand-hawk {
+      [data-mode='light'] .gt1191brand-hawk {
         fill: #15232d;
       }
     </style>

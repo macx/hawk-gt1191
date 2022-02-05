@@ -40,7 +40,7 @@
     transform: scale(1);
   }
 
-  [data-theme='dark'] & {
+  [data-mode='dark'] & {
     svg {
       fill: var(--clr-inverse);
     }

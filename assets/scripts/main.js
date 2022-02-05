@@ -14,60 +14,61 @@ if ('serviceWorker' in navigator) {
 └──────────────────────────────────┘
 */
 
-const getThemePreference = () => {
-  if (localStorage.getItem('theme')) {
-    return localStorage.getItem('theme');
-  } else {
-    return window.matchMedia('(prefers-color-scheme: dark)').matches
-      ? 'dark'
-      : 'light';
-  }
-};
+const modeSwitchInput = document.querySelector('[data-mode-switch]');
 
-const setThemePreference = () => {
-  localStorage.setItem('theme', theme.value);
-  applyThemeAttributes();
-};
+if (modeSwitchInput) {
+  const getThemePreference = () => {
+    if (localStorage.getItem('theme')) {
+      return localStorage.getItem('theme');
+    } else {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches
+        ? 'dark'
+        : 'light';
+    }
+  };
 
-const applyThemeAttributes = () => {
-  document.documentElement.setAttribute('data-theme', theme.value);
-  // document
-  //   .querySelector('.themebutton')
-  // .setAttribute('aria-live', theme.value)
-  //   .setAttribute('aria-pressed', true);
-};
-
-const theme = {
-  value: getThemePreference(),
-};
-
-applyThemeAttributes();
-
-window.onload = () => {
-  applyThemeAttributes();
-
-  document.querySelector('.themebutton').addEventListener('click', () => {
-    theme.value = theme.value === 'light' ? 'dark' : 'light';
+  const setThemePreference = () => {
+    localStorage.setItem('theme', theme.value);
     applyThemeAttributes();
-    setThemePreference();
-  });
-};
+  };
 
-window
-  .matchMedia('(prefers-color-scheme: dark)')
-  .addEventListener('change', () => {
-    theme.value = isDark ? 'dark' : 'light';
-    setThemePreference();
-  });
+  const applyThemeAttributes = () => {
+    document.documentElement.setAttribute('data-mode', theme.value);
+
+    modeSwitchInput.checked = theme.value === 'dark' ? false : true;
+  };
+
+  const theme = {
+    value: getThemePreference(),
+  };
+
+  applyThemeAttributes();
+
+  window.onload = () => {
+    applyThemeAttributes();
+
+    modeSwitchInput.addEventListener('change', () => {
+      theme.value = theme.value === 'light' ? 'dark' : 'light';
+      applyThemeAttributes();
+      setThemePreference();
+    });
+  };
+
+  window
+    .matchMedia('(prefers-color-scheme: dark)')
+    .addEventListener('change', () => {
+      theme.value = isDark ? 'dark' : 'light';
+      setThemePreference();
+    });
+}
 
 /*
 ┌──────────────────────────────────┐
-  NAVIGATION
+NAVIGATION
 └──────────────────────────────────┘
 */
 
 const navButtons = document.querySelectorAll('.js-toggle-nav');
-// const navLinks = document.querySelectorAll('.navigation a');
 
 const toggleNavigation = function () {
   document.body.classList.toggle('with-nav');
@@ -81,14 +82,15 @@ if (navButtons) {
   navButtons.forEach((button) => {
     button.addEventListener('click', toggleNavigation);
   });
-
-  // navLinks.forEach((link) => {
-  //   link.addEventListener('click', closeNavigation);
-  // });
 }
 
+/*
+┌──────────────────────────────────┐
+  RE-ROUTE EXTERNAL LINKS
+└──────────────────────────────────┘
+*/
+
 const externalLinks = document.querySelectorAll('main a[href^="http"]');
-// console.log(...externalLinks);
 
 [...externalLinks].forEach((link) => {
   if (link.hostname != window.location.hostname) {

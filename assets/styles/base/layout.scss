@@ -26,6 +26,9 @@ body {
   font-family: 'Rubik', sans-serif;
   font-weight: 300;
   line-height: 1.4;
+
+  transition: background-color var(--transition--theme),
+    color var(--transition--theme);
 }
 
 #overlay {
@@ -185,9 +188,11 @@ a {
   }
 }
 
-// ┌──────────────────────────────────┐
-//   IMAGES
-// └──────────────────────────────────┘
+/*
+┌──────────────────────────────────┐
+HELPER
+└──────────────────────────────────┘
+*/
 
 @for $i from 1 through 4 {
   .bgs-#{$i} {

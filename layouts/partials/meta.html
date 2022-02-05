@@ -12,6 +12,3 @@
 <meta name="theme-color" content="#ffffff" />
 <!-- prettier-ignore -->
 <title>{{ block "title" . }}{{ .Site.Title }}{{ end }}</title>
-
-{{ $style := resources.Get "styles/main.scss" | resources.ToCSS | resources.Minify | resources.Fingerprint }}
-<link rel="stylesheet" href="{{ $style.Permalink }}" />

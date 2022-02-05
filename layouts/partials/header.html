@@ -24,16 +24,47 @@
       {{ readFile "static/images/hawk-gt1191.svg" | safeHTML }}
     </a>
 
-    <div>
-      <button
-        type="button"
-        class="header__button themebutton"
-        aria-label="Erscheinungsbild hell und dunkel umschalten"
-        aria-pressed="false"
-      >
-        {{ readFile "static/images/icons/theme-light.svg" | safeHTML }}
-        {{ readFile "static/images/icons/theme-dark.svg" | safeHTML }}
-      </button>
-    </div>
+    <ul class="header__links">
+      <li class="external">
+        <a
+          href="{{ .Site.Params.links.discordInvite }}"
+          target="contact"
+          rel="noopener noreferrer"
+          class="header__button"
+        >
+          {{ readFile "static/images/icons/discord.svg" | safeHTML }}
+        </a>
+      </li>
+      <li class="external">
+        <a
+          href="{{ .Site.Params.links.studip }}"
+          target="contact"
+          rel="noopener noreferrer"
+          class="header__button"
+        >
+          {{ readFile "static/images/icons/studip.svg" | safeHTML }}
+        </a>
+      </li>
+      <li>
+        <label class="mode-switch">
+          <div class="mode-switch__button">
+            <input
+              type="checkbox"
+              data-mode-switch
+              class="mode-switch__input"
+            />
+            <span class="mode-switch__slider">
+              <span class="mode-switch__icon mode-switch__icon--on">
+                {{ readFile "static/images/icons/theme-light.svg" | safeHTML }}
+              </span>
+
+              <span class="mode-switch__icon mode-switch__icon--off">
+                {{ readFile "static/images/icons/theme-dark.svg" | safeHTML }}
+              </span>
+            </span>
+          </div>
+        </label>
+      </li>
+    </ul>
   </div>
 </header>

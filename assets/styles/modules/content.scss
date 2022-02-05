@@ -111,10 +111,15 @@ figure {
   margin-left: calc(var(--spacing) * -1);
   margin-right: calc(var(--spacing) * -1);
   margin-bottom: var(--spacing);
-  transition: all var(--transition);
+  transition: all var(--transition--theme);
 
   picture {
     margin: 0 0 0.75rem;
+    transition: all var(--transition--theme);
+
+    [data-mode='dark'] & {
+      filter: brightness(60%);
+    }
   }
 
   figcaption {
@@ -146,13 +151,6 @@ figure {
       padding: 0;
     }
   }
-}
-
-.icon {
-  display: block;
-  width: 1.5rem;
-  height: 1.5rem;
-  fill: var(--clr-text);
 }
 
 /*

@@ -13,4 +13,32 @@
       </li>
     {{ end }}
   </ul>
+
+  <ul class="navigation__footer">
+    <li>
+      <a
+        href="{{ .Site.Params.links.discordInvite }}"
+        target="contact"
+        rel="noopener noreferrer"
+        class="header__button"
+      >
+        {{ readFile "static/images/icons/discord.svg" | safeHTML }}
+      </a>
+    </li>
+    <li>
+      <a
+        href="{{ .Site.Params.links.studip }}"
+        target="contact"
+        rel="noopener noreferrer"
+        class="header__button"
+      >
+        {{ readFile "static/images/icons/studip.svg" | safeHTML }}
+      </a>
+    </li>
+    <li>
+      <a href="#top" class="header__button js-toggle-nav">
+        {{ readFile "static/images/icons/arrow-top.svg" | safeHTML }}
+      </a>
+    </li>
+  </ul>
 </nav>

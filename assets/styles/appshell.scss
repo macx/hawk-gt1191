@@ -6,8 +6,7 @@
 @import 'base/fonts',
         'base/mixins',
         'base/variables',
-        'base/layout',
-        'base/animations';
+        'base/layout';
 
 // ┌──────────────────────────────────┐
 //   MODULES
@@ -15,10 +14,5 @@
 
 /* prettier-ignore */
 @import 'modules/header',
-        'modules/navigation',
-        'modules/mode-switch',
-        'modules/button',
         'modules/content',
-        'modules/social-links',
-        'modules/footer',
-        'syntax/chroma';
+        'modules/footer';

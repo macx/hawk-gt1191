@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="de" data-mode="light">
+  <head>
+    {{- partial "meta.html" . -}}
+
+    {{ $style := resources.Get "styles/appshell.scss" | resources.ToCSS | resources.Minify }}
+    <link rel="stylesheet" href="{{ $style.Permalink }}" />
+  </head>
+
+  <body id="top" class="offline">
+    <header class="header">
+      <div class="header__bar">
+        <a href="/" class="header__logo" aria-label="HAWK GT1191">
+          {{ readFile "static/images/hawk-gt1191.svg" | safeHTML }}
+        </a>
+      </div>
+    </header>
+
+    <main class="stage" aria-role="main">
+      <div class="content content--full">
+        {{ .Content }}
+      </div>
+    </main>
+
+    {{- partialCached "footer.html" . -}}
+
+    {{ $js := resources.Get "scripts/main.js" | js.Build }}<script src="{{ $js.RelPermalink }}" defer></script>
+  </body>
+</html>

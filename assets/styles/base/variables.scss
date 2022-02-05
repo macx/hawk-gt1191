@@ -11,6 +11,7 @@
   --transition: 130ms ease-in;
   --transition--button: 130ms cubic-bezier(0.55, 0.09, 0.68, 0.53);
   --transition--navi: 250ms cubic-bezier(1, 0, 0, 1);
+  --transition--theme: 200ms ease-out;
 
   --clr-background: #eceff1;
   --clr-shade: #cfd8dc;
@@ -61,7 +62,7 @@
     --spacing--large: 4rem;
   }
 
-  &[data-theme='dark'] {
+  &[data-mode='dark'] {
     --clr-background: #14232d;
     --clr-text: #d9d9d9;
     --clr-text--light: rgba(217, 217, 217, 0.7);

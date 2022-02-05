@@ -2,6 +2,11 @@ baseURL: 'https://hawk-gt1191.de/'
 languageCode: 'de-DE'
 title: 'HAWK GT1191'
 enableemoji: true
+params:
+  links:
+    studip: 'https://studip.hawk.de/dispatch.php/course/details?sem_id=4b3efce6a4c286cc0d4956d6451d5ad3&again=yes'
+    discordInvite: 'https://discord.gg/Kke2BsapYu'
+    discordChannel: 'https://discord.com/channels/789498129765630003'
 
 markup:
   goldmark:

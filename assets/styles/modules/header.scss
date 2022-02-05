@@ -3,6 +3,8 @@
 // └──────────────────────────────────┘
 
 .header {
+  $this: &;
+
   &__bar {
     position: fixed;
     top: 0;
@@ -17,6 +19,7 @@
     background-color: var(--clr-background);
     border-bottom: 1px solid var(--nav-border);
     box-shadow: 1.5rem 0 4rem -0.5rem var(--nav-shadow);
+    transition: all var(--transition--theme);
   }
 
   &__logo {
@@ -33,6 +36,7 @@
         fill: #15232d;
         fill-rule: evenodd;
       }
+
       .gt1191 {
         fill: #ff8200;
       }
@@ -53,19 +57,14 @@
     transition: background-color var(--transition);
 
     svg {
+      display: block;
+      width: 1.5rem;
+      height: 1.5rem;
+      fill: var(--clr-text);
       transition: fill var(--transition);
     }
 
     &--hide {
-      display: none;
-    }
-
-    &.themebutton {
-      margin-left: auto;
-    }
-
-    [data-theme='dark'] & .themebutton__icon--light,
-    [data-theme='light'] & .themebutton__icon--dark {
       display: none;
     }
 
@@ -96,22 +95,27 @@
     }
   }
 
+  &__links {
+    display: flex;
+    justify-content: flex-end;
+    align-items: stretch;
+    margin: 0;
+    padding: 0;
+
+    li {
+      list-style: none;
+    }
+  }
+
+  .offline &__bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   @include respond('large', 'to') {
-    &__bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: var(--header-height);
-      width: 100%;
-      z-index: 20;
-
-      background-color: var(--clr-background);
-      border-bottom: 1px solid var(--nav-border);
-      box-shadow: 1.5rem 0 4rem -0.5rem var(--nav-shadow);
-
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    &__links .external {
+      display: none;
     }
   }
 
