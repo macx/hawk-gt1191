@@ -64,7 +64,7 @@ if (modeSwitchInput) {
 
 /*
 ┌──────────────────────────────────┐
-NAVIGATION
+  NAVIGATION
 └──────────────────────────────────┘
 */
 
@@ -97,3 +97,48 @@ const externalLinks = document.querySelectorAll('main a[href^="http"]');
     link.target = '_blank';
   }
 });
+
+/*
+┌──────────────────────────────────┐
+  LINKED HEADLINES
+└──────────────────────────────────┘
+*/
+
+const linkedHeadlines = document.querySelectorAll(['h1[id], h2[id]']);
+const linkedSections = document.querySelectorAll(['.stage__item[id]']);
+const stageNavigation = document.querySelector('.stage__navigation');
+
+function headlinesObserverCallback(entries) {
+  const stageNavigationLinks = stageNavigation.querySelectorAll('a');
+
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      const navItem = stageNavigation.querySelector(
+        'a[href="#' + entry.target.id + '"]'
+      );
+
+      if (navItem) {
+        stageNavigationLinks.forEach((link) =>
+          link.classList.remove('is-active')
+        );
+        navItem.classList.toggle('is-active');
+      }
+    }
+  });
+}
+
+if (
+  stageNavigation &&
+  (linkedHeadlines.length > 0 || linkedSections.length > 0)
+) {
+  const headlinesObserver = new IntersectionObserver(
+    headlinesObserverCallback,
+    {
+      rootMargin: '0px',
+      threshold: 0.5,
+    }
+  );
+
+  [...linkedHeadlines].forEach((item) => headlinesObserver.observe(item));
+  [...linkedSections].forEach((item) => headlinesObserver.observe(item));
+}

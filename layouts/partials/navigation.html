@@ -5,7 +5,7 @@
       <li>
         {{ $active := or ($currentPage.IsMenuCurrent "nav" .) ($currentPage.HasMenuCurrent "nav" .) }}
         {{ $active = or $active (eq .Name $currentPage.Title) }}
-        {{ $active = or $active (eq $currentPage.URL .URL) }}
+        {{ $active = or $active (eq $currentPage.RelPermalink .URL) }}
         <!-- prettier-ignore -->
         <a href="{{ .URL }}" class="{{ with .Params.class }}{{ . }}{{ end }}{{ if $active }} is-active{{ end }}">
         {{- .Name -}}

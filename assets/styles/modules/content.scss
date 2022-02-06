@@ -5,6 +5,20 @@
   padding: 0 var(--spacing);
   transition: padding var(--transition);
 
+  a:not([class]) {
+    padding: 0 0.3em;
+    margin: 0 -0.4em;
+    border-radius: var(--border-radius);
+    transition: all var(--transition);
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+      background-color: var(--clr-primary);
+      color: var(--clr-inverse);
+    }
+  }
+
   &--full {
     padding: var(--spacing--large) var(--spacing);
   }
@@ -77,11 +91,6 @@
         font-weight: 300;
         color: var(--clr-text);
         margin-bottom: 0.2em;
-
-        &:hover,
-        &:focus {
-          color: var(--clr-primary);
-        }
       }
     }
   }
