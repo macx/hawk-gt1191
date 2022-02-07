@@ -5,7 +5,7 @@
 .button {
   position: relative;
   display: inline-block;
-  font-weight: 500;
+  font-weight: var(--font-weight--bold);
   line-height: 1;
   text-decoration: none;
   will-change: transform;
@@ -13,6 +13,8 @@
   span {
     display: block;
     border: 1px solid var(--clr-primary);
+    border-bottom-width: 2px;
+    border-bottom-color: var(--clr-text);
     background-color: var(--clr-primary);
     color: var(--clr-inverse);
     border-radius: var(--border-radius);
