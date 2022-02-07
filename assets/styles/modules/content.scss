@@ -5,18 +5,31 @@
   padding: 0 var(--spacing);
   transition: padding var(--transition);
 
-  a:not([class]) {
-    padding: 0 0.3em;
-    margin: 0 -0.4em;
-    border-radius: var(--border-radius);
+  a:not([class]),
+  abbr {
+    color: inherit;
+    margin: 0;
+    border-bottom: 2px solid;
+    border-radius: 0.2em;
+    font-weight: var(--font-weight--bold);
     transition: all var(--transition);
+    text-decoration: none;
 
     &:hover,
     &:focus {
       text-decoration: none;
       background-color: var(--clr-primary);
       color: var(--clr-inverse);
+      border-color: var(--clr-text--light);
+      padding: 0 0.3em;
+      margin: 0 -0.3em;
     }
+  }
+
+  abbr {
+    cursor: help;
+    border-color: var(--clr-text--light);
+    border-bottom-style: dotted;
   }
 
   &--full {
@@ -88,15 +101,19 @@
       a {
         display: inline-block;
         font-size: 1rem;
-        font-weight: 300;
-        color: var(--clr-text);
         margin-bottom: 0.2em;
+
+        &:hover,
+        &:focus-visible {
+          margin-bottom: 0.2em;
+        }
       }
     }
   }
 
   code {
     color: var(--clr-text--code);
+    // background-color: var(--clr-code);
   }
 
   :target {
@@ -134,6 +151,7 @@ figure {
   figcaption {
     font-size: var(--font-size--small);
     padding: 0 var(--spacing);
+    color: var(--clr-text--light);
 
     span:nth-child(2) {
       text-align: right;
@@ -164,7 +182,7 @@ figure {
 
 /*
 ┌──────────────────────────────────┐
-  FOOTNOTES
+FOOTNOTES
 └──────────────────────────────────┘
 */
 
@@ -175,7 +193,7 @@ sup {
 
   a {
     font-size: 0.8125rem;
-    color: var(--clr-primary) !important;
+    color: var(--clr-primary);
   }
 }
 

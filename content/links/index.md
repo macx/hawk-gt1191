@@ -11,7 +11,7 @@ notoc: true
 Regelmäßig treten Fragen auf, welche Resourcen ich empfehlen kann. Deshalb habe ich hier für dich die Nützlichsten zusammengestellt, damit du das Seminar meistern kannst.
 {.lead}
 
-## Inhalte für deine Website
+## Inhalte
 
 ### Text
 

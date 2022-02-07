@@ -1,19 +1,9 @@
 @font-face {
-  font-family: 'Playfair Display';
-  font-style: normal;
-  font-weight: 400;
-  src: local(''),
-    url('/fonts/playfair-display-v25-latin-regular.woff2') format('woff2'),
-    url('/fonts/playfair-display-v25-latin-regular.woff') format('woff');
-  font-display: swap;
-}
-
-@font-face {
   font-family: 'Rubik';
   font-style: normal;
-  font-weight: 300;
-  src: local(''), url('/fonts/rubik-v14-latin-300.woff2') format('woff2'),
-    url('/fonts/rubik-v14-latin-300.woff') format('woff');
+  font-weight: 400;
+  src: local(''), url('/fonts/rubik-v18-latin-400.woff2') format('woff2'),
+    url('/fonts/rubik-v18-latin-400.woff') format('woff');
   font-display: swap;
 }
 
@@ -21,7 +11,17 @@
   font-family: 'Rubik';
   font-style: normal;
   font-weight: 500;
-  src: local(''), url('/fonts/rubik-v14-latin-500.woff2') format('woff2'),
-    url('/fonts/rubik-v14-latin-500.woff') format('woff');
+  src: local(''), url('/fonts/rubik-v18-latin-500.woff2') format('woff2'),
+    url('/fonts/rubik-v18-latin-500.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400;
+  src: local(''),
+    url('/fonts/playfair-display-v25-latin-regular.woff2') format('woff2'),
+    url('/fonts/playfair-display-v25-latin-regular.woff') format('woff');
   font-display: swap;
 }

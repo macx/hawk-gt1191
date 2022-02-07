@@ -1,10 +1,10 @@
 ---
-title: 'Anmeldung'
+title: 'Mitmachen'
 description: ''
 date: 2022-01-20T13:40:15+01:00
 draft: false
 weight: 4
-id: 'anmeldung'
+id: 'mitmachen'
 class: 'bgs-4'
 ---
 

@@ -25,6 +25,7 @@ markup:
         block: true
         title: true
     renderer:
+      hardWraps: true
       unsafe: true
   tableOfContents:
     endLevel: 2

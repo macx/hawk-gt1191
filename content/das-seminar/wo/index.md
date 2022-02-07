@@ -22,7 +22,7 @@ Alle lernrelevanten Inahlte werden aufgezeichnet und stehen dir während des Sem
     <span>Zurück</span>
   </a>
 
-  <a href="#anmeldung" class="button">
+  <a href="#mitmachen" class="button">
     <span>Weiter</span>
   </a>
 </div>

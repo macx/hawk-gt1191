@@ -2,6 +2,7 @@
 title: 'Datenschutz'
 date: 2021-12-27T11:11:48+01:00
 draft: true
+notoc: true
 ---
 
 # Datenschutz­erklärung
