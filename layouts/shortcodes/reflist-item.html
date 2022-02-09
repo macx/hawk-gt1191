@@ -1,0 +1,33 @@
+<div class="reflist__item">
+  <div class="reflist__item-header">
+    <a href="{{ .Get "href" }}" target="reflist" rel="noopener noreferrer">
+      {{ .Get "title" }}
+    </a>
+
+    <div>
+      {{ with $platforms := split (.Get "platform") "," }}
+        {{ if in $platforms "mac" }}
+          <i data-hint="macOS">
+            {{ readFile "static/images/icons/apple.svg" | safeHTML }}
+          </i>
+        {{ end }}
+
+        {{ if in $platforms "win" }}
+          <i data-hint="Windows">
+            {{ readFile "static/images/icons/windows.svg" | safeHTML }}
+          </i>
+        {{ end }}
+
+        {{ if in $platforms "linux" }}
+          <i data-hint="Linux">
+            {{ readFile "static/images/icons/linux.svg" | safeHTML }}
+          </i>
+        {{ end }}
+      {{ end }}
+    </div>
+  </div>
+
+  <div class="reflist__item__descr">
+    {{ .Get "descr" }}
+  </div>
+</div>

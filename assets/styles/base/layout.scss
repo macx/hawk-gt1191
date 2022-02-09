@@ -164,32 +164,6 @@ a {
         text-transform: uppercase;
         letter-spacing: 0.1rem;
       }
-
-      ul {
-        all: unset;
-      }
-
-      li {
-        list-style: none;
-        margin: 0 0 0.5em;
-      }
-
-      a {
-        display: block;
-        padding: 0.2em 0;
-        color: var(--clr-text--light);
-
-        &:hover,
-        &:focus {
-          color: var(--clr-primary);
-          text-decoration: none;
-        }
-
-        &.is-active {
-          font-weight: var(--font-weight--bold);
-          color: var(--clr-primary);
-        }
-      }
     }
   }
 }

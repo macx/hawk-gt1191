@@ -1,4 +1,4 @@
-@mixin respond($breakpoint, $type: 'from') {
+@mixin respond($bp, $type: 'from', $bp2: '') {
   $layout-breakpoints: (
     small: 480px,
     medium: 600px,
@@ -6,11 +6,15 @@
   );
 
   @if $type == 'from' {
-    @media screen and (min-width: map-get($layout-breakpoints, $breakpoint)) {
+    @media screen and (min-width: map-get($layout-breakpoints, $bp)) {
+      @content;
+    }
+  } @else if $type == 'between' {
+    @media screen and (min-width: map-get($layout-breakpoints, $bp)) and (max-width: map-get($layout-breakpoints, $bp2)) {
       @content;
     }
   } @else if $type == 'to' {
-    @media screen and (max-width: map-get($layout-breakpoints, $breakpoint)-1) {
+    @media screen and (max-width: map-get($layout-breakpoints, $bp)-1) {
       @content;
     }
   }

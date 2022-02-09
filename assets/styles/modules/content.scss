@@ -2,13 +2,12 @@
   min-height: calc(100vh - 3.75rem);
   max-width: var(--content-max-width);
   margin: 0 auto;
-  padding: 0 var(--spacing);
+  padding: 0 var(--content-spacing);
   transition: padding var(--transition);
 
   a:not([class]),
   abbr {
-    color: inherit;
-    margin: 0;
+    color: var(--clr-text);
     border-bottom: 2px solid;
     border-radius: 0.2em;
     font-weight: var(--font-weight--bold);
@@ -22,7 +21,8 @@
       color: var(--clr-inverse);
       border-color: var(--clr-text--light);
       padding: 0 0.3em;
-      margin: 0 -0.3em;
+      margin-left: -0.3em;
+      margin-right: -0.3em;
     }
   }
 
@@ -33,7 +33,7 @@
   }
 
   &--full {
-    padding: var(--spacing--large) var(--spacing);
+    padding: var(--spacing--large) var(--content-spacing);
   }
 
   h2 {
@@ -87,30 +87,6 @@
     }
   }
 
-  ul:not([class]) {
-    margin: 1.5em 0 1em;
-    padding: 0;
-
-    li {
-      @include list-item();
-
-      margin: 0 0 1.2em;
-      font-size: 0.8125rem;
-      color: var(--clr-text--light);
-
-      a {
-        display: inline-block;
-        font-size: 1rem;
-        margin-bottom: 0.2em;
-
-        &:hover,
-        &:focus-visible {
-          margin-bottom: 0.2em;
-        }
-      }
-    }
-  }
-
   code {
     color: var(--clr-text--code);
     // background-color: var(--clr-code);
@@ -124,7 +100,7 @@
 
 picture {
   display: block;
-  margin: 0 0 var(--spacing);
+  margin: 0 0 var(--content-spacing);
 
   img {
     display: block;
@@ -134,9 +110,9 @@ picture {
 }
 
 figure {
-  margin-left: calc(var(--spacing) * -1);
-  margin-right: calc(var(--spacing) * -1);
-  margin-bottom: var(--spacing);
+  margin-left: calc(var(--content-spacing) * -1);
+  margin-right: calc(var(--content-spacing) * -1);
+  margin-bottom: var(--content-spacing);
   transition: all var(--transition--theme);
 
   picture {
@@ -150,7 +126,7 @@ figure {
 
   figcaption {
     font-size: var(--font-size--small);
-    padding: 0 var(--spacing);
+    padding: 0 var(--content-spacing);
     color: var(--clr-text--light);
 
     span:nth-child(2) {
@@ -182,7 +158,7 @@ figure {
 
 /*
 ┌──────────────────────────────────┐
-FOOTNOTES
+  FOOTNOTES
 └──────────────────────────────────┘
 */
 

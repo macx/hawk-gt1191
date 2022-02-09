@@ -6,6 +6,7 @@
 
   --header-height: 3.75rem;
   --navigation-width: 15rem;
+  --content-spacing: var(--spacing);
   --content-max-width: 45rem;
   --border-radius: 0.2rem;
 
@@ -44,6 +45,7 @@
 
   --font-size: 1rem;
   --font-size--small: 0.875rem;
+  --font-size--xsmall: 0.75rem;
   --font-size--large: 1.25rem;
 
   --line-height: 1.4;
@@ -62,7 +64,7 @@
   --image-shadow: 0 0.25rem 0.75rem -0.5rem rgb(10 52 120 / 30%);
 
   @media (min-width: 600px) {
-    --spacing: 2.5rem;
+    --content-spacing: 2.5rem;
     --spacing--large: 4rem;
   }
 
@@ -73,6 +75,7 @@
     --clr-text--dark: #fff;
     --clr-line: rgba(255, 255, 255, 0.2);
     --clr-header: rgba(20, 35, 45, 0.8);
+    --clr-inverse: rgb(38, 50, 56);
 
     --clr-play-1: hsla(206, 99%, 69%, 0.1);
     --clr-play-2: hsla(123, 46%, 66%, 0.1);

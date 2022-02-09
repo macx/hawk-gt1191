@@ -3,13 +3,17 @@ title: 'Links'
 date: 2021-12-29T14:10:36+01:00
 draft: false
 content: 'full'
-notoc: true
+notoc: false
 ---
 
 # Essentielle Links
 
 Regelmäßig treten Fragen auf, welche Resourcen ich empfehlen kann. Deshalb habe ich hier für dich die Nützlichsten zusammengestellt, damit du das Seminar meistern kannst.
 {.lead}
+
+{{< toc >}}
+
+<section class="reflist">
 
 ## Inhalte
 
@@ -26,6 +30,11 @@ Regelmäßig treten Fragen auf, welche Resourcen ich empfehlen kann. Deshalb hab
 
 - [Tailwind Color Palette](https://tailwindcolor.com/)\
   Schöne Farbpalette. Ein Klick auf eine Farbe kopiert euch den Farbwert in die Zwischenablage.
+- [Color Designer](https://colordesigner.io/)\
+  Farbpaletten, Farbwähler und Komplementärfarben.
+- [Materials Colors ](https://github.com/romannurik/MaterialColorsApp#material-colors-for-mac)\
+  Farbwähler als natives macOS-Tool.
+  {.links}
 
 ### Fonts
 
@@ -50,9 +59,9 @@ Regelmäßig treten Fragen auf, welche Resourcen ich empfehlen kann. Deshalb hab
 - [Unsplash](https://unsplash.com/)\
   Hochauflösende Bilder zur freien Verwendung auf deiner Website.
 
-## Assets optimieren
+## Optimieren
 
-Bilder unbearbeitet auf die Besucher seiner Website loszulassen ist fahrlässig. Diese Web Apps helfen bei der Optimierung.
+Autohersteller nutzen Licht zur Qualitätskontrolle des Lackes, Tischler helfen beim Schrank mit feinem Schleifpapier nach. Was nutzt du für deine Website?
 
 - [Squoosh](https://squoosh.app/)\
   Besser als Photoshop und Co optimiert Squoosh alle arten von Bildern und gibt sie auch in neuen Bildformaten aus.
@@ -60,6 +69,8 @@ Bilder unbearbeitet auf die Besucher seiner Website loszulassen ist fahrlässig.
   Jedes SVG muss hier durch: Optimiere deine Bilder mit dieser Web-App.
 - [SVGWIZ](https://svgwiz.com/)\
   Konvertiert SVG-Icons in CSS-Data-URI, um diese als Hintergrundgrafik verwenden zu können.
+- [Colour Contrast Checker](https://colourcontrast.cc/)\
+  Prüft Vorder- und Hintergrundfarben, ob sie genügend Kontrast aufweisen, um gut gelesen werden zu können.
 
 ## Nützliche Helfer
 
@@ -81,25 +92,22 @@ Mit diesen Werkzeugen kannst du deine Website entwickeln.
 
 ### Plugins für VSC
 
-Ich empfehle ich folgende Plugins:
+Ich empfehle folgende Plugins für Visual Studio Code:
 
 - [Live Preview](https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server)\
   Erstellt einen lokalen Server für deine Website zur Ansicht in der IDE.
 - [Compile Hero Pro](https://marketplace.visualstudio.com/items?itemName=Wscats.eno)\
   Erstellt aus .scss-Dateien .css-Dateien.
 - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)\
-  Formatiert euren Code zur besseren Übersicht.
+  Strukturiert und formatiert deinen Code. Nicht nur, damit er besser aussieht.
 - [Cobalt2](https://marketplace.visualstudio.com/items?itemName=wesbos.theme-cobalt2)\
   Sehr angenehmes und gut lesbares Dark-Theme für VSC.
-
-## Apps und Tools
-
-Wenn du deine Website lokal in deinem Browser oder öffentlich zur Verfügung stellen möchtest.
-
-- [Laravel Valet ](https://laravel.com/docs/8.x/valet)\
-  Entwicklungsumgebung für macOS-Minimalisten. Valet macht aus einem Verzeichnis einen virtuellen Host unter der \*.test-Domäne.
-- [Materials Colors ](https://github.com/romannurik/MaterialColorsApp)\
-  Farbwähler als natives macOS-Tool.
+- [IntelliSense CSS](https://marketplace.visualstudio.com/items?itemName=Zignd.html-css-class-completion)\
+  Autovervollständigung von CSS-Klassen in HTML.
+- [Project Mananger](https://marketplace.visualstudio.com/items?itemName=alefragnani.project-manager)\
+  Schnelle Möglichkeit, Projekte zu öffnen.
+- [px to rem](https://marketplace.visualstudio.com/items?itemName=cipchk.cssrem)\
+  Konvertiert zwischen Pixel- und rem-Werten.
 
 ## Demos
 
@@ -126,9 +134,40 @@ Du brauchst Code-Beispiele? Gern, hier sind die, die ich gebaut habe. Die sind a
   Dokumentation aller HTML-Elemente.
 - [CSS-Referenz](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference)\
   Dokumentation aller CSS-Eigenschaften (Properties).
+- [CSS-Spezifität](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity)
+  Mit der Spezifität bestimmt der Browser, welche Eigenschaften am relevantesten für ein Element zur Darstellung ist.
+- [JavaScript-Bascis](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/JavaScript_basics)\
+  Kurze Einführung in die Scriptsprache.
 - [Progressive web apps (PWAs)](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps)\
   Einführung in PWA, sowie Leitfaden zur Entwicklung.
 - [Accessibility](https://developer.mozilla.org/en-US/docs/Web/Accessibility)\
   Einführung und Dokumentation der `aria`-Rollen.
+
+### Schnell gelernt
+
+- [Flexbox Froggy](https://flexboxfroggy.com/#de)\
+  Spielend das CSS-Layout Flexbox lernen.
+- [Grid Garden](https://cssgridgarden.com/#de)\
+  Spielend das CSS-Layout Grid lernen.
+- [A Complete Guide to Grid](https://css-tricks.com/snippets/css/complete-guide-grid/)\
+  Übersicht über das CSS Grid.
+- [Emmet Cheat Sheet](https://docs.emmet.io/cheat-sheet/)\
+  Schreibe HTML und CSS in Sekundenschnelle. Auch in Visual Studio Code.
+
+## Frameworks
+
+Statische HTML-Dateien reichen dir nicht und WordPress ist dir zu aufgebläht? Dann teste die folgende Alternativen.
+
+- [Hugo](https://gohugo.io/)
+  Ein in Go geschriebener Seitengenerator für statische Seiten. Diese Seite verwendet Hugo.
+- [Kirby](https://gohugo.io/)
+  Das wohl beste CMS auf PHP-Basis, Kibry, ist für kleine als auch große Websites bestenes geeignet.
+- {{< reflist-item
+  title="Laravel Valet"
+  href="https://laravel.com/docs/8.x/valet"
+  descr="Entwicklungsumgebung für macOS-Minimalisten. Valet macht aus einem Verzeichnis einen virtuellen Host unter der *.test-Domäne."
+  platform="mac" >}}
+
+</section>
 
 [^1]: Zur Registierung und Login benötigst du einen kostenlosen Account von [GitHub](https://github.com/).

@@ -106,7 +106,7 @@ const externalLinks = document.querySelectorAll('main a[href^="http"]');
 
 const linkedHeadlines = document.querySelectorAll(['h1[id], h2[id]']);
 const linkedSections = document.querySelectorAll(['.stage__item[id]']);
-const stageNavigation = document.querySelector('.stage__navigation');
+const stageNavigation = document.querySelector('#TableOfContents');
 
 function headlinesObserverCallback(entries) {
   const stageNavigationLinks = stageNavigation.querySelectorAll('a');
@@ -114,7 +114,7 @@ function headlinesObserverCallback(entries) {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
       const navItem = stageNavigation.querySelector(
-        'a[href="#' + entry.target.id + '"]'
+        `a[href="#${entry.target.id}"]`
       );
 
       if (navItem) {
