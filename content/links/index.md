@@ -142,6 +142,10 @@ Du brauchst Code-Beispiele? Gern, hier sind die, die ich gebaut habe. Die sind a
   Einführung in PWA, sowie Leitfaden zur Entwicklung.
 - [Accessibility](https://developer.mozilla.org/en-US/docs/Web/Accessibility)\
   Einführung und Dokumentation der `aria`-Rollen.
+- [Variable Fonts](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Fonts/Variable_Fonts_Guide){{< new >}}\
+  Font-Spezifikation, um statt mehrere Schriftschnitte nur einen (variablen) Font zu verwenden.
+- [Can I use](https://caniuse.com/){{< new >}}\
+  Zeigt den Unterstützung von Front-end-Technologien bei den Browsern.
 
 ### Schnell gelernt
 
