@@ -8,14 +8,18 @@ notoc: false
 
 # Essentielle Links
 
-Regelmäßig treten Fragen auf, welche Resourcen ich empfehlen kann. Deshalb habe ich hier für dich die Nützlichsten zusammengestellt, damit du das Seminar meistern kannst.
+Mit diesen handverlesenen Informationen kannst du das Seminar meistern oder dich zum Front-end-Meister machen. Hier bekommst nicht alle, sondern nur die für dich relevanten Links.
 {.lead}
+
+{{< lastmod >}}
 
 {{< toc >}}
 
 <section class="reflist">
 
 ## Inhalte
+
+Dinge, die du gut für deine Website gebrauchen kannst.
 
 ### Text
 
@@ -61,7 +65,7 @@ Regelmäßig treten Fragen auf, welche Resourcen ich empfehlen kann. Deshalb hab
 
 ## Optimieren
 
-Autohersteller nutzen Licht zur Qualitätskontrolle des Lackes, Tischler helfen beim Schrank mit feinem Schleifpapier nach. Was nutzt du für deine Website?
+Wenn dir Qualität wichtig ist, dann solltest du dir folgende Links ansehen.
 
 - [Squoosh](https://squoosh.app/)\
   Besser als Photoshop und Co optimiert Squoosh alle arten von Bildern und gibt sie auch in neuen Bildformaten aus.
@@ -130,31 +134,50 @@ Du brauchst Code-Beispiele? Gern, hier sind die, die ich gebaut habe. Die sind a
 
 ## Dokumentation
 
+Links zu externen Websits mit detaillierter Erklärung, sowie Lerninhalte.
+
+### HTML
+
 - [HTML-Elemente](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)\
   Dokumentation aller HTML-Elemente.
+- [Accessibility](https://developer.mozilla.org/en-US/docs/Web/Accessibility)\
+  Einführung und Dokumentation der `aria`-Rollen.
+
+### CSS
+
 - [CSS-Referenz](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference)\
   Dokumentation aller CSS-Eigenschaften (Properties).
+- [CSS: Custom Properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties){{< new >}}
+  Wiederverwendbarkeit von Variabeln, die CSS-Attribute wie Farben und Abstände standartisieren.
 - [CSS-Spezifität](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity)
   Mit der Spezifität bestimmt der Browser, welche Eigenschaften am relevantesten für ein Element zur Darstellung ist.
-- [JavaScript-Bascis](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/JavaScript_basics)\
+- [Variable Fonts](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Fonts/Variable_Fonts_Guide){{< new >}}\
+  Font-Spezifikation, um statt mehrere Schriftschnitte nur einen (variablen) Font zu verwenden.
+- [BEM: Block Element Modifier](http://getbem.com/naming/){{< new >}}
+  Namenskonventionen und Modularität von Elementen.
+
+### JavaScript
+
+- [JavaScript-Basics](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/JavaScript_basics)\
   Kurze Einführung in die Scriptsprache.
 - [Progressive web apps (PWAs)](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps)\
   Einführung in PWA, sowie Leitfaden zur Entwicklung.
-- [Accessibility](https://developer.mozilla.org/en-US/docs/Web/Accessibility)\
-  Einführung und Dokumentation der `aria`-Rollen.
-- [Variable Fonts](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Fonts/Variable_Fonts_Guide){{< new >}}\
-  Font-Spezifikation, um statt mehrere Schriftschnitte nur einen (variablen) Font zu verwenden.
-- [Can I use](https://caniuse.com/){{< new >}}\
-  Zeigt den Unterstützung von Front-end-Technologien bei den Browsern.
 
-### Schnell gelernt
+### Lerninhalte
 
-- [Flexbox Froggy](https://flexboxfroggy.com/#de)\
+- [CSS: Flexbox Froggy](https://flexboxfroggy.com/#de)\
   Spielend das CSS-Layout Flexbox lernen.
-- [Grid Garden](https://cssgridgarden.com/#de)\
+- [CSS: Grid Garden](https://cssgridgarden.com/#de)\
   Spielend das CSS-Layout Grid lernen.
-- [A Complete Guide to Grid](https://css-tricks.com/snippets/css/complete-guide-grid/)\
+- [CSS: A Complete Guide to Grid](https://css-tricks.com/snippets/css/complete-guide-grid/)\
   Übersicht über das CSS Grid.
+- [Einführung in GitHub](https://lab.github.com/githubtraining/introduction-to-github)[^1]{{< new >}}
+  Für Anfänger in der Versionierung von Dateien durch Git.
+
+### Allgemein
+
+- [Can I use](https://caniuse.com/){{< new >}}\
+  Zeigt den Browser-Unterstützung von Front-end-Technologien.
 - [Emmet Cheat Sheet](https://docs.emmet.io/cheat-sheet/)\
   Schreibe HTML und CSS in Sekundenschnelle. Auch in Visual Studio Code.
 

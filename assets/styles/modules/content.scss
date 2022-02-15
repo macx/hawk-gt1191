@@ -5,6 +5,11 @@
   padding: 0 var(--content-spacing);
   transition: padding var(--transition);
 
+  &__meta {
+    font-size: var(--font-size--small);
+    color: var(--clr-text--light);
+  }
+
   a:not([class]),
   abbr {
     color: var(--clr-text);

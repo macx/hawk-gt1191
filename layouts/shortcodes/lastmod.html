@@ -1,0 +1,12 @@
+{{ $date := .Page.Date.Format "02.01.2006" }}
+{{ $lastmod := .Page.Lastmod.Format "02.01.2006" }}
+
+
+<div class="content__meta">
+  <span class="date-info italic">Veröffentlicht am {{ $date }}</span>
+  {{ if ne $lastmod $date }}
+    <span class="date-info italic">
+      ･ Letztes Update: {{ .Page.Lastmod.Format "02.01.2006" }}</span
+    >
+  {{ end }}
+</div>
