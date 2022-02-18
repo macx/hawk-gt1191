@@ -53,6 +53,10 @@ body {
 └──────────────────────────────────┘
 */
 
+::selection {
+  background-color: var(--clr-primary--hover);
+}
+
 h1,
 h2,
 h3,

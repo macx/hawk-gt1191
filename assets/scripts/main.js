@@ -104,41 +104,48 @@ const externalLinks = document.querySelectorAll('main a[href^="http"]');
 └──────────────────────────────────┘
 */
 
-const linkedHeadlines = document.querySelectorAll(['h1[id], h2[id]']);
-const linkedSections = document.querySelectorAll(['.stage__item[id]']);
-const stageNavigation = document.querySelector('#TableOfContents');
+if ('IntersectionObserver' in window) {
+  const linkedHeadlines = document.querySelectorAll(['h1[id], h2[id]']);
+  const linkedSections = document.querySelectorAll(['.stage__item[id]']);
+  const stageNavigation = document.querySelector('#TableOfContents');
 
-function headlinesObserverCallback(entries) {
-  const stageNavigationLinks = stageNavigation.querySelectorAll('a');
+  console.log(linkedHeadlines);
 
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
+  function headlinesObserverCallback(entries) {
+    const stageNavigationLinks = stageNavigation.querySelectorAll('a');
+
+    entries.forEach((entry) => {
       const navItem = stageNavigation.querySelector(
         `a[href="#${entry.target.id}"]`
       );
 
-      if (navItem) {
-        stageNavigationLinks.forEach((link) =>
-          link.classList.remove('is-active')
-        );
-        navItem.classList.toggle('is-active');
+      if (entry.isIntersecting) {
+        if (navItem) {
+          stageNavigationLinks.forEach((link) =>
+            link.classList.remove('is-active')
+          );
+          navItem.classList.toggle('is-active');
+        }
       }
-    }
-  });
-}
+    });
+  }
 
-if (
-  stageNavigation &&
-  (linkedHeadlines.length > 0 || linkedSections.length > 0)
-) {
-  const headlinesObserver = new IntersectionObserver(
-    headlinesObserverCallback,
-    {
-      rootMargin: '0px',
-      threshold: 0.5,
-    }
-  );
+  if (
+    stageNavigation &&
+    (linkedHeadlines.length > 0 || linkedSections.length > 0)
+  ) {
+    // let rootVertical = parseInt(window.innerHeight / 3);
 
-  [...linkedHeadlines].forEach((item) => headlinesObserver.observe(item));
-  [...linkedSections].forEach((item) => headlinesObserver.observe(item));
+    const headlinesObserver = new IntersectionObserver(
+      headlinesObserverCallback,
+      {
+        // rootMargin: `0px 0px -${rootVertical}px 0px`,
+        rootMargin: '0px',
+        threshold: 1,
+      }
+    );
+
+    [...linkedHeadlines].forEach((item) => headlinesObserver.observe(item));
+    [...linkedSections].forEach((item) => headlinesObserver.observe(item));
+  }
 }

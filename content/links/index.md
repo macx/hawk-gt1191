@@ -19,26 +19,25 @@ Mit diesen handverlesenen Informationen kannst du das Seminar meistern oder dich
 
 ## Inhalte
 
-Dinge, die du gut für deine Website gebrauchen kannst.
+Blindtexte, Farben, Fonts und Icons bekommst du hier. So kannst du deine Idee schnell zur Realität werden lassen.
 
 ### Text
 
 - [Lorem Ipsum Generator](https://loremipsum.io/de/generator)\
   Erzeugt Blindtexte, Platzhalterbilder und bietet Links zu anderen Generatoren.
 - [Cupcake Ipsum](http://www.cupcakeipsum.com/)\
-  Blindtext-Generator mit einem hauch von Zucker.
+  Blindtext-Generator mit einem „Hauch von Zucker“.
 - [DeLorean Ipsum Text Generator](https://satoristudio.net/delorean-ipsum/)\
-  Du kennst die Filmreihe Zurück in die Zukunft? Hier sind Dialoge von Doc und Marty.
+  Du kennst die Filmreihe Zurück in die Zukunft? Dann nutze Dialoge von Doc und Marty.
 
 ### Farben
 
+- [UI Colors](https://uicolors.app/create){{< new >}}\
+  Schnelles Tool, um eine Farbfolge zusammenzustellen. Inklusive Tailwind-, Sass- und CSS-Variabeln.
 - [Tailwind Color Palette](https://tailwindcolor.com/)\
-  Schöne Farbpalette. Ein Klick auf eine Farbe kopiert euch den Farbwert in die Zwischenablage.
+  Übersichtliche Farbpalette. Ein Klick kopiert den Farbwert in die Zwischenablage.
 - [Color Designer](https://colordesigner.io/)\
   Farbpaletten, Farbwähler und Komplementärfarben.
-- [Materials Colors ](https://github.com/romannurik/MaterialColorsApp#material-colors-for-mac)\
-  Farbwähler als natives macOS-Tool.
-  {.links}
 
 ### Fonts
 
@@ -52,38 +51,37 @@ Dinge, die du gut für deine Website gebrauchen kannst.
 - [Material Icons](https://fonts.google.com/icons)\
   Weit verbreitetes Icon-Set von Google, verwendet in Android und den Google-Apps.
 - [Material Design Icons](https://materialdesignicons.com/)\
-  Community-Edition der Google-Icons mit wesentlich mehr Auswahl und Varianten. Auch als Webfont nutzbar.
+  Community-Edition der Google-Icons mit größerer Auswahl und Varianten. Auch als Webfont nutzbar.
 - [Simple Icons](https://simpleicons.org/)\
-  Brand-Icons bekannter Markern wie Facebook und Instagram. Download als SVG und RGB-Farbton.
+  Brand-Icons und Farben bekannter Markern wie Facebook und Instagram.
 - [Feather Icons](https://feathericons.com/)\
-  Simpel und sauber gestaltet, Export als SVG.
+  Simpel und sauber gestaltet, export als SVG.
 
 ### Fotos
 
 - [Unsplash](https://unsplash.com/)\
-  Hochauflösende Bilder zur freien Verwendung auf deiner Website.
+  Der Standard: Hochauflösende Bilder zur freien Verwendung auf deiner Website.
 
 ## Optimieren
 
-Wenn dir Qualität wichtig ist, dann solltest du dir folgende Links ansehen.
+Im Semester lernst du, dein Erstelltes für Endanwender zu optimieren. Hier sind die Tools&nbsp;dazu:
 
 - [Squoosh](https://squoosh.app/)\
-  Besser als Photoshop und Co optimiert Squoosh alle arten von Bildern und gibt sie auch in neuen Bildformaten aus.
+  Optimiert deine Bilder und exportiert auch Varianten in unterschiedlichen Formaten wie AVIF und WebP. Besser als der Export von Photoshop und Co.
 - [SVGOMG](https://jakearchibald.github.io/svgomg/)\
-  Jedes SVG muss hier durch: Optimiere deine Bilder mit dieser Web-App.
+  Optimiert dein SVG und entfernt unnötigen Datenballast.
 - [SVGWIZ](https://svgwiz.com/)\
-  Konvertiert SVG-Icons in CSS-Data-URI, um diese als Hintergrundgrafik verwenden zu können.
+  Konvertiert SVG in CSS-Data-URIs, um diese als Hintergrundgrafik verwenden zu können.
 - [Colour Contrast Checker](https://colourcontrast.cc/)\
-  Prüft Vorder- und Hintergrundfarben, ob sie genügend Kontrast aufweisen, um gut gelesen werden zu können.
+  Prüft Vorder- und Hintergrundfarben auf hohen Kontrast, damit diese gut gelesen werden können.
 
-## Nützliche Helfer
+## Entwicklung
 
-- [PX to REM Converter](https://nekocalc.com/px-to-rem-converter)\
-  Du möchtest `rem` statt `px` verwenden? Dann ist dieser Converter genau richtig für dein Design.
+Auch wenn es sich bei HTML- und CSS-Dateien nur um Textdateien handelt, solltest du eine der foglenden Entwicklungsumgebung (IDE) nutzen. Darüber hinaus findest du hier Links zu Frameworks und Apps, die dir die lokale Arbeit auf deinem Rechner erleichtern.
 
-## Editoren (IDE)
+### Editoren (IDE)
 
-Mit diesen Werkzeugen kannst du deine Website entwickeln.
+Mit diesen Werkzeugen kannst du deine Website oder Komponenten entwickeln.
 
 - [Visual Studio Code (VSC)](https://code.visualstudio.com/)\
   Desktop-App für macOS und Windows, mit der wir hauptsächlich arbeiten. Gespeichert werden deine Dateien lokal auf deinem&nbsp;Computer.
@@ -112,6 +110,30 @@ Ich empfehle folgende Plugins für Visual Studio Code:
   Schnelle Möglichkeit, Projekte zu öffnen.
 - [px to rem](https://marketplace.visualstudio.com/items?itemName=cipchk.cssrem)\
   Konvertiert zwischen Pixel- und rem-Werten.
+
+### Frameworks
+
+Du möchtest mehr als statische HTML-Dateien? Dann bringe jetz ein bisschen Schwung&nbsp;rein:
+
+- [Hugo](https://gohugo.io/)
+  Ein in Go geschriebener Seitengenerator für statische Seiten. Diese Seite verwendet Hugo.
+- [Kirby](https://gohugo.io/)
+  Das wohl beste CMS auf PHP-Basis, Kibry, ist für kleine als auch große Websites bestenes geeignet.
+- {{< reflist-item
+  title="Laravel Valet"
+  href="https://laravel.com/docs/8.x/valet"
+  descr="Entwicklungsumgebung für macOS-Minimalisten. Valet macht aus einem Verzeichnis einen virtuellen Host unter der *.test-Domäne."
+  platform="mac" >}}
+
+## UI/UX Tools
+
+- [PX to REM Converter](https://nekocalc.com/px-to-rem-converter)\
+  Du möchtest `rem` statt `px` verwenden? Dann ist dieser Converter genau richtig für dein Design.
+- {{< reflist-item
+  title="Materials Colors"
+  href="https://github.com/romannurik/MaterialColorsApp#material-colors-for-mac"
+  descr="Farbwähler als natives macOS-Tool."
+  platform="mac" >}}
 
 ## Demos
 
@@ -180,20 +202,6 @@ Links zu externen Websits mit detaillierter Erklärung, sowie Lerninhalte.
   Zeigt den Browser-Unterstützung von Front-end-Technologien.
 - [Emmet Cheat Sheet](https://docs.emmet.io/cheat-sheet/)\
   Schreibe HTML und CSS in Sekundenschnelle. Auch in Visual Studio Code.
-
-## Frameworks
-
-Statische HTML-Dateien reichen dir nicht und WordPress ist dir zu aufgebläht? Dann teste die folgende Alternativen.
-
-- [Hugo](https://gohugo.io/)
-  Ein in Go geschriebener Seitengenerator für statische Seiten. Diese Seite verwendet Hugo.
-- [Kirby](https://gohugo.io/)
-  Das wohl beste CMS auf PHP-Basis, Kibry, ist für kleine als auch große Websites bestenes geeignet.
-- {{< reflist-item
-  title="Laravel Valet"
-  href="https://laravel.com/docs/8.x/valet"
-  descr="Entwicklungsumgebung für macOS-Minimalisten. Valet macht aus einem Verzeichnis einen virtuellen Host unter der *.test-Domäne."
-  platform="mac" >}}
 
 </section>
 

@@ -11,6 +11,7 @@ TOC
   padding: var(--spacing) var(--content-spacing);
   margin: var(--content-spacing) calc(var(--content-spacing) * -1);
   box-shadow: var(--image-shadow);
+  border-bottom: 1px solid var(--clr-line);
 
   header {
     margin: 0 0 1em;
