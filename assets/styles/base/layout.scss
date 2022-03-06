@@ -191,9 +191,3 @@ HELPER
   cursor: default;
   user-select: none;
 }
-
-@for $i from 1 through 4 {
-  .bgs-#{$i} {
-    background-color: var(--clr-play-#{$i});
-  }
-}

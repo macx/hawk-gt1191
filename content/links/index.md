@@ -43,6 +43,8 @@ Blindtexte, Farben, Fonts und Icons bekommst du hier. So kannst du deine Idee sc
 
 - [Google Fonts](https://fonts.google.com/)\
   Frei nutzbare Webfonts für deine Website.
+- [ETC – Etcetera Type Co](https://www.etceteratype.co/){{< new >}}
+  Open source variable fonts.
 - [Google Webfonts Helper](https://google-webfonts-helper.herokuapp.com/fonts)\
   Datenschutzrechtlich unbedenktliche Nutzung von Google Fonts.
 
