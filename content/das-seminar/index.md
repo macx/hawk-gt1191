@@ -13,7 +13,7 @@ notoc: false
 
 {{< toc >}}
 
-Das Seminar wird seit 2015 von [David Maciejewski](https://macx.io) gegeben. Er ist Senior UI/UX Consultant bei [IT-P](https://it-p.de/) und betreut dort Großkundenprojekte. Mit über 25 Jahren Berufserfahrung als Selbständiger und Angesteller in Agenturen und Start-Ups weiß er, welche Fallstricke bei der Umsetzung von kreativen Ideen warten können.
+Das Seminar wird seit 2015 von [David Maciejewski](https://macx.io) gegeben. Er ist Senior UI/UX Consultant bei [IT-P](https://it-p.de/) und betreut dort Großkundenprojekte. Mit über 25 Jahren Berufserfahrung als Selbstständiger und Angestellter in Agenturen und Start-ups weiß er, welche Fallstricke bei der Umsetzung von kreativen Ideen warten können.
 
 ## Die Lehre
 
@@ -27,9 +27,9 @@ Schon während des Semesters arbeitest du an deiner Abgabe, deiner eigenen Websi
 
 Seit 2020 findet das Seminar online statt und steht Teilnehmenden des Studienfachs Bachelor Gestaltung und Master Gestaltung offen.
 
-![Das Gebäude der HAWK in Hildsheim.](hawk-aussen.jpg 'Das Gebäude der HAWK in Hildsheim.')
+![Das Gebäude der HAWK in Hildesheim.](hawk-aussen.jpg 'Das Gebäude der HAWK in Hildesheim.')
 
-Alle lernrelevanten Inahlte werden aufgezeichnet und stehen dir während des Semestern als Video zur Verffügung. Doch auch wenn das irre bequem ist, weil du ja die Inhalte nachholen kannst, solltest du die Zeit in der Gruppe nutzen. Nur so kannst Fragen stellen und dir später viel Zeit sparen.
+Alle lernrelevanten Inhalte werden aufgezeichnet und stehen dir während des Semesters als Video zur Verfügung. Doch auch wenn das irre bequem ist, weil du ja die Inhalte nachholen kannst, solltest du die Zeit in der Gruppe nutzen. Nur so kannst du Fragen stellen und dir später viel Zeit sparen.
 
 ## Anmeldung
 
@@ -37,4 +37,4 @@ Du möchtest dabei sein? Prima. Dann zögere nicht und trage dich in die Warteli
 
 Wenn du einen der begehrten Plätze ergattert hast, bekommst du rechtzeitig vor dem Start über StudIP eine Nachricht mit allen relevanten Informationen zur Teilnahme.
 
-Solltest die Frist verpassen oder hast es nicht auf die Warteliste geschafft, melde dich einfach bei David. Vielleicht gibt es für dich noch die Möglichkeit der Teilnahme. Beachte bitte die Anmelderegeln und die Veranstaltungszuordnung.
+Solltest die Frist verpassen oder du hast es nicht auf die Warteliste geschafft, melde dich einfach bei David. Vielleicht gibt es für dich noch die Möglichkeit der Teilnahme. Beachte bitte die Anmelderegeln und die Veranstaltungszuordnung.

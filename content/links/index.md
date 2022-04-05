@@ -34,6 +34,8 @@ Blindtexte, Farben, Fonts und Icons bekommst du hier. So kannst du deine Idee sc
 
 - [UI Colors](https://uicolors.app/create){{< new >}}\
   Schnelles Tool, um eine Farbfolge zusammenzustellen. Inklusive Tailwind-, Sass- und CSS-Variabeln.
+- [cccolor](https://fffuel.co/cccolor/){{< new >}}\
+  Farbmischer mit HEX, RGB und HSL.
 - [Tailwind Color Palette](https://tailwindcolor.com/)\
   Übersichtliche Farbpalette. Ein Klick kopiert den Farbwert in die Zwischenablage.
 - [Color Designer](https://colordesigner.io/)\
@@ -63,6 +65,13 @@ Blindtexte, Farben, Fonts und Icons bekommst du hier. So kannst du deine Idee sc
 
 - [Unsplash](https://unsplash.com/)\
   Der Standard: Hochauflösende Bilder zur freien Verwendung auf deiner Website.
+
+### SVG
+
+- [dddraw](https://fffuel.co/dddraw/){{< new >}}
+  Freihand-Zeichenwerkzeug
+- [pppointed](https://fffuel.co/pppointed/){{< new >}}
+  Pfeil-Generator
 
 ## Optimieren
 
