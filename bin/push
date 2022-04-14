@@ -15,9 +15,8 @@ To run a test add the \"dry\" paramenter
 or \"now\" for a direct deplocyment.
 "
 
-if [ $# -eq 0 ]
-    then
-        echo "$PROMPT_STRING";
+if [ $# -eq 0 ]; then
+    echo "$PROMPT_STRING";
 elif [ $1 == "dry" ]; then
     echo "Running dry-run"
     hugo && rsync --dry-run -avz --delete 'public' --include='public**' --exclude='*' ${SSH_USER}@${SSH_HOST}:~/${SSH_DIR}
