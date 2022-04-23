@@ -52,8 +52,8 @@ Blindtexte, Farben, Fonts und Icons bekommst du hier. So kannst du deine Idee sc
 
 ### Icons
 
-- [Material Icons](https://fonts.google.com/icons)\
-  Weit verbreitetes Icon-Set von Google, verwendet in Android und den Google-Apps.
+- [Material Symbols](https://fonts.google.com/icons?icon.set=Material+Symbols){{< new >}}\
+  Icons und variabler Icon-Font von Google, verwendet in Android und den Google-Apps.
 - [Material Design Icons](https://materialdesignicons.com/)\
   Community-Edition der Google-Icons mit größerer Auswahl und Varianten. Auch als Webfont nutzbar.
 - [Simple Icons](https://simpleicons.org/)\
