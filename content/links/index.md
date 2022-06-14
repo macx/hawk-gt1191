@@ -32,27 +32,29 @@ Blindtexte, Farben, Fonts und Icons bekommst du hier. So kannst du deine Idee sc
 
 ### Farben
 
-- [UI Colors](https://uicolors.app/create){{< new >}}\
+- [UI Colors](https://uicolors.app/create)
   Schnelles Tool, um eine Farbfolge zusammenzustellen. Inklusive Tailwind-, Sass- und CSS-Variabeln.
-- [cccolor](https://fffuel.co/cccolor/){{< new >}}\
+- [cccolor](https://fffuel.co/cccolor/)
   Farbmischer mit HEX, RGB und HSL.
 - [Tailwind Color Palette](https://tailwindcolor.com/)\
   Übersichtliche Farbpalette. Ein Klick kopiert den Farbwert in die Zwischenablage.
 - [Color Designer](https://colordesigner.io/)\
   Farbpaletten, Farbwähler und Komplementärfarben.
+- [Monk Skin Tones](https://skintone.google/get-started){{< new >}}\
+  Farbtöne der Haut nach dem Monk-Schema (Open Source von Google)
 
 ### Fonts
 
 - [Google Fonts](https://fonts.google.com/)\
   Frei nutzbare Webfonts für deine Website.
-- [ETC – Etcetera Type Co](https://www.etceteratype.co/){{< new >}}
+- [ETC – Etcetera Type Co](https://www.etceteratype.co/)
   Open source variable fonts.
 - [Google Webfonts Helper](https://google-webfonts-helper.herokuapp.com/fonts)\
   Datenschutzrechtlich unbedenktliche Nutzung von Google Fonts.
 
 ### Icons
 
-- [Material Symbols](https://fonts.google.com/icons?icon.set=Material+Symbols){{< new >}}\
+- [Material Symbols](https://fonts.google.com/icons?icon.set=Material+Symbols)\
   Icons und variabler Icon-Font von Google, verwendet in Android und den Google-Apps.
 - [Material Design Icons](https://materialdesignicons.com/)\
   Community-Edition der Google-Icons mit größerer Auswahl und Varianten. Auch als Webfont nutzbar.
@@ -68,9 +70,9 @@ Blindtexte, Farben, Fonts und Icons bekommst du hier. So kannst du deine Idee sc
 
 ### SVG
 
-- [dddraw](https://fffuel.co/dddraw/){{< new >}}
+- [dddraw](https://fffuel.co/dddraw/)
   Freihand-Zeichenwerkzeug
-- [pppointed](https://fffuel.co/pppointed/){{< new >}}
+- [pppointed](https://fffuel.co/pppointed/)
   Pfeil-Generator
 
 ## Optimieren
@@ -100,6 +102,8 @@ Mit diesen Werkzeugen kannst du deine Website oder Komponenten entwickeln.
   Visual Studio Code gibt's auch in dieser Browser-Variante, ist aber nicht ganz so&nbsp;umfangreich.
 - [CodePen](https://codepen.io)[^1]\
   Die wohl schnellste Möglichkeit, kleine Websites oder Bereiche davon zu schreiben.
+- [Codesandbox](https://codesandbox.io/s/){{< new >}}\
+  Arbeite mit anderen StudentInnen am selben Code oder hole Feedback ein.
 - [StackBlitz](https://stackblitz.com/)[^1]\
   Wenn dir CodePen nicht reicht, kannst du hier all deinen Dateien speichern und deine Website online betrachten.
 
@@ -180,13 +184,13 @@ Links zu externen Websits mit detaillierter Erklärung, sowie Lerninhalte.
 
 - [CSS-Referenz](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference)\
   Dokumentation aller CSS-Eigenschaften (Properties).
-- [CSS: Custom Properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties){{< new >}}
+- [CSS: Custom Properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties)
   Wiederverwendbarkeit von Variabeln, die CSS-Attribute wie Farben und Abstände standartisieren.
 - [CSS-Spezifität](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity)
   Mit der Spezifität bestimmt der Browser, welche Eigenschaften am relevantesten für ein Element zur Darstellung ist.
-- [Variable Fonts](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Fonts/Variable_Fonts_Guide){{< new >}}\
+- [Variable Fonts](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Fonts/Variable_Fonts_Guide)\
   Font-Spezifikation, um statt mehrere Schriftschnitte nur einen (variablen) Font zu verwenden.
-- [BEM: Block Element Modifier](http://getbem.com/naming/){{< new >}}
+- [BEM: Block Element Modifier](http://getbem.com/naming/)}
   Namenskonventionen und Modularität von Elementen.
 
 ### JavaScript
@@ -204,12 +208,12 @@ Links zu externen Websits mit detaillierter Erklärung, sowie Lerninhalte.
   Spielend das CSS-Layout Grid lernen.
 - [CSS: A Complete Guide to Grid](https://css-tricks.com/snippets/css/complete-guide-grid/)\
   Übersicht über das CSS Grid.
-- [Einführung in GitHub](https://lab.github.com/githubtraining/introduction-to-github)[^1]{{< new >}}
+- [Einführung in GitHub](https://lab.github.com/githubtraining/introduction-to-github)[^1]
   Für Anfänger in der Versionierung von Dateien durch Git.
 
 ### Allgemein
 
-- [Can I use](https://caniuse.com/){{< new >}}\
+- [Can I use](https://caniuse.com/)\
   Zeigt den Browser-Unterstützung von Front-end-Technologien.
 - [Emmet Cheat Sheet](https://docs.emmet.io/cheat-sheet/)\
   Schreibe HTML und CSS in Sekundenschnelle. Auch in Visual Studio Code.
