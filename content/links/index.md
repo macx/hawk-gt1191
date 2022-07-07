@@ -140,6 +140,13 @@ Du möchtest mehr als statische HTML-Dateien? Dann bringe jetz ein bisschen Schw
   descr="Entwicklungsumgebung für macOS-Minimalisten. Valet macht aus einem Verzeichnis einen virtuellen Host unter der *.test-Domäne."
   platform="mac" >}}
 
+## Starterkits
+
+Mit diesen Starterkits kannst du Ruck Zuck neue Websites erstellen.
+
+- [GT 1191 Starterkit](https://github.com/HAWK-GT1191/gt1191-starterkit){{< new >}}\
+  Der Einstieg: Mit Parcel und Sass Multi-Page-Websites entwickeln.
+
 ## UI/UX Tools
 
 - [PX to REM Converter](https://nekocalc.com/px-to-rem-converter)\
