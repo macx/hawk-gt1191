@@ -5,7 +5,7 @@ enableemoji: true
 enableGitInfo: true
 params:
   links:
-    studip: 'https://studip.hawk.de/dispatch.php/course/details?sem_id=4b3efce6a4c286cc0d4956d6451d5ad3&again=yes'
+    studip: 'https://studip.hawk-hhg.de/dispatch.php/course/details/?cid=92a8299ab61eae0ab48cccd380540adc'
     discordInvite: 'https://discord.gg/Kke2BsapYu'
     discordChannel: 'https://discord.com/channels/789498129765630003'
 

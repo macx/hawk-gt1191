@@ -40,7 +40,7 @@ Blindtexte, Farben, Fonts und Icons bekommst du hier. So kannst du deine Idee sc
   Übersichtliche Farbpalette. Ein Klick kopiert den Farbwert in die Zwischenablage.
 - [Color Designer](https://colordesigner.io/)\
   Farbpaletten, Farbwähler und Komplementärfarben.
-- [Monk Skin Tones](https://skintone.google/get-started){{< new >}}\
+- [Monk Skin Tones](https://skintone.google/get-started)\
   Farbtöne der Haut nach dem Monk-Schema (Open Source von Google)
 
 ### Fonts
@@ -102,7 +102,7 @@ Mit diesen Werkzeugen kannst du deine Website oder Komponenten entwickeln.
   Visual Studio Code gibt's auch in dieser Browser-Variante, ist aber nicht ganz so&nbsp;umfangreich.
 - [CodePen](https://codepen.io)[^1]\
   Die wohl schnellste Möglichkeit, kleine Websites oder Bereiche davon zu schreiben.
-- [Codesandbox](https://codesandbox.io/s/){{< new >}}\
+- [Codesandbox](https://codesandbox.io/s/)\
   Arbeite mit anderen StudentInnen am selben Code oder hole Feedback ein.
 - [StackBlitz](https://stackblitz.com/)[^1]\
   Wenn dir CodePen nicht reicht, kannst du hier all deinen Dateien speichern und deine Website online betrachten.
@@ -178,7 +178,7 @@ Du brauchst Code-Beispiele? Gern, hier sind die, die ich gebaut habe. Die sind a
 
 ## Dokumentation
 
-Links zu externen Websits mit detaillierter Erklärung, sowie Lerninhalte.
+Du möchtest mehr erfahren, wie Dinge aus dem Seminar funktionieren oder tiefer eintauchen? Dann findest du hier Links zu den Lerninhalten.
 
 ### HTML
 
@@ -197,7 +197,7 @@ Links zu externen Websits mit detaillierter Erklärung, sowie Lerninhalte.
   Mit der Spezifität bestimmt der Browser, welche Eigenschaften am relevantesten für ein Element zur Darstellung ist.
 - [Variable Fonts](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Fonts/Variable_Fonts_Guide)\
   Font-Spezifikation, um statt mehrere Schriftschnitte nur einen (variablen) Font zu verwenden.
-- [BEM: Block Element Modifier](http://getbem.com/naming/)}
+- [BEM: Block Element Modifier](http://getbem.com/naming/)
   Namenskonventionen und Modularität von Elementen.
 
 ### JavaScript
@@ -206,6 +206,11 @@ Links zu externen Websits mit detaillierter Erklärung, sowie Lerninhalte.
   Kurze Einführung in die Scriptsprache.
 - [Progressive web apps (PWAs)](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps)\
   Einführung in PWA, sowie Leitfaden zur Entwicklung.
+
+### Development-Stack
+
+- [Chrome DevTools](https://developer.chrome.com/docs/devtools/overview/){{< new >}}\
+  Zur allgemeinen Bedienung über die Verwendung spezifischer Informationen.
 
 ### Lerninhalte
 
