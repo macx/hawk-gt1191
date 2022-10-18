@@ -69,9 +69,14 @@ h4 {
 h1 {
   font-size: 2rem;
   margin-top: 0;
+  transition: font-size var(--transition);
 
   + h2 {
     margin-top: 0;
+  }
+
+  @include respond('large') {
+    font-size: 2.5rem;
   }
 }
 

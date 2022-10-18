@@ -40,6 +40,8 @@ Blindtexte, Farben, Fonts und Icons bekommst du hier. So kannst du deine Idee sc
   Übersichtliche Farbpalette. Ein Klick kopiert den Farbwert in die Zwischenablage.
 - [Color Designer](https://colordesigner.io/)\
   Farbpaletten, Farbwähler und Komplementärfarben.
+- [Alphredo – Alpha colors generator](https://alphredo.app/){{< new >}}\
+  Tool, um transparente Farben so aussehen zu lassen, wie ihre undurchsichtigen.
 - [Monk Skin Tones](https://skintone.google/get-started)\
   Farbtöne der Haut nach dem Monk-Schema (Open Source von Google)
 
@@ -54,14 +56,14 @@ Blindtexte, Farben, Fonts und Icons bekommst du hier. So kannst du deine Idee sc
 
 ### Icons
 
+- [Lucide Icons](https://lucide.dev/) {{< new >}}\
+  Stark erweiteter Clon der Feather-Icons. Simpel und sauber. [Zur Einbindung](https://lucide.dev/docs/lucide).
 - [Material Symbols](https://fonts.google.com/icons?icon.set=Material+Symbols)\
   Icons und variabler Icon-Font von Google, verwendet in Android und den Google-Apps.
 - [Material Design Icons](https://materialdesignicons.com/)\
   Community-Edition der Google-Icons mit größerer Auswahl und Varianten. Auch als Webfont nutzbar.
 - [Simple Icons](https://simpleicons.org/)\
   Brand-Icons und Farben bekannter Markern wie Facebook und Instagram.
-- [Feather Icons](https://feathericons.com/)\
-  Simpel und sauber gestaltet, export als SVG.
 
 ### Fotos
 

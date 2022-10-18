@@ -45,15 +45,15 @@ markup:
       hardWraps: true
       unsafe: true
   tableOfContents:
-    endLevel: 2
+    endLevel: 3
   highlight:
     noClasses: false
 
 menu:
   nav:
-    - identifier: 'das-seminar'
-      name: 'Das Seminar'
-      url: '/das-seminar/'
+    - identifier: 'seminar'
+      name: 'Seminar'
+      url: '/seminar/'
       params:
         class: ''
       weight: 1

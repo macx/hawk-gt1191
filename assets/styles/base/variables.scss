@@ -6,6 +6,7 @@
 
   --header-height: 3.75rem;
   --navigation-width: 15rem;
+  --toc-width: 14rem;
   --content-spacing: var(--spacing);
   --content-max-width: 45rem;
   --border-radius: 0.2rem;
@@ -34,7 +35,7 @@
 
   --font-family: 'Rubik', sans-serif;
   --font-family--heading: 'Playfair Display', serif;
-  --font-weight: 400;
+  --font-weight: 300;
   --font-weight--bold: 500;
   --font-weight--heading: 400;
 
@@ -64,17 +65,17 @@
   }
 
   &[data-mode='dark'] {
-    --clr-background: #171717;
+    --clr-background: #000;
     --clr-text: #d9d9d9;
     --clr-text--light: rgba(217, 217, 217, 0.7);
     --clr-text--dark: #fff;
     --clr-line: rgba(255, 255, 255, 0.2);
     --clr-header: rgba(20, 35, 45, 0.8);
-    --clr-inverse: #000;
+    --clr-inverse: rgb(255 255 255 / 0.1);
 
-    --nav-border: #000;
+    --nav-border: rgb(255 255 255 / 0.3);
 
-    --footer-line: rgba(0, 0, 0, 0);
+    --footer-line: rgb(255 255 255 / 0.3);
     --footer-bg: linear-gradient(
       to bottom,
       rgba(0, 0, 0, 0.2) 1px,

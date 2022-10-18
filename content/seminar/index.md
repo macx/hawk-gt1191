@@ -1,5 +1,5 @@
 ---
-title: 'Das Seminar'
+title: 'Seminar'
 date: 2021-12-29T14:10:36+01:00
 draft: false
 content: 'full'

@@ -2,8 +2,9 @@
   min-height: calc(100vh - 3.75rem);
   max-width: var(--content-max-width);
   margin: 0 auto;
+  padding-inline: var(--content-spacing);
   padding: 0 var(--content-spacing);
-  transition: padding var(--transition);
+  transition: padding-inline var(--transition);
 
   &__meta {
     font-size: var(--font-size--small);
@@ -38,7 +39,8 @@
   }
 
   &--full {
-    padding: var(--spacing--large) var(--content-spacing);
+    padding-block: var(--spacing--large);
+    padding-inline: var(--content-spacing);
   }
 
   h2 {
@@ -100,6 +102,10 @@
   :target {
     animation: highlight 3s ease;
     text-shadow: 0 0 1px transparent;
+  }
+
+  @include respond('large', 'between', 'xlarge') {
+    margin: 0 auto 0 calc(var(--toc-width) + var(--content-spacing));
   }
 }
 

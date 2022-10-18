@@ -3,6 +3,7 @@
     small: 480px,
     medium: 600px,
     large: 1000px,
+    xlarge: 1300px,
   );
 
   @if $type == 'from' {

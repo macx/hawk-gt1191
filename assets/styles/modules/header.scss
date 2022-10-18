@@ -126,5 +126,22 @@
         display: none !important;
       }
     }
+
+    &::after {
+      display: block;
+      position: fixed;
+      top: var(--header-height);
+      left: 0;
+      width: 100%;
+      height: var(--spacing--large);
+      content: '';
+      z-index: 19;
+      pointer-events: none;
+      background-image: linear-gradient(
+        180deg,
+        var(--clr-background),
+        transparent
+      );
+    }
   }
 }

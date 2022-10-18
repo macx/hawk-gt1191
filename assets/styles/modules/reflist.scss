@@ -11,7 +11,7 @@
     font-size: 0.8125rem;
     color: var(--clr-text--light);
 
-    a:not([class]) {
+    a:not([class]):first-child {
       display: inline-block;
       font-size: 1rem;
       margin-bottom: 0.5em;
