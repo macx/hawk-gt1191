@@ -40,7 +40,7 @@ Blindtexte, Farben, Fonts und Icons bekommst du hier. So kannst du deine Idee sc
   Übersichtliche Farbpalette. Ein Klick kopiert den Farbwert in die Zwischenablage.
 - [Color Designer](https://colordesigner.io/)\
   Farbpaletten, Farbwähler und Komplementärfarben.
-- [Alphredo – Alpha colors generator](https://alphredo.app/){{< new >}}\
+- [Alphredo – Alpha colors generator](https://alphredo.app/)\
   Tool, um transparente Farben so aussehen zu lassen, wie ihre undurchsichtigen.
 - [Monk Skin Tones](https://skintone.google/get-started)\
   Farbtöne der Haut nach dem Monk-Schema (Open Source von Google)
@@ -56,7 +56,7 @@ Blindtexte, Farben, Fonts und Icons bekommst du hier. So kannst du deine Idee sc
 
 ### Icons
 
-- [Lucide Icons](https://lucide.dev/) {{< new >}}\
+- [Lucide Icons](https://lucide.dev/)\
   Stark erweiteter Clon der Feather-Icons. Simpel und sauber. [Zur Einbindung](https://lucide.dev/docs/lucide).
 - [Material Symbols](https://fonts.google.com/icons?icon.set=Material+Symbols)\
   Icons und variabler Icon-Font von Google, verwendet in Android und den Google-Apps.
@@ -146,7 +146,9 @@ Du möchtest mehr als statische HTML-Dateien? Dann bringe jetz ein bisschen Schw
 
 Mit diesen Starterkits kannst du Ruck Zuck neue Websites erstellen.
 
-- [GT 1191 Starterkit](https://github.com/HAWK-GT1191/gt1191-starterkit){{< new >}}\
+- [GT 1191 Sass](https://github.com/HAWK-GT1191/gt1191-starterkit-mini){{< new >}}\
+  Minimales Starterkit mit Sass, Browser-Sync und Post-CSS.
+- [GT 1191 Starterkit](https://github.com/HAWK-GT1191/gt1191-starterkit)\
   Der Einstieg: Mit Parcel und Sass Multi-Page-Websites entwickeln.
 
 ## UI/UX Tools
@@ -211,7 +213,7 @@ Du möchtest mehr erfahren, wie Dinge aus dem Seminar funktionieren oder tiefer 
 
 ### Development-Stack
 
-- [Chrome DevTools](https://developer.chrome.com/docs/devtools/overview/){{< new >}}\
+- [Chrome DevTools](https://developer.chrome.com/docs/devtools/overview/)\
   Zur allgemeinen Bedienung über die Verwendung spezifischer Informationen.
 
 ### Lerninhalte
