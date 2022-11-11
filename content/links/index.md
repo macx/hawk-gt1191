@@ -146,7 +146,7 @@ Du möchtest mehr als statische HTML-Dateien? Dann bringe jetz ein bisschen Schw
 
 Mit diesen Starterkits kannst du Ruck Zuck neue Websites erstellen.
 
-- [GT 1191 Sass](https://github.com/HAWK-GT1191/gt1191-starterkit-mini){{< new >}}\
+- [GT 1191 Starterkit Mini](https://github.com/HAWK-GT1191/gt1191-starterkit-mini){{< new >}}\
   Minimales Starterkit mit Sass, Browser-Sync und Post-CSS.
 - [GT 1191 Starterkit](https://github.com/HAWK-GT1191/gt1191-starterkit)\
   Der Einstieg: Mit Parcel und Sass Multi-Page-Websites entwickeln.
