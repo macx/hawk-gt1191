@@ -68,6 +68,12 @@ menu:
       url: '/links/'
       params:
         class: ''
+      weight: 2
+    - identifier: 'hilfe'
+      name: 'Hilfe'
+      url: '/hilfe/'
+      params:
+        class: ''
       weight: 3
   footer:
     - identifier: 'impressum'

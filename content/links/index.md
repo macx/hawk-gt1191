@@ -36,6 +36,8 @@ Blindtexte, Farben, Fonts und Icons bekommst du hier. So kannst du deine Idee sc
   Schnelles Tool, um eine Farbfolge zusammenzustellen. Inklusive Tailwind-, Sass- und CSS-Variabeln.
 - [cccolor](https://fffuel.co/cccolor/)
   Farbmischer mit HEX, RGB und HSL.
+- [Leonardo Color Palette](https://leonardocolor.io/theme.html){{<new>}}\
+  Umfangreiches Tools zur Erstellung und Analyse von Farbpaletten.
 - [Tailwind Color Palette](https://tailwindcolor.com/)\
   Übersichtliche Farbpalette. Ein Klick kopiert den Farbwert in die Zwischenablage.
 - [Color Designer](https://colordesigner.io/)\
@@ -44,6 +46,8 @@ Blindtexte, Farben, Fonts und Icons bekommst du hier. So kannst du deine Idee sc
   Tool, um transparente Farben so aussehen zu lassen, wie ihre undurchsichtigen.
 - [Monk Skin Tones](https://skintone.google/get-started)\
   Farbtöne der Haut nach dem Monk-Schema (Open Source von Google)
+- [Easing Gradients](https://larsenwork.com/easing-gradients/){{< new >}}\
+  Lineare Farbverläufe ohne die typischen harten Kanten.
 
 ### Fonts
 
@@ -87,6 +91,8 @@ Im Semester lernst du, dein Erstelltes für Endanwender zu optimieren. Hier sind
   Optimiert dein SVG und entfernt unnötigen Datenballast.
 - [SVGWIZ](https://svgwiz.com/)\
   Konvertiert SVG in CSS-Data-URIs, um diese als Hintergrundgrafik verwenden zu können.
+- [Leonardo Contrast Colors](https://leonardocolor.io/tools.html){{<new>}}\
+  Kontrastverhältnis zwischen Vorder- und Hintergrundfarbe ermitteln.
 - [Colour Contrast Checker](https://colourcontrast.cc/)\
   Prüft Vorder- und Hintergrundfarben auf hohen Kontrast, damit diese gut gelesen werden können.
 
@@ -160,79 +166,6 @@ Mit diesen Starterkits kannst du Ruck Zuck neue Websites erstellen.
   href="https://github.com/romannurik/MaterialColorsApp#material-colors-for-mac"
   descr="Farbwähler als natives macOS-Tool."
   platform="mac" >}}
-
-## Demos
-
-Du brauchst Code-Beispiele? Gern, hier sind die, die ich gebaut habe. Die sind auch noch im Jahr {{< year >}} aktuell. 😎
-
-- [Sticky Back-To-Top Button](https://codepen.io/macx/pen/eYeNMpJ)\
-  Zurück-nach-oben-Button, der erst beim scrollen erscheint. Die Demo nutzt den Intersection Observer. Wird auch auf dieser Seite verwendet.
-- [Responsive Images](https://codepen.io/macx/pen/NWNrRQg)\
-  Mobil-optimierte Art-Direction-Images mit `picture`-Element und `srcset`.
-- [CSS Grid](https://codepen.io/macx/pen/NWNrRQg)\
-  Bild-Gallerie ohne Media-Queries.
-- [Sticky Header](https://codepen.io/macx/pen/eoxLde)\
-  Header, der am Bildschirm stehen bleibt, sobald er im View erscheint.
-- [Responsive Timeline](https://codepen.io/macx/pen/aPRYeP)\
-  Mobile-first-optimierte und responsive Zeitleiste.
-- [WIP: Image Slider Replacement](https://codepen.io/macx/pen/QWKoPOB)\
-  Moderne Variante eines Bild-Karussells.
-- [Hiding header on scroll event with Headroom.js](https://codepen.io/macx/pen/mdmWEgx)\
-  Header, der nach dem scrollen verschwindet.
-
-## Dokumentation
-
-Du möchtest mehr erfahren, wie Dinge aus dem Seminar funktionieren oder tiefer eintauchen? Dann findest du hier Links zu den Lerninhalten.
-
-### HTML
-
-- [HTML-Elemente](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)\
-  Dokumentation aller HTML-Elemente.
-- [Accessibility](https://developer.mozilla.org/en-US/docs/Web/Accessibility)\
-  Einführung und Dokumentation der `aria`-Rollen.
-
-### CSS
-
-- [CSS-Referenz](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference)\
-  Dokumentation aller CSS-Eigenschaften (Properties).
-- [CSS: Custom Properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties)
-  Wiederverwendbarkeit von Variabeln, die CSS-Attribute wie Farben und Abstände standartisieren.
-- [CSS-Spezifität](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity)
-  Mit der Spezifität bestimmt der Browser, welche Eigenschaften am relevantesten für ein Element zur Darstellung ist.
-- [Variable Fonts](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Fonts/Variable_Fonts_Guide)\
-  Font-Spezifikation, um statt mehrere Schriftschnitte nur einen (variablen) Font zu verwenden.
-- [BEM: Block Element Modifier](http://getbem.com/naming/)
-  Namenskonventionen und Modularität von Elementen.
-
-### JavaScript
-
-- [JavaScript-Basics](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/JavaScript_basics)\
-  Kurze Einführung in die Scriptsprache.
-- [Progressive web apps (PWAs)](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps)\
-  Einführung in PWA, sowie Leitfaden zur Entwicklung.
-
-### Development-Stack
-
-- [Chrome DevTools](https://developer.chrome.com/docs/devtools/overview/)\
-  Zur allgemeinen Bedienung über die Verwendung spezifischer Informationen.
-
-### Lerninhalte
-
-- [CSS: Flexbox Froggy](https://flexboxfroggy.com/#de)\
-  Spielend das CSS-Layout Flexbox lernen.
-- [CSS: Grid Garden](https://cssgridgarden.com/#de)\
-  Spielend das CSS-Layout Grid lernen.
-- [CSS: A Complete Guide to Grid](https://css-tricks.com/snippets/css/complete-guide-grid/)\
-  Übersicht über das CSS Grid.
-- [Einführung in GitHub](https://lab.github.com/githubtraining/introduction-to-github)[^1]
-  Für Anfänger in der Versionierung von Dateien durch Git.
-
-### Allgemein
-
-- [Can I use](https://caniuse.com/)\
-  Zeigt den Browser-Unterstützung von Front-end-Technologien.
-- [Emmet Cheat Sheet](https://docs.emmet.io/cheat-sheet/)\
-  Schreibe HTML und CSS in Sekundenschnelle. Auch in Visual Studio Code.
 
 </section>
 
