@@ -1,0 +1,157 @@
+---
+layout: ../layouts/Layout.astro
+title: 'Komponenten'
+navTitle: 'Komponenten'
+sort: 4
+visible: true
+toc: true
+---
+
+import Lead from '../components/Lead.astro'
+
+# Komponenten für deine Website
+
+<Lead>
+  Damit du sofort mit der Entwicklung deiner Website loslegen kannst, habe ich
+  dir hier eine Sammlung von Komponenten zusammengestellt.
+</Lead>
+
+## Komponenten
+
+### Text
+
+Mit Blind- oder Platzhaltertext kannst du deine Website erst einmal gestalten. Lorem Ipsum ist der gebräuchliste Blindtext, da er in Latain erinnert, aber nichts bedeutet. Von diesem gibt es diverse Derivate:
+
+[Dylan Ipsum](https://brody.fyi/tools/dylan-ipsum)
+: Blindtext-Generator mit Zitaten von Bob Dylan.
+
+[Cupcake Ipsum](http://www.cupcakeipsum.com/)
+: Blindtext-Generator mit einem „Hauch von Zucker“.
+
+[DeLorean Ipsum Text Generator](https://satoristudio.net/delorean-ipsum/)
+: Du kennst die Filmreihe Zurück in die Zukunft? Dann nutze Dialoge von Doc und Marty.
+
+### Farben
+
+[Tailwind Color Palette](https://tailwindcolor.com/)
+: Schnelles kopieren einer Farbe aus einer Palette.
+
+[Color Designer](https://colordesigner.io/)
+: Umfangreiche Tools, wie Farbschemen, Verläufe, Farbkreis und Komplementärfarben.
+
+[Alphredo: Alpha colors generator](https://alphredo.app/)
+: Generiert farbechte Farbschatierungen.
+
+[Monk Skin Tones](https://skintone.google/get-started)
+: Farbtöne der menschlichen Haut nach dem Monk-Schema (Open Source von Google).
+
+[Easing Gradients](https://larsenwork.com/easing-gradients/)
+: Lineare Farbverläufe ohne die typischen harten Kanten.
+
+### Fonts
+
+[Google Fonts & Material Symbols](https://fonts.google.com/)
+: Frei nutzbare Webfonts und Icons. Beachte bitte den Datenschutz[^1].
+
+[Google Webfonts Helper](https://gwfh.mranftl.com/fonts)
+: Lokale und datenschutzunbedenkliche Einbindung der Google Fonts.
+
+[Fontsource](https://fontsource.org/)
+: Sammlung von Open-Source-Fonts, die als NPM-Pakete lokal eingebunden werden können.f
+
+[ETC – Etcetera Type Co](https://www.etceteratype.co/)
+: Variable Open-Source-Fonts von ETC.
+
+### Icons
+
+[Lucide Icons](https://lucide.dev/)
+: Stark erweiteter Clon der Feather-Icons. Simpel und sauber. [Zur Einbindung](https://lucide.dev/docs/lucide).
+
+[Material Symbols](https://fonts.google.com/icons?icon.set=Material+Symbols)
+: Icons und variabler Icon-Font von Google, verwendet in Android und den Google-Apps.
+
+[Material Design Icons](https://pictogrammers.com/library/mdi/)
+: Community-Edition der Google-Icons mit größerer Auswahl und Varianten. Auch als Webfont nutzbar.
+
+[Simple Icons](https://simpleicons.org/)
+: Brand-Icons und Farben bekannter Markern wie Facebook und Instagram.
+
+### Bilder
+
+[Unsplash](https://unsplash.com/)
+: Der Standard: Hochauflösende Bilder zur freien Verwendung auf deiner Website.
+
+[Lorem Picsum](https://picsum.photos/)
+: Platzhalterbilder für deine Website. Unterstützung von WEBP.
+
+[Placehold.in](https://placehold.in)
+: Schneller Weg, um Platzhalterbilder einzusetzen.
+
+[dddraw](https://fffuel.co/dddraw/)
+: Freihand-Zeichenwerkzeug zur Erzeugung von SVG-Grafiken.
+
+[pppointed](https://fffuel.co/pppointed/)
+: Pfeil-Generator.
+
+### Layots
+
+[1-Line Layouts](https://1linelayouts.glitch.me/)
+: Zehn moderne CSS-Layouts zum kopieren und einfügen.
+
+## Optimierungen
+
+Bilder solltest du stets optimieren, damit sie schneller geladen werden können. Biete ggf. auch alternative Bildformate wie WebP[^2] oder AVIF[^3] an.
+
+#### Bilder
+
+[Squoosh](https://squoosh.app/)
+: Zuschneiden von Bildern und Export als optimiertes JPG, WebP und AVIF.
+
+[SVGOMG](https://jakearchibald.github.io/svgomg/)
+: Optimiert dein SVG und entfernt unnötigen Datenballast.
+
+[SVGWIZ](https://svgwiz.com/)
+: Konvertiert SVG in CSS-Data-URIs, um diese als Hintergrundgrafik verwenden zu können.
+
+[PX to REM Converter](https://nekocalc.com/px-to-rem-converter)
+: Du möchtest `rem` statt `px` verwenden? Dann ist dieser Converter genau richtig für dein Design.
+
+#### Typografie
+
+[Modern fluid typography editor](https://modern-fluid-typography.vercel.app/)
+: Erstellt für `clamp()` die drei Werte.
+
+[Leonardo Contrast Colors](https://leonardocolor.io/tools.html)
+: Kontrastverhältnis zwischen Vorder- und Hintergrundfarbe ermitteln.
+
+[Colour Contrast Checker](https://colourcontrast.cc/)
+: Prüft Vorder- und Hintergrundfarben auf hohen Kontrast, damit diese gut gelesen werden können.
+
+## Code-Beispiele
+
+Du hast eine Idee, weißt aber noch nicht wie du sie umsetzen kannst? Hier habe ich dir ein paar meiner Codepens aufgeführt.
+
+[Sticky Back-To-Top Button](https://codepen.io/macx/pen/eYeNMpJ)
+: Zurück-nach-oben-Button, der erst beim scrollen erscheint. Die Demo nutzt den Intersection Observer. Wird auch auf dieser Seite verwendet.
+
+[Responsive Images](https://codepen.io/macx/pen/NWNrRQg)
+: Mobil-optimierte Art-Direction-Images mit `picture`-Element und `srcset`.
+
+[CSS Grid](https://codepen.io/macx/pen/NWNrRQg)
+: Bild-Gallerie ohne Media-Queries.
+
+[Sticky Header](https://codepen.io/macx/pen/eoxLde)
+: Header, der am Bildschirm stehen bleibt, sobald er im View erscheint.
+
+[Responsive Timeline](https://codepen.io/macx/pen/aPRYeP)
+: Mobile-first-optimierte und responsive Zeitleiste.
+
+[WIP: Image Slider Replacement](https://codepen.io/macx/pen/QWKoPOB)
+: Moderne Variante eines Bild-Karussells.
+
+[Hiding header on scroll event with Headroom.js](https://codepen.io/macx/pen/mdmWEgx)
+: Header, der nach dem scrollen verschwindet.
+
+[^1]: Die Einbindung von Google Fonts ist datenschutzrechtlich bedenklich, da beim aufruf einer Website immer die IP-Adresse gepspeichert wird. Die Nutzung von Google Fonts ist daher nur mit Einwilligung des Nutzers zulässig. Binde Fonts daher lieber lokal ein.
+[^2]: WebP ist ein ein von Google entwickeltes Bildformat. Im Vergleich zu JPG benötigen WebP bei vergleichbarer Qualität weniger Speicherplatz und sind damit schneller ladbar.
+[^3]: AVIF steht für „AV1 Image File Format“ und bietet im Vergleich zu JPG und AVIF die beste Kompressionseffizienz. Es ist ein offenes und lizenzfreies Bildformat, das auf dem Videocodec AV1 basiert, wird aktuell aber noch nicht von allen Browsern unterstüzt.

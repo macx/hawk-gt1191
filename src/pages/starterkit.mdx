@@ -1,0 +1,59 @@
+---
+layout: ../layouts/Layout.astro
+title: 'GT 1191 Starterkit'
+navTitle: 'Starterkit'
+sort: 3
+visible: true
+---
+
+import Lead from '../components/Lead.astro'
+
+# {frontmatter.title}
+
+<Lead>
+  Mit dem Starterkit für Single- und Multi-Page-Websites sparst du bei der
+  Erstellung viel Zeit und kannst dich aufs Lernen konzentrieren.
+</Lead>
+
+Die Entwicklung einer modernen Website erfordert viele Einzelschritte. Ein Bildmotiv beispielsweise, das auf allen Geräten gut aussieht und dabei keine großen Ladezeiten verursacht, muss in mehreren Größen vorliegen. Dessen Erstellung ist ein Ping-Pong-Spiel zwischen Bildbearbeitung und Website-Entwicklung.
+
+Das [GT 1191 Starterkit](https://github.com/HAWK-GT1191/gt1191-starterkit) nimmt dir diese und viele anderen Aufgaben ab. Um mit ihm zu arbeiten, muss dein Computer allerdings `git` und `yarn` installiert haben. Wie das geht, erfährst du auf der Seite [Voraussetzungen](https://starterguide.dev/prerequisits).
+
+## Eine neue Website entwickeln
+
+Lege dir ein Verzeichnis für deine neue Website an und öffne es in Visual Studio Code. Gebe in das Terminal dort bitte folgendes ein:
+
+<figure>
+  ```shell
+  git clone --depth 1
+  https://github.com/HAWK-GT1191/gt1191-starterkit.git .
+  ```
+
+  <figcaption>
+    Dieser Befehl kopiert dir die Dateien des Starterkits in dein Verzeichnis.
+  </figcaption>
+</figure>
+
+Installiere nun einmalig das Starterkit:
+
+<figure>
+  ```shell
+  yarn install
+  ```
+
+  <figcaption>
+    Die Installation ist vergleichbar mit dem entpacken einer ZIP-Datei.
+  </figcaption>
+</figure>
+
+Mit dem folgenden Befehlt wird ein Webserver gestartet, der die vorkonfigurierte Website im Browser öffnet.
+
+<figure>
+  ```shell
+  yarn dev
+  ```
+
+  <figcaption>
+    Den Prozess kannst du mit CTL+C bzw. CMD+C beenden.
+  </figcaption>
+</figure>

@@ -1,0 +1,100 @@
+---
+layout: ../layouts/Layout.astro
+title: 'Die Grundlagen'
+navTitle: 'Grundlagen'
+visible: true
+sort: 1
+toc: false
+---
+
+import Lead from '../components/Lead.astro'
+import { YouTube } from 'astro-embed'
+import { Image } from 'astro:assets'
+import phDesignImage from '../images/pb-design.jpg'
+
+# Das erwartet dich in GT 1191
+
+<Lead>
+  Du lernst die Grundlagen von HTML, CSS und JavaScript, sowie Techniken zur
+  Bild- und Ladezeitoptimierung und erzielst ein optimales UI/UX-Erlebnis.
+</Lead>
+
+<figure>
+  <YouTube id="https://youtu.be/SJ1Pra-EP6c" params="rel=0" />
+
+  <figcaption>
+    Ich erkläre dir im Video, dass HTML und CSS gar nicht so kompliziert ist.
+  </figcaption>
+</figure>
+
+## HTML
+
+<abbr title='Hypertext Markup Language'>HTML</abbr>[^1] ist eine
+Auszeichnungssprache, mit der Struktur und Inhalt einer Webseite definiert
+werden. Mit HTML-Elementen können Texte, Bilder, Links, Tabellen und Formularen
+auf einer Webseite erstellt werden.
+
+<figure>
+  ```html
+  <h1>Das ist ein HTML-Element</h1>
+  ```
+
+  <figcaption>
+    Ein Element besteht aus einem öffnenden Tag, dem Inhalt und einem
+    schließenden Tag. Das obige Beispiel ist ein `h1`-Element, das für
+    Überschriften verwendet wird. Es gibt noch viele weitere Elemente, die du in
+    diesem Kurs kennenlernen wirst.
+  </figcaption>
+</figure>
+
+### Semantik
+
+Semantische HTML-Elemente haben eine Bedeutung. Sie helfen dabei, die Struktur und den Inhalt der Webseite klarer zu definieren und machen sie für Suchmaschinen und Screenreader zugänglicher.
+
+Im Gegensatz dazu sind generische Elemente wie `<div>` und `<span>` neutral und haben keine spezifische Bedeutung. Sie dienen hauptsächlich dazu, den Inhalt zu gruppieren oder zu formatieren.
+
+## CSS
+
+<abbr title='Cascading Stylesheets'>CSS</abbr>[^2] ist eine Sprache, die
+verwendet wird, um das Aussehen einer Webseite zu definieren. Mit CSS können
+Farben, Schriftarten, Layouts und andere visuelle Aspekte einer Webseite
+angepasst werden.
+
+<figure>
+  ```css
+  h1 {
+    color: red;
+  }
+  ```
+
+  <figcaption>
+    Mit CSS werden Regeln erstellt, die auf HTML-Elemente angewendet werden. Das
+    obige Beispiel ändert die Textfarben aller `h1`-Elemente auf rot.
+  </figcaption>
+</figure>
+
+### CSS-Präprozessoren
+
+Im Seminar verwenden wir darüber hinaus den Präprozessor Sass[^3]. Es bietet eine Reihe von Funktionen, die über die Möglichkeiten von herkömmlichem CSS hinausgehen. Dazu gehören Variablen, Mixins, Funktionen und vieles mehr. Mit ihnen kann der CSS modularer, wiederverwendbarer und besser strukturiert werden.
+
+Bei einem Präprozessor handelt sich um eine Art Vorverarbeitungsschritt, der vor der eigentlichen Kompilierung oder Ausführung des Codes stattfindet.
+
+## JavaScript
+
+JavaScript ist eine Skriptsprache, die verwendet wird, um die Funktionalität einer Webseite zu erweitern. Mit ihr können dynamische Inhalte, interaktive Elemente und Benutzerinteraktionen erstellt werden.
+
+<figure>
+  ```js
+  const heading = document.querySelector("h1");
+  ```
+
+  <figcaption>
+    Mit JavaScript können HTML-Elemente ausgewählt und manipuliert werden. Das
+    obige Beispiel wählt das erste `h1`-Element auf der Seite aus und speichert
+    es in einer Variablen.
+  </figcaption>
+</figure>
+
+[^1]: HTML steht für HyperText Markup Language und ist eine Auszeichnungssprache, die verwendet wird, um Webseiten zu erstellen. HTML-Dokumente bestehen aus einer Folge von Tags, die die Struktur und den Inhalt einer Webseite beschreiben.
+[^2]: CSS ist eine Stylesheet-Sprache, die verwendet wird, um das Aussehen einer Website zu definieren. Sie definiert die Farben, Schriftarten, Layouts und andere visuelle Aspekte einer Website.
+[^3]: Sass steht für „Syntactically Awesome Style Sheets“ und ist eine CSS-Erweiterungssprache. Es handelt sich um eine mächtige und flexible Stylesheet-Sprache, die es Entwicklern ermöglicht, effizienter und produktiver CSS-Code zu schreiben.
