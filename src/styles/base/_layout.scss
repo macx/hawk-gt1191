@@ -1,0 +1,114 @@
+@use "./mixins";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: light dark;
+
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-height) + var(--sp));
+
+  @include mixins.respond("m") {
+    scroll-padding-top: calc(var(--header-height) + var(--sp-l));
+  }
+}
+
+body {
+  background-color: var(--clr-bg);
+  color: var(--clr-text);
+  margin: 0;
+  padding-top: var(--header-height);
+
+  font-family: var(--ff);
+  font-size: var(--fs);
+  font-weight: var(--fw);
+  font-variation-settings: var(--fvs);
+  line-height: var(--lh);
+  min-height: 100dvh;
+
+  display: flex;
+  flex-direction: column;
+
+  transition:
+    background-color var(--transition-theme),
+    color var(--transition-theme);
+}
+
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input,
+textarea,
+button,
+select {
+  font: inherit;
+}
+
+p {
+  margin-block: 0 1em;
+}
+
+b,
+strong {
+  font-weight: var(--fw-bold);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-content);
+  max-width: var(--layout-max-width);
+  padding-block: var(--sp-l);
+  margin-inline: auto;
+  padding-inline: var(--sp-content);
+  transition: padding-inline var(--transition);
+
+  width: 100%;
+  flex: 1;
+
+  .content {
+    width: 100%;
+    max-width: var(--content-max-width);
+  }
+
+  &:not(:has(aside)) {
+    .content {
+      margin-inline: auto;
+    }
+  }
+
+  @include mixins.respond("l", "to") {
+    .content {
+      order: 1;
+    }
+
+    aside {
+      order: 0;
+    }
+  }
+
+  @include mixins.respond("l") {
+    flex-direction: row;
+    justify-content: space-between;
+
+    .content {
+      // flex: 1 0 auto;
+    }
+
+    aside {
+      flex: 0 0 15rem;
+    }
+
+    border-color: orange;
+  }
+}

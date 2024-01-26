@@ -1,0 +1,171 @@
+---
+import Navigation from "./Navigation.astro";
+import { Icon } from "astro-icon/components";
+import ThemeSwitch from "./ThemeSwitch.astro";
+
+const studipLink =
+  "https://studip.hawk.de/dispatch.php/course/details?sem_id=fc760068e7bca04db0eb188955db45f1";
+const discordLink = "https://discord.gg/Kke2BsapYu";
+---
+
+<header class="header">
+  <a href="/" class="hawk-logo" aria-label="HAWK GT1191">
+    <Icon name="hawk-gt1191" />
+
+    <Navigation />
+  </a>
+
+  <div class="navigation-toggle">
+    <button
+      type="button"
+      class="header-button show js-toggle-nav"
+      aria-label="Navigation öffnen"
+    >
+      <Icon name="material-symbols:menu" />
+    </button>
+
+    <button
+      type="button"
+      class="header-button hide js-toggle-nav"
+      aria-label="Navigation schließen"
+    >
+      <Icon name="material-symbols:close" />
+    </button>
+  </div>
+
+  <ul class="header-links">
+    <li class="external">
+      <a
+        href={discordLink}
+        target="_blank"
+        rel="noopener"
+        class="header-button"
+      >
+        <Icon name="simple-icons:discord" />
+      </a>
+    </li>
+    <li class="external">
+      <a href={studipLink} target="_blank" rel="noopener" class="header-button">
+        <Icon name="studip" />
+      </a>
+    </li>
+    <li>
+      <ThemeSwitch />
+    </li>
+  </ul>
+</header>
+
+<style lang="scss">
+  @use "../styles/base/mixins";
+
+  .header {
+    position: fixed;
+    inset-block: 0 auto;
+    inset-inline: 0;
+    z-index: 20;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    height: var(--header-height);
+    padding-inline: var(--sp-content);
+
+    background-color: var(--clr-bg);
+    border-bottom: 1px solid var(--nav-border);
+    box-shadow: 1.5rem 0 4rem -0.5rem var(--nav-shadow);
+    transition: all var(--transition-theme);
+
+    @include mixins.respond("l") {
+      justify-content: flex-start;
+    }
+  }
+
+  .hawk-logo {
+    display: block;
+
+    svg {
+      display: block;
+      height: 1.25rem;
+      width: auto;
+    }
+  }
+
+  .header-links {
+    display: none;
+    justify-content: flex-end;
+    align-items: stretch;
+    padding-inline-start: 0;
+
+    li {
+      list-style: none;
+    }
+
+    @include mixins.respond("l") {
+      display: flex;
+      flex: 0 1 auto;
+      margin-inline-start: auto;
+    }
+  }
+
+  .header-button {
+    all: unset;
+
+    display: grid;
+    place-items: center;
+
+    padding-inline: var(--sp-xs);
+    block-size: var(--header-height);
+    cursor: pointer;
+    transition: background-color var(--transition);
+
+    svg {
+      display: block;
+      inline-size: var(--icon-size);
+      block-size: var(--icon-size);
+      fill: var(--clr-text);
+      transition: fill var(--transition);
+    }
+
+    &.hide {
+      display: none;
+    }
+
+    :global(.with-nav) & {
+      &.show {
+        display: none;
+      }
+
+      &.hide {
+        display: grid;
+      }
+    }
+
+    .navigation-toggle & {
+      margin-inline-end: calc((var(--sp-content) / 2) * -1);
+    }
+
+    &:hover,
+    &:focus-visible {
+      background-color: var(--clr-primary--hover);
+      text-decoration: none;
+
+      &::before {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+      }
+    }
+
+    &:focus-visible {
+      @include mixins.focus();
+    }
+
+    @include mixins.respond("l") {
+      &.show,
+      &.hide {
+        display: none !important;
+      }
+    }
+  }
+</style>

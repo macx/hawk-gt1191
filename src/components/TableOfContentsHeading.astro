@@ -1,0 +1,31 @@
+---
+type Heading = {
+  depth: number
+  text: string
+  slug: string
+  subheadings?: Array<Heading>
+}
+
+const { heading, index } = Astro.props
+
+const HIGHLIGHT_CLASS: string = 'highlight'
+
+const activeItem: string = index === 0 ? HIGHLIGHT_CLASS : ''
+
+const level: string = `--level: ${heading.depth - 1}`
+---
+
+<li>
+  <a href={'#' + heading.slug} class={activeItem} style={level}>
+    {heading.text}
+  </a>
+  {
+    heading.subheadings.length > 0 && (
+      <ul>
+        {heading.subheadings.map((subheading: Heading) => (
+          <Astro.self heading={subheading} index={index} />
+        ))}
+      </ul>
+    )
+  }
+</li>

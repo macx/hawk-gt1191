@@ -1,0 +1,300 @@
+---
+import { Icon } from 'astro-icon/components'
+
+const pathname = new URL(Astro.request.url).pathname
+const currentPath = pathname.split('/').slice(0, 2).join('').trim()
+
+// Get Pages for Navigation
+const pages = await Astro.glob('../pages/*.mdx')
+const filteredPages = pages
+  .filter((page) => page.frontmatter.visible === true)
+  .sort((a, b) => (a.frontmatter.sort > b.frontmatter.sort ? 0 : -1))
+---
+
+<nav class='navigation'>
+  <ul class='navigation-items'>
+    {
+      filteredPages.map((page) => (
+        <li>
+          <a
+            href={page.url}
+            class={`/${currentPath}` === page.url ? 'current' : ''}
+          >
+            {page.frontmatter.navTitle}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <ul class='links'>
+    <li>
+      <a
+        href='#'
+        target='contact'
+        rel='noopener noreferrer'
+        class='header-button'
+      >
+        <Icon name='simple-icons:discord' />
+      </a>
+    </li>
+    <li>
+      <a
+        href='#'
+        target='contact'
+        rel='noopener noreferrer'
+        class='header-button'
+      >
+        <Icon name='studip' />
+      </a>
+    </li>
+    <li>
+      <a href='#top' class='header-button js-toggle-nav'>
+        <Icon name='material-symbols:arrow-upward-rounded' />
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<style lang='scss'>
+  @use '../styles/base/mixins';
+
+  .navigation {
+    @include mixins.respond('l', 'to') {
+      position: fixed;
+      top: var(--header-height);
+      inset-block-start: 0;
+      inset-inline: 0;
+      height: calc(100vh - var(--header-height));
+      z-index: 20;
+
+      display: flex;
+      flex-direction: column;
+
+      background-color: var(--clr-header);
+      backdrop-filter: blur(5px);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height var(--transition-navi);
+
+      :global(.with-nav) & {
+        max-height: 10000px;
+      }
+    }
+  }
+
+  .links {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-inline-start: 0;
+    list-style: none;
+    margin-block: 0;
+    background-color: var(--clr-inverse);
+
+    a {
+      display: grid;
+      place-items: center;
+      block-size: var(--header-height);
+      inline-size: var(--header-height);
+      color: currentColor;
+    }
+
+    svg {
+      display: block;
+      width: var(--icon-size);
+      height: var(--icon-size);
+      fill: var(--clr-text);
+      transition: fill var(--transition);
+    }
+
+    @include mixins.respond('l') {
+      display: none;
+    }
+  }
+
+  .navigation-items {
+    margin-block: 0;
+    padding-inline-start: 0;
+
+    li {
+      list-style: none;
+    }
+
+    a {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: none;
+      color: var(--clr-text);
+      text-decoration: none;
+
+      &:hover,
+      &:focus {
+        background-color: transparent;
+        color: var(--clr-primary);
+      }
+
+      &.current {
+        font-weight: var(--fw-bold);
+        color: var(--clr-primary);
+      }
+    }
+
+    @include mixins.respond('l', 'to') {
+      background-color: var(--clr-primary);
+      flex: 1;
+      padding-block: var(--sp-l);
+
+      a {
+        font-size: var(--fs-l);
+        color: var(--clr-inverse);
+        padding-inline: var(--sp-content);
+        padding-block: var(--sp-xs);
+        justify-content: flex-end;
+
+        &.current {
+          font-weight: var(--fw-bold);
+          color: var(--clr-inverse);
+        }
+      }
+    }
+
+    @include mixins.respond('l') {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 0 0 0 var(--sp-s);
+
+      a {
+        height: var(--header-height);
+        padding-inline: 1ch;
+
+        &::after {
+          display: inline-block;
+          content: '';
+          position: absolute;
+          left: 50%;
+          bottom: 0;
+          width: 0;
+          height: 2px;
+          z-index: 2;
+          transform: translateX(-50%);
+          background-color: var(--clr-primary);
+          transition: width 120ms ease-in-out;
+        }
+
+        &:hover,
+        &:focus {
+          &::after {
+            width: calc(100% - 2rem);
+          }
+        }
+      }
+    }
+  }
+
+  // .navigation {
+  //   // .with-nav & {
+  //   //   max-height: 10000px;
+  //   // }
+
+  //   @include mixins.respond('l', 'to') {
+  //     position: fixed;
+  //     top: var(--header-height);
+  //     inset-block-start: 0;
+  //     inset-inline: 0;
+  //     height: calc(100vh - var(--header-height));
+  //     z-index: 20;
+
+  //     display: flex;
+  //     flex-direction: column;
+
+  //     background-color: var(--clr-header);
+  //     backdrop-filter: blur(5px);
+  //     // max-height: 0;
+  //     // overflow: hidden;
+  //     // transition: max-height var(--transition-navi);
+
+  //     &__list {
+  //       font-size: var(--fs-l);
+  //       flex: 1 0 auto;
+  //     }
+
+  //     &__footer {
+  //       display: flex;
+  //       justify-content: center;
+  //       align-items: center;
+  //       border-top: 1px solid var(--clr-line);
+  //       margin: 0;
+  //       padding: 0;
+
+  //       li {
+  //         list-style: none;
+  //       }
+  //     }
+  //   }
+
+  //   @include mixins.respond('l') {
+  //     border: 5px solid blue;
+
+  //     &__list {
+  //       display: flex;
+  //       justify-content: flex-start;
+  //       align-items: center;
+  //       padding: 0 0 0 var(--sp-s);
+
+  //       a {
+  //         height: var(--header-height);
+  //         padding: 0 1em;
+
+  //         &::after {
+  //           display: inline-block;
+  //           content: '';
+  //           position: absolute;
+  //           left: 50%;
+  //           bottom: 0;
+  //           width: 0;
+  //           height: 2px;
+  //           z-index: 2;
+  //           transform: translateX(-50%);
+  //           background-color: var(--clr-primary);
+  //           transition: width 120ms ease-in-out;
+  //         }
+
+  //         &:hover,
+  //         &:focus {
+  //           &::after {
+  //             width: calc(100% - 2rem);
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
+</style>
+
+<script>
+  const navButtons = document.querySelectorAll('.js-toggle-nav')
+
+  const toggleNavigation = function () {
+    document.body.classList.toggle('with-nav')
+  }
+
+  const closeNavigation = function () {
+    document.body.classList.remove('with-nav')
+  }
+
+  if (navButtons) {
+    navButtons.forEach((button) => {
+      button.addEventListener('click', toggleNavigation)
+    })
+  }
+
+  const toTopButton = document.querySelector('[href="#top"]')
+
+  if (toTopButton) {
+    toTopButton.addEventListener('click', closeNavigation)
+  }
+</script>

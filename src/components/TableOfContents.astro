@@ -1,0 +1,130 @@
+---
+// https://kld.dev/building-table-of-contents/
+import TableOfContentsHeading from './TableOfContentsHeading.astro'
+import '../styles/components/_toc.scss'
+
+const { headings } = Astro.props
+const toc = buildToc(headings)
+
+type Heading = {
+  depth: number
+  text: string
+  slug: string
+  subheadings?: Array<Heading>
+}
+
+function buildToc(headings: Array<Heading>) {
+  const toc: Array<Heading> = []
+  const parentHeadings: Map<number, Heading> = new Map()
+
+  if (!headings) {
+    return toc
+  }
+
+  headings.forEach((h: Heading) => {
+    const heading = { ...h, subheadings: [] }
+    parentHeadings.set(heading.depth, heading)
+
+    // Change 2 to 1 if your markdown includes your <h1>
+    if (heading.depth === 2) {
+      toc.push(heading)
+    } else {
+      const parentHeading: Heading | undefined = parentHeadings.get(
+        heading.depth - 1
+      )
+
+      if (parentHeading) {
+        parentHeading.subheadings?.push(heading)
+      }
+    }
+  })
+
+  return toc
+}
+---
+
+{
+  toc?.length > 0 && (
+    <aside>
+      <nav class='toc'>
+        <h2>Inhalt</h2>
+
+        <ul>
+          {toc.map((heading, index) => (
+            <TableOfContentsHeading heading={heading} index={index} />
+          ))}
+        </ul>
+      </nav>
+    </aside>
+  )
+}
+
+<script>
+  const links: NodeListOf<HTMLAnchorElement> =
+    document.querySelectorAll('.toc a')
+  const sections: NodeListOf<HTMLElement> = document.querySelectorAll(
+    '.content > :is(h2[id])'
+  )
+
+  if (sections.length > 1 && links.length > 1) {
+    interface IntersectionObserverOptions {
+      // root: HTMLElement | null
+      rootMargin: string
+      // threshold: number;
+      threshold: number[]
+    }
+
+    const options: IntersectionObserverOptions = {
+      // root: document.querySelector('main') || null,
+      // rootMargin: "-50% 0px -50% 0px",
+      // threshold: [0, 0.25, 0.5, 0.75, 1],
+      rootMargin: '-50% 0px -50% 0px',
+      threshold: [0, 0.5, 1]
+    }
+
+    const HIGHLIGHT_CLASS: string = 'highlight'
+
+    type TOCMap = {
+      [id: string]: HTMLAnchorElement
+    }
+
+    const tableOfContentMap: TOCMap = [...sections].reduce(
+      (acc, section, i) => ({
+        ...acc,
+        [section.id]: links[i]
+      }),
+      {}
+    )
+
+    let selectedId = sections[0].id
+
+    function toggleHighlight(selectedId: string, id: string) {
+      tableOfContentMap[selectedId].classList.remove(HIGHLIGHT_CLASS)
+      tableOfContentMap[id].classList.add(HIGHLIGHT_CLASS)
+    }
+
+    // links.forEach((link) => {
+    //   link.addEventListener('click', () => {
+    //     tableOfContentMap[selectedId].classList.remove(HIGHLIGHT_CLASS)
+    //     link.classList.add(HIGHLIGHT_CLASS)
+    //   })
+    // })
+
+    function onObserve(entries: IntersectionObserverEntry[]) {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const { id } = entry.target
+
+          toggleHighlight(selectedId, id)
+          selectedId = id
+        }
+      })
+    }
+
+    const observer = new IntersectionObserver(onObserve, options)
+
+    sections.forEach((section) => {
+      observer.observe(section)
+    })
+  }
+</script>

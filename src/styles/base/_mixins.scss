@@ -1,0 +1,69 @@
+@use "sass:map";
+
+@mixin respond($breakpoint1, $type: "from", $breakpoint2: null) {
+  $breakpoints: (
+    s: 480px,
+    m: 600px,
+    l: 920px,
+    xl: var(--max-width),
+  );
+
+  @if $type == "from" {
+    @media screen and (min-width: map.get($breakpoints, $breakpoint1)) {
+      @content;
+    }
+  } @else if $type == "to" {
+    @if ($breakpoint2) {
+      @media screen and (min-width: #{map.get($breakpoints, $breakpoint1)}) and (max-width: #{map.get($breakpoints, $breakpoint2) - 1}) {
+        @content;
+      }
+    } @else {
+      @media screen and (max-width: #{map.get($breakpoints, $breakpoint1) - 1}) {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin media-item() {
+  display: block;
+  margin-block: var(--sp) var(--sp-content);
+  margin-inline: 0;
+  padding-block: var(--sp);
+  padding-inline: var(--sp);
+  background-color: var(--clr-inverse);
+  border-radius: var(--border-radius);
+
+  box-shadow: 0 0.53em 1em -0.5rem rgba(0, 0, 0, 0.15);
+
+  @include respond("m") {
+    margin-inline: calc(var(--sp) * -1);
+  }
+}
+
+@mixin focus() {
+  outline: 3px dotted var(--clr-primary);
+  outline-offset: 2px;
+  outline-style: dotted;
+  box-shadow: 0 0 0 3px var(--clr-inverse);
+}
+
+@mixin list-item($color: "#ff8200", $size: 1.3em, $spacing: 0.8em) {
+  $iconSpace: $size + $spacing;
+
+  list-style: none;
+  padding-left: $iconSpace;
+
+  &::before {
+    display: block;
+    content: "";
+    width: $size;
+    height: $size;
+    float: left;
+    margin: 0.15em 0 0 calc(#{$iconSpace} * -1);
+
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path fill="#{$color}" d="M10.59 13.41c.41.39.41 1.03 0 1.42-.39.39-1.03.39-1.42 0a5.003 5.003 0 0 1 0-7.07l3.54-3.54a5.003 5.003 0 0 1 7.07 0 5.003 5.003 0 0 1 0 7.07l-1.49 1.49c.01-.82-.12-1.64-.4-2.42l.47-.48a2.982 2.982 0 0 0 0-4.24 2.982 2.982 0 0 0-4.24 0l-3.53 3.53a2.982 2.982 0 0 0 0 4.24m2.82-4.24c.39-.39 1.03-.39 1.42 0a5.003 5.003 0 0 1 0 7.07l-3.54 3.54a5.003 5.003 0 0 1-7.07 0 5.003 5.003 0 0 1 0-7.07l1.49-1.49c-.01.82.12 1.64.4 2.43l-.47.47a2.982 2.982 0 0 0 0 4.24 2.982 2.982 0 0 0 4.24 0l3.53-3.53a2.982 2.982 0 0 0 0-4.24.973.973 0 0 1 0-1.42Z"/></svg>');
+    background-repeat: no-repeat;
+    background-size: 100%;
+  }
+}

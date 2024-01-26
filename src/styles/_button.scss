@@ -1,0 +1,54 @@
+@use 'sass:color';
+@use './base/mixins';
+
+.button {
+  display: inline-block;
+  line-height: 2.5em;
+  padding: 0 1em;
+
+  font-size: var(--fs);
+  background: var(--clr-primary);
+  color: var(--clr-inverse);
+  border: 1px solid var(--clr-primary);
+  border-radius: var(--radius);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  will-change: opacity;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  transition: all var(--transition);
+
+  &:hover,
+  &:focus {
+    background: var(--clr-primary-dark);
+    color: var(--clr-inverse);
+    border-color: var(--clr-primary-dark);
+  }
+
+  &--large {
+    @include mixins.respond('medium') {
+      font-size: var(--fs-medium);
+      padding: 0 3em;
+    }
+  }
+
+  &--inverse {
+    background: var(--clr-inverse);
+    color: var(--clr-primary);
+    border-color: var(--clr-inverse);
+
+    &:hover,
+    &:focus {
+      background: var(--clr-primary-light);
+    }
+  }
+
+  &--block {
+    display: block;
+    width: 100%;
+    margin: 0 0 var(--sp);
+  }
+}
