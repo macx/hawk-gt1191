@@ -32,6 +32,10 @@
   --clr-marker: hsl(60 100% 70% / 1);
   --clr-marker-hsl: 60 100% 70%;
 
+  --clr-type-article: #334155;
+  --clr-type-game: #166534;
+  --clr-type-tool: #991b1b;
+
   --clr-primary: #004fcd;
   --clr-primary-hover: rgb(255 130 0 / 0.2);
   --clr-primary-light: hsl(217 100% 40% / 0.7);
@@ -41,7 +45,7 @@
   --nav-shadow: rgba(109, 62, 62, 0.2);
   --nav-border: rgba(0, 0, 0, 0.1);
 
-  --tw-ring-offset-shadow: 0 0 red;
+  --tw-ring-offset-shadow: 0 0 rgb(21, 7, 7);
   --tw-ring-shadow: 0 0 #000;
   --tw-shadow: inset 0 -1px 0 0 var(--clr-text);
 

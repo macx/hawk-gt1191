@@ -67,8 +67,6 @@ const toc: boolean =
 
       {toc && <TableOfContent headings={headings} />}
     </main>
-    <div class='one'></div>
-    <div class='two'></div>
 
     <Footer />
   </body>
@@ -237,6 +235,7 @@ const toc: boolean =
 
       &:target {
         background-color: var(--clr-marker);
+        color: var(--clr-text);
       }
     }
 
@@ -387,22 +386,6 @@ HELPER
     user-select: none;
   }
 
-  :is(.one, .two) {
-    position: fixed;
-    right: 0;
-    width: 10vw;
-    height: 1px;
-  }
-
-  .one {
-    top: 505%;
-    border-top: 1px solid rgb(255 0 0 / 0.5);
-  }
-  .two {
-    bottom: 50%;
-    border-top: 1px solid rgb(22 74 22 / 0.5);
-  }
-
   .sr-only {
     position: absolute;
     block-size: 1px;
@@ -424,21 +407,19 @@ HELPER
   const copiedIcon =
     '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 -960 960 960"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/></svg>'
 
-  async function copyCode(block: HTMLElement) {
-    let copiedCode = block.cloneNode(true) as HTMLElement
+  async function copyCode(codeBlock: HTMLElement) {
+    let copiedCode = codeBlock.cloneNode(true) as HTMLElement
 
     // remove copy button
     const copyButton = copiedCode.querySelector('button.copy-code-btn')
-    if (copyButton) {
-      copiedCode.removeChild(copyButton as Node)
-    }
+    copiedCode.removeChild(copyButton as Node)
 
     const html = copiedCode.outerHTML.replace(/<[^>]*>?/gm, '')
-    const blockCopyButton = block.querySelector('button.copy-code-btn')
+    const codeBlockCopyButton = codeBlock.querySelector('button.copy-code-btn')
 
-    blockCopyButton!.innerHTML = copiedIcon
+    codeBlockCopyButton!.innerHTML = copiedIcon
     setTimeout(function () {
-      blockCopyButton!.innerHTML = copyIcon
+      codeBlockCopyButton!.innerHTML = copyIcon
     }, 2000)
 
     const parsedHTML = htmlDecode(html)
@@ -454,7 +435,7 @@ HELPER
   }
 
   if (codeBlocks.length > 0) {
-    codeBlocks.forEach((block) => {
+    codeBlocks.forEach((codeBlock) => {
       if (!navigator.clipboard) {
         return
       }
@@ -462,10 +443,10 @@ HELPER
       let button = document.createElement('button')
       button.className = 'copy-code-btn'
       button.innerHTML = copyIcon
-      block.appendChild(button)
+      codeBlock.appendChild(button)
 
       button.addEventListener('click', async () => {
-        await copyCode(block)
+        await copyCode(codeBlock)
       })
     })
   }

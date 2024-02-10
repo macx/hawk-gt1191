@@ -1,10 +1,15 @@
 ---
-// https://kld.dev/building-table-of-contents/
+// Table of Contents for Astro
+// Inspired by https://kld.dev/building-table-of-contents/
+// and https://kld.dev/toc-animation/
+
 import TableOfContentsHeading from './TableOfContentsHeading.astro'
 import '../styles/components/_toc.scss'
 
 const { headings } = Astro.props
 const toc = buildToc(headings)
+
+// const
 
 type Heading = {
   depth: number
@@ -25,8 +30,8 @@ function buildToc(headings: Array<Heading>) {
     const heading = { ...h, subheadings: [] }
     parentHeadings.set(heading.depth, heading)
 
-    // Change 2 to 1 if your markdown includes your <h1>
-    if (heading.depth === 2) {
+    // Change 2 to 1 if the markdown includes a <h1>
+    if (heading.depth === 2 && heading.slug !== 'footnote-label') {
       toc.push(heading)
     } else {
       const parentHeading: Heading | undefined = parentHeadings.get(
@@ -49,82 +54,227 @@ function buildToc(headings: Array<Heading>) {
       <nav class='toc'>
         <h2>Inhalt</h2>
 
-        <ul>
+        <ul class='toc-list'>
           {toc.map((heading, index) => (
             <TableOfContentsHeading heading={heading} index={index} />
           ))}
         </ul>
+
+        <svg class='toc-progress' xmlns='http://www.w3.org/2000/svg'>
+          <circle
+            class='toc-marker-start'
+            cx='5'
+            cy='45'
+            r='4'
+            fill='currentColor'
+          />
+          <path
+            class='toc-marker'
+            fill='none'
+            stroke='currentColor'
+            stroke-linecap='round'
+            stroke-width='2'
+            stroke-dashoffset='2'
+            stroke-linejoin='round'
+          />
+          <line
+            class='toc-marker-end'
+            x1='1'
+            y1='100%'
+            x2='9'
+            y2='100%'
+            stroke='currentColor'
+            stroke-width='2'
+          />
+        </svg>
       </nav>
     </aside>
   )
 }
 
 <script>
-  const links: NodeListOf<HTMLAnchorElement> =
-    document.querySelectorAll('.toc a')
+  const toc: HTMLElement = document.querySelector('.toc')!
+  const links: NodeListOf<HTMLAnchorElement> = toc.querySelectorAll('a')
   const sections: NodeListOf<HTMLElement> = document.querySelectorAll(
-    '.content > :is(h2[id])'
+    '.content > :is(h2[id], h3[id], h4[id])'
   )
 
   if (sections.length > 1 && links.length > 1) {
-    interface IntersectionObserverOptions {
-      // root: HTMLElement | null
-      rootMargin: string
-      // threshold: number;
-      threshold: number[]
-    }
-
-    const options: IntersectionObserverOptions = {
-      // root: document.querySelector('main') || null,
-      // rootMargin: "-50% 0px -50% 0px",
-      // threshold: [0, 0.25, 0.5, 0.75, 1],
-      rootMargin: '-50% 0px -50% 0px',
-      threshold: [0, 0.5, 1]
-    }
-
     const HIGHLIGHT_CLASS: string = 'highlight'
 
-    type TOCMap = {
-      [id: string]: HTMLAnchorElement
-    }
+    const MarkerPaddingInlineLeft = 3
+    let lastLinkLevel = 1
+    let markerOffset = 0
 
-    const tableOfContentMap: TOCMap = [...sections].reduce(
-      (acc, section, i) => ({
-        ...acc,
-        [section.id]: links[i]
-      }),
-      {}
-    )
+    // Create some WeakMaps to store the distances to the top and
+    // bottom of each link
+    const linkStarts = new WeakMap()
+    const linkEnds = new WeakMap()
 
-    let selectedId = sections[0].id
+    addIntersectionObserver()
+    addResizeObserver()
 
-    function toggleHighlight(selectedId: string, id: string) {
-      tableOfContentMap[selectedId].classList.remove(HIGHLIGHT_CLASS)
-      tableOfContentMap[id].classList.add(HIGHLIGHT_CLASS)
-    }
+    function addIntersectionObserver() {
+      const observer = new IntersectionObserver((sections) => {
+        sections.forEach((section) => {
+          const { id } = section.target
 
-    // links.forEach((link) => {
-    //   link.addEventListener('click', () => {
-    //     tableOfContentMap[selectedId].classList.remove(HIGHLIGHT_CLASS)
-    //     link.classList.add(HIGHLIGHT_CLASS)
-    //   })
-    // })
+          // Get the link to this section's heading
+          const link = toc.querySelector(`a[href="#${id}"]`)
+          if (!link) return
 
-    function onObserve(entries: IntersectionObserverEntry[]) {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const { id } = entry.target
+          // Add/remove the .active class based on whether the
+          // section is visible
+          const addRemove = section.intersectionRatio > 0 ? 'add' : 'remove'
+          link.classList[addRemove](HIGHLIGHT_CLASS)
+        })
 
-          toggleHighlight(selectedId, id)
-          selectedId = id
-        }
+        updatePath()
+      })
+
+      // Observe all sections/headlines
+      sections.forEach((section) => {
+        observer.observe(section)
       })
     }
 
-    const observer = new IntersectionObserver(onObserve, options)
+    function addResizeObserver() {
+      const observer = new ResizeObserver(() => {
+        drawPath()
+        updatePath()
+      })
 
-    sections.forEach((section) => {
-      observer.observe(section)
-    })
+      observer.observe(toc)
+    }
+
+    function drawPath() {
+      const path = document.querySelector('.toc-marker') as SVGPathElement
+      if (!links.length) return
+
+      // Start with an empty array of path data values (joinded with sapces later)
+      let pathData: number[] = []
+      let left = 0 // The last x position / indendation
+
+      // Iterate over each link to build up the pathData
+      links.forEach((link, i) => {
+        let x = link.offsetLeft
+        let y = link.offsetTop
+        let height = link.offsetHeight
+        markerOffset = x
+
+        // Tweek for the the last link
+        if (i === links.length - 1) {
+          lastLinkLevel = Number(
+            getComputedStyle(links[links.length - 1]).getPropertyValue(
+              '--level'
+            ) || 1
+          )
+
+          if (lastLinkLevel === 1) {
+            x = x + MarkerPaddingInlineLeft
+          }
+        }
+
+        if (i === 0) {
+          // The top of the first link starts at 0px along the path.
+          linkStarts.set(link, 0)
+
+          y = y + MarkerPaddingInlineLeft * 2 + 1
+          height = height - MarkerPaddingInlineLeft * 2
+
+          // Like drawing with a pen...
+          // 'M'ove to the top left of the first link,
+          // and then draw a 'L'ine to the bottom left
+          pathData.push('M', x, y, 'L', x, y + height)
+        } else {
+          // If the current link is indented differently than the last,
+          // then come down to the current link's top before moving
+          // left or right. This ensures we get 90-degrees angle at the
+          // corners.
+          if (left !== x) pathData.push('L', left, y)
+
+          // Draw a line to the top left of the current link
+          pathData.push('L', x, y)
+
+          // Apply the current path data to the path element
+          path.setAttribute('d', pathData.join(' '))
+
+          // Get the total length of the path now that it extends
+          // to the top of this link, and store it in our linkStarts
+          // WeakMap.
+          linkStarts.set(link, path.getTotalLength())
+
+          // Draw a line to the bottom left of the current link
+          pathData.push('L', x, y + height)
+        }
+
+        // Save the current link's x position to compare with the next
+        // link
+        left = x
+
+        // Apply the current path data to the path element again
+        path.setAttribute('d', pathData.join(' '))
+
+        // Get the length of the path that now extends to the
+        // bottom of this link, and store it in our linkEnds WeakMap.
+        linkEnds.set(link, path.getTotalLength())
+      })
+    }
+
+    function updatePath() {
+      const path = toc.querySelector('.toc-marker')
+      const markerStart = toc.querySelector('.toc-marker-start')
+      const markerEnd = toc.querySelector('.toc-marker-end')
+      const markerEndSize = 7
+      if (!path || !markerStart) return
+
+      const pathLength = (path as SVGPathElement).getTotalLength()
+      const activeLinks = toc.querySelectorAll(`a.${HIGHLIGHT_CLASS}`)
+      const lastLink = links[links.length - 1]
+
+      let linkStart = pathLength
+      let linkEnd = 0
+
+      activeLinks.forEach((link) => {
+        // Set linkStart to the top of the earliest active link
+        linkStart = Math.min(linkStart, linkStarts.get(link))
+        // Set linkEnd to the bottom of the furthest active link
+        linkEnd = Math.max(linkEnd, linkEnds.get(link))
+      })
+
+      // If there are no active links, hide the path
+      path.style.display = activeLinks.length ? 'inline' : 'none'
+
+      markerStart.style.opacity = links[0].classList.contains(HIGHLIGHT_CLASS)
+        ? '1'
+        : '0'
+      markerEnd.style.opacity = lastLink.classList.contains(HIGHLIGHT_CLASS)
+        ? '1'
+        : '0'
+
+      markerEnd?.setAttribute(
+        'x1',
+        (
+          markerOffset -
+          MarkerPaddingInlineLeft * lastLinkLevel +
+          MarkerPaddingInlineLeft
+        ).toString()
+      )
+      markerEnd?.setAttribute(
+        'x2',
+        (
+          markerOffset +
+          markerEndSize -
+          (MarkerPaddingInlineLeft * lastLinkLevel - MarkerPaddingInlineLeft) -
+          1
+        ).toString()
+      )
+
+      // FINALLY, do the thing!
+      path.setAttribute(
+        'stroke-dasharray',
+        `1 ${linkStart} ${linkEnd - linkStart} ${pathLength}`
+      )
+    }
   }
 </script>

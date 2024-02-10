@@ -1,0 +1,58 @@
+---
+type ItemType = 'article' | 'game' | 'tool'
+
+export interface Props {
+  type?: ItemType
+}
+
+const { type } = Astro.props as Props
+---
+
+<span
+  item-type={(() => {
+    switch (type) {
+      case 'article':
+        return 'article'
+      case 'game':
+        return 'game'
+      case 'tool':
+        return 'tool'
+    }
+  })()}
+>
+  {
+    (() => {
+      switch (type) {
+        case 'article':
+          return 'ARTIKEL'
+        case 'game':
+          return 'GAME'
+        case 'tool':
+          return 'TOOL'
+      }
+    })()
+  }
+</span>
+
+<style lang='scss'>
+  [item-type] {
+    display: inline-block;
+    background-color: var(--clr-text);
+    color: var(--clr-inverse);
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-bold);
+
+    padding-block: 0;
+    padding-inline: 1ch;
+    margin-inline-end: 0.5ch;
+    border-radius: 0.3em;
+  }
+
+  $types: 'article', 'game', 'tool';
+
+  @each $type in $types {
+    [item-type='#{$type}'] {
+      background-color: var(--clr-type-#{$type});
+    }
+  }
+</style>

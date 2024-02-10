@@ -1,4 +1,4 @@
-@use "./mixins";
+@use './mixins';
 
 *,
 *::before,
@@ -12,7 +12,7 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-height) + var(--sp));
 
-  @include mixins.respond("m") {
+  @include mixins.respond('m') {
     scroll-padding-top: calc(var(--header-height) + var(--sp-l));
   }
 }
@@ -87,7 +87,7 @@ main {
     }
   }
 
-  @include mixins.respond("l", "to") {
+  @include mixins.respond('l', 'to') {
     .content {
       order: 1;
     }
@@ -97,7 +97,7 @@ main {
     }
   }
 
-  @include mixins.respond("l") {
+  @include mixins.respond('l') {
     flex-direction: row;
     justify-content: space-between;
 
