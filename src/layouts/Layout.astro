@@ -412,6 +412,7 @@ HELPER
 
     // remove copy button
     const copyButton = copiedCode.querySelector('button.copy-code-btn')
+    if (!copyButton) return
     copiedCode.removeChild(copyButton as Node)
 
     const html = copiedCode.outerHTML.replace(/<[^>]*>?/gm, '')
