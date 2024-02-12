@@ -20,6 +20,7 @@
   --transition-theme: 100ms ease-out;
 
   --clr-bg: #eceff1;
+  --clr-bg-card: rgba(255 255 255 / 1);
   --clr-shade: #cfd8dc;
   --clr-text: rgb(38, 50, 56);
   --clr-text-light: rgba(38, 50, 56, 0.7);
@@ -32,6 +33,7 @@
   --clr-marker: hsl(60 100% 70% / 1);
   --clr-marker-hsl: 60 100% 70%;
 
+  --clr-type-text: #fff;
   --clr-type-article: #334155;
   --clr-type-game: #166534;
   --clr-type-tool: #991b1b;
@@ -45,11 +47,8 @@
   --nav-shadow: rgba(109, 62, 62, 0.2);
   --nav-border: rgba(0, 0, 0, 0.1);
 
-  --tw-ring-offset-shadow: 0 0 rgb(21, 7, 7);
-  --tw-ring-shadow: 0 0 #000;
-  --tw-shadow: inset 0 -1px 0 0 var(--clr-text);
-
   --icon-size: 1.5rem;
+  --icon-size-header: 1.25rem;
 
   // Font Families
   --ff: 'Open Sans Variable', sans-serif;
@@ -94,14 +93,16 @@
 
   &[data-theme='dark'] {
     --clr-bg: #000;
+    --clr-bg: oklch(16.93% 0.004 285.95);
+    --clr-bg-card: rgba(255 255 255 / 0.15);
     --clr-text: #d9d9d9;
     --clr-text-light: rgba(217, 217, 217, 0.7);
     --clr-text--dark: #fff;
     --clr-line: rgba(255, 255, 255, 0.2);
     --clr-header: rgba(20, 35, 45, 0.8);
-    --clr-inverse: rgb(255 255 255 / 0.1);
+    --clr-inverse: rgb(255 255 255 / 1);
 
-    --nav-border: rgb(255 255 255 / 0.3);
+    --nav-border: rgb(255 255 255 / 0.15);
 
     --footer-line: rgb(255 255 255 / 0.3);
     --footer-bg: linear-gradient(

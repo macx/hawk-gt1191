@@ -82,11 +82,11 @@ import { Icon } from 'astro-icon/components'
           background-color var(--transition-button);
       }
 
-      html[data-theme='dark'] &::after {
+      :global([data-theme='dark']) &::after {
         left: 0.2rem;
       }
 
-      html[data-theme='light'] &::after {
+      :global([data-theme='light']) &::after {
         left: calc(100% - 1.4rem - 0.2rem);
       }
     }

@@ -43,7 +43,7 @@ export default defineConfig({
     icon({
       include: {
         materialSymbols: ['menu', 'close', 'arrow-upward-rounded'],
-        simpleIcons: ['discord']
+        simpleIcons: ['discord', 'github']
       },
       svgoOptions: {
         plugins: [

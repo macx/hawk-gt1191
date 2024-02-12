@@ -38,13 +38,14 @@ const { type } = Astro.props as Props
   [item-type] {
     display: inline-block;
     background-color: var(--clr-text);
-    color: var(--clr-inverse);
+    color: var(--clr-type-text);
     font-size: var(--fs-xs);
     font-weight: var(--fw-bold);
+    line-height: 1;
 
-    padding-block: 0;
+    padding-block: 0.2em;
     padding-inline: 1ch;
-    margin-inline-end: 0.5ch;
+    margin-inline-end: 1ch;
     border-radius: 0.3em;
   }
 
