@@ -19,6 +19,10 @@
 
   > li {
     list-style: none;
+
+    > a {
+      font-weight: var(--fw-bold);
+    }
   }
 
   a {
@@ -29,10 +33,6 @@
 
     &:hover,
     &:focus {
-      color: var(--clr-primary);
-    }
-
-    &.highlight {
       color: var(--clr-primary);
     }
   }
@@ -63,8 +63,14 @@
 
     :is(ul ul) {
       display: flex;
-      column-gap: 2ch;
+      column-gap: 1ch;
       flex-wrap: wrap;
+
+      li:not(:last-child) {
+        a::after {
+          content: ',';
+        }
+      }
     }
   }
 
@@ -76,6 +82,10 @@
     a {
       padding-block: 0.5em;
       padding-inline: var(--sp) var(--sp-s);
+
+      &.highlight {
+        color: var(--clr-primary);
+      }
     }
 
     :is(ul ul) {

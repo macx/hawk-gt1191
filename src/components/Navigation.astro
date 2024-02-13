@@ -17,7 +17,7 @@ const filteredPages = pages
   .sort((a, b) => (a.frontmatter.sort > b.frontmatter.sort ? 0 : -1))
 ---
 
-<nav class='navigation'>
+<nav role='navigation' class='navigation' aria-role='navigation'>
   <ul class='navigation-items'>
     <li class='home'>
       <a href='/' class={`/${currentPath}` === '/' ? 'current' : ''}
@@ -46,17 +46,26 @@ const filteredPages = pages
         rel='noopener'
         class='header-button'
       >
-        <Icon name='simple-icons:discord' />
+        <Icon name='simple-icons:discord' aira-hidden='true' />
+        <span class='sr-only'>Discord</span>
       </a>
     </li>
     <li class='external'>
-      <a href={studipLink} target='_blank' rel='noopener' class='header-button'>
-        <Icon name='studip' />
+      <a
+        href={studipLink}
+        target='_blank'
+        rel='noopener'
+        class='header-button'
+        aria-label='Stud-IP - Studentische Informationsplattform'
+      >
+        <Icon name='studip' aira-hidden='true' />
+        <span class='sr-only'>Stud-IP</span>
       </a>
     </li>
     <li class='external'>
       <a href={githubLink} target='_blank' rel='noopener' class='header-button'>
-        <Icon name='simple-icons:github' />
+        <Icon name='simple-icons:github' aira-hidden='true' />
+        <span class='sr-only'>GitHub</span>
       </a>
     </li>
     <li class='divider'></li>
