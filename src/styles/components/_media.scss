@@ -1,4 +1,4 @@
-@use "../base/mixins";
+@use '../base/mixins';
 
 figure {
   @include mixins.media-item();

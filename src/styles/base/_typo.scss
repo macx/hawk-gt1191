@@ -88,6 +88,10 @@ code {
   figure & {
     margin-block: 0;
   }
+
+  html[data-theme='dark'] & {
+    background-color: rgb(0 0 0 / 0.5) !important;
+  }
 }
 
 /*

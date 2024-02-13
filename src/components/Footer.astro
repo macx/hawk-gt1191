@@ -2,24 +2,24 @@
 
 ---
 
-<footer class="footer">
+<footer class='footer'>
   <div>© David Maciejewski für HAWK GT 1191</div>
 
   <nav>
-    <a href="/impressum"> Impressum</a>
-    <a href="/datenschutz"> Datenschutz</a>
+    <a href='/impressum'> Impressum</a>
+    <a href='/datenschutz'> Datenschutz</a>
   </nav>
 </footer>
 
-<style lang="scss">
-  @use "../styles/base/mixins";
+<style lang='scss'>
+  @use '../styles/base/mixins';
 
   .footer {
     position: relative;
     z-index: 5;
     padding: var(--sp) var(--sp-content);
     font-size: 0.8rem;
-    border-top: 1px solid var(--footer-line);
+    border-top: 1px solid var(--clr-line);
     color: var(--clr-text-light);
     background: var(--footer-bg);
 
@@ -32,15 +32,17 @@
     }
 
     a:any-link {
-      color: inherit;
+      color: var(--clr-primary);
+      text-decoration: none;
 
       &:hover,
       &:focus {
         color: var(--clr-primary);
+        text-decoration: underline;
       }
     }
 
-    @include mixins.respond("s") {
+    @include mixins.respond('s') {
       display: flex;
       justify-content: space-between;
       align-items: center;

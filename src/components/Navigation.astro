@@ -1,6 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components'
-import ThemeSwitch from './ThemeSwitch.astro'
+import ThemeButton from './ThemeButton.astro'
 
 const pathname = new URL(Astro.request.url).pathname
 const currentPath = pathname.split('/').slice(0, 2).join('').trim()
@@ -59,6 +59,10 @@ const filteredPages = pages
         <Icon name='simple-icons:github' />
       </a>
     </li>
+    <li class='divider'></li>
+    <li>
+      <ThemeButton />
+    </li>
     <li>
       <a href='#top' class='header-button js-toggle-nav'>
         <Icon name='material-symbols:arrow-upward-rounded' />
@@ -98,10 +102,18 @@ const filteredPages = pages
     display: flex;
     justify-content: space-around;
     align-items: center;
+
     padding-inline-start: 0;
     list-style: none;
     margin-block: 0;
     background-color: var(--clr-bg);
+
+    .divider {
+      border-inline-start: 1px solid var(--clr-line);
+      padding-inline-start: var(--sp);
+      width: 1px;
+      height: 100%;
+    }
 
     a {
       display: grid;
@@ -154,13 +166,13 @@ const filteredPages = pages
     }
 
     @include mixins.respond('l', 'to') {
-      background-color: var(--clr-primary);
+      background-color: var(--clr-bg-nav);
       flex: 1;
       padding-block: var(--sp-l);
 
       a {
         font-size: var(--fs-l);
-        color: var(--clr-inverse);
+        color: var(--clr-text);
         padding-inline: var(--sp-content);
         padding-block: var(--sp-xs);
         justify-content: flex-end;
@@ -172,7 +184,7 @@ const filteredPages = pages
 
         &.current {
           font-weight: var(--fw-bold);
-          color: var(--clr-inverse);
+          color: var(--clr-text);
         }
       }
     }
@@ -214,85 +226,6 @@ const filteredPages = pages
       }
     }
   }
-
-  // .navigation {
-  //   // .with-nav & {
-  //   //   max-height: 10000px;
-  //   // }
-
-  //   @include mixins.respond('l', 'to') {
-  //     position: fixed;
-  //     top: var(--header-height);
-  //     inset-block-start: 0;
-  //     inset-inline: 0;
-  //     height: calc(100vh - var(--header-height));
-  //     z-index: 20;
-
-  //     display: flex;
-  //     flex-direction: column;
-
-  //     background-color: var(--clr-header);
-  //     backdrop-filter: blur(5px);
-  //     // max-height: 0;
-  //     // overflow: hidden;
-  //     // transition: max-height var(--transition-navi);
-
-  //     &__list {
-  //       font-size: var(--fs-l);
-  //       flex: 1 0 auto;
-  //     }
-
-  //     &__footer {
-  //       display: flex;
-  //       justify-content: center;
-  //       align-items: center;
-  //       border-top: 1px solid var(--clr-line);
-  //       margin: 0;
-  //       padding: 0;
-
-  //       li {
-  //         list-style: none;
-  //       }
-  //     }
-  //   }
-
-  //   @include mixins.respond('l') {
-  //     border: 5px solid blue;
-
-  //     &__list {
-  //       display: flex;
-  //       justify-content: flex-start;
-  //       align-items: center;
-  //       padding: 0 0 0 var(--sp-s);
-
-  //       a {
-  //         height: var(--header-height);
-  //         padding: 0 1em;
-
-  //         &::after {
-  //           display: inline-block;
-  //           content: '';
-  //           position: absolute;
-  //           left: 50%;
-  //           bottom: 0;
-  //           width: 0;
-  //           height: 2px;
-  //           z-index: 2;
-  //           transform: translateX(-50%);
-  //           background-color: var(--clr-primary);
-  //           transition: width 120ms ease-in-out;
-  //         }
-
-  //         &:hover,
-  //         &:focus {
-  //           &::after {
-  //             width: calc(100% - 2rem);
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
 </style>
 
 <script>

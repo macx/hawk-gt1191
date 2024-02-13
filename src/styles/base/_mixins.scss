@@ -34,6 +34,7 @@
   background-color: var(--clr-bg-card);
   border-radius: var(--border-radius);
 
+  border: 1px solid var(--clr-line);
   box-shadow: 0 0.53em 1em -0.5rem rgba(0, 0, 0, 0.15);
 
   @include respond('m') {

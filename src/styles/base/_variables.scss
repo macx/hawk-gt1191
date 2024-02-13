@@ -21,6 +21,7 @@
 
   --clr-bg: #eceff1;
   --clr-bg-card: rgba(255 255 255 / 1);
+  --clr-bg-nav: var(--clr-bg-card);
   --clr-shade: #cfd8dc;
   --clr-text: rgb(38, 50, 56);
   --clr-text-light: rgba(38, 50, 56, 0.7);
@@ -31,7 +32,6 @@
   --clr-line: rgba(0, 0, 0, 0.2);
   --clr-header: rgba(6, 13, 18, 0.8);
   --clr-marker: hsl(60 100% 70% / 1);
-  --clr-marker-hsl: 60 100% 70%;
 
   --clr-type-text: #fff;
   --clr-type-article: #334155;
@@ -74,7 +74,6 @@
   --lh: 1.4;
   --lh-s: 1.3;
 
-  --footer-line: rgba(0, 0, 0, 0.1);
   --footer-bg: linear-gradient(
     to bottom,
     rgba(255, 255, 255, 1) 1px,
@@ -92,16 +91,17 @@
   }
 
   &[data-theme='dark'] {
-    --clr-bg: #000;
-    --clr-bg: oklch(16.93% 0.004 285.95);
-    --clr-bg-card: rgba(255 255 255 / 0.15);
+    --clr-bg: #0d1117;
+    --clr-bg-card: #161b22;
     --clr-text: #d9d9d9;
     --clr-text-light: rgba(217, 217, 217, 0.7);
     --clr-text--dark: #fff;
-    --clr-line: rgba(255, 255, 255, 0.2);
+    --clr-line: #30363d;
     --clr-header: rgba(20, 35, 45, 0.8);
     --clr-inverse: rgb(255 255 255 / 1);
 
+    --clr-primary: #2f81f7;
+    --clr-marker: hsl(60 100% 70% / 0.2);
     --nav-border: rgb(255 255 255 / 0.15);
 
     --footer-line: rgb(255 255 255 / 0.3);
