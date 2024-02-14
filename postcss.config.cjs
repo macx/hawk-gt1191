@@ -1,10 +1,10 @@
 // @ts-nocheck
 module.exports = {
-  syntax: "postcss-scss",
+  syntax: 'postcss-scss',
   plugins: [
-    require("autoprefixer"),
-    require("cssnano")({
-      preset: "default",
-    }),
-  ],
-};
+    require('autoprefixer'),
+    require('cssnano')({
+      preset: 'default'
+    })
+  ]
+}
