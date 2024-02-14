@@ -5,10 +5,7 @@ import ThemeButton from './ThemeButton.astro'
 const pathname = new URL(Astro.request.url).pathname
 const currentPath = pathname.split('/').slice(0, 2).join('').trim()
 
-const studipLink =
-  'https://studip.hawk.de/dispatch.php/course/details?sem_id=fc760068e7bca04db0eb188955db45f1'
-const discordLink = 'https://discord.gg/Kke2BsapYu'
-const githubLink = 'https://github.com/hawk-gt1191'
+const { siteLinks } = Astro.props
 
 // Get Pages for Navigation
 const pages = await Astro.glob('../pages/*.mdx')
@@ -41,7 +38,7 @@ const filteredPages = pages
   <ul class='links'>
     <li class='external'>
       <a
-        href={discordLink}
+        href={siteLinks.discord}
         target='_blank'
         rel='noopener'
         class='header-button'
@@ -52,7 +49,7 @@ const filteredPages = pages
     </li>
     <li class='external'>
       <a
-        href={studipLink}
+        href={siteLinks.studip}
         target='_blank'
         rel='noopener'
         class='header-button'
@@ -63,7 +60,12 @@ const filteredPages = pages
       </a>
     </li>
     <li class='external'>
-      <a href={githubLink} target='_blank' rel='noopener' class='header-button'>
+      <a
+        href={siteLinks.github}
+        target='_blank'
+        rel='noopener'
+        class='header-button'
+      >
         <Icon name='simple-icons:github' aira-hidden='true' />
         <span class='sr-only'>GitHub</span>
       </a>

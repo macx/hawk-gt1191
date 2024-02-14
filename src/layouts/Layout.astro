@@ -21,18 +21,21 @@ interface Props {
     keywords?: Array<string>
     toc: boolean
     headings: Array<Heading>
-    studipLink: string
-    discordLink: string
+    siteLinks: {
+      [key: string]: string
+    }
   }
   headings: Array<Heading>
 }
 
 const { frontmatter, headings } = Astro.props as Props
 
-frontmatter.studipLink =
-  'https://studip.hawk.de/dispatch.php/course/overview?cid=c50dd549255a9ee526d54fc9b4e6bb47'
-
-frontmatter.discordLink = 'https://discord.gg/9Y9e8XZ'
+frontmatter.siteLinks = {
+  studip:
+    'https://studip.hawk.de/dispatch.php/course/details?sem_id=fc760068e7bca04db0eb188955db45f1',
+  discord: 'https://discord.gg/Kke2BsapYu',
+  github: 'https://github.com/hawk-gt1191'
+}
 
 const toc: boolean =
   typeof frontmatter.toc !== 'undefined' ? frontmatter.toc : false
@@ -58,7 +61,7 @@ const toc: boolean =
     <title>{frontmatter.title} | HAWK GT 1191</title>
   </head>
   <body id='top'>
-    <Header />
+    <Header siteLinks={frontmatter.siteLinks} />
 
     <main id='main'>
       <div class='content'>

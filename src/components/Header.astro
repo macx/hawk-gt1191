@@ -3,10 +3,7 @@ import Navigation from './Navigation.astro'
 import { Icon } from 'astro-icon/components'
 import ThemeSwitch from './ThemeSwitch.astro'
 
-const studipLink =
-  'https://studip.hawk.de/dispatch.php/course/details?sem_id=fc760068e7bca04db0eb188955db45f1'
-const discordLink = 'https://discord.gg/Kke2BsapYu'
-const githubLink = 'https://github.com/hawk-gt1191'
+const { siteLinks } = Astro.props
 ---
 
 <a href='#main' class='sr-only'>Zum Hauptinhalt springen</a>
@@ -29,7 +26,7 @@ const githubLink = 'https://github.com/hawk-gt1191'
     </svg>
   </a>
 
-  <Navigation />
+  <Navigation siteLinks={siteLinks} />
 
   <div class='navigation-toggle'>
     <button
@@ -58,7 +55,7 @@ const githubLink = 'https://github.com/hawk-gt1191'
     <ul class='header-links'>
       <li class='external'>
         <a
-          href={discordLink}
+          href={siteLinks.discord}
           target='_blank'
           rel='noopener'
           class='header-button'
@@ -69,7 +66,7 @@ const githubLink = 'https://github.com/hawk-gt1191'
       </li>
       <li class='external'>
         <a
-          href={studipLink}
+          href={siteLinks.studip}
           target='_blank'
           rel='noopener'
           class='header-button'
@@ -81,7 +78,7 @@ const githubLink = 'https://github.com/hawk-gt1191'
       </li>
       <li class='external'>
         <a
-          href={githubLink}
+          href={siteLinks.github}
           target='_blank'
           rel='noopener'
           class='header-button'
