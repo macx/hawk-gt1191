@@ -15,6 +15,10 @@ import rehypeSlug from 'rehype-slug'
 
 // https://astro.build/config
 export default defineConfig({
+  redirects: {
+    '/komponenten': '/assets',
+    '/links': '/dokumentation'
+  },
   markdown: {
     shikiConfig: {
       theme: 'github-dark',
