@@ -1,6 +1,7 @@
 ---
 layout: ../layouts/Layout.astro
 title: 'Assets'
+description: 'Nutze diese kuratierten Assets und Inhalte, falls du noch noch keine eigenen Inhalte erstellt hast.'
 navTitle: 'Assets'
 sort: 4
 visible: true
@@ -11,10 +12,7 @@ import Lead from '../components/Lead.astro'
 
 # Assets für deine Website
 
-<Lead>
-  Nutze diese kuratierten Assets und Inhalte, falls du noch noch keine eigenen
-  Inhalte erstellt hast.
-</Lead>
+<Lead>{frontmatter.description}</Lead>
 
 ## Komponenten
 

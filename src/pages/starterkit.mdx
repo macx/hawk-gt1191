@@ -1,6 +1,7 @@
 ---
 layout: ../layouts/Layout.astro
 title: 'GT 1191 Starterkit'
+description: 'Mit dem Starterkit für Single- und Multi-Page-Websites sparst du bei der Erstellung viel Zeit und kannst dich aufs Lernen konzentrieren.'
 navTitle: 'Starterkit'
 sort: 3
 visible: true
@@ -10,10 +11,7 @@ import Lead from '../components/Lead.astro'
 
 # {frontmatter.title}
 
-<Lead>
-  Mit dem Starterkit für Single- und Multi-Page-Websites sparst du bei der
-  Erstellung viel Zeit und kannst dich aufs Lernen konzentrieren.
-</Lead>
+<Lead>{frontmatter.description}</Lead>
 
 Die Entwicklung einer modernen Website erfordert viele Einzelschritte. Ein Bildmotiv beispielsweise, das auf allen Geräten gut aussieht und dabei keine großen Ladezeiten verursacht, muss in mehreren Größen vorliegen. Dessen Erstellung ist ein Ping-Pong-Spiel zwischen Bildbearbeitung und Website-Entwicklung.
 

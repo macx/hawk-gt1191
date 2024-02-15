@@ -1,6 +1,7 @@
 ---
 layout: ../layouts/Layout.astro
 title: 'Dax Seminar'
+description: 'Das Seminar GT 1191 vermittelt dir die Grundlagen für die Erstellung von responsiven Websites mit kurzen Ladezeiten und gutem UI/UX.'
 toc: false
 studipLink: 'https://studip.hawk.de/dispatch.php/course/details?sem_id=fc760068e7bca04db0eb188955db45f1'
 ---
@@ -12,10 +13,7 @@ import { YouTube } from 'astro-embed'
 
 {frontmatter.studipLink}
 
-<Lead>
-  Das Seminar an der HAWK vermittelt dir die Grundlagen für die Erstellung von
-  responsiven Websites mit kurzen Ladezeiten und gutem UI/UX.
-</Lead>
+<Lead>{frontmatter.description}</Lead>
 
 <figure>
   <YouTube id="https://youtu.be/ioEGZMuh4BE" params="rel=0" />

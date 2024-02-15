@@ -1,6 +1,7 @@
 ---
 layout: ../layouts/Layout.astro
 title: 'Dokumentation'
+description: 'Erstelle deine Website unter Verwendung der folgenden Links zu Spezifikationen, Dokumentationen, Workshops und Tools.'
 navTitle: 'Dokumentation'
 sort: 2
 visible: true
@@ -13,10 +14,7 @@ import ItemInfo from '../components/ItemInfo.astro'
 
 # Dokumentation
 
-<Lead>
-  Erstelle deine Website unter Verwendung der folgenden Links zu
-  Spezifikationen, Dokumentationen, Workshops und Tools.
-</Lead>
+<Lead>{frontmatter.description}</Lead>
 
 ## Referenz
 
