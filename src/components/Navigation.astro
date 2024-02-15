@@ -188,14 +188,16 @@ const filteredPages = pages
         padding-block: var(--sp-xs);
         justify-content: flex-end;
 
-        &:hover,
-        &:focus {
-          color: var(--clr-inverse);
-        }
-
         &.current {
           font-weight: var(--fw-bold);
           color: var(--clr-text);
+        }
+      }
+
+      :global([data-theme='dark']) a {
+        &:hover,
+        &:focus {
+          color: var(--clr-inverse);
         }
       }
     }
