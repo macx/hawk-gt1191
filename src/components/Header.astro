@@ -2,8 +2,7 @@
 import Navigation from './Navigation.astro'
 import { Icon } from 'astro-icon/components'
 import ThemeSwitch from './ThemeSwitch.astro'
-
-const { siteLinks } = Astro.props
+import { siteConfig } from '../site.config.ts'
 ---
 
 <a href='#main' class='sr-only'>Zum Hauptinhalt springen</a>
@@ -26,7 +25,7 @@ const { siteLinks } = Astro.props
     <span id='logo' class='sr-only'>Startseite</span>
   </a>
 
-  <Navigation siteLinks={siteLinks} />
+  <Navigation siteLinks={siteConfig.links} />
 
   <div class='navigation-toggle'>
     <button
@@ -55,7 +54,7 @@ const { siteLinks } = Astro.props
     <ul class='header-links'>
       <li class='external'>
         <a
-          href={siteLinks.discord}
+          href={siteConfig.links.discord}
           target='_blank'
           rel='noopener'
           class='header-button'
@@ -67,7 +66,7 @@ const { siteLinks } = Astro.props
       </li>
       <li class='external'>
         <a
-          href={siteLinks.studip}
+          href={siteConfig.links.studip}
           target='_blank'
           rel='noopener'
           class='header-button'
@@ -80,7 +79,7 @@ const { siteLinks } = Astro.props
       </li>
       <li class='external'>
         <a
-          href={siteLinks.github}
+          href={siteConfig.links.github}
           target='_blank'
           rel='noopener'
           class='header-button'

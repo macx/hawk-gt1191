@@ -1,5 +1,5 @@
 ---
-layout: ../layouts/Layout.astro
+layout: ../layouts/BaseLayout.astro
 title: 'Dax Seminar'
 description: 'Das Seminar GT 1191 vermittelt dir die Grundlagen für die Erstellung von responsiven Websites mit kurzen Ladezeiten und gutem UI/UX.'
 toc: false
@@ -11,8 +11,6 @@ import { YouTube } from 'astro-embed'
 
 # Lerne in GT&#160;1191, wie du Websites erstellst
 
-{frontmatter.studipLink}
-
 <Lead>{frontmatter.description}</Lead>
 
 <figure>
@@ -23,7 +21,7 @@ import { YouTube } from 'astro-embed'
   </figcaption>
 </figure>
 
-## Auf einen Blick
+## Das Seminar im Überblick
 
 **GT 1191** ist ein Seminar des Studiengangs Bachelor of Arts (BA) der Fakultät Gestaltung im [Kompetenzfeld Digital Environments](https://www.hawk.de/de/studium/studiengaenge/ba-gestaltung-hildesheim/kompetenzfelder/digital-environments) an der HAWK Hochschule für angewandte Wissenschaft und Kunst in Hildesheim. Es findet hybrid statt, also in Präsenz und online.
 
@@ -31,8 +29,8 @@ import { YouTube } from 'astro-embed'
 
 Auf dieser Seite erwarten dich kuratierte Links für das Studium, sowie Antworten zu Fragen zum Seminar.
 
-## Anmeldung
-
-Du möchtest dabei sein? Prima. Dann zögere nicht und trage dich bei <a href={frontmatter.studipLink} target="_blank" rel="noopener">StudIP</a> in die Warteliste ein.
-
-Wenn du einen der begehrten Plätze ergattert hast, bekommst du rechtzeitig vor dem Start über StudIP eine Nachricht mit allen relevanten Informationen zur Teilnahme. Beachte bitte die Anmelderegeln und die Veranstaltungszuordnung.
+> ### Anmeldung
+>
+> Du möchtest dabei sein? Prima. Dann zögere nicht und trage dich bei <a href={frontmatter.studipLink} target="_blank" rel="noopener">StudIP</a> in die Warteliste ein.
+>
+> Wenn du einen der begehrten Plätze ergattert hast, bekommst du rechtzeitig vor dem Start über StudIP eine Nachricht mit allen relevanten Informationen zur Teilnahme. Beachte bitte die Anmelderegeln und die Veranstaltungszuordnung.

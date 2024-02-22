@@ -1,0 +1,53 @@
+---
+interface Props {
+  label: string
+  href: string
+  primary?: boolean
+}
+
+const { label, href, primary = false }: Props = Astro.props
+---
+
+<a href={href} class={'button ' + (primary ? 'primary' : '')}>
+  {label}
+</a>
+
+<style lang='scss'>
+  .button:any-link {
+    display: inline-flex;
+    align-items: center;
+
+    background-color: var(--clr-button);
+    color: var(--clr-primary);
+    border: 2px solid var(--clr-primary);
+
+    padding-block: var(--sp-xs);
+    padding-inline: var(--sp);
+    line-height: 1;
+    text-decoration: none;
+    border-radius: var(--radius);
+    box-shadow: 0 0.2em 1em transparent;
+    transform: translateY(0);
+    transition: all var(--transition-button);
+
+    &:hover,
+    &:focus {
+      background-color: var(--clr-button-hover);
+      border-color: var(--clr-txt);
+      box-shadow:
+        0 0.2em 1em var(--clr-primary-hover),
+        0 0.5em 0.5em -0.6em var(--clr-primary);
+      transform: translateY(-0.1em);
+    }
+
+    &.primary {
+      background-color: var(--clr-primary);
+      color: var(--clr-inverse);
+      border-color: var(--clr-primary);
+    }
+
+    + #{&} {
+      margin-inline-start: var(--sp-xs);
+    }
+  }
+</style>

@@ -100,6 +100,7 @@ main {
   @include mixins.respond('l') {
     flex-direction: row;
     justify-content: space-between;
+    padding-block: var(--sp-l);
 
     .content {
       // flex: 1 0 auto;
@@ -108,7 +109,5 @@ main {
     aside {
       flex: 0 0 15rem;
     }
-
-    border-color: orange;
   }
 }

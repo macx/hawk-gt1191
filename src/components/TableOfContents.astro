@@ -172,9 +172,9 @@ function buildToc(headings: Array<Heading>) {
               ) || 1
             )
 
-            if (lastLinkLevel === 1) {
-              x = x + MarkerPaddingInlineLeft
-            }
+            // if (lastLinkLevel === 1) {
+            //   x = x + MarkerPaddingInlineLeft
+            // }
           }
 
           if (i === 0) {
@@ -266,10 +266,11 @@ function buildToc(headings: Array<Heading>) {
 
         markerEnd?.setAttribute(
           'x1',
-          (
-            markerOffset -
-            MarkerPaddingInlineLeft * lastLinkLevel +
-            MarkerPaddingInlineLeft
+          (lastLinkLevel > 1
+            ? markerOffset -
+              MarkerPaddingInlineLeft * lastLinkLevel +
+              MarkerPaddingInlineLeft
+            : 0
           ).toString()
         )
         markerEnd?.setAttribute(

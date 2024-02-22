@@ -1,15 +1,17 @@
 @use '../base/mixins';
 
 .toc {
-  position: sticky;
-  inset-block-start: calc(var(--header-height) + var(--sp-content));
-  padding-inline-start: 2px;
-
   h2 {
     margin-block: 0 var(--sp);
     font-size: var(--fs);
     font-weight: var(--fw-bold);
     text-transform: uppercase;
+  }
+
+  @include mixins.respond('l') {
+    position: sticky;
+    inset-block-start: calc(var(--header-height) + var(--sp-content));
+    padding-inline-start: 2px;
   }
 }
 

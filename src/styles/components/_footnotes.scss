@@ -1,0 +1,70 @@
+@use '../base/mixins';
+
+.footnotes {
+  --line-color: var(--clr-line, black);
+
+  margin-block-start: var(--sp-l);
+  font-size: var(--fs-s);
+  color: var(--clr-text-light);
+
+  &::before {
+    display: block;
+    content: '';
+    inline-size: 10ch;
+    block-size: 0;
+    border-block-start: 1px solid var(--line-color);
+    margin-block-end: var(--sp);
+  }
+
+  ol {
+    counter-reset: footnotes;
+    margin-block: 0;
+    padding-inline-start: 0;
+  }
+
+  li {
+    display: flex;
+    counter-increment: footnotes;
+    padding: var(--sp-s);
+
+    &::before {
+      content: counter(footnotes) '.';
+    }
+
+    p {
+      margin-block: 0;
+      background-image: linear-gradient(
+        to top,
+        var(--line-color) 33%,
+        transparent 0%
+      );
+      background-position: left;
+      background-repeat: repeat-y;
+      background-size: 2px 8px;
+      padding-inline-start: var(--sp-s);
+      margin-inline-start: var(--sp-xs);
+    }
+
+    &:target {
+      background-color: var(--clr-marker);
+      color: var(--clr-text);
+    }
+  }
+
+  #overlay {
+    @include mixins.respond('m', 'to') {
+      .with-opened-navigation & {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 25;
+        overflow: hidden;
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(3px);
+        pointer-events: none;
+      }
+    }
+  }
+}

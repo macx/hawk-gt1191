@@ -1,12 +1,11 @@
 ---
-layout: ../layouts/Layout.astro
+layout: ../layouts/BaseLayout.astro
 title: 'Dokumentation'
 description: 'Erstelle deine Website unter Verwendung der folgenden Links zu Spezifikationen, Dokumentationen, Workshops und Tools.'
 navTitle: 'Dokumentation'
 sort: 2
 visible: true
 toc: true
-XlastModified: 2021-10-18
 ---
 
 import Lead from '../components/Lead.astro'
@@ -18,7 +17,7 @@ import ItemInfo from '../components/ItemInfo.astro'
 
 ## Referenz
 
-Im Folgenden findest du Ressourcen und Tools für die Front-End-Entwicklung. Ob zum schnellen Nachschlagen von HTML-Elementen und CSS-Eigenschaften oder um tiefer in die Thematik einzusteigen.
+Im Folgenden findest du Ressourcen und Tools für die Front-End-Entwicklung. Ob zum schnellen Nachschlagen von HTML-Elementen und CSS-Eigenschaften oder um tiefer in die Thematik einzusteigen.
 
 ### Schnellzugriff
 
@@ -87,12 +86,14 @@ Im Folgenden findest du Ressourcen und Tools für die Front-End-Entwicklung. Ob 
 
 ## Entwicklung
 
-Zur Erstellung von Websites benötigst du eine Entwicklungsumgebung, die dir das Schreiben von HTML, CSS und JavaScript erleichtert. In GT 1191 nutzen wir ein vorkonkonfiguriertes Visual Studio Code.
+Zur Erstellung von Websites benötigst du Entwicklungsumgebungen. Zum einen einen Editor, zum anderen einen Server, der deine Website für den Browser bereistellt.
 
 ### IDE
 
+Editoren werden meist IDE[^1] genannt. Sie erleichtern dir das Schreiben von HTML, CSS und JavaScript und anderen Sprachen. Wir nutzten in GT 1191 eine vorkonfigurierte Version von Visual Studio Code.
+
 [Visual Studio Code](https://code.visualstudio.com/)
-: Kostenloser Code-Editor von Microsoft.
+: Kostenlose IDE von Microsoft.
 
 [VS Code Profile](https://gist.github.com/macx/c4afc6441561cf8e021d104eed0de505)
 : Vorkonfigurierte Einstellungen für Visual Studio Code.
@@ -116,3 +117,16 @@ Zur Erstellung von Websites benötigst du eine Entwicklungsumgebung, die dir das
 
 [Browserslist](https://browsersl.ist/)
 : Browserkompatibilitätskonfiguration für beliebte JavaScript-Tools wie Autoprefixer, Babel, ESLint, PostCSS und Webpack. Interessant ist auch die [Checkliste](https://browserslist.dev/).
+
+### Umgebungen
+
+[GT 1191 Starterkeit](/starterkit)
+: Vorkonfiguriertes Parcel, der prefekte Start für deine erste Website.
+
+[Astro](https://astro.build/)
+: Bevorzugtes Web-Framework, bei denen der Inhalt im Vordergrund steht.
+
+[Laravel Herd](https://herd.laravel.com/)
+: Einfache PHP-Entwicklungsumgebung für Mac und Windows, um PHP und Nginx bereitzustellen.
+
+[^1]: IDE steht für Integrated Development Environment. Ein Editor, der speziell für die Entwicklung von Software und Webseiten konzipiert ist.

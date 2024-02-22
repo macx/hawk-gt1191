@@ -12,7 +12,7 @@
   --toc-width: 14rem;
   --content-max-width: 62ch;
   --layout-max-width: 70rem;
-  --border-radius: 0.25rem;
+  --radius: 0.25rem;
 
   --transition: 130ms ease-in;
   --transition-button: 130ms cubic-bezier(0.55, 0.09, 0.68, 0.53);
@@ -22,6 +22,9 @@
   --clr-bg: #eceff1;
   --clr-bg-card: rgba(255 255 255 / 1);
   --clr-bg-nav: var(--clr-bg-card);
+  --clr-bg-button: rgba(255, 255, 255, 0);
+  --clr-bg-button-hover: rgba(255, 255, 255, 1);
+
   --clr-shade: #cfd8dc;
   --clr-text: rgb(38, 50, 56);
   --clr-text-light: rgba(38, 50, 56, 0.7);
@@ -39,10 +42,9 @@
   --clr-type-tool: #991b1b;
 
   --clr-primary: #004fcd;
-  --clr-primary-hover: rgb(255 130 0 / 0.2);
+  --clr-primary-hover: hsl(217 100% 40% / 0.3);
   --clr-primary-light: hsl(217 100% 40% / 0.7);
   --clr-selection: rgb(0 79 205 / 0.15);
-  --clr-button: rgba(255, 255, 255, 1);
 
   --nav-shadow: rgba(109, 62, 62, 0.2);
   --nav-border: rgba(0, 0, 0, 0.1);
@@ -85,8 +87,12 @@
   --image-bg: #fff;
   --image-shadow: 0 0.25rem 0.75rem -0.5rem rgb(10 52 120 / 30%);
 
-  @media (min-width: 600px) {
+  @media (min-width: 37.5em) {
     --sp-content: 2.5rem;
+    --sp-l: 3rem;
+  }
+
+  @media (min-width: 57.5em) {
     --sp-l: 4rem;
   }
 
