@@ -2,7 +2,7 @@ import rss from '@astrojs/rss'
 import { getCollection } from 'astro:content'
 import { SITE_CONST } from '../const.ts'
 
-export async function GET(context: { title: string }) {
+export async function GET(context: { site: string }) {
   const articles = await getCollection('tutorials', ({ data }) => {
     return import.meta.env.PROD ? data.isDraft !== true : true
   })
@@ -11,7 +11,7 @@ export async function GET(context: { title: string }) {
   return rss({
     title: SITE_CONST.title,
     description: SITE_CONST.description,
-    site: context.title,
+    site: context.site,
     items: articles.map((article) => ({
       title: article.data.title,
       pubDate: article.data.pubDate,
