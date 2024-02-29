@@ -1,0 +1,19 @@
+@charset 'UTF-8';
+
+@use 'sass:meta';
+@use '../styles/base/mixins';
+
+@layer base, content, components;
+
+@layer base {
+  @include meta.load-css('../styles/base');
+}
+
+@layer content {
+  @include meta.load-css('../styles/components/_content.scss');
+  @include meta.load-css('../styles/components/_footnotes.scss');
+}
+
+@layer components {
+  @include meta.load-css('../styles/components/_media.scss');
+}

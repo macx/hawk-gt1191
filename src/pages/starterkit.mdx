@@ -13,11 +13,12 @@ import Button from '../components/Button.astro'
 
 # {frontmatter.title}
 
-<Lead>{frontmatter.description}</Lead>
+<Lead text={frontmatter.description} />
 
 Die Entwicklung einer modernen Website erfordert viele Einzelschritte. Ein Bild, das auf allen Endgeräten gut aussieht und Ladezeiten reduziert, muss dafür in mehreren Größen vorliegen. Dessen Erstellung ist in der Regel ein Ping-Pong-Spiel zwischen Bildbearbeitung und Website-Entwicklung. Das Starterkit nimmt dir diese und viele anderen Aufgaben ab.
 
 <Button
+  type="link"
   label='Zum Starterkit'
   href='https://github.com/HAWK-GT1191/gt1191-starterkit'
   primary={false}

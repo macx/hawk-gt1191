@@ -1,9 +1,9 @@
 ---
-
+const { text } = Astro.props
 ---
 
 <div class='lead'>
-  <slot />
+  {text}
 </div>
 
 <style lang='scss'>
@@ -17,5 +17,9 @@
     p {
       margin-block: 0;
     }
+  }
+
+  :global(.content:has(.meta)) .lead {
+    margin-block-end: var(--sp);
   }
 </style>

@@ -1,19 +1,43 @@
 ---
 interface Props {
+  type?: 'button' | 'link'
   label: string
-  href: string
+  href?: string
   primary?: boolean
+  small?: boolean
+  listener?: string
 }
 
-const { label, href, primary = false }: Props = Astro.props
+const {
+  type = 'button',
+  label,
+  href,
+  primary = false,
+  small = false,
+  listener
+}: Props = Astro.props
 ---
 
-<a href={href} class={'button ' + (primary ? 'primary' : '')}>
-  {label}
-</a>
+{
+  type === 'link' && href ? (
+    <a href={href} class:list={['button', { primary: primary === true }]}>
+      {label}
+    </a>
+  ) : (
+    <button
+      class:list={['button', { primary: primary }, { small: small }]}
+      data-listener={listener}
+    >
+      {label}
+    </button>
+  )
+}
 
 <style lang='scss'>
-  .button:any-link {
+  .button {
+    all: unset;
+    cursor: pointer;
+
     display: inline-flex;
     align-items: center;
 
@@ -38,6 +62,13 @@ const { label, href, primary = false }: Props = Astro.props
         0 0.2em 1em var(--clr-primary-hover),
         0 0.5em 0.5em -0.6em var(--clr-primary);
       transform: translateY(-0.1em);
+    }
+
+    &.small {
+      font-size: var(--fs-xs);
+      padding-block: 0.3em;
+      padding-inline: var(--sp-xs);
+      line-height: 1;
     }
 
     &.primary {

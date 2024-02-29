@@ -2,7 +2,7 @@
 import Navigation from './Navigation.astro'
 import { Icon } from 'astro-icon/components'
 import ThemeSwitch from './ThemeSwitch.astro'
-import { siteConfig } from '../site.config.ts'
+import { SITE_CONST } from '../const.ts'
 ---
 
 <a href='#main' class='sr-only'>Zum Hauptinhalt springen</a>
@@ -25,7 +25,7 @@ import { siteConfig } from '../site.config.ts'
     <span id='logo' class='sr-only'>Startseite</span>
   </a>
 
-  <Navigation siteLinks={siteConfig.links} />
+  <Navigation siteLinks={SITE_CONST.links} />
 
   <div class='navigation-toggle'>
     <button
@@ -54,7 +54,7 @@ import { siteConfig } from '../site.config.ts'
     <ul class='header-links'>
       <li class='external'>
         <a
-          href={siteConfig.links.discord}
+          href={SITE_CONST.links.discord}
           target='_blank'
           rel='noopener'
           class='header-button'
@@ -66,7 +66,7 @@ import { siteConfig } from '../site.config.ts'
       </li>
       <li class='external'>
         <a
-          href={siteConfig.links.studip}
+          href={SITE_CONST.links.studip}
           target='_blank'
           rel='noopener'
           class='header-button'
@@ -79,7 +79,7 @@ import { siteConfig } from '../site.config.ts'
       </li>
       <li class='external'>
         <a
-          href={siteConfig.links.github}
+          href={SITE_CONST.links.github}
           target='_blank'
           rel='noopener'
           class='header-button'

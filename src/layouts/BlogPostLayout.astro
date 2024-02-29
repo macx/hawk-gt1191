@@ -1,0 +1,97 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import { Image } from 'astro:assets'
+import BaseLayout from './BaseLayout.astro'
+import Lead from '../components/Lead.astro'
+import Meta from '../components/Meta.astro'
+import Tags from '../components/Tags.astro'
+import Figure from '../components/Figure.astro'
+
+type Props = CollectionEntry<'tutorials'>['data']
+
+const {
+  title,
+  description,
+  pubDate,
+  author,
+  heroImage,
+  tags,
+  isDraft,
+  headings
+} = Astro.props
+
+const toc = true
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  headings={headings}
+  toc={toc}
+>
+  <article>
+    <header>
+      {isDraft && <div class='draft-banner' />}
+
+      <h1>{title}</h1>
+
+      <Lead text={description} />
+
+      <Meta date={pubDate} author={author} />
+    </header>
+
+    {
+      heroImage && (
+        <Figure caption={heroImage.caption}>
+          <Image
+            src={heroImage.src}
+            widths={[380, 670, 710]}
+            sizes={`(max-width: 480px) 380px, (max-width: 800) 670px, 710px`}
+            alt={heroImage.alt}
+          />
+        </Figure>
+      )
+    }
+
+    <slot />
+
+    <Tags tags={tags as string[]} divider={true} />
+  </article>
+</BaseLayout>
+
+<style lang='scss'>
+  @use '../styles/base/mixins';
+
+  .draft-banner {
+    position: fixed;
+    inset: var(--header-height) 0 auto auto;
+    z-index: 2;
+
+    background-color: var(--clr-warning);
+    color: var(--clr-inverse);
+    pointer-events: none;
+
+    box-shadow: 0 0.3em 0.5em -0.3em rgb(0 0 0 / 0.6);
+
+    &::after {
+      display: block;
+      text-align: center;
+      padding-block: 0.8em 0.6em;
+      padding-inline: var(--sp-content);
+      line-height: 1;
+
+      font-size: var(--fs-xs);
+      font-weight: var(--fw-bold);
+
+      content: 'Entwurf';
+    }
+
+    @include mixins.respond('l') {
+      inset: calc(var(--header-height) + var(--sp-l)) auto auto 0;
+      rotate: -90deg;
+      transform: translateX(-100%);
+      transform-origin: 0 0;
+      box-shadow: -0.3rem 0 0.3rem -0.1em rgb(0 0 0 / 0.3);
+    }
+  }
+</style>

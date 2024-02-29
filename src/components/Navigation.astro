@@ -9,31 +9,42 @@ const { siteLinks } = Astro.props
 
 // Get Pages for Navigation
 const pages = await Astro.glob('../pages/*.mdx')
+
 const filteredPages = pages
   .filter((page) => page.frontmatter.visible === true)
   .sort((a, b) => (a.frontmatter.sort > b.frontmatter.sort ? 0 : -1))
 ---
 
 <nav role='navigation' class='navigation' aria-role='navigation'>
-  <ul class='navigation-items'>
-    <li class='home'>
-      <a href='/' class={`/${currentPath}` === '/' ? 'current' : ''}
-        >Das Seminar</a
-      >
-    </li>
-    {
-      filteredPages.map((page) => (
-        <li>
-          <a
-            href={page.url}
-            class={`/${currentPath}` === page.url ? 'current' : ''}
-          >
-            {page.frontmatter.navTitle}
-          </a>
-        </li>
-      ))
-    }
-  </ul>
+  <div class='navigation-items'>
+    <ul>
+      <li class='home'>
+        <a href='/' class:list={[{ current: `/${currentPath}` === '/' }]}>
+          Das Seminar
+        </a>
+      </li>
+      {
+        filteredPages.map((page) => (
+          <li>
+            <a
+              href={page.url}
+              class:list={[{ current: `/${currentPath}` === page.url }]}
+            >
+              {page.frontmatter.navTitle}
+            </a>
+          </li>
+        ))
+      }
+      <li>
+        <a
+          href='/tutorials'
+          class:list={[{ current: currentPath === 'tutorials' }]}
+        >
+          Tutorials
+        </a>
+      </li>
+    </ul>
+  </div>
 
   <ul class='links'>
     <li class='external'>
@@ -148,8 +159,10 @@ const filteredPages = pages
   }
 
   .navigation-items {
-    margin-block: 0;
-    padding-inline-start: 0;
+    ul {
+      margin-block: 0;
+      padding-inline-start: 0;
+    }
 
     li {
       list-style: none;
@@ -178,7 +191,7 @@ const filteredPages = pages
 
     @include mixins.respond('l', 'to') {
       background-color: var(--clr-bg-nav);
-      flex: 1;
+      flex: 0 0 min(100%, 15vh);
       padding-block: var(--sp-l);
 
       a {
@@ -186,7 +199,7 @@ const filteredPages = pages
         color: var(--clr-text);
         padding-inline: var(--sp-content);
         padding-block: var(--sp-xs);
-        justify-content: flex-end;
+        justify-content: center;
 
         &.current {
           font-weight: var(--fw-bold);
@@ -202,11 +215,30 @@ const filteredPages = pages
       }
     }
 
+    @include mixins.respond('m', 'to', 'l') {
+      padding-inline: var(--sp-content);
+
+      ul {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        column-gap: var(--sp);
+        row-gap: var(--sp-xs);
+      }
+
+      a {
+        padding-inline: 0;
+        padding-block: 0;
+      }
+    }
+
     @include mixins.respond('l') {
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      padding: 0 0 0 var(--sp-s);
+      ul {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 0 0 0 var(--sp-s);
+      }
 
       li.home {
         display: none;

@@ -1,0 +1,19 @@
+---
+import { markdown } from '@astropub/md'
+
+type Props = {
+  caption?: string | boolean
+}
+
+const { caption } = Astro.props
+---
+
+<figure>
+  <slot />
+
+  {
+    caption && typeof caption === 'string' ? (
+      <figcaption>{await markdown(caption)}</figcaption>
+    ) : null
+  }
+</figure>

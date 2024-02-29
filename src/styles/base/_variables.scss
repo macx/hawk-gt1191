@@ -19,11 +19,17 @@
   --transition-navi: 250ms cubic-bezier(1, 0, 0, 1);
   --transition-theme: 100ms ease-out;
 
-  --clr-bg: #eceff1;
-  --clr-bg-card: rgba(255 255 255 / 1);
+  --clr-mix-modifier: hsl(0 0% 0%);
+
+  --clr-bg: hsl(204, 15%, 94%);
+  --clr-bg-card: hsl(0, 0%, 100%);
+  --clr-line: color-mix(
+    in oklab,
+    var(--clr-bg) 15%,
+    var(--clr-mix-modifier) 15%
+  );
+
   --clr-bg-nav: var(--clr-bg-card);
-  --clr-bg-button: rgba(255, 255, 255, 0);
-  --clr-bg-button-hover: rgba(255, 255, 255, 1);
 
   --clr-shade: #cfd8dc;
   --clr-text: rgb(38, 50, 56);
@@ -32,7 +38,7 @@
   --clr-text--code: #1976d2;
   --clr-inverse: hsl(0, 0%, 100%);
   --clr-section: hsl(0 0% 100% / 0.5);
-  --clr-line: rgba(0, 0, 0, 0.2);
+  // --clr-line: rgba(0, 0, 0, 0.2);
   --clr-header: rgba(6, 13, 18, 0.8);
   --clr-marker: hsl(60 100% 70% / 1);
 
@@ -41,6 +47,7 @@
   --clr-type-game: #166534;
   --clr-type-tool: #991b1b;
 
+  --clr-warning: #b91c1c;
   --clr-primary: #004fcd;
   --clr-primary-hover: hsl(217 100% 40% / 0.3);
   --clr-primary-light: hsl(217 100% 40% / 0.7);
@@ -55,6 +62,7 @@
   // Font Families
   --ff: 'Open Sans Variable', sans-serif;
   --ff-headings: 'Domine Variable', sans-serif;
+  --ff-code: 'JetBrains Mono Variable', monospace;
 
   // Font Weights
   --fw: 300;
@@ -84,7 +92,6 @@
   );
 
   --image-padding: 1rem;
-  --image-bg: #fff;
   --image-shadow: 0 0.25rem 0.75rem -0.5rem rgb(10 52 120 / 30%);
 
   @media (min-width: 37.5em) {
@@ -96,13 +103,26 @@
     --sp-l: 4rem;
   }
 
+  &[data-theme='light'] {
+    color-scheme: light;
+  }
+
   &[data-theme='dark'] {
-    --clr-bg: #0d1117;
-    --clr-bg-card: #161b22;
+    color-scheme: dark;
+
+    --clr-mix-modifier: hsl(0 0% 100%);
+
+    --clr-bg: hsl(240, 55%, 7%);
+    --clr-bg-card: color-mix(
+      in oklab,
+      var(--clr-bg),
+      var(--clr-mix-modifier) 10%
+    );
+    --clr-line: color-mix(in oklab, var(--clr-bg), var(--clr-mix-modifier) 22%);
+
     --clr-text: #d9d9d9;
     --clr-text-light: rgba(217, 217, 217, 0.7);
     --clr-text--dark: #fff;
-    --clr-line: #30363d;
     --clr-header: rgba(20, 35, 45, 0.8);
     --clr-inverse: rgb(255 255 255 / 1);
 
@@ -110,14 +130,11 @@
     --clr-marker: hsl(60 100% 70% / 0.2);
     --nav-border: rgb(255 255 255 / 0.15);
 
-    --footer-line: rgb(255 255 255 / 0.3);
     --footer-bg: linear-gradient(
       to bottom,
       rgba(0, 0, 0, 0.2) 1px,
       rgba(0, 0, 0, 0.1) 2px,
       rgba(0, 0, 0, 0)
     );
-
-    --image-bg: #292524;
   }
 }

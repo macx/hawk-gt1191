@@ -3,22 +3,23 @@ import { Icon } from 'astro-icon/components'
 ---
 
 <theme-switch>
-  <label class='theme-switch'>
+  <label class='theme-switch' for='theme-switch'>
     <div class='theme-switch__button'>
       <input
         type='checkbox'
         id='theme-switch'
         class='theme-switch__input'
         data-theme-switch
+        aria-label='Ändere das Theme'
       />
 
       <span class='theme-switch__slider'>
         <span class='theme-switch__icon theme-switch__icon--on'>
-          <Icon name='theme-light' />
+          <Icon name='theme-light' aria-hidden='true' />
         </span>
 
         <span class='theme-switch__icon theme-switch__icon--off'>
-          <Icon name='theme-dark' />
+          <Icon name='theme-dark' aria-hidden='true' />
         </span>
       </span>
     </div>

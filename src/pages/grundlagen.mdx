@@ -1,6 +1,7 @@
 ---
 layout: ../layouts/BaseLayout.astro
 title: 'Die Grundlagen'
+description: 'Du lernst die Grundlagen von HTML, CSS und JavaScript, sowie Techniken zur Bild- und Ladezeitoptimierung und erzielst ein optimales UI/UX-Erlebnis.'
 navTitle: 'Grundlagen'
 visible: true
 sort: 1
@@ -12,10 +13,7 @@ import { YouTube } from 'astro-embed'
 
 # Das erwartet dich in GT 1191
 
-<Lead>
-  Du lernst die Grundlagen von HTML, CSS und JavaScript, sowie Techniken zur
-  Bild- und Ladezeitoptimierung und erzielst ein optimales UI/UX-Erlebnis.
-</Lead>
+<Lead text={frontmatter.description} />
 
 <figure>
   <YouTube id="https://youtu.be/SJ1Pra-EP6c" params="rel=0" />

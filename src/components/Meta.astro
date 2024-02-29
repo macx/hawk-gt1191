@@ -1,0 +1,24 @@
+---
+import { getEntry } from 'astro:content'
+import FormattedDate from './FormattedDate.astro'
+
+interface Props {
+  date: Date
+  author: object
+}
+
+const { date, author } = Astro.props
+const authorProfile = await getEntry('authors', (author as { id: string }).id)
+---
+
+<div class='meta'>
+  {authorProfile && <div class='byline'>Von {authorProfile.data.name}</div>}
+
+  <FormattedDate date={date} style='small' />
+</div>
+
+<style lang='scss'>
+  .meta {
+    margin-block-end: var(--sp-m);
+  }
+</style>

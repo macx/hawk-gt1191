@@ -1,0 +1,96 @@
+---
+export interface Props {
+  tags: string[]
+  divider?: boolean
+}
+
+const { tags, divider } = Astro.props
+const pathname = new URL(Astro.request.url).pathname
+const currentPath = pathname.split('/').slice(3).join('').trim()
+---
+
+{
+  tags && tags.length > 0 && (
+    <ul class:list={['tags', { divider: divider === true }]}>
+      <li>Verwendete Tags:</li>
+      {tags.map((tag) => (
+        <li class:list={['tag', { current: currentPath === tag }]}>
+          <a href={`/tutorials/tags/${tag}/`}>{tag}</a>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+<style lang='scss'>
+  .tags {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    row-gap: 0.6em;
+
+    padding: 0;
+    font-size: var(--fs-s);
+    line-height: 1;
+
+    &.divider {
+      margin-block-start: var(--sp-l);
+      border-block-start: 1px solid var(--clr-line);
+      padding-block-start: var(--sp-m);
+    }
+
+    li {
+      list-style: none;
+
+      &:first-child {
+        font-weight: var(--fw-bold);
+        margin-inline-end: 1ch;
+      }
+    }
+  }
+
+  .tag {
+    --inline-space: 1ch;
+    --background-color: var(--clr-inverse);
+    --text-color: var(--clr-txt);
+
+    position: relative;
+    display: inline-block;
+    filter: drop-shadow(0 0 1px var(--clr-text));
+
+    a {
+      display: block;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      text-decoration: none;
+      transition: all var(--transition-button);
+
+      padding-block: 0.1em 0.3em;
+      padding-inline: 2ch;
+
+      clip-path: polygon(
+        100% 0%,
+        calc(100% - var(--inline-space)) 50%,
+        100% 100%,
+        var(--inline-space) 100%,
+        0 50%,
+        var(--inline-space) 0
+      );
+
+      &:hover,
+      &:focus {
+        background-color: var(--clr-primary);
+        color: var(--clr-inverse);
+      }
+    }
+
+    &.current a {
+      background-color: var(--clr-primary);
+      color: var(--clr-inverse);
+    }
+
+    :global([data-theme='dark']) & {
+      --background-color: var(--clr-bg);
+    }
+  }
+</style>

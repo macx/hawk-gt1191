@@ -1,23 +1,36 @@
 @use '../base/mixins';
 
 .toc {
+  @include mixins.respond('l') {
+    position: sticky;
+    inset-block-start: calc(var(--header-height) + var(--sp-content));
+    padding-inline-start: 2px;
+
+    .button {
+      display: none;
+    }
+  }
+}
+
+.toc-title {
   h2 {
-    margin-block: 0 var(--sp);
+    margin-block: 0;
     font-size: var(--fs);
     font-weight: var(--fw-bold);
     text-transform: uppercase;
   }
 
-  @include mixins.respond('l') {
-    position: sticky;
-    inset-block-start: calc(var(--header-height) + var(--sp-content));
-    padding-inline-start: 2px;
+  @include mixins.respond('l', 'to') {
+    h2 {
+      display: none;
+    }
   }
 }
 
 .toc-list {
-  margin-block: 0;
+  margin-block: var(--sp) 0;
   padding-inline-start: 0;
+  transition: max-height var(--transition-navi);
 
   > li {
     list-style: none;
@@ -48,6 +61,12 @@
   }
 
   @include mixins.respond('l', 'to') {
+    &.hidden-l {
+      max-height: 0;
+      overflow: hidden;
+      margin-block: 0;
+    }
+
     > li {
       margin-block-end: var(--sp-xs);
 

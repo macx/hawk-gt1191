@@ -1,5 +1,41 @@
 @use './mixins';
 
+/*
+┌──────────────────────────────────┐
+  HEADLINES
+└──────────────────────────────────┘
+*/
+
+:is(h1, h2, h3, h4) {
+  position: relative;
+  font-family: var(--ff-headings);
+  font-weight: var(--fw-headings);
+  font-variation-settings: var(--fvs-headings);
+
+  margin-block: max(2em, var(--sp-content)) 0.5em;
+  line-height: var(--lh-s);
+}
+
+h1 {
+  font-size: 2em;
+  margin-block: 0 01em;
+  text-wrap: balance;
+}
+
+h2 {
+  font-size: 1.6em;
+}
+
+h3 {
+  font-size: 1.2em;
+}
+
+h4 {
+  font-size: 0.8em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
 sup {
   line-height: 1;
   line-height: 1;
@@ -27,7 +63,7 @@ sup {
 
 code {
   display: inline-block;
-  font-family: 'JetBrains Mono Variable', monospace;
+  font-family: var(--ff-code);
   font-size: 1em;
   font-variation-settings:
     'wght' 700,
@@ -105,11 +141,11 @@ blockquote {
   margin-block: var(--sp-content);
   margin-inline: 0;
   padding-block: var(--sp);
-  padding-inline: var(--sp-content);
+  padding-inline: var(--sp) var(--sp-content);
   border-inline-start: 1ch solid var(--clr-primary);
   margin-trim: block;
 
-  @supports not (margin-trim: inherit) {
+  @supports not (margin-trim: block) {
     > :is(h2, h3):first-child {
       margin-block-start: 0;
     }

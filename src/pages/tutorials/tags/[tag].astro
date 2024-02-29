@@ -1,0 +1,54 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content'
+import BaseLayout from '../../../layouts/BaseLayout.astro'
+import ArticleCard from '../../../components/ArticleCard.astro'
+import Tags from '../../../components/Tags.astro'
+
+export async function getStaticPaths() {
+  const posts = await getCollection('tutorials', ({ data }) => {
+    return import.meta.env.PROD ? data.isDraft !== true : true
+  })
+  const tags = [...new Set(posts.flatMap((post) => post.data.tags))]
+
+  return tags.map((tag) => {
+    const filteredPosts = posts.filter((post) =>
+      post.data.tags?.includes(tag as string)
+    )
+
+    return {
+      params: { tag },
+      props: { posts: filteredPosts, tags: tags }
+    }
+  })
+}
+
+interface Props {
+  title: string
+  posts: CollectionEntry<any>[]
+  tags: string[]
+}
+
+const { tag } = Astro.params
+const { posts, tags } = Astro.props
+
+const title = `Tutorials mit dem Tag ${tag}`
+const description = `Liste aller Tutorials mit dem Stichwort ${tag}.`
+---
+
+<BaseLayout title={title} description={description}>
+  <h1>{title}</h1>
+
+  <Tags tags={tags} />
+
+  {
+    posts.length > 0 ? (
+      <section class='articles'>
+        {posts.map((post) => (
+          <ArticleCard article={post} />
+        ))}
+      </section>
+    ) : (
+      <p>No posts yet.</p>
+    )
+  }
+</BaseLayout>

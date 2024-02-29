@@ -81,6 +81,10 @@ main {
     max-width: var(--content-max-width);
   }
 
+  aside {
+    overscroll-behavior: contain;
+  }
+
   &:not(:has(aside)) {
     .content {
       margin-inline: auto;
@@ -88,6 +92,10 @@ main {
   }
 
   @include mixins.respond('l', 'to') {
+    &:has(.toc-list.hidden-l) {
+      gap: var(--sp);
+    }
+
     .content {
       order: 1;
     }

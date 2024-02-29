@@ -4,12 +4,11 @@
 // and https://kld.dev/toc-animation/
 
 import TableOfContentsHeading from './TableOfContentsHeading.astro'
+import Button from './Button.astro'
 import '../styles/components/_toc.scss'
 
 const { headings } = Astro.props
 const toc = buildToc(headings)
-
-// const
 
 type Heading = {
   depth: number
@@ -52,7 +51,16 @@ function buildToc(headings: Array<Heading>) {
   toc?.length > 0 && (
     <aside>
       <nav class='toc'>
-        <h2>Inhalt</h2>
+        <div class='toc-title'>
+          <h2>Inhalt</h2>
+
+          <Button
+            type='button'
+            label='Inhalt anzeigen'
+            small={true}
+            listener='toggle-toc'
+          />
+        </div>
 
         <ul class='toc-list'>
           {toc.map((heading, index) => (
@@ -98,7 +106,7 @@ function buildToc(headings: Array<Heading>) {
   if (toc) {
     const links: NodeListOf<HTMLAnchorElement> = toc.querySelectorAll('a')
     const sections: NodeListOf<HTMLElement> = document.querySelectorAll(
-      '.content > :is(h2[id], h3[id], h4[id])'
+      '.content :is(h2[id], h3[id], h4[id])'
     )
 
     if (sections.length > 1 && links.length > 1) {
@@ -113,8 +121,27 @@ function buildToc(headings: Array<Heading>) {
       const linkStarts = new WeakMap()
       const linkEnds = new WeakMap()
 
+      enableToggleButton()
       addIntersectionObserver()
       addResizeObserver()
+
+      function enableToggleButton() {
+        const tocList = toc.querySelector('.toc-list') as HTMLUListElement
+        const toggleBtn = toc.querySelector(
+          '[data-listener="toggle-toc"]'
+        ) as HTMLButtonElement
+        if (!toggleBtn) return
+
+        tocList.classList.add('hidden-l')
+
+        toggleBtn.addEventListener('click', () => {
+          const isOpen = tocList.classList.toggle('hidden-l')
+
+          toggleBtn.textContent = isOpen
+            ? 'Inhalt verbergen'
+            : 'Inhalt anzeigen'
+        })
+      }
 
       function addIntersectionObserver() {
         const observer = new IntersectionObserver((sections) => {

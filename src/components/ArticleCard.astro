@@ -1,0 +1,146 @@
+---
+import { Image } from 'astro:assets'
+import FormattedDate from './FormattedDate.astro'
+
+const { article } = Astro.props
+---
+
+<article class:list={['article', { draft: article.data.isDraft }]}>
+  {article.data.isDraft && <div class='draft-banner' />}
+
+  <a href={`/tutorials/${article.slug}/`}>
+    <header>
+      <h3 class='title'>{article.data.title}</h3>
+
+      <FormattedDate date={article.data.pubDate} style='small' />
+    </header>
+
+    <div class='image'>
+      {
+        article.data.heroImage && (
+          <Image
+            src={article.data.heroImage.src}
+            widths={[380, 670, 710]}
+            sizes={`(max-width: 480px) 380px, (max-width: 800) 670px, 710px`}
+            alt={article.data.heroImage.alt}
+          />
+        )
+      }
+    </div>
+
+    <div class='description'>
+      <p>{article.data.description}</p>
+
+      <span class='more'>Weiterlesen</span>
+    </div>
+  </a>
+</article>
+
+<style lang='scss'>
+  @use '../styles/base/mixins';
+
+  .article {
+    @include mixins.media-item('article');
+
+    position: relative;
+
+    a {
+      display: grid;
+      grid-template-areas:
+        'header'
+        'image'
+        'description';
+      color: var(--clr-text);
+      text-decoration: none;
+      transition: box-shadow var(--transition);
+
+      &:hover,
+      &:focus {
+        color: currentColor;
+        text-decoration: none;
+        box-shadow: 0 0.53em 1em -0.5rem rgba(0, 0, 0, 0.2);
+
+        .title,
+        .more {
+          color: var(--clr-primary);
+        }
+
+        .more::after {
+          transform: translateX(0);
+          opacity: 1;
+        }
+
+        .image img {
+          scale: 1.1;
+        }
+      }
+    }
+
+    header {
+      padding: var(--sp);
+      grid-area: header;
+    }
+
+    .title {
+      font-size: 1.3rem;
+      font-family: var(--ff);
+      margin-block: 0 0.5em;
+      transition: all var(--transition);
+    }
+
+    .image {
+      overflow: hidden;
+
+      img {
+        grid-area: image;
+        scale: 1;
+        transition: var(--transition);
+      }
+    }
+
+    .description {
+      font-size: var(--fs-s);
+      padding: var(--sp);
+      grid-area: description;
+    }
+
+    .more {
+      display: inline-flex;
+      align-items: center;
+      transition: all var(--transition);
+
+      &::after {
+        content: '»';
+        margin-inline-start: 1ch;
+        transform: translateX(-5ch);
+        transition: all var(--transition);
+        opacity: 0;
+      }
+    }
+  }
+
+  .draft-banner {
+    position: absolute;
+    inset-block-start: -0.2em;
+    inset-inline-end: 0.5em;
+    z-index: 2;
+    pointer-events: none;
+
+    background-color: var(--clr-warning);
+    color: var(--clr-inverse);
+    box-shadow: 0 0.2em 0.3em -0.2em rgb(0 0 0 / 0.6);
+
+    &::after {
+      display: block;
+      text-align: center;
+      padding-block: 0.4em;
+      padding-inline: 1.7ch;
+      line-height: 1;
+
+      font-size: var(--fs-xs);
+      font-weight: var(--fw-bold);
+
+      content: 'Entwurf';
+    }
+  }
+</style>

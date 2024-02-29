@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config'
 import mdx from '@astrojs/mdx'
+// import astroFont from '@gamesome/astro-font'
 import icon from 'astro-icon'
 
 import { remarkModifiedTime } from './remark-plugins/remark-modified-time.mjs'
@@ -30,7 +31,17 @@ export default defineConfig({
     remarkPlugins: [remarkDeruntify, remarkDefinitionList, remarkModifiedTime],
     rehypePlugins: [
       rehypeSlug,
-      [rehypeAutoLinkHeadings, { content: [] }],
+      [
+        rehypeAutoLinkHeadings,
+        {
+          content: {
+            type: 'element',
+            tagName: 'span',
+            properties: { className: 'heading-icon' },
+            children: []
+          }
+        }
+      ],
       [rehypeExternalLinks, {}]
     ]
   },
@@ -45,6 +56,27 @@ export default defineConfig({
       },
       gfm: true
     }),
+    // astroFont({
+    //   families: [
+    //     {
+    //       name: 'Open Sans Variable',
+    //       imports: ['@fontsource-variable/open-sans/wdth.css']
+    //     },
+    //     {
+    //       name: 'Domine Variable',
+    //       type: 'sans-serif',
+    //       applyFontFamilyToSelector: ':is(h1, h2, h3, h4)',
+    //       imports: ['@fontsource-variable/open-sans/wdth.css']
+    //     },
+    //     {
+    //       name: 'JetBrains Mono Variable',
+    //       type: 'mono',
+    //       fallbacks: ['Courier New'],
+    //       applyFontFamilyToSelector: 'code',
+    //       imports: ['@fontsource-variable/open-sans/wdth.css']
+    //     }
+    //   ]
+    // }),
     icon({
       include: {
         materialSymbols: ['menu', 'close', 'arrow-upward-rounded'],

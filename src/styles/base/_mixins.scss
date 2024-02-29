@@ -9,36 +9,36 @@
   );
 
   @if $type == 'from' {
-    @media screen and (min-width: map.get($breakpoints, $breakpoint1)) {
+    @media screen and (width >= map.get($breakpoints, $breakpoint1)) {
       @content;
     }
   } @else if $type == 'to' {
     @if ($breakpoint2) {
-      @media screen and (min-width: #{map.get($breakpoints, $breakpoint1)}) and (max-width: #{map.get($breakpoints, $breakpoint2) - 1}) {
+      @media screen and (#{map.get($breakpoints, $breakpoint1)} <= width <= #{map.get($breakpoints, $breakpoint2)}) {
         @content;
       }
     } @else {
-      @media screen and (max-width: #{map.get($breakpoints, $breakpoint1) - 1}) {
+      @media screen and (width < #{map.get($breakpoints, $breakpoint1)}) {
         @content;
       }
     }
   }
 }
 
-@mixin media-item() {
+@mixin media-item($layout: 'media') {
   display: block;
   margin-block: var(--sp) var(--sp-content);
-  margin-inline: 0;
-  padding-block: var(--sp);
-  padding-inline: var(--sp);
   background-color: var(--clr-bg-card);
   border-radius: var(--radius);
 
   border: 1px solid var(--clr-line);
   box-shadow: 0 0.53em 1em -0.5rem rgba(0, 0, 0, 0.15);
 
-  @include respond('m') {
+  @if $layout == 'media' {
     margin-inline: calc(var(--sp) * -1);
+    padding-block: var(--sp);
+    padding-inline: var(--sp);
+  } @else if $layout == 'article' {
   }
 }
 
