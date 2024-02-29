@@ -14,13 +14,14 @@ export async function getStaticPaths() {
 }
 
 const post = Astro.props
+
 const { Content, headings } = await post.render()
 
 post.data.headings = headings as unknown as string[]
 ---
 
 {
-  import.meta.env.PROD && post.data.isDraft === false ? (
+  import.meta.env.PROD && post.data.isDraft === true ? (
     <BaseLayout>
       <h1>Nanu, weg ist er…</h1>
 
