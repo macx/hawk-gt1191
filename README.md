@@ -53,9 +53,4 @@ Any static assets, like images, can be placed in the `public/` directory.
 
 ## Deployment
 
-Use the deploy script of this repository. First, copy `deploy/.sample.env` to `deploy/.env` and fill in the SSH credentials. Use the following commands to deploy your public folder:
-
-```sh
-$ deploy/it dry  # to test it
-$ deploy/it now  # to deploy it
-```
+The deployment is done through GitHub Actions. Tags and releases are done via release-it.
