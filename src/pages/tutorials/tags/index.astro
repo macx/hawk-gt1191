@@ -9,9 +9,10 @@ const tags = [...new Set(posts.flatMap((post) => post.data.tags))] as string[]
 
 export const title = 'Tags'
 export const description = 'Tags'
+export const layout = 'wide'
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} layout={layout}>
   <h1>{title}</h1>
 
   <Lead text={description} />

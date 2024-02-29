@@ -21,7 +21,8 @@ const tutorials = defineCollection({
         .optional(),
       tags: z.array(z.string()).optional(),
       headings: z.array(z.string()).optional(),
-      relatedPosts: z.array(reference('tutorials')).optional()
+      relatedPosts: z.array(reference('tutorials')).optional(),
+      layout: z.string().optional()
     })
 })
 

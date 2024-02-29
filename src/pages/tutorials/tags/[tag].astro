@@ -33,9 +33,10 @@ const { posts, tags } = Astro.props
 
 const title = `Tutorials mit dem Tag ${tag}`
 const description = `Liste aller Tutorials mit dem Stichwort ${tag}.`
+const layout = 'wide'
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} layout={layout}>
   <h1>{title}</h1>
 
   <Tags tags={tags} />

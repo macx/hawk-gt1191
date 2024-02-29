@@ -10,8 +10,10 @@ import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
 import TableOfContent from '../components/TableOfContents.astro'
 
+type Layout = 'wide' | 'standard'
+
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
-const { headings } = Astro.props
+const { headings, layout = 'standard' as Layout } = Astro.props
 const {
   title,
   description,
@@ -57,7 +59,7 @@ const {
     <Header />
 
     <main id='main'>
-      <div class='content'>
+      <div class:list={['content', { wide: layout === 'wide' }]}>
         <slot />
       </div>
 

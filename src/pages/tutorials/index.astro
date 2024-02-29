@@ -15,7 +15,12 @@ const description: string =
 const visible: boolean = true
 ---
 
-<BaseLayout title={title} description={description} visible={visible}>
+<BaseLayout
+  title={title}
+  description={description}
+  visible={visible}
+  layout='wide'
+>
   <h1>{title}</h1>
 
   <Lead text={description} />

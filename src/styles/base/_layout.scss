@@ -79,6 +79,10 @@ main {
   .content {
     width: 100%;
     max-width: var(--content-max-width);
+
+    &.wide {
+      max-width: unset;
+    }
   }
 
   aside {

@@ -17,6 +17,8 @@ const post = Astro.props
 
 const { Content, headings } = await post.render()
 
+export const layout = 'wide'
+
 post.data.headings = headings as unknown as string[]
 ---
 
@@ -40,7 +42,7 @@ post.data.headings = headings as unknown as string[]
       <Button href='/tutorials' label='Zu den Tutorials' primary={true} />
     </BaseLayout>
   ) : (
-    <BlogPostLayout {...post.data}>
+    <BlogPostLayout {...post.data} layout={layout}>
       <Content />
     </BlogPostLayout>
   )

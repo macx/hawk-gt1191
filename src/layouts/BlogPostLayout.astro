@@ -9,6 +9,8 @@ import Figure from '../components/Figure.astro'
 
 type Props = CollectionEntry<'tutorials'>['data']
 
+type Layout = 'wide' | 'standard'
+
 const {
   title,
   description,
@@ -17,7 +19,8 @@ const {
   heroImage,
   tags,
   isDraft,
-  headings
+  headings,
+  layout = 'standard' as Layout
 } = Astro.props
 
 const toc = true
@@ -28,6 +31,7 @@ const toc = true
   description={description}
   headings={headings}
   toc={toc}
+  layout={layout}
 >
   <article>
     <header>
