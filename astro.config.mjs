@@ -1,7 +1,9 @@
 import { defineConfig } from 'astro/config'
 import mdx from '@astrojs/mdx'
-// import astroFont from '@gamesome/astro-font'
+import astroFont from '@gamesome/astro-font'
 import icon from 'astro-icon'
+import sitemap from '@astrojs/sitemap'
+import pageInsight from 'astro-page-insight'
 
 import { remarkModifiedTime } from './remark-plugins/remark-modified-time.mjs'
 import { remarkDeruntify } from './remark-plugins/remark-deruntify.mjs'
@@ -56,27 +58,34 @@ export default defineConfig({
       },
       gfm: true
     }),
-    // astroFont({
-    //   families: [
-    //     {
-    //       name: 'Open Sans Variable',
-    //       imports: ['@fontsource-variable/open-sans/wdth.css']
-    //     },
-    //     {
-    //       name: 'Domine Variable',
-    //       type: 'sans-serif',
-    //       applyFontFamilyToSelector: ':is(h1, h2, h3, h4)',
-    //       imports: ['@fontsource-variable/open-sans/wdth.css']
-    //     },
-    //     {
-    //       name: 'JetBrains Mono Variable',
-    //       type: 'mono',
-    //       fallbacks: ['Courier New'],
-    //       applyFontFamilyToSelector: 'code',
-    //       imports: ['@fontsource-variable/open-sans/wdth.css']
-    //     }
-    //   ]
-    // }),
+    pageInsight(),
+    sitemap({
+      lastmod: Date(),
+      filter: (page) =>
+        page !== 'http://hawk-gt1191.de/impressum' &&
+        page !== 'http://hawk-gt1191.de/datenschutz'
+    }),
+    astroFont({
+      families: [
+        {
+          name: 'Open Sans Variable',
+          imports: ['@fontsource-variable/open-sans/wdth.css']
+        },
+        {
+          name: 'Domine Variable',
+          type: 'sans-serif',
+          applyFontFamilyToSelector: ':is(h1, h2, h3, h4)',
+          imports: ['@fontsource-variable/domine/wght.css']
+        },
+        {
+          name: 'JetBrains Mono Variable',
+          type: 'mono',
+          fallbacks: ['Courier New'],
+          applyFontFamilyToSelector: 'code',
+          imports: ['@fontsource-variable/jetbrains-mono/wght.css']
+        }
+      ]
+    }),
     icon({
       include: {
         materialSymbols: ['menu', 'close', 'arrow-upward-rounded'],

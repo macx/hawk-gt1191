@@ -7,13 +7,17 @@ export interface Props {
 const { tags, divider } = Astro.props
 const pathname = new URL(Astro.request.url).pathname
 const currentPath = pathname.split('/').slice(3).join('').trim()
+
+const sortedTags = tags.sort((a, b) =>
+  a.localeCompare(b, 'de', { sensitivity: 'base' })
+)
 ---
 
 {
-  tags && tags.length > 0 && (
+  sortedTags && sortedTags.length > 0 && (
     <ul class:list={['tags', { divider: divider === true }]}>
       <li>Verwendete Tags:</li>
-      {tags.map((tag) => (
+      {sortedTags.map((tag) => (
         <li class:list={['tag', { current: currentPath === tag }]}>
           <a href={`/tutorials/tags/${tag}/`}>{tag}</a>
         </li>

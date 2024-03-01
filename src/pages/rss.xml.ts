@@ -18,6 +18,6 @@ export async function GET(context: { site: string }) {
       description: article.data.description,
       link: `/tutorials/${article.slug}/`
     })),
-    customData: '<language>de-de</language>'
+    stylesheet: '/rss-styles.xsl'
   })
 }

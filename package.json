@@ -21,8 +21,8 @@
   "dependencies": {
     "@astrojs/check": "^0.5.6",
     "@astrojs/mdx": "^2.1.1",
-    "@astrojs/prism": "^3.0.0",
     "@astrojs/rss": "^4.0.5",
+    "@astrojs/sitemap": "^3.1.1",
     "@astropub/md": "^0.4.0",
     "@fontsource-variable/domine": "^5.0.16",
     "@fontsource-variable/jetbrains-mono": "^5.0.19",
@@ -34,12 +34,11 @@
     "astro": "^4.4.6",
     "astro-embed": "^0.6.1",
     "astro-icon": "^1.1.0",
+    "astro-page-insight": "^0.0.18",
     "autoprefixer": "^10.4.17",
     "cssnano": "^6.0.5",
     "cssnano-preset-advanced": "^6.0.5",
-    "dayjs": "^1.11.10",
     "install": "^0.13.0",
-    "npm": "^10.5.0",
     "postcss": "^8.4.35",
     "postcss-scss": "^4.0.9",
     "rehype-autolink-headings": "^7.1.0",
@@ -47,8 +46,7 @@
     "rehype-slug": "^6.0.0",
     "remark-definition-list": "^2.0.0",
     "sass": "^1.71.1",
-    "typescript": "^5.3.3",
-    "yarn": "^1.22.21"
+    "typescript": "^5.3.3"
   },
   "devDependencies": {
     "prettier": "^3.2.5",

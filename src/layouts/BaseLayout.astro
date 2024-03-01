@@ -1,11 +1,7 @@
 ---
 import '../styles/main.scss'
 
-import '@fontsource-variable/open-sans'
-import '@fontsource-variable/domine'
-import '@fontsource-variable/jetbrains-mono'
-
-// import AstroFont from '@gamesome/astro-font/components/AstroFont.astro'
+import AstroFont from '@gamesome/astro-font/AstroFont.astro'
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
 import TableOfContent from '../components/TableOfContents.astro'
@@ -36,7 +32,7 @@ const {
     <meta name='description' content={description} />
 
     <!-- Fonts -->
-    <!-- <AstroFont /> -->
+    <AstroFont />
 
     <!-- Icons -->
     <link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png' />
@@ -47,6 +43,14 @@ const {
     <link rel='manifest' href='/app.webmanifest' />
     <meta name='msapplication-TileColor' content='#da532c' />
     <meta name='theme-color' content='#ffffff' />
+
+    <link
+      rel='alternate'
+      type='application/rss+xml'
+      title='RSS Feed'
+      href='/rss.xml'
+    />
+    <link rel='sitemap' href='/sitemap-index.xml' />
 
     <!-- Open Graph / Facebook -->
     <meta property='og:type' content='website' />

@@ -7,7 +7,7 @@ import Lead from '../../components/Lead.astro'
 const articles = await getCollection('tutorials', ({ data }) => {
   return import.meta.env.PROD ? data.isDraft !== true : true
 })
-articles.sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
+articles.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 
 const title: string = 'Tutorials zur Erstellung von Websites'
 const description: string =
