@@ -3,7 +3,6 @@ import mdx from '@astrojs/mdx'
 import astroFont from '@gamesome/astro-font'
 import icon from 'astro-icon'
 import sitemap from '@astrojs/sitemap'
-import pageInsight from 'astro-page-insight'
 
 import { remarkModifiedTime } from './remark-plugins/remark-modified-time.mjs'
 import { remarkDeruntify } from './remark-plugins/remark-deruntify.mjs'
@@ -58,7 +57,6 @@ export default defineConfig({
       },
       gfm: true
     }),
-    pageInsight(),
     sitemap({
       lastmod: Date(),
       filter: (page) =>
