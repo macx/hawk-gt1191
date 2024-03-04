@@ -56,4 +56,11 @@ const openGraphImage = Astro.url.pathname.startsWith('/tutorials')
 <meta property='og:description' content={description} />
 <meta property='og:url' content={canonicalURL} />
 <meta property='og:type' content={type} />
-{openGraphImage && <meta property='og:image' content={openGraphImage.href} />}
+{
+  openGraphImage && (
+    <>
+      <meta property='og:image' content={openGraphImage.href} />
+      <meta property='og:image:alt' content={title} />
+    </>
+  )
+}
