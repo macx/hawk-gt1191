@@ -1,15 +1,40 @@
 ---
+import type { ImageMetadata } from 'astro'
+import { Image } from 'astro:assets'
 import { markdown } from '@astropub/md'
 
-type Props = {
+interface Props {
+  imagePath?: string
+  alt?: string
   caption?: string | boolean
 }
 
-const { caption } = Astro.props
+const { imagePath, caption, alt } = Astro.props
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/images/**/*.{jpeg,jpg,png}'
+)
+
+if (imagePath !== undefined && !images[imagePath]) {
+  throw new Error(
+    `Das Bild "${imagePath}" existiert im angegeben Verzeichnis nicht.`
+  )
+}
 ---
 
 <figure>
-  <slot />
+  {
+    imagePath !== undefined && images[imagePath] ? (
+      <Image
+        src={images[imagePath]()}
+        widths={[380, 670, 710]}
+        sizes={`(max-width: 480px) 380px, (max-width: 800) 670px, 710px`}
+        alt={alt}
+      />
+    ) : (
+      <slot />
+    )
+  }
 
   {
     caption && typeof caption === 'string' ? (

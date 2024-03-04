@@ -36,7 +36,7 @@ $ yarn build
 
 Inside the Projects, you'll see the following folders and files:
 
-```text
+```plaintext
 /
 ├── public/
 ├── src/

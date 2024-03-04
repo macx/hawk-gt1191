@@ -1,63 +1,27 @@
 ---
 import '../styles/main.scss'
 
-import AstroFont from '@gamesome/astro-font/AstroFont.astro'
-import Header from '../components/Header.astro'
-import Footer from '../components/Footer.astro'
-import TableOfContent from '../components/TableOfContents.astro'
+import Header from '@components/Header.astro'
+import Footer from '@components/Footer.astro'
+import TableOfContent from '@components/TableOfContents.astro'
+import Metadata from '@components/Metadata.astro'
 
 type Layout = 'wide' | 'standard'
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 const { headings, layout = 'standard' as Layout } = Astro.props
-const {
-  title,
-  description,
-  toc,
-  heroImage = '/images/hawk-aussen.jpg'
-} = Astro.props.frontmatter || Astro.props
+const { title, description, pubDate, toc, cover } =
+  Astro.props.frontmatter || Astro.props
 ---
 
 <!doctype html>
 <html lang='de'>
   <head>
-    <!-- Global Metad -->
-    <meta charset='UTF-8' />
-    <meta name='color-scheme' content='dark light' />
-    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-    <link rel='canonical' href={canonicalURL} />
-
-    <!-- Primary Meta -->
-    <title>{title} | HAWK GT 1191</title>
-    <meta name='description' content={description} />
-
-    <!-- Fonts -->
-    <AstroFont />
-
-    <!-- Icons -->
-    <link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png' />
-    <link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png' />
-    <link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png' />
-    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
-
-    <link rel='manifest' href='/app.webmanifest' />
-    <meta name='msapplication-TileColor' content='#da532c' />
-    <meta name='theme-color' content='#ffffff' />
-
-    <link
-      rel='alternate'
-      type='application/rss+xml'
-      title='RSS Feed'
-      href='/rss.xml'
+    <Metadata
+      title={title}
+      description={description}
+      image={cover}
+      pubDate={pubDate}
     />
-    <link rel='sitemap' href='/sitemap-index.xml' />
-
-    <!-- Open Graph / Facebook -->
-    <meta property='og:type' content='website' />
-    <meta property='og:url' content={Astro.url} />
-    <meta property='og:title' content={title} />
-    <meta property='og:description' content={description} />
-    <meta property='og:image' content={new URL(heroImage, Astro.url)} />
   </head>
   <body id='top'>
     <Header />

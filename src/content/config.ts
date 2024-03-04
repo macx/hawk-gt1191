@@ -2,7 +2,7 @@ import { defineCollection, reference, z } from 'astro:content'
 
 const tutorials = defineCollection({
   type: 'content',
-  schema: ({ image }) =>
+  schema: ({}) =>
     z.object({
       title: z.string(),
       description: z.string(),
@@ -10,11 +10,9 @@ const tutorials = defineCollection({
       author: reference('authors'),
       pubDate: z.coerce.date(),
       updateDate: z.coerce.date().optional(),
-      heroImage: z
+      cover: z
         .object({
-          src: image().refine((img) => img.width >= 1000, {
-            message: 'Hero image must be at least 1000 pixels wide'
-          }),
+          path: z.string(),
           alt: z.string(),
           caption: z.string().or(z.boolean()).optional()
         })

@@ -1,8 +1,8 @@
 ---
 import { getCollection } from 'astro:content'
-import BaseLayout from '../../../layouts/BaseLayout.astro'
-import Tags from '../../../components/Tags.astro'
-import Lead from '../../../components/Lead.astro'
+import BaseLayout from '@layouts/BaseLayout.astro'
+import Tags from '@components/Tags.astro'
+import Lead from '@components/Lead.astro'
 
 const posts = await getCollection('tutorials')
 const tags = [...new Set(posts.flatMap((post) => post.data.tags))] as string[]

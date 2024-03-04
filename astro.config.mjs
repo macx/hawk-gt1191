@@ -18,6 +18,7 @@ import rehypeSlug from 'rehype-slug'
 // https://astro.build/config
 export default defineConfig({
   site: 'https://hawk-gt1191.de',
+  trailingSlash: 'ignore',
   redirects: {
     '/komponenten': '/assets',
     '/links': '/dokumentation'

@@ -1,8 +1,8 @@
 ---
 import { getCollection } from 'astro:content'
-import BaseLayout from '../../layouts/BaseLayout.astro'
-import BlogPostLayout from '../../layouts/BlogPostLayout.astro'
-import Button from '../../components/Button.astro'
+import BaseLayout from '@layouts/BaseLayout.astro'
+import BlogPostLayout from '@layouts/BlogPostLayout.astro'
+import Button from '@components/Button.astro'
 
 export async function getStaticPaths() {
   const posts = await getCollection('tutorials')

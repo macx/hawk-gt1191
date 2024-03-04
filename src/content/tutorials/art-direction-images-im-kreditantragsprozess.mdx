@@ -1,27 +1,29 @@
 ---
-title: 'Art-Direction-Images im Kreditantragsprozess'
-description: 'Die Postbank zeigt, wie man auch in einem hochkritischen Prozess auf kreative Art und Weise Bilder darstellen kann. Mit einem hoch optimierten Front-end.'
+title: 'Art-Direction-Images im Kreditantrags-Prozess'
+description: 'Die Postbank zeigt, dass sich Corporate Design und optimierte Bilder für alle Endgeräte nicht ausschließen müssen. Technik-Check!'
 isDraft: true
 pubDate: 2024-03-03T07:00:00+01:00
 author: david-maciejewski
-heroImage:
-  src: './images/carina-studying-sass.webp'
-  alt: 'Carina sitzt an einem Tisch und schaut auf ihren großen Monitor und studiert den Code. Sie trägt eine Brille und hat einen Stift in der Hand.'
-  caption: 'Bei einem großen Projekt kann es schnell unübersichtlich werden.'
+cover:
+  path: '/src/images/tutorials/couple-looking-at-their-smartphone.png'
+  alt: 'Ein Pärchen schaut gemeinsam auf ihr Smartphone und lächelt.'
+  caption: 'Einen Kreditantrag auf einem Smartphone ausfüllen? Bei der Postbank geht’s.'
 tags: ['showcase']
 ---
 
-import Figure from '../../components/Figure.astro'
+import Figure from '@components/Figure.astro'
 
-> In diesem Showcase werfen wir einen Blick auf eine externe Website und wie sie ein einzelnes Features gut umgesetzt hat.
+## Antragsstrecke im Ratenkredit
 
-## Kreditantragsstrecke
+> In diesem **Showcase** werfen wir einen Blick auf die technische Umsetzung einer externe Website und geben Beispiele.
 
-Die Postbank bietet auf ihrer Website neben einem Ratenkredit-Rechner auch eine Online-Anfrage für Privat- und Autokredite. Das heißt, dass man dort seine Daten eingeben kann und erhält nach einem positiven Verlauf eine Kreditempfehlung und die Möglichkeit den Kredit zu beantragen. Das ist nicht nur für die Bank ein kritischer Prozess, sondern auch für die Antragsteller, denn naturgemäß müssen bei einem Kreditantrag sehr viele Formularfelder ausgefüllt werden.
+Die Postbank bietet auf ihrer Website neben einem Ratenkredit-Rechner auch eine Online-Anfrage für Privat- und Autokredite. Wer sich für einen Kredit interessiert, kann dort seine Daten eingeben und erhält nach einem positiven Verlauf eine Kreditempfehlung und die Möglichkeit den Kredit zu beantragen.
 
-Es geht also zum einen darum, den Prozess so zu gestalten, dass es zu keinen Abbruch kommt und zum anderen, dass die Anfoderungen an das Corporate Design erfüllt werden. Und zu dem gehört ein freundliches Bild auf der Startseite, welches wir uns einmal genauer anschauen werden.
+Das Ganze ist ein kritischer Prozess, denn naturgemäß müssen bei einem Kreditantrag sehr viele Formularfelder ausgefüllt werden. Es geht also zum einen darum, den Prozess so zu gestalten, dass es zu keinen Abbruch kommt und zum anderen, dass die Anfoderungen an das Corporate Design erfüllt werden. Und diesen Aspekt schauen wir uns auf der Einsteigssteite an, denn hier hat die Postbank einem Bildmotiv gleich zehn Varuanten spendiert.
 
 ## Das Aufmacherbild seziert
+
+<Figure imagePath="/src/images/tutorials/postbank-compare-screens.png" caption="foobar" alt="Alt" />
 
 Schauen wir uns zunächst einmal (vereinfacht) das HTML an, welches für das Bild verantwortlich ist. Was wir zunächst sehen ist sehr viel Code für ein einziges Bildmotiv. Diese sind aber in Abschnitte unterteilt, die ich hier durch Inline-Kommentare gekennzeichnet habe.
 

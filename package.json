@@ -30,6 +30,7 @@
     "@gamesome/astro-font": "^0.0.2",
     "@iconify-json/material-symbols": "^1.1.73",
     "@iconify-json/simple-icons": "^1.1.93",
+    "@vercel/og": "^0.6.2",
     "add": "^2.0.6",
     "astro": "^4.4.6",
     "astro-embed": "^0.6.1",

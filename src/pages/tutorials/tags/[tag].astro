@@ -1,8 +1,8 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content'
-import BaseLayout from '../../../layouts/BaseLayout.astro'
-import ArticleCard from '../../../components/ArticleCard.astro'
-import Tags from '../../../components/Tags.astro'
+import BaseLayout from '@layouts/BaseLayout.astro'
+import ArticleCard from '@components/ArticleCard.astro'
+import Tags from '@components/Tags.astro'
 
 export async function getStaticPaths() {
   const posts = await getCollection('tutorials', ({ data }) => {
