@@ -549,41 +549,41 @@
   resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.19.12.tgz#c57c8afbb4054a3ab8317591a0b7320360b444ae"
   integrity sha512-T1QyPSDCyMXaO3pzBkF96E8xMkiRYbUEZADd29SyPGabqxMViNoii+NcK7eWJAEoU6RZyEm5lVSIjTmcdoB9HA==
 
-"@fontsource-variable/domine@^5.0.16":
-  version "5.0.16"
-  resolved "https://registry.yarnpkg.com/@fontsource-variable/domine/-/domine-5.0.16.tgz#bab3c6cbc1c9f065a45697581cbc554f87027016"
-  integrity sha512-7yoBq8ApLyy/L7a2k4Kp6fkh01Edhl7IJTM7LWCDncYrDehW9zO5lpgbbYlgM3eNRouTaKhifNeBQJMMGmEt5g==
+"@fontsource-variable/domine@^5.0.17":
+  version "5.0.17"
+  resolved "https://registry.yarnpkg.com/@fontsource-variable/domine/-/domine-5.0.17.tgz#83cb056679a0587d9137e24c9b8f9c7f3b12b44c"
+  integrity sha512-efwP7r6vnHwfpSCEmEY37luhVvgK2PXNm8N4MI30f9gurlVUHRCiiJFTiZJPSnEoYon7fQB0/yq8IRihF40Heg==
 
-"@fontsource-variable/jetbrains-mono@^5.0.19":
-  version "5.0.19"
-  resolved "https://registry.yarnpkg.com/@fontsource-variable/jetbrains-mono/-/jetbrains-mono-5.0.19.tgz#e718de646e83b7caaeee484d2e18e1e3680ba8e1"
-  integrity sha512-7PTG1Kp3B/FgoNVPT8da4humj5JxQYxTtO08ZPS2IfanS37Yb/WShbgScnG/iupuFwiRnHVkIuC/2czxItxmyg==
+"@fontsource-variable/jetbrains-mono@^5.0.20":
+  version "5.0.20"
+  resolved "https://registry.yarnpkg.com/@fontsource-variable/jetbrains-mono/-/jetbrains-mono-5.0.20.tgz#7c393976674190830fb29c6019309a0f8356274c"
+  integrity sha512-IWJnmY9vT5Olcac1vzA7FMdnojCrZWMq+g7SqC2jsFpY0LQTjIgp9gBjjw9kUOkNbLw37/evZO4w6rdPeMA68A==
 
-"@fontsource-variable/open-sans@^5.0.25":
-  version "5.0.25"
-  resolved "https://registry.yarnpkg.com/@fontsource-variable/open-sans/-/open-sans-5.0.25.tgz#1d8a72de908581cd0545f88cf29f8816f11b304e"
-  integrity sha512-TQIAM60Y9h/JUoRDxiVTPL03+AzB9Vi7kzAMl9N8taBXUuKCMc0F8N/EG+GAAxMF936ecysRYx4UmwCPSGiX/g==
+"@fontsource-variable/open-sans@^5.0.26":
+  version "5.0.26"
+  resolved "https://registry.yarnpkg.com/@fontsource-variable/open-sans/-/open-sans-5.0.26.tgz#3dca328e63ba764a8b4e6f2eee1bb26c5497ff89"
+  integrity sha512-W1EJND+5FBzJqeoAdPGB3CBZ3heyeaWnGZBCDm83bm8yh0uxFu6GFGkflvaL2oJ+KUYsiEnRophA0NjD3vRZ1g==
 
-"@gamesome/astro-font@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@gamesome/astro-font/-/astro-font-0.0.2.tgz#6aae4b22c83e5d835ca92ec64ab43c6cc4741cd5"
-  integrity sha512-/p8nurEsfwyk5R/X2NUOGSBug++IpQxHoqdLQmo7XpR9qdxSp4hSGCtSta0Xnp77bfm8kvmNVy5EGQydP2XXyA==
+"@gamesome/astro-font@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@gamesome/astro-font/-/astro-font-0.0.3.tgz#c7e43ee5140941c6c49c41268a092291a78fb9e1"
+  integrity sha512-zEuHa2jngz1tqp/ZZP8yJCuuQPUoH33pE6DzOXmne3AaQz5CEyRRnZToy9seSj/zjIELkhOIOIpWu+oeq58YCg==
   dependencies:
     "@capsizecss/core" "3.1.1"
     "@capsizecss/metrics" "1.2.0"
     clean-css "5.3.2"
 
-"@iconify-json/material-symbols@^1.1.73":
-  version "1.1.73"
-  resolved "https://registry.yarnpkg.com/@iconify-json/material-symbols/-/material-symbols-1.1.73.tgz#33d8a69b9e334337d7bc8f61fa47d45b50ded199"
-  integrity sha512-3ioEMQvxUR0eWg3jCxeydowS7xlqJzUHqeKJg29Z5HN15ZBYniQhHYrDCRpmFjopgwxox9OIsoonBiBSLV4EMA==
+"@iconify-json/material-symbols@^1.1.74":
+  version "1.1.74"
+  resolved "https://registry.yarnpkg.com/@iconify-json/material-symbols/-/material-symbols-1.1.74.tgz#62da29191244d54e1a4f0718859658793bb8618c"
+  integrity sha512-cuQKvpGWrMNJq0i3ynO+V6yus0Smiupw92GW8Gq/4MHfYfbl1MrbVmafKQAd8RJVqiEXq4/F084OEcigf77UqQ==
   dependencies:
     "@iconify/types" "*"
 
-"@iconify-json/simple-icons@^1.1.93":
-  version "1.1.93"
-  resolved "https://registry.yarnpkg.com/@iconify-json/simple-icons/-/simple-icons-1.1.93.tgz#649b4bf3cbef78eccb238f7f3e227a20de8ed90e"
-  integrity sha512-rPsEIJlNZQJekCy5Qj6QHhrCJyCF0UAAql5PEz+B8iNvEn/BDyqq2zgpfxsU2KQn2NdCui8xnjZiuyTc5nwIqw==
+"@iconify-json/simple-icons@^1.1.94":
+  version "1.1.94"
+  resolved "https://registry.yarnpkg.com/@iconify-json/simple-icons/-/simple-icons-1.1.94.tgz#08819c5676ca907e5010fbc5db8b61cc66727f97"
+  integrity sha512-2UwwbEJeZ/aMpACG/dZoOhNszKFO+IjcRCbYB+lMqd+6fA5ewykRy63IP8//UdviazOPamGJ/XbNBJH/o1YFdQ==
   dependencies:
     "@iconify/types" "*"
 
@@ -1180,10 +1180,10 @@ astro-icon@^1.1.0:
     "@iconify/types" "^2.0.0"
     "@iconify/utils" "^2.1.5"
 
-astro@^4.4.6:
-  version "4.4.6"
-  resolved "https://registry.yarnpkg.com/astro/-/astro-4.4.6.tgz#de1cafdc9935c855dbfad8a799d4364d268df9aa"
-  integrity sha512-kns2TtiMYTyDPgcvtaQjMfBhY/F/2+O3eSX4XWH13FFQW1hp7AcTXfGwq8SvJ14JNoU4bsKeJbaB9CxUN9ZQlQ==
+astro@^4.4.11:
+  version "4.4.11"
+  resolved "https://registry.yarnpkg.com/astro/-/astro-4.4.11.tgz#851eaecd0ff42b42176202eada8a0a9461aeaa93"
+  integrity sha512-mJ1k67xzAJO1vTTpATe76uSWhOgiEj3Id7narE6X2rMMOBjR8vJM+9Cmv/Wbpot6uMwFo780skUowlMptK96fQ==
   dependencies:
     "@astrojs/compiler" "^2.5.3"
     "@astrojs/internal-helpers" "0.2.1"
@@ -1244,7 +1244,7 @@ astro@^4.4.6:
     tsconfck "^3.0.0"
     unist-util-visit "^5.0.0"
     vfile "^6.0.1"
-    vite "^5.1.2"
+    vite "^5.1.4"
     vitefu "^0.2.5"
     which-pm "^2.1.1"
     yargs-parser "^21.1.1"
@@ -1259,6 +1259,18 @@ autoprefixer@^10.4.17:
   dependencies:
     browserslist "^4.22.2"
     caniuse-lite "^1.0.30001578"
+    fraction.js "^4.3.7"
+    normalize-range "^0.1.2"
+    picocolors "^1.0.0"
+    postcss-value-parser "^4.2.0"
+
+autoprefixer@^10.4.18:
+  version "10.4.18"
+  resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-10.4.18.tgz#fcb171a3b017be7cb5d8b7a825f5aacbf2045163"
+  integrity sha512-1DKbDfsr6KUElM6wg+0zRNkB/Q7WcKYAaK+pzXn+Xqmszm/5Xa9coeNdtP88Vi+dPzZnMjhge8GIV49ZQkDa+g==
+  dependencies:
+    browserslist "^4.23.0"
+    caniuse-lite "^1.0.30001591"
     fraction.js "^4.3.7"
     normalize-range "^0.1.2"
     picocolors "^1.0.0"
@@ -1466,6 +1478,11 @@ caniuse-lite@^1.0.30001587:
   version "1.0.30001591"
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001591.tgz#16745e50263edc9f395895a7cd468b9f3767cf33"
   integrity sha512-PCzRMei/vXjJyL5mJtzNiUCKP59dm8Apqc3PH8gJkMnMXZGox93RbE76jHsmLwmIo6/3nsYIpJtx0O7u5PqFuQ==
+
+caniuse-lite@^1.0.30001591:
+  version "1.0.30001593"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001593.tgz#7cda1d9e5b0cad6ebab4133b1f239d4ea44fe659"
+  integrity sha512-UWM1zlo3cZfkpBysd7AS+z+v007q9G1+fLTUU42rQnY6t2axoogPW/xol6T7juU5EUoOhML4WgBIdG+9yYqAjQ==
 
 ccount@^2.0.0:
   version "2.0.1"
@@ -5456,10 +5473,10 @@ vfile@^6.0.0, vfile@^6.0.1:
     unist-util-stringify-position "^4.0.0"
     vfile-message "^4.0.0"
 
-vite@^5.1.2:
-  version "5.1.4"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-5.1.4.tgz#14e9d3e7a6e488f36284ef13cebe149f060bcfb6"
-  integrity sha512-n+MPqzq+d9nMVTKyewqw6kSt+R3CkvF9QAKY8obiQn8g1fwTscKxyfaYnC632HtBXAQGc1Yjomphwn1dtwGAHg==
+vite@^5.1.4:
+  version "5.1.5"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-5.1.5.tgz#bdbc2b15e8000d9cc5172f059201178f9c9de5fb"
+  integrity sha512-BdN1xh0Of/oQafhU+FvopafUp6WaYenLU/NFoL5WyJL++GxkNfieKzBhM24H3HVsPQrlAqB7iJYTHabzaRed5Q==
   dependencies:
     esbuild "^0.19.3"
     postcss "^8.4.35"
