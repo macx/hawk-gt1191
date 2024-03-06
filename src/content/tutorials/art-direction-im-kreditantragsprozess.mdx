@@ -1,0 +1,138 @@
+---
+title: 'Art Direction im Kreditantrags-Prozess'
+description: 'Ein Bildmotiv optimiert für alle Endgeräte, vom Smartphone bis zum großen Bildschirm: Die Postbank zeigt im Kreditantrag, wie es geht. Technik-Check!'
+isDraft: false
+pubDate: 2024-03-06T18:30:00+01:00
+author: david-maciejewski
+cover:
+  path: '/src/images/tutorials/couple-couch-smartphone.png'
+  alt: 'Ein Pärchen schaut gemeinsam auf ihr Smartphone und lächelt.'
+  caption: 'Einen Kreditantrag auf einem Smartphone ausfüllen? Bei der Postbank geht’s.'
+tags: ['showcase', 'images']
+---
+
+import Figure from '@components/Figure.astro'
+import Button from '@components/Button.astro'
+import Codepen from '@components/Codepen.astro'
+
+## Antragsstrecke im Ratenkredit
+
+Auch bei der Postbank kann man einen [Privatkredit online beantragen](https://www.postbank.de/privatkunden/produkte/kredite/privatkredit-direkt.html). Naturgemäß ist das ein Prozess, der einige Zeit in Anspruch nimmt, da viele Formularfelder auszufüllen sind. Die Postbank hat das Mobile First umgesetzt und setzt neben dem Unveiling-Konzept[^1] auch auf ein Bildmotiv, dass auf allen gängigen Endgeräten nicht nur gut aussieht, sondern auch schnell lädt. Und das schauen wir uns genauer an.
+
+> Im **Showcase** werfen wir einen Blick auf die technisch interessante Lösungen einer Website, damit du so etwas auch erstellen kannst.
+
+## Das Grundgerüst
+
+Das Bildmotiv wird bei der Postbank mit dem Titel kombiniert. Auf Smartphones erscheint dieser unter dem Bild, auf größeren Bildschirmen wird er auf das Foto platziert.
+
+<Figure imagePath="/src/images/tutorials/postbank-compare-screens.png" caption="Das Bildmotiv auf dem Smartphone, Tablet und großen Bildschirm." alt="Alt" />
+
+Das Bild selbst ist ein [Picture-Element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture), das dem Browser alternative Versionen des Bildes  anbietet. Das könnte für das Smartphone ein hochformatiges Bild sein und für den Desktop ein querformatiges mit unterschiedlichem Ausschnitt. Eine solche Optimierung nennt man **Art Direction**. Ziel ist es, dass der Browser stets das Bild lädt, das für das aktuelle Endgerät am besten geeignet ist.
+
+Schauen wir uns den Code dafür einmal an. Zum besseren Verständnis habe ich diesen in Abschnitte unterteilt und erkläre diese nacheinander.
+
+<Figure caption="Stark vereinfachter Code des Bild-Elements">
+  ```html
+  <div class="image-with-title">
+    <h1>Schnell und einfach zu Ihrem Wunschkredit</h1>
+
+    <picture>
+      <!-- A: Große Bildschirme-->
+      <source ../>
+
+      <!-- B: Tablets-->
+      <source ../>
+
+      <!-- C: Smartphones-->
+      <source ../>
+
+      <!-- D: Fallback-->
+      <img src="..." width="..." height="..." alt="...">
+    </picture>
+  </div>
+  ```
+</Figure>
+
+### A: Große Bildschirme
+
+In dem folgenden Code wird dem Browser über das `<source>`-Element und dessen `srcset=""`-Attribut mitgeteilt, dass das Bild `image-790x280` geladen werden soll, wenn der Bildschirm mindestens 790 Pixel breit ist, was über das `media=""`-Attribut wie in CSS definiert wird. Entweder in der alten Schreibweise `(min-width: 790px)` oder in der neuen `(width >= 790px)`.
+
+
+<Figure caption={false}>
+  ```html
+  <!-- A: Große Bildschirme-->
+  <source srcset="image-790x280.avif 790w" media="(min-width: 790px)" sizes="(min-width: 1060px) 1060px, 100vw" type="image/avif">
+
+  <source srcset="image-790x280.webp 790w" media="(min-width: 790px)" sizes="(min-width: 1060px) 1060px, 100vw" type="image/webp">
+
+  <source srcset="image-790x280.jpg 790w" media="(min-width: 790px)" sizes="(min-width: 1060px) 1060px, 100vw" type="image/jpeg">
+  ```
+</Figure>
+
+Die Angabe `790w` hinter dem Dateinamen informiert den Browser, dass dieses Bild tatsächlich 790 Pixel breit ist (`w` = width). Das `sizes=""`-Attribut definiert, wie groß das Bild auf dem Bildschirm dargestellt werden soll. In diesem Fall wird das Bild auf 1060 Pixel skaliert, wenn der Bildschirm mindestens 1060 Pixel breit ist. Ansonsten wird das Bild auf die volle Bildschirmbreite (100&#8239;% des Viewports) skaliert.
+
+Dieses `<source>`-Element gibt es gleich dreimal. Entscheidener Unterschied ist das Attribut `type=""`, über das die Dateiformate AVIF, WebP und JPEG definiert werden. AVIF-Bilder sind in der Regel besser komprimiert und damit kleiner als WebP, während WebP in der Regel kleiner als JPG ist – und das wirkt sich auf die Ladezeit aus Unterstützt der Browser also AVIF, lädt er das. Tut er das nicht, wird auf WebP zurückgegriffen. Und ist er auch dazu nicht in der Lage, wird das JPEG geladen. Auf der Seite [Can I use](https://caniuse.com/?search=image%20format) erfährst du mehr darüber, welche Browser welche Bildformate unterstützten.
+
+### B: Tablets
+
+Auch für Geräte in der Größenordnung eines Tablets gibt es drei `<source>`-Element. Hier wird das Bild `image-440x200` geladen, wenn der Bildschirm mindestens 440 Pixel und maximal 789 Pixel breit ist. Das Bild hat eine Größe von 440 Pixel (`440w`) und wird auf die volle Bildschirmbreite skaliert (`100vw`).
+
+<Figure caption={false}>
+  ```html
+  <!-- B: Tablets-->
+  <source srcset="image-440x200.avif 440w" media="(min-width: 440px) and (max-width: 789px)" sizes="100vw" type="image/avif">
+
+  <source srcset="image-440x200.webp 440w" media="(min-width: 440px) and (max-width: 789px)" sizes="100vw" type="image/webp">
+
+  <source srcset="image-440x200.jpg 440w" media="(min-width: 440px) and (max-width: 789px)" sizes="100vw" type="image/jpeg">
+  ```
+</Figure>
+
+### C: Smartphones
+
+Bei kleinen Geräten wie Smartphones, wird das Bild `image-400x170` geladen, wenn der Bildschirm maximal 439 Pixel breit ist. Das 400 Pixel breite Bild wird auf die volle Bildschirmbreite skaliert.
+
+Der Browser geht hier also in jedem Abschnitt von oben nach unten alle Varianten durch und zeigt das Bild, das für die aktuelle Bildschirmgröße am besten geeignet ist.
+
+<Figure caption={false}>
+  ```html
+  <!-- C: Smartphones-->
+  <source srcset="image-400x170.avif 400w" media="(max-width: 439px)" sizes="100vw" type="image/avif">
+
+  <source srcset="image-400x170.webp 400w" media="(max-width: 439px)" sizes="100vw" type="image/webp">
+
+  <source srcset="image-400x170.jpg 400w" media="(max-width: 439px)" sizes="100vw" type="image/jpeg">
+  ```
+</Figure>
+
+### D: Fallback
+
+Erst wenn alle oben aufgeführten Eventualitäten für den Bildschirm nicht greifen, wird das Bild `image-400x170.jpg` geladen. Es ist damit quasi ein Fallback. Gleichzeitig – und das ist wichtig zu verstehen – ist das `img`-Element dasjenige, welches das Bild tatsächlich auch anzeigt. Auch dann, wenn der Browser eine andere Variante wählt.
+
+<Figure caption={false}>
+  ```html
+  <!-- Abschnitt D-->
+  <img src="image-400x170.jpg 400w" width="400" height="170" alt="...">
+  ```
+</Figure>
+
+Über die Attribute `width` und `height` kann der Browser darüber hinaus das Seitenverhältnis berechnen und dem Bild genug Platz einräumen, bis es vollständig geladen wurde. Das Attribut `alt` gibt dem Browser an, was er textlich anzeigen soll, wenn das Bild nicht geladen werden kann. Dies sollte immer beschreibend sein.
+
+## Testen mit den Developer Tools
+
+Welches Bild tatsächlich geladen wird, kannst du in den Developer Tools deines Browsers überprüfen. In Chrome öffnest du die Developer Tools mit <kbd>F12</kbd> unter Windows und <kbd>Cmd</kbd> + <kbd>Option</kbd> + <kbd>I</kbd> unter macOS. Du wählst den Reiter `Network` aus und lädst die Seite neu. Dann suchst du nach dem Bild und siehst in der Spalte `Size`, welches Bild geladen wurde. In der Spalte `Initiator` siehst du, welches Element das Bild geladen hat. In der Spalte `Type` siehst du, welches Bildformat geladen wurde.
+
+Wenn du den Browser nun kleiner oder größer ziehst, kannst du beobachten, wie sich das Bild ändert. Das ist ein gutes Zeichen, dass das Bild responsiv ist. Lädst du die Seite neu, wird auch hier nur das Bild geladen, das für die aktuelle Bildschirmgröße vorgesehen ist.
+
+## Demo zum Ausprobieren
+
+In dem folgenden Codepen[^2] habe ich das Bildmotiv in anderer Konstellation nachgebaut. Ich habe Bilder vorbereitet, die als Motiv die Größe und das Format anzeigen. So kannst du auch ohne Developer Tools nachvollziehen, wann welches Bild geladen wird. Öffne dazu das Codepen und ziehe das Browserfenster kleiner und größer.
+
+<Codepen id="wvZamyR" height="500" tab="html"/>
+
+Ich wünsche viel Spaß beim Ausprobieren!
+
+<Button href="https://codepen.io/macx/pen/wvZamyR" label="Zur Demo" primary={true} />
+
+[^1]: Beim Unveiling-Konzept werden UI-Elemente in erster Linie erst dann angezeigt, wenn der User zuvor eine Auswahl getroffen hat, die das Anzeigen des Elements notwendig macht. Das räumt die Oberfläche auf und senkt die Komplexität. Das ist besonders auf mobilen Endgeräten wichtig, da hier der Platz begrenzt ist
+[^2]: Codepen ist ein Online-Editor, in dem du HTML, CSS und JavaScript ausprobieren kannst. Du kannst dich auch mit deinem GitHub-Account anmelden und eigene Projekte anlegen. Das ist kostenlos.

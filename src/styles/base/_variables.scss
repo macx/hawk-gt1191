@@ -32,13 +32,12 @@
   --clr-bg-nav: var(--clr-bg-card);
 
   --clr-shade: #cfd8dc;
-  --clr-text: rgb(38, 50, 56);
-  --clr-text-light: rgba(38, 50, 56, 0.7);
+  --clr-text: rgb(15, 23, 42);
+  --clr-text-light: rgba(15, 23, 42, 0.7);
   --clr-text--dark: #000;
   --clr-text--code: #1976d2;
   --clr-inverse: hsl(0, 0%, 100%);
   --clr-section: hsl(0 0% 100% / 0.5);
-  // --clr-line: rgba(0, 0, 0, 0.2);
   --clr-header: rgba(6, 13, 18, 0.8);
   --clr-marker: hsl(60 100% 70% / 1);
 
@@ -81,7 +80,7 @@
   --fs-l: 1.25rem;
 
   // Line Heights
-  --lh: 1.5;
+  --lh: 1.6;
   --lh-s: 1.3;
 
   --footer-bg: linear-gradient(

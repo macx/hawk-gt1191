@@ -1,0 +1,42 @@
+---
+interface Props {
+  id: string
+  tab?: string
+  height?: number
+}
+
+const { id, height = 600, tab = 'html,result' } = Astro.props
+const penHeight = `${height}px`
+---
+
+<div class='codepen-wrapper'>
+  <p
+    class='codepen'
+    data-height={penHeight}
+    data-theme-id='48919'
+    data-default-tab={tab}
+    data-slug-hash={id}
+    data-preview='true'
+    data-editable='true'
+    data-user='macx'
+  >
+    <span>
+      Öffne den <a href={`https://codepen.io/macx/pen/${id}`}>Codepen</a>.
+    </span>
+  </p>
+
+  <script
+    async
+    src='https://cpwebassets.codepen.io/assets/embed/ei.js'
+    is:inline></script>
+</div>
+
+<style lang='scss' define:vars={{ 'pen-height': penHeight }}>
+  @use '../styles/base/mixins';
+
+  .codepen-wrapper {
+    @include mixins.media-item();
+
+    height: calc(var(--pen-height) + (var(--sp) * 2));
+  }
+</style>
