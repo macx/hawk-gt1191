@@ -55,22 +55,24 @@ if (!images[imagePath]) {
     @include mixins.media-item('article');
 
     position: relative;
+    transition: box-shadow var(--transition);
+
+    &:hover,
+    &.focus {
+      box-shadow: 0 0.53em 1em -0.5rem rgba(0, 0, 0, 0.2);
+    }
 
     a {
-      display: grid;
-      grid-template-areas:
-        'header'
-        'image'
-        'description';
+      display: flex;
+      flex-direction: column;
       color: var(--clr-text);
       text-decoration: none;
-      transition: box-shadow var(--transition);
+      height: 100%;
 
       &:hover,
       &:focus {
         color: currentColor;
         text-decoration: none;
-        box-shadow: 0 0.53em 1em -0.5rem rgba(0, 0, 0, 0.2);
 
         .title,
         .more {
@@ -114,6 +116,7 @@ if (!images[imagePath]) {
       font-size: var(--fs-s);
       padding: var(--sp);
       grid-area: description;
+      flex: 1;
     }
 
     .more {
