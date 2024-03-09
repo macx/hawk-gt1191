@@ -8,9 +8,10 @@ interface Props {
   canonicalUrl?: string
   type?: 'website' | 'article'
   pubDate?: string
+  redirect?: boolean
 }
 
-const { title, description, type = 'website', pubDate } = Astro.props
+const { title, description, type = 'website', pubDate, redirect } = Astro.props
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 
@@ -24,6 +25,7 @@ const openGraphImage = Astro.url.pathname.startsWith('/tutorials')
 <meta name='color-scheme' content='dark light' />
 <meta name='viewport' content='width=device-width, initial-scale=1.0' />
 <link rel='canonical' href={canonicalURL} />
+{redirect ? <meta http-equiv='refresh' content='0;url=/404' /> : null}
 
 <!-- Primary Meta -->
 <title>{title} | HAWK GT 1191</title>

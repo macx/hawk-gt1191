@@ -1,0 +1,126 @@
+---
+import { Icon } from 'astro-icon/components'
+
+interface Props {
+  length: number
+  currentUrl: string
+  currentPage: number
+  firstUrl: string
+  prevUrl: string
+  nextUrl: string
+  lastUrl: string
+}
+
+const { length, currentUrl, currentPage, firstUrl, prevUrl, nextUrl, lastUrl } =
+  Astro.props
+const paginationList = Array.from(
+  { length: length as unknown as number },
+  (_, i) => i + 1
+)
+---
+
+{
+  length > 1 ? (
+    <nav aria-label='Tutorials' class='pagination'>
+      {firstUrl == currentUrl ? (
+        <span class='disabled'>
+          <Icon name='material-symbols:keyboard-double-arrow-left' />
+        </span>
+      ) : (
+        <a href={firstUrl}>
+          <Icon name='material-symbols:keyboard-double-arrow-left' />
+        </a>
+      )}
+
+      {prevUrl ? (
+        <a href={prevUrl}>
+          <Icon name='material-symbols:keyboard-arrow-left' />
+        </a>
+      ) : (
+        <span class='disabled'>
+          <Icon name='material-symbols:keyboard-arrow-left' />
+        </span>
+      )}
+
+      {paginationList.map((num) => (
+        <a
+          href={`${firstUrl}${num == 1 ? '' : '/' + num}`}
+          class={`${currentPage == num ? 'current' : ''}`}
+        >
+          {num}
+        </a>
+      ))}
+      {nextUrl ? (
+        <a href={nextUrl}>
+          <Icon name='material-symbols:keyboard-arrow-right' />
+        </a>
+      ) : (
+        <span class='disabled'>
+          <Icon name='material-symbols:keyboard-arrow-right' />
+        </span>
+      )}
+
+      {lastUrl == currentUrl ? (
+        <span class='disabled'>
+          <Icon name='material-symbols:keyboard-double-arrow-right' />
+        </span>
+      ) : (
+        <a href={lastUrl}>
+          <Icon name='material-symbols:keyboard-double-arrow-right' />
+        </a>
+      )}
+    </nav>
+  ) : null
+}
+
+<style lang='scss'>
+  .pagination {
+    --size: 3.5ch;
+
+    display: flex;
+    justify-content: center;
+    gap: var(--sp-xs);
+    // border-block-start: 1px solid var(--clr-line);
+    padding-block: var(--sp-s);
+    background: linear-gradient(
+      to bottom,
+      rgb(0 0 0 / 0) calc(50% - 1px),
+      var(--clr-line) 50%,
+      rgb(0 0 0 / 0) calc(50% + 1px)
+    );
+
+    a,
+    span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: var(--clr-primary);
+
+      border-radius: 50%;
+      background-color: var(--clr-bg-card);
+
+      border: 1px solid var(--clr-line);
+      width: var(--size);
+      height: var(--size);
+      flex: 0 0 var(--size);
+
+      &:hover,
+      &:focus {
+        background-color: var(--clr-primary);
+        color: var(--clr-inverse);
+      }
+
+      &.current {
+        background-color: var(--clr-primary);
+        color: var(--clr-inverse);
+        pointer-events: none;
+      }
+
+      &.disabled {
+        color: var(--clr-line);
+        pointer-events: none;
+      }
+    }
+  }
+</style>

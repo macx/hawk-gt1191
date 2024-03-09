@@ -1,0 +1,60 @@
+---
+import { getCollection } from 'astro:content'
+import type { CollectionEntry } from 'astro:content'
+import BaseLayout from '@layouts/BaseLayout.astro'
+import ArticleCard from '@components/ArticleCard.astro'
+import Pagination from '@components/Pagination.astro'
+import Lead from '@components/Lead.astro'
+
+const { page } = Astro.props
+const articles = (page as any).data
+
+const title: string = 'Tutorials zur Erstellung von Websites'
+const description: string =
+  'Du hast eine konkrete Idee, weißt aber nicht, wie du sie umsetzen sollst? Hier findest du Tutorials aus dem Seminar GT 1191.'
+const visible: boolean = true
+export const limit: number = 6
+
+export async function getStaticPaths({ paginate }: any) {
+  const articles: CollectionEntry<'tutorials'>[] = await getCollection(
+    'tutorials',
+    ({ data }) => {
+      return import.meta.env.PROD ? data.isDraft !== true : true
+    }
+  )
+  articles.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+
+  return paginate(articles, { pageSize: limit })
+}
+---
+
+{
+  articles.length > 0 ? (
+    <BaseLayout
+      title={title}
+      description={description}
+      visible={visible}
+      layout='wide'
+    >
+      <h1>{title}</h1>
+      <Lead text={description} />
+      <section class='articles'>
+        {articles.map((article: CollectionEntry<'tutorials'>) => (
+          <ArticleCard article={article} />
+        ))}
+      </section>
+
+      <Pagination
+        length={(page as any).lastPage}
+        currentUrl={(page as any).url.current}
+        currentPage={(page as any).currentPage}
+        firstUrl={`/tutorials`}
+        prevUrl={(page as any).url.prev}
+        nextUrl={(page as any).url.next}
+        lastUrl={`/tutorials/${(page as any).lastPage}`}
+      />
+    </BaseLayout>
+  ) : (
+    <BaseLayout redirect={true} />
+  )
+}

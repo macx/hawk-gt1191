@@ -2,7 +2,6 @@
 import { getCollection } from 'astro:content'
 import BaseLayout from '@layouts/BaseLayout.astro'
 import BlogPostLayout from '@layouts/BlogPostLayout.astro'
-import Button from '@components/Button.astro'
 
 export async function getStaticPaths() {
   const posts = await getCollection('tutorials')
@@ -24,23 +23,7 @@ post.data.headings = headings as unknown as string[]
 
 {
   import.meta.env.PROD && post.data.isDraft === true ? (
-    <BaseLayout>
-      <h1>Nanu, weg ist er…</h1>
-
-      <p>
-        An dieser Stelle sollte eigentlich ein Blogartikel erscheinen. Dieser
-        ist allerdings aktuell nicht (mehr) öffentlich.
-      </p>
-
-      <p>
-        Das kann verschiedene Gründe haben: veraltet, nicht mehr relevant, oder
-        einfach nur, weil ich gerade dabei bin, ihn zu&nbsp;bearbeiten.
-      </p>
-
-      <p>Schau dir doch gern die anderen Artikel an:</p>
-
-      <Button href='/tutorials' label='Zu den Tutorials' primary={true} />
-    </BaseLayout>
+    <BaseLayout redirect={true} />
   ) : (
     <BlogPostLayout {...post.data} layout={layout}>
       <Content />

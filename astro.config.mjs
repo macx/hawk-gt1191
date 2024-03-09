@@ -87,7 +87,15 @@ export default defineConfig({
     }),
     icon({
       include: {
-        materialSymbols: ['menu', 'close', 'arrow-upward-rounded'],
+        materialSymbols: [
+          'menu',
+          'close',
+          'arrow-upward-rounded',
+          'keyboard-double-arrow-left',
+          'keyboard-double-arrow-right',
+          'keyboard-arrow-left',
+          'keyboard-arrow-right'
+        ],
         simpleIcons: ['discord', 'github']
       },
       svgoOptions: {
