@@ -9,7 +9,7 @@ import Metadata from '@components/Metadata.astro'
 type Layout = 'wide' | 'standard'
 
 const { headings, layout = 'standard' as Layout, redirect } = Astro.props
-const { title, description, pubDate, toc, cover } =
+const { title, description, pubDate, toc, cover, ogType } =
   Astro.props.frontmatter || Astro.props
 ---
 
@@ -22,6 +22,7 @@ const { title, description, pubDate, toc, cover } =
       image={cover}
       pubDate={pubDate}
       redirect={redirect}
+      type={ogType}
     />
   </head>
   <body id='top'>

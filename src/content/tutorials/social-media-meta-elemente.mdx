@@ -1,0 +1,85 @@
+---
+title: 'Im Rampenlicht: So optimierst du deine Website für Social-Media'
+description: 'Meta-Elemente, das Open Graph Protokoll und ein attraktives Teaser-Bild sorgen dafür, dass deine Website bei Facebook und Co. auffällt.'
+isDraft: false
+pubDate: 2024-03-13T17:00:00+01:00
+author: david-maciejewski
+cover:
+  path: '/src/images/tutorials/girl-on-stage.png'
+  alt: 'Mädchen steht im Pyjama und ihrem Teddy-Bär auf der Bühne vor einem großen Publikum'
+  caption: 'Eine coole Website erstellen ist das ein, diese auch professionell zu präsentieren das andere.'
+tags: ['socialmedia', 'html']
+---
+
+import Figure from '@components/Figure.astro'
+import { SITE_CONST } from '../../const.ts'
+
+## Inhalte auf Social-Media teilen
+
+Die meisten Social-Media-Plattformen, wie Facebook, LinkedIn oder X (Twitter), zeigen die dort geteilten Inhalte und Websites in einem Teaser-Format an, bestehend aus einem Bild, dem Titel und einer kurzen Beschreibung.
+
+Schauen wir uns einmal kurz an, wie unser Tutorial [Styles modular organisieren mit Sass](https://hawk-gt1191.de/tutorials/styles-modular-organisieren-mit-sass/) auf LinkedIn aussieht, wenn man es dort teilt:
+
+<Figure imagePath="/src/images/tutorials/social-media-share-meta.png" caption="LinkedIn zeigt Teaser und Titel. Andere Plattformen zeigen darüber hinaus auch die Kurzbeschreibung." alt="Screenshot aus LinkedIn, wie ein Beitrag geteilt wird. Dieser wird mit Bild und Titel dargestellt." />
+
+Doch woher kommen diese Informationen? Wie kannst du sicherstellen, dass dort das gezeigt wird, was du möchtest?
+
+## Die Lösung: Meta-Elemente
+
+Maßgeblich verantwortlich dafür sind [Meta-Daten](https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/The_head_metadata_in_HTML#metadata_the_meta_element) im `<head>`-Bereich der Website. Diese enthalten Informationen, die von Suchmaschinen und Social-Media-Plattformen ausgelesen werden. Konkret sieht das so aus:
+
+<Figure>
+  ```html
+  <meta property="og:title" content="...">
+  <meta property="og:description" content="...">
+  <meta property="og:url" content="https://...">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://...">
+  <meta property="og:image:alt" content="...">
+  ```
+</Figure>
+
+In der `property`-Eigenschaft wird der Name des Meta-Elements angegeben, in der `content`-Eigenschaft der Wert. Die `og:`-Präfixe stehen für das [Open Graph Protokoll](https://ogp.me/), das von Facebook entwickelt wurde und von den meisten Plattformen unterstützt wird. Im Detail sind das:
+
+`og:title`
+: Der Titel des Artikels, der Unterseite oder Website ohne Branding.<br />
+50-60 Zeichen, maximal 70.
+
+`og:description`
+: Eine kurze Beschreibung des Inhalts.<br />
+100-160 Zeichen lang.
+
+`og:url`
+: Die URL der Seite, die du teilen willst.
+
+`og:type`
+: Der Typ der Seite. In den meisten Fällen `article` oder `website`.
+
+`og:image`
+: Die URL des Teaser-Bildes.<br />
+1200x630 Pixel groß.
+
+`og:image:alt`
+: Ein alternativer Text für das Teaser-Bild.
+
+Die Meta-Elemente `<title>` und `<meta name="description">` deiner Website spielen hier übrigens keine Rolle. Für die Social-Media-Optimierung reichen die Meta-Elemente des Open Graph Protokolls.
+
+Auch für X (Twitter) gibt es dedizierte Meta-Elemente. Zwei Dinge sprechen allerdings gegen dessen Verwendung. Zum einen sind es politisch-ethische Gründe, zum anderen nutzt auch X das Open Graph Protokoll als Fallback.
+
+## Teaser-Bild
+
+Als Bild für den Teaser solltest du ein Bild wählen, das den Inhalt der Seite gut repräsentiert. Es sollte 1200x630 Pixel groß sein und über eine URL deiner Website aufrufbar sein. Das Bild sollte auch einen alternativen Text haben, der beschreibt, was auf dem Bild zu sehen ist.
+
+Gibst du kein Bild an, wird entweder das erste Bild der Seite genommen oder ein Standardbild der Plattform verwendet. Daher solltest du dir die Arbeit machen und ein attraktives Bild bereitstellen. Das lässt sich im Übrigen auch automatisieren, wenn du über einen gewissen Erfahrungsschatz verfügst und deine Entwicklungsumgebung das hergibt.
+
+## Überprüfen der Ergebnisse
+
+Um zu überprüfen, ob deine Meta-Elemente korrekt gesetzt sind, gibt es Tools, die ich dir in den [Assets](/assets#inhalte) verlinkt habe. Eines ist das [Meta Tags Toolkit](https://metatags.io/) oder der [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/). Dort gibst du die URL deiner Website ein und siehst, wie die Website auf den Plattformen dargestellt wird.
+
+> Teste bitte deine Website, die du unter deiner eigenen Domain bereitgestellt hast. Deine lokale Entwicklungsumgebung (z.&#8239;B. localhost) ist für die Tools von außen nicht erreichbar.
+>
+> Beachte bitte auch, dass die Social-Media-Plattformen die Meta-Informationen zwischenspeichern. Änderst du diese also, kann es sein, dass die Änderungen nicht sofort sichtbar sind. In diesem Fall kannst du die Plattform bitten, die Daten neu auszulesen.
+
+Jetzt wünsche ich viel Spaß beim ausprobieren! 🚀
+
+Wenn du Fragen hast, wende dich bitte über [Discord]({SITE_CONST.links.discord}) an die Community.
