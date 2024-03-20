@@ -27,7 +27,7 @@ Das Bildmotiv wird bei der Postbank mit dem Titel kombiniert. Auf Smartphones er
 
 <Figure imagePath="/src/images/tutorials/postbank-compare-screens.png" caption="Das Bildmotiv auf dem Smartphone, Tablet und großen Bildschirm." alt="Alt" />
 
-Das Bild selbst ist ein [Picture-Element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture), das dem Browser alternative Versionen des Bildes  anbietet. Das könnte für das Smartphone ein hochformatiges Bild sein und für den Desktop ein querformatiges mit unterschiedlichem Ausschnitt. Eine solche Optimierung nennt man **Art Direction**. Ziel ist es, dass der Browser stets das Bild lädt, das für das aktuelle Endgerät am besten geeignet ist.
+Das Bild selbst ist als [Picture-Element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture) angelegt, das dem Browser alternative Versionen des Bildes  anbietet. Das könnte für das Smartphone ein hochformatiges Bild sein und für den Desktop ein querformatiges mit unterschiedlichem Ausschnitt. Eine solche Optimierung nennt man **Art Direction**. Ziel ist es, dass der Browser stets das Bild lädt, das für das aktuelle Endgerät am besten geeignet ist.
 
 Schauen wir uns den Code dafür einmal an. Zum besseren Verständnis habe ich diesen in Abschnitte unterteilt und erkläre diese nacheinander.
 
@@ -71,11 +71,11 @@ In dem folgenden Code wird dem Browser über das `<source>`-Element und dessen `
 
 Die Angabe `790w` hinter dem Dateinamen informiert den Browser, dass dieses Bild tatsächlich 790 Pixel breit ist (`w` = width). Das `sizes=""`-Attribut definiert, wie groß das Bild auf dem Bildschirm dargestellt werden soll. In diesem Fall wird das Bild auf 1060 Pixel skaliert, wenn der Bildschirm mindestens 1060 Pixel breit ist. Ansonsten wird das Bild auf die volle Bildschirmbreite (100&#8239;% des Viewports) skaliert.
 
-Dieses `<source>`-Element gibt es gleich dreimal. Entscheidener Unterschied ist das Attribut `type=""`, über das die Dateiformate AVIF, WebP und JPEG definiert werden. AVIF-Bilder sind in der Regel besser komprimiert und damit kleiner als WebP, während WebP in der Regel kleiner als JPG ist – und das wirkt sich auf die Ladezeit aus Unterstützt der Browser also AVIF, lädt er das. Tut er das nicht, wird auf WebP zurückgegriffen. Und ist er auch dazu nicht in der Lage, wird das JPEG geladen. Auf der Seite [Can I use](https://caniuse.com/?search=image%20format) erfährst du mehr darüber, welche Browser welche Bildformate unterstützten.
+Dieses `<source>`-Element gibt es gleich dreimal. Entscheidener Unterschied ist die Dateiendung, sowie das das dazu passende Attribut `type=""`. Zuerst wird ein sehr gut kompromiertes Bild im AVIF-Format deklariert, das kleiner ist als ein WebP-Bild ist, das wiederum kleiner ist als ein JPEG-Bild. Das wirkt sich auf die Ladezeit aus. Unterstützt der Browser also AVIF, lädt er das. Tut er das nicht, wird auf WebP zurückgegriffen. Und ist er auch dazu nicht in der Lage, wird das JPEG geladen. Auf der Seite [Can I use](https://caniuse.com/?search=image%20format) erfährst du mehr darüber, welche Browser welche Bildformate unterstützten.
 
 ### B: Tablets
 
-Auch für Geräte in der Größenordnung eines Tablets gibt es drei `<source>`-Element. Hier wird das Bild `image-440x200` geladen, wenn der Bildschirm mindestens 440 Pixel und maximal 789 Pixel breit ist. Das Bild hat eine Größe von 440 Pixel (`440w`) und wird auf die volle Bildschirmbreite skaliert (`100vw`).
+Auch für Geräte in der Größenordnung eines Tablets gibt es drei `<source>`-Elemente. Hier wird das Bild `image-440x200` geladen, wenn der Bildschirm mindestens 440 Pixel und maximal 789 Pixel breit ist. Das Bild hat eine Größe von 440 Pixel (`440w`) und wird auf die volle Bildschirmbreite skaliert (`100vw`).
 
 <Figure caption={false}>
   ```html
@@ -92,8 +92,6 @@ Auch für Geräte in der Größenordnung eines Tablets gibt es drei `<source>`-E
 
 Bei kleinen Geräten wie Smartphones, wird das Bild `image-400x170` geladen, wenn der Bildschirm maximal 439 Pixel breit ist. Das 400 Pixel breite Bild wird auf die volle Bildschirmbreite skaliert.
 
-Der Browser geht hier also in jedem Abschnitt von oben nach unten alle Varianten durch und zeigt das Bild, das für die aktuelle Bildschirmgröße am besten geeignet ist.
-
 <Figure caption={false}>
   ```html
   <!-- C: Smartphones-->
@@ -104,6 +102,8 @@ Der Browser geht hier also in jedem Abschnitt von oben nach unten alle Varianten
   <source srcset="image-400x170.jpg 400w" media="(max-width: 439px)" sizes="100vw" type="image/jpeg">
   ```
 </Figure>
+
+Der Browser geht hier also in jedem Abschnitt von oben nach unten alle Varianten durch und zeigt das Bild, das für die aktuelle Bildschirmgröße am besten geeignet ist.
 
 ### D: Fallback
 
@@ -120,9 +120,9 @@ Erst wenn alle oben aufgeführten Eventualitäten für den Bildschirm nicht grei
 
 ## Testen mit den Developer Tools
 
-Welches Bild tatsächlich geladen wird, kannst du in den Developer Tools deines Browsers überprüfen. In Chrome öffnest du die Developer Tools mit <kbd>F12</kbd> unter Windows und <kbd>Cmd</kbd> + <kbd>Option</kbd> + <kbd>I</kbd> unter macOS. Du wählst den Reiter `Network` aus und lädst die Seite neu. Dann suchst du nach dem Bild und siehst in der Spalte `Size`, welches Bild geladen wurde. In der Spalte `Initiator` siehst du, welches Element das Bild geladen hat. In der Spalte `Type` siehst du, welches Bildformat geladen wurde.
+Welches Bild tatsächlich geladen wird, kannst du in den Developer Tools deines Browsers überprüfen. In Chrome öffnest du die Developer Tools mit <kbd>F12</kbd> unter Windows und <kbd>Cmd</kbd> + <kbd>Option</kbd> + <kbd>I</kbd> unter macOS. Du wählst den Reiter `Network` aus und lädst die Seite über den Reload-Button des Browsers neu. Suche in der Spalte `Name` nach dem Bild. Die Dateiendung, sowie die dazugehörigen Spalte `Type` sollten nun dem Bild enstprechen, welches du für die aktuelle Bildschirmgröße (Viewport) definiert hattest.
 
-Wenn du den Browser nun kleiner oder größer ziehst, kannst du beobachten, wie sich das Bild ändert. Das ist ein gutes Zeichen, dass das Bild responsiv ist. Lädst du die Seite neu, wird auch hier nur das Bild geladen, das für die aktuelle Bildschirmgröße vorgesehen ist.
+Wenn du den Browser nun kleiner oder größer ziehst, kannst du beobachten, wie die anderen Bilder nachgeladen werden. Lädst du die Seite nun noch einmal neu, wird auch hier nur das Bild geladen, das für den aktuelle Viewport vorgesehen ist.
 
 ## Demo zum Ausprobieren
 
@@ -132,7 +132,7 @@ In dem folgenden Codepen[^2] habe ich das Bildmotiv in anderer Konstellation nac
 
 Ich wünsche viel Spaß beim Ausprobieren!
 
-<Button href="https://codepen.io/macx/pen/wvZamyR" label="Zur Demo" primary={true} />
+<Button type="link" href="https://codepen.io/macx/pen/wvZamyR" label="Zur Demo" primary={true} />
 
 [^1]: Beim Unveiling-Konzept werden UI-Elemente in erster Linie erst dann angezeigt, wenn der User zuvor eine Auswahl getroffen hat, die das Anzeigen des Elements notwendig macht. Das räumt die Oberfläche auf und senkt die Komplexität. Das ist besonders auf mobilen Endgeräten wichtig, da hier der Platz begrenzt ist
 [^2]: Codepen ist ein Online-Editor, in dem du HTML, CSS und JavaScript ausprobieren kannst. Du kannst dich auch mit deinem GitHub-Account anmelden und eigene Projekte anlegen. Das ist kostenlos.
