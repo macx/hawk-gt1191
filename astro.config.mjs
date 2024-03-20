@@ -90,6 +90,7 @@ export default defineConfig({
         materialSymbols: [
           'menu',
           'close',
+          'monitor-outline',
           'arrow-upward-rounded',
           'keyboard-double-arrow-left',
           'keyboard-double-arrow-right',

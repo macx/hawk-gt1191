@@ -3,111 +3,104 @@ import { Icon } from 'astro-icon/components'
 ---
 
 <theme-switch>
-  <label class='theme-switch' for='theme-switch'>
-    <div class='theme-switch__button'>
-      <input
-        type='checkbox'
-        id='theme-switch'
-        class='theme-switch__input'
-        data-theme-switch
-        aria-label='Ändere das Theme'
-      />
-
-      <span class='theme-switch__slider'>
-        <span class='theme-switch__icon theme-switch__icon--on'>
+  <div class='theme-switch' title='Theme'>
+    <div class='theme-switch__control'>
+      <span class='theme-switch__inputs'>
+        <input
+          type='radio'
+          id='theme-switch-light'
+          class='theme-switch__input'
+          data-theme-switch
+          value='light'
+        />
+        <label for='theme-switch-light' aria-label='Light theme'>
           <Icon name='theme-light' aria-hidden='true' />
-        </span>
+        </label>
 
-        <span class='theme-switch__icon theme-switch__icon--off'>
+        <input
+          type='radio'
+          id='theme-switch-dark'
+          class='theme-switch__input'
+          data-theme-switch
+          value='dark'
+        />
+        <label for='theme-switch-dark' aria-label='Dark theme'>
           <Icon name='theme-dark' aria-hidden='true' />
-        </span>
+        </label>
+
+        <input
+          type='radio'
+          id='theme-switch-system'
+          class='theme-switch__input'
+          data-theme-switch
+          value='system'
+        />
+        <label for='theme-switch-system' aria-label='System theme'>
+          <Icon name='material-symbols:monitor-outline' aria-hidden='true' />
+        </label>
       </span>
     </div>
-  </label>
+  </div>
 </theme-switch>
 
 <style lang='scss'>
   @use '../styles/base/mixins';
 
   .theme-switch {
+    --inputs-padding: 0.125rem;
+    --icon-radius: 0.5rem;
+    --icon-padding-block: 0.25rem;
+    --icon-padding-inline: 0.5rem;
+
     $this: &;
-
-    position: relative;
-    user-select: none;
-    block-size: var(--header-height);
-
     display: flex;
     align-items: center;
-    cursor: pointer;
-    transition: background-color var(--transition);
 
-    &__input {
-      clip: rect(0 0 0 0);
-      clip-path: inset(100%);
-      height: 1px;
-      overflow: hidden;
-      position: absolute;
-      white-space: nowrap;
-      width: 1px;
+    padding-inline-start: var(--sp-xs);
+    block-size: var(--header-height);
 
-      &:checked + #{$this}__slider {
-        &::after {
-          left: calc(100% - 1.4rem - 0.2rem);
-        }
-      }
-    }
-
-    &__button {
-      border: 2px solid var(--clr-text);
-      border-radius: 4rem;
-    }
-
-    &__slider {
+    &__inputs {
       position: relative;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      width: 4rem;
-      padding: 0.3rem 0.6rem;
+      padding: var(--inputs-padding);
 
-      &::after {
-        content: '';
-        position: absolute;
-        top: 0.1rem;
-        width: 1.4rem;
-        height: 1.4rem;
-        border-radius: 50%;
-        background-color: var(--clr-text);
-        transition:
-          left var(--transition-theme),
-          background-color var(--transition-button);
-      }
-
-      :global([data-theme='dark']) &::after {
-        left: 0.2rem;
-      }
-
-      :global([data-theme='light']) &::after {
-        left: calc(100% - 1.4rem - 0.2rem);
-      }
+      background-color: var(--clr-bg-card);
+      border: 1px solid var(--clr-line);
+      border-radius: calc(var(--icon-radius) + var(--icon-padding-block));
     }
 
-    &__icon {
+    label {
       display: block;
-      width: 1rem;
-      height: 1rem;
-      fill: var(--clr-text);
-    }
+      font-size: var(--icon-size-header);
+      color: var(--clr-text);
+      background-color: transparent;
+      padding-block: var(--icon-padding-block);
+      padding-inline: var(--icon-padding-inline);
+      border-radius: var(--icon-radius);
+      cursor: pointer;
+      transition: background-color var(--transition);
 
-    &:hover,
-    &:focus-visible {
-      #{$this}__slider::after {
-        background-color: var(--clr-primary);
+      &:hover,
+      &:focus {
+        color: var(--clr-primary);
       }
     }
 
-    @include mixins.respond('l') {
-      padding-inline-start: var(--sp-xs);
+    &__input {
+      position: absolute;
+      inset: 0 0 auto auto;
+      width: 1px;
+      height: 1px;
+      clip: rect(0, 0, 0, 0);
+      clip-path: inset(100%);
+      border: 0;
+      white-space: nowrap;
+
+      &:checked + label {
+        background-color: var(--clr-primary);
+        color: var(--clr-inverse);
+      }
     }
   }
 </style>
@@ -117,57 +110,89 @@ import { Icon } from 'astro-icon/components'
     constructor() {
       super()
 
-      const inputEl = this.querySelector<HTMLInputElement>(
+      const inputElements = this.querySelectorAll<HTMLInputElement>(
         '[data-theme-switch]'
       )
 
-      if (inputEl) {
-        const getThemePreference = (): string => {
-          if (localStorage.getItem('theme')) {
-            return localStorage.getItem('theme')!
-          } else {
-            return window.matchMedia('(prefers-color-scheme: dark)').matches
-              ? 'dark'
-              : 'light'
-          }
-        }
+      if (inputElements.length > 0) {
+        const setThemePreference = (newTheme: string): void => {
+          const prefersScheme = window.matchMedia(
+            '(prefers-color-scheme: dark)'
+          ).matches
+            ? 'dark'
+            : 'light'
 
-        const setThemePreference = (): void => {
-          localStorage.setItem('theme', theme.value)
-          applyThemeAttributes()
+          theme.scheme =
+            newTheme === 'system' ? prefersScheme : (newTheme as ThemeSchmemes)
+          theme.name = newTheme
+
+          localStorage.setItem('theme', theme.name)
         }
 
         const applyThemeAttributes = (): void => {
-          document.documentElement.setAttribute('data-theme', theme.value)
+          document.documentElement.setAttribute('data-theme', theme.scheme)
 
-          inputEl.checked = theme.value === 'dark' ? false : true
+          inputElements.forEach((el) => {
+            if (theme.name === 'system') {
+              el.checked = el.value === 'system' ? true : false
+            } else {
+              if (el.value === theme.scheme) {
+                el.checked = true
+              } else {
+                el.checked = false
+              }
+            }
+          })
         }
 
+        type ThemeSchmemes = 'light' | 'dark'
+
         interface Theme {
-          value: string
+          name: string
+          scheme: ThemeSchmemes
         }
 
         const theme: Theme = {
-          value: getThemePreference()
+          name: localStorage.getItem('theme') || 'system',
+          scheme:
+            (localStorage
+              .getItem('theme')
+              ?.match(/light|dark/)?.[0] as ThemeSchmemes) ||
+            (window.matchMedia('(prefers-color-scheme: dark)').matches
+              ? 'dark'
+              : 'light')
         }
-
-        applyThemeAttributes()
 
         window.onload = () => {
           applyThemeAttributes()
 
-          inputEl.addEventListener('change', () => {
-            theme.value = theme.value === 'light' ? 'dark' : 'light'
-            applyThemeAttributes()
-            setThemePreference()
+          inputElements.forEach((el) => {
+            if (el.value === theme.name) {
+              el.checked = true
+            } else {
+              el.checked = false
+            }
+
+            el.addEventListener('change', () => {
+              setThemePreference(el.value)
+              applyThemeAttributes()
+            })
           })
         }
 
         window
           .matchMedia('(prefers-color-scheme: dark)')
           .addEventListener('change', () => {
-            theme.value = theme.value === 'dark' ? 'dark' : 'light'
-            setThemePreference()
+            if (theme.name !== 'system') return
+
+            const prefersScheme = window.matchMedia(
+              '(prefers-color-scheme: dark)'
+            ).matches
+              ? 'dark'
+              : 'light'
+
+            theme.scheme = prefersScheme as ThemeSchmemes
+            applyThemeAttributes()
           })
       }
     }

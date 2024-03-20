@@ -56,7 +56,7 @@ import { SITE_CONST } from '../const.ts'
     aria-label='Weiterführende Links'
   >
     <ul class='header-links'>
-      <li class='external'>
+      <li class='external' data-hint='Discord'>
         <a
           href={SITE_CONST.links.discord}
           target='_blank'
@@ -68,7 +68,7 @@ import { SITE_CONST } from '../const.ts'
           <span class='sr-only'>Discord</span>
         </a>
       </li>
-      <li class='external'>
+      <li class='external' data-hint='StudIP'>
         <a
           href={SITE_CONST.links.studip}
           target='_blank'
@@ -81,7 +81,7 @@ import { SITE_CONST } from '../const.ts'
           <span class='sr-only'>StudIP</span>
         </a>
       </li>
-      <li class='external'>
+      <li class='external' data-hint='GitHub'>
         <a
           href={SITE_CONST.links.github}
           target='_blank'
@@ -93,7 +93,7 @@ import { SITE_CONST } from '../const.ts'
           <span class='sr-only'>GitHub</span>
         </a>
       </li>
-      <li>
+      <li data-hint='Theme'>
         <ThemeSwitch />
       </li>
     </ul>
@@ -117,7 +117,7 @@ import { SITE_CONST } from '../const.ts'
     padding-inline: var(--sp-content);
 
     background-color: var(--clr-bg);
-    border-bottom: 1px solid var(--nav-border);
+    border-bottom: 1px solid var(--clr-line);
     box-shadow: 1.5rem 0 4rem -0.5rem var(--nav-shadow);
     transition: all var(--transition-theme);
 
@@ -147,6 +147,7 @@ import { SITE_CONST } from '../const.ts'
 
     @include mixins.respond('l') {
       display: flex;
+      align-items: center;
       flex: 0 1 auto;
     }
   }
@@ -258,6 +259,65 @@ import { SITE_CONST } from '../const.ts'
 
     :global(html[data-theme='light']) & .brand-hawk {
       fill: #15232d;
+    }
+  }
+
+  @media (hover: hover) {
+    [data-hint] {
+      position: relative;
+      z-index: 500;
+      cursor: pointer;
+
+      &::before,
+      &::after {
+        position: absolute;
+        left: 50%;
+        bottom: 0.25rem;
+        transition:
+          opacity 0.2s,
+          transform 0.2s;
+
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      &::before {
+        padding: 0.5em 1em 0.7em;
+        border-radius: var(--radius);
+        color: var(--clr-text);
+        background-color: var(--clr-bg-card);
+        border: 1px solid var(--clr-line);
+        content: attr(data-hint);
+
+        font-size: var(--fs-s);
+        line-height: 1.2em;
+        white-space: nowrap;
+        text-align: center;
+        box-shadow: 0 0.5rem 0.5rem -0.5rem rgb(0 0 0 / 0.2);
+        transform: translate(-50%, 0%);
+      }
+
+      &::after {
+        width: 0;
+        border: 5px solid transparent;
+        border-bottom-color: var(--clr-line);
+        content: '';
+        font-size: 0;
+        line-height: 0;
+        transform: translate(-50%, -100%);
+      }
+
+      &:hover {
+        &::before {
+          opacity: 1;
+          transform: translate(-50%, 100%);
+        }
+
+        &::after {
+          opacity: 1;
+          transform: translate(-50%, 0);
+        }
+      }
     }
   }
 </style>
