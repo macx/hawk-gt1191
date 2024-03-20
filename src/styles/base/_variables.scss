@@ -52,7 +52,7 @@
   --clr-primary-light: hsl(217 100% 40% / 0.7);
   --clr-selection: rgb(0 79 205 / 0.15);
 
-  --nav-shadow: rgba(109, 62, 62, 0.2);
+  --clr-nav-shadow: rgba(109, 62, 62, 0.2);
 
   --icon-size: 1.5rem;
   --icon-size-header: 1.25rem;
@@ -127,11 +127,13 @@
     --clr-primary: #2f81f7;
     --clr-marker: hsl(60 100% 70% / 0.2);
 
+    --clr-nav-shadow: rgb(255 2555 255 / 0.2);
+
     --footer-bg: linear-gradient(
       to bottom,
-      rgba(0, 0, 0, 0.2) 1px,
-      rgba(0, 0, 0, 0.1) 2px,
-      rgba(0, 0, 0, 0)
+      rgba(255, 255, 255, 0) 1px,
+      rgba(255, 255, 255, 0.1) 2px,
+      rgba(255, 255, 255, 0)
     );
   }
 }
