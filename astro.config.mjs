@@ -59,10 +59,10 @@ export default defineConfig({
       gfm: true
     }),
     sitemap({
-      lastmod: Date(),
+      lastmod: new Date(),
       filter: (page) =>
-        page !== 'http://hawk-gt1191.de/impressum' &&
-        page !== 'http://hawk-gt1191.de/datenschutz'
+        page !== 'https://hawk-gt1191.de/impressum/' &&
+        page !== 'https://hawk-gt1191.de/datenschutz/'
     }),
     astroFont({
       families: [

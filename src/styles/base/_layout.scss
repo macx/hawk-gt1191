@@ -36,6 +36,9 @@ body {
   transition:
     background-color var(--transition-theme),
     color var(--transition-theme);
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 img,

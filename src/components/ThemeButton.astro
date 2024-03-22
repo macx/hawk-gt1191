@@ -82,7 +82,7 @@
         : localStorage.getItem('theme')
   }
 
-  themeToggleButton.addEventListener('click', (e) => {
+  themeToggleButton.addEventListener('click', () => {
     const prefersScheme = window.matchMedia('(prefers-color-scheme: dark)')
       .matches
       ? 'dark'
