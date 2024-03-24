@@ -1,0 +1,152 @@
+---
+title: 'Dein Einstieg in HTML: Elemente, Tags und Attribute'
+description: 'Eine HTML-Seite kann relativ schnell komplex und unübersichtlich werden. Mit diesem Tutorial behältst du den Überblick und hast das Markup im Griff.'
+isDraft: true
+pubDate: 2024-03-24T14:00:00+01:00
+author: david-maciejewski
+cover:
+  path: '/src/images/tutorials/student-inspect-html.png'
+  alt: 'Mädchen steht im Pyjama und ihrem Teddy-Bär auf der Bühne vor einem großen Publikum'
+  caption: 'Eine coole Website erstellen ist das ein, diese auch professionell zu präsentieren das andere.'
+tags: ['html']
+---
+
+import Figure from '@components/Figure.astro'
+import { SITE_CONST } from '../../const.ts'
+
+## HTML
+
+Der Begriff HTML steht für Hypertext Markup Language und bezeichnet eine Auszeichnungssprache, die dazu dient, den Inhalt einer Website zu strukturieren. Dabei handelt es sich um reine Textdateien mit der Dateiendung `.html`, die im Browser gerendert werden und den sichtbaren Inhalt einer Website darstellen.
+
+### Elemente und Tags
+
+HTML ist wie ein Baukasten. Stell dir vor, dass alles, was du auf einer Webseite siehst – Überschriften, Textabschnitte, Bilder – jeweils in einer Box steckt. Diese Boxen nennen wir „Elemente“. Eine HTML-Seite setzt sich also aus ganz vielen Elementen zusammen, die du stapeln oder verschachteln kannst.
+
+Ein Element besteht aus einem Anfangs-Tag, dem eigentlichen Inhalt und einem End-Tag. Beide Tags beginnen und enden mit spitzen Klammern `<` und `>`. Das End-Tag erhält zusätzlich einen Schrägstrich `/` nach der ersten spitzen Klammer. Mit dem folgenden Schaubild wird das klarer:
+
+<Figure imagePath="/src/images/tutorials/html-element.png" imageFormat="png" caption="Die Anatomie eines HTML-Elements" alt="Schaubild eines HTML-Elements" />
+
+Wenn du eine Überschrift und einen Textabschnitt auf einer Website erstellen möchtest, könntest du das mit folgendem Markup tun:
+
+<Figure>
+  ```html
+  <h1>Überschrift</h1>
+
+  <p>Das ist ein Textabschnitt.</p>
+  ```
+</Figure>
+
+### Attribute
+
+Du kannst HTML-Tags mit Attributen erweitern, die zusätzliche Informationen enthalten, die sich darauf auswirken, wie der Browser das Element interpretiert.
+
+<Figure>
+  ```html
+  <a href="https://hawk-gt1191.de">GT 1191</h1>
+  ```
+</Figure>
+
+Das `<a>`-Element (oder Anker-Element) erstellt einen Link zu anderen Inhalten oder Seiten. Das `href`-Attribut enthält die URL, auf die verwiesen werden soll. In diesem Fall enthält der Link eine Referenz auf die Website des Seminars GT 1191.
+
+### Klassen und IDs
+
+Bei Klassen und IDs handelt es sich ebenfalls um Attribute. Mit ihnen kann man Elemente identifizieren, um sie mit CSS zu stylen oder mit JavaScript ansprechen zu können. Klassen werden durch ein `class`-Attribut definiert und können beliebig oft verwendet werden. IDs werden durch ein `id`-Attribut definiert und dürfen nur einmal pro Dokument vorkommen.
+
+<Figure>
+  ```html
+  <div class="alert">
+    Es ist ein Fehler aufgetreten.<br>
+    Bitte versuchen Sie es später noch einmal.
+  </div>
+  ```
+</Figure>
+
+Das `<div>`-Element (oder Division-Element) wird verwendet, um HTML-Elemente zu gruppieren oder zu strukturieren. Das `class`-Attribut enthält als Wert den Namen der Klasse, die du in CSS verwenden kannst. Die Klasse `alert` könnte etwa einen roten Hintergrund und weißen Text enthalten.
+
+Ist dir eigentlich das „einsame“ `<br>`-Element ohne End-Tag aufgefallen?
+
+### Leere Elemente
+
+Elemente, die keinen Inhalte haben, nennt man leere Elemente. Dazu zählen zum Beispiel `<img>` zum Einfügen eines Bildes, `<br>`, das einen Zeilenumbruch erzeugt, oder `<input>` für ein Eingabefeld. Diese Elemente haben kein End-Tag, sondern nur ein Start-Tag.
+
+> **Hinweis**: Benutze ein `<br>` nicht, um einen Abstand zwischen zwei Textabschnitten zu erzeugen. Benutze stattdessen `<p>` und das CSS `margin`-Attribut, um die Größe zu bestimmen.
+
+## Grundgerüst
+
+Kommen wir nun zum großen Ganzen. Stelle dir den Aufbau eines HTML-Dokuments als menschlichen Körper vor, der aus einem Kopf und einem Rumpf besteht. Das Grundgerüst einer HTML-Datei besteht aus vier Hauptteilen: `DOCTYPE`, `html`, `head` und `body`.
+
+<Figure caption="Das Grundgerüst einer HTML-Datei">
+  ```html
+  <!DOCTYPE html>
+  <html lang="de">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokumententitel</title>
+  </head>
+  <body>
+    <h1>Überschrift</h1>
+
+    <p>Das ist ein Textabschnitt.</p>
+  </body>
+  </html>
+  ```
+</Figure>
+
+Der Dokumententyp `DOCTYPE` am Anfang einer HTML-Datei gibt an, um welchen Typ von Dokument es sich handelt. Das `html`-Element ist das Wurzelelement (Root-Element) und umschließt den gesamten Inhalt der Website. Das `head`-Element enthält Metadaten, wie den Dokumententitel, Zeichencodierung und Viewport-Einstellungen. Das `body`-Element enthält den sichtbaren Teil der Website.
+
+### Head
+
+Der Kopf einer Website enthält Informationen, die für den Benutzer nicht sichtbar sind, aber für den Browser und Suchmaschinen wichtig sind. Es funktioniert weitestgehend, wie unser Gehirn, in dem viele Informationen gespeichert sind, die uns definieren. Entscheident sind aber folgende Elemente:
+
+`meta charset="UTF-8"`
+: definiert mit `UTF-8` eine internationale Zeichenkodierung, der alle Zeichen und Symbole in allen Sprachen darstellen kann.
+
+`meta name="viewport"`
+: Ohne den Viewport-Meta-Tag wird die Website auf mobilen Geräten nicht korrekt dargestellt. Der Viewport ist der sichtbare Bereich des Dokuments im Browserfenster. Im `content`-Attribut wird die Breite des Viewports definiert, die auf die Breite des Geräts eingestellt ist. Wenn etwa dein Smartphone eine Breite von 320px hat, wird die Website auf 320px skaliert. Der Zusatz `initial-scale=1.0` bedeutet, dass die Website nicht vergrößert oder verkleinert wird.
+
+`title`
+: Der Titel des Dokuments wird im Browser-Tab angezeigt und ist wichtig für die Suchmaschinenoptimierung (SEO).
+
+### Body
+
+Nun kannst du dich endlich an deine Inhalte machen. Das `body`-Element enthält den sichtbaren Inhalt der Website. Schnapp dir doch jetzt einen [Editor](/dokumentation#ide) und erstelle eine HTML-Datei. Kopiere dir oben das Grundgerüst und befülle den Body.
+
+Ein paar Beispiele für HTML-Elemente, die du im Body verwenden kannst, hast du zuvor schon kennengelernt. In der [HTML-Referenz](/dokumentation#referenz) findest du noch viele weitere Elemente.
+
+Probiere doch mal folgendes aus:
+
+- Eine Liste, so wie diese hier
+- Ein Wort **fett** darstellen
+- Verlinke auf eine andere Website
+- Binde einen Kopf für deine Website ein
+
+Oder wie wäre es mit einem Bild?
+
+### Bilder
+
+Bilder in HTML einzubinden, ist ganz einfach. Du speicherst dein Bild im gleichen Verzeichnis, wie deine HTML-Datei und verwendest zur Darstellung ein `<img>`-Element. Das sieht dann so aus:
+
+<Figure>
+  ```html
+  <img src="baum.jpg" alt="Baum auf einer Wiese">
+  ```
+</Figure>
+
+Das `src`-Attribut steht für Source, die Quelle, und es enthält den Pfad zum Bild. Das `alt`-Attribut ist wichtig für die Barrierefreiheit, da es von Screenreadern vorgelesen wird, wenn das Bild nicht geladen werden kann.
+
+> **Hinweis**: Achte darauf, dass du Bilder in einem geeigneten Format und einer geeigneten Größe verwendest, um die Ladezeit deiner Website zu optimieren. Ein Tutorial dazu findest du [hier](/tutorials/art-direction-im-kreditantragsprozess/).
+
+## Styles
+
+Bis hier haben wir uns nur mit der Struktur und dem Inhalt einer Website beschäftigt. Spannend wird es jetzt, wenn du mit CSS das Design und Layout deiner Website gestaltest. CSS-Regeln werden in der Regel im `head`-Element eingebunden. Das `link`-Element wird verwendet, um externe Ressourcen wie Stylesheets oder Schriftarten zu verknüpfen.
+
+<Figure caption="Einbindung einer CSS-Datei">
+  ```html
+  <link rel="stylesheet" href="styles.css">
+  ```
+</Figure>
+
+Das `rel`-Attribut definiert die Beziehung zwischen dem aktuellen Dokument und der verlinkten Ressource. Der Wert `stylesheet` gibt an, dass es sich um ein Stylesheet handelt, das für das Layout der Website verwendet wird. Das `href`-Attribut enthält den Pfad zur CSS-Datei.
+
+Das Tutorial, wie du mit CSS deine Website gestaltest, ist in Vorbereitung. Wenn du Fragen hast, besuche uns gern im [Discord-Channel]({SITE_CONST.links.discord}).
