@@ -5,7 +5,7 @@ import { markdown } from '@astropub/md'
 
 interface Props {
   imagePath?: string
-  imageFormat?: 'png'
+  imageFormat?: string
   alt?: string
   caption?: string | boolean
 }
@@ -30,7 +30,7 @@ if (imagePath !== undefined && !images[imagePath]) {
         src={images[imagePath]()}
         widths={[380, 670, 710]}
         sizes={`(max-width: 480px) 380px, (max-width: 800) 670px, 710px`}
-        format={imageFormat ? 'png' : null}
+        format={imageFormat ? 'png' : undefined}
         alt={alt}
       />
     ) : (
