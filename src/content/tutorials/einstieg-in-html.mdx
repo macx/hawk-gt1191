@@ -1,8 +1,8 @@
 ---
 title: 'Dein Einstieg in HTML: Elemente, Tags und Attribute'
 description: 'Eine HTML-Seite kann relativ schnell komplex und unübersichtlich werden. Mit diesem Tutorial behältst du den Überblick und hast das Markup im Griff.'
-isDraft: true
-pubDate: 2024-03-24T14:00:00+01:00
+isDraft: false
+pubDate: 2024-03-24T15:08:00+01:00
 author: david-maciejewski
 cover:
   path: '/src/images/tutorials/student-inspect-html.png'
@@ -16,7 +16,7 @@ import { SITE_CONST } from '../../const.ts'
 
 ## HTML
 
-Der Begriff HTML steht für Hypertext Markup Language und bezeichnet eine Auszeichnungssprache, die dazu dient, den Inhalt einer Website zu strukturieren. Dabei handelt es sich um reine Textdateien mit der Dateiendung `.html`, die im Browser gerendert werden und den sichtbaren Inhalt einer Website darstellen.
+Der Begriff HTML steht für Hypertext Markup Language und bezeichnet eine Auszeichnungssprache, die dazu dient, den Inhalt einer Website zu strukturieren. Das machst du in einer reinen Textdatei, der du die Dateiendung `.html` gibst. Bei der Webentwicklung ist die `index.html`-Datei normalerweise die erste Seite, die geladen wird, wenn die Website aufgerufen wird. Sie dient als Einstiegspunkt und enthält den anfänglichen Inhalt, der dem Benutzer angezeigt wird.
 
 ### Elemente und Tags
 
@@ -50,7 +50,7 @@ Das `<a>`-Element (oder Anker-Element) erstellt einen Link zu anderen Inhalten o
 
 ### Klassen und IDs
 
-Bei Klassen und IDs handelt es sich ebenfalls um Attribute. Mit ihnen kann man Elemente identifizieren, um sie mit CSS zu stylen oder mit JavaScript ansprechen zu können. Klassen werden durch ein `class`-Attribut definiert und können beliebig oft verwendet werden. IDs werden durch ein `id`-Attribut definiert und dürfen nur einmal pro Dokument vorkommen.
+Bei Klassen und IDs handelt es sich ebenfalls um Attribute. Mit ihnen kann man Elemente identifizieren, um sie mit <abbr title='Cascading Stylesheets'>CSS</abbr>[^1] zu stylen oder mit JavaScript ansprechen zu können. Klassen werden durch ein `class`-Attribut definiert und können beliebig oft verwendet werden. IDs werden durch ein `id`-Attribut definiert und dürfen nur einmal pro Dokument vorkommen.
 
 <Figure>
   ```html
@@ -93,7 +93,7 @@ Kommen wir nun zum großen Ganzen. Stelle dir den Aufbau eines HTML-Dokuments al
   ```
 </Figure>
 
-Der Dokumententyp `DOCTYPE` am Anfang einer HTML-Datei gibt an, um welchen Typ von Dokument es sich handelt. Das `html`-Element ist das Wurzelelement (Root-Element) und umschließt den gesamten Inhalt der Website. Das `head`-Element enthält Metadaten, wie den Dokumententitel, Zeichencodierung und Viewport-Einstellungen. Das `body`-Element enthält den sichtbaren Teil der Website.
+Der Dokumententyp `DOCTYPE` am Anfang einer HTML-Datei gibt an, dass es sich in dieser Textdatei um HTML5 handelt, damit der Browser weiß, womit er es zu tun hat. Das `html`-Element ist das Wurzelelement (Root-Element) und umschließt den gesamten Inhalt der Website. Das `head`-Element enthält Metadaten, wie den Dokumententitel, Zeichencodierung und Viewport-Einstellungen. Das `body`-Element enthält den sichtbaren Teil der Website.
 
 ### Head
 
@@ -103,7 +103,7 @@ Der Kopf einer Website enthält Informationen, die für den Benutzer nicht sicht
 : definiert mit `UTF-8` eine internationale Zeichenkodierung, der alle Zeichen und Symbole in allen Sprachen darstellen kann.
 
 `meta name="viewport"`
-: Ohne den Viewport-Meta-Tag wird die Website auf mobilen Geräten nicht korrekt dargestellt. Der Viewport ist der sichtbare Bereich des Dokuments im Browserfenster. Im `content`-Attribut wird die Breite des Viewports definiert, die auf die Breite des Geräts eingestellt ist. Wenn etwa dein Smartphone eine Breite von 320px hat, wird die Website auf 320px skaliert. Der Zusatz `initial-scale=1.0` bedeutet, dass die Website nicht vergrößert oder verkleinert wird.
+: Ohne den Viewport-Meta-Tag wird die Website auf mobilen Geräten nicht korrekt dargestellt. Der Viewport ist der sichtbare Bereich des Dokuments im Browserfenster. Im `content`-Attribut wird die Breite des Viewports definiert, die auf die Breite des Geräts eingestellt ist. Wenn etwa dein Smartphone eine Breite von 320px hat, wird die Website auf 320px skaliert. Der Zusatz `initial-scale=1.0` bedeutet, dass die Website vom Browser nicht vergrößert oder verkleinert werden soll.
 
 `title`
 : Der Titel des Dokuments wird im Browser-Tab angezeigt und ist wichtig für die Suchmaschinenoptimierung (SEO).
@@ -150,3 +150,5 @@ Bis hier haben wir uns nur mit der Struktur und dem Inhalt einer Website beschä
 Das `rel`-Attribut definiert die Beziehung zwischen dem aktuellen Dokument und der verlinkten Ressource. Der Wert `stylesheet` gibt an, dass es sich um ein Stylesheet handelt, das für das Layout der Website verwendet wird. Das `href`-Attribut enthält den Pfad zur CSS-Datei.
 
 Das Tutorial, wie du mit CSS deine Website gestaltest, ist in Vorbereitung. Wenn du Fragen hast, besuche uns gern im [Discord-Channel]({SITE_CONST.links.discord}).
+
+[^1]: CSS ist eine Stylesheet-Sprache, die verwendet wird, um das Aussehen einer Website zu definieren. Sie definiert die Farben, Schriftarten, Layouts und andere visuelle Aspekte einer Website.
