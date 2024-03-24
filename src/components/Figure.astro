@@ -5,11 +5,12 @@ import { markdown } from '@astropub/md'
 
 interface Props {
   imagePath?: string
+  imageFormat?: 'png'
   alt?: string
   caption?: string | boolean
 }
 
-const { imagePath, caption, alt } = Astro.props
+const { imagePath, imageFormat, caption, alt } = Astro.props
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
   '/src/images/**/*.{jpeg,jpg,png}'
@@ -29,6 +30,7 @@ if (imagePath !== undefined && !images[imagePath]) {
         src={images[imagePath]()}
         widths={[380, 670, 710]}
         sizes={`(max-width: 480px) 380px, (max-width: 800) 670px, 710px`}
+        format={imageFormat ? 'png' : null}
         alt={alt}
       />
     ) : (

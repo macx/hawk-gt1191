@@ -27,7 +27,7 @@
 
 @mixin media-item($layout: 'media') {
   display: block;
-  margin-block: var(--sp) var(--sp-content);
+  margin-block: 1lh var(--sp-content);
   background-color: var(--clr-bg-card);
   border-radius: var(--radius);
 
