@@ -70,7 +70,7 @@
   dl {
     --spacing: 1.25em;
     --image-size: 0.7em;
-    --image-url: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 24.06 35'%3E%3Cpath d='M22.16 0H9.71L0 17.5 10.66 35h12.46L12.45 17.5 22.16 0z' style='fill:%23004fcd;stroke-width:0'/%3E%3C/svg%3E");
+    --image-url: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' data-name='Ebene 1' viewBox='0 0 24.06 35'><path d='M22.16 0H9.71L0 17.5 10.66 35h12.46L12.45 17.5 22.16 0z' style='fill:%23004fcd;stroke-width:0'/></svg>");
 
     padding-inline-start: var(--spacing);
 
