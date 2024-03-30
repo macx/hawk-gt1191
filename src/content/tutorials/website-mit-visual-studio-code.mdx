@@ -6,8 +6,8 @@ pubDate: 2024-03-30T14:50:00+01:00
 author: david-maciejewski
 cover:
   path: '/src/images/tutorials/student-typing-on-laptop.png'
-  alt: 'XXXX'
-  caption: 'XXX'
+  alt: 'Studentin stitzt vor einem Laptop und tippt auf der Tastatur.'
+  caption: 'Websites zu entwickeln ist einfacher als du denkst.'
 tags: ['html']
 ---
 
@@ -58,7 +58,7 @@ VS Code ist Projektbezogen, das bedeutet, dass du für jedes Projekt – respekt
 
 Erstelle als erstes einen Ordner auf deinem Computer, in dem du alle Dateien für deine Website speichern möchtest. Öffne diesen Ordner in VS Code, indem du auf **Datei** > **Ordner öffnen** klickst und den Ordner auswählst. Bei einem neuen Fenster sieht das auch so aus:
 
-<Figure imagePath="/src/images/tutorials/vscode-new-window.png" caption="XXX" alt="XXX" />
+<Figure imagePath="/src/images/tutorials/vscode-new-window.png" caption="Vistual Studio Code" alt="Neues Fenster in Visual Studio Code, hervorgehoben ist der Button „Ordner öffnen“." />
 
 ### Dateien anlegen
 
@@ -70,7 +70,7 @@ Die Startseite einer Website sollte in der Regel immer `index.html` genannt werd
 
 Öffne nun die `index.html`-Datei, füge ein Ausrufungszeichen `!` ein und drücke anschießend die <kbd>↹ Tab</kbd>-Taste. Das oben erwähnte Plugin Emmet wird daraus ein HTML-Grundgerüst erstellen. Das sieht dann so aus:
 
-<Figure caption="Das Grundgerüst einer HTML-Datei">
+<Figure caption="index.html">
   ```html
   <!DOCTYPE html>
   <html lang="de">
@@ -94,7 +94,7 @@ Füge jetzt noch im Body ein paar HTML-Elemente ein, um die Website zu füllen. 
 
 Als nächstes befüllen wir die `styles.css`-Datei mit CSS-Styles, um die Website zu gestalten. Füge dort der Einfachheit halber erst einmal nur ein paar Styles hinzu, um zu sehen, ob die Verknüpfung zwischen HTML und CSS funktioniert.
 
-<Figure caption="Das Grundgerüst einer HTML-Datei">
+<Figure caption="styles.css">
   ```css
   body {
     background-color: red;
@@ -114,7 +114,7 @@ Der vorangegange Code wird den Hintergrund der Website rot färben, den Text wei
 
 Die Website kann nun dargestellt werden, allerdings weiß diese noch nichts von der Existens der CSS-Datei. Lass uns diese nun miteinander verknüpfen. Füge dazu im Head-Bereich der `index.html`-Datei nach dem `<title>` folgenden Code ein:
 
-<Figure caption="Das Grundgerüst einer HTML-Datei">
+<Figure caption="Hiermit bindest du die CSS-Datei im HTML ein.">
   ```html
   <link rel="stylesheet" href="styles.css">
   ```
@@ -128,7 +128,7 @@ Starte den Webserver, indem du einen Rechtsklick auf die `index.html`-Datei mach
 
 Wenn das Egebnis wie folgt aussieht, hat das auch bei dir auch funktioniert.
 
-<Figure imagePath="/src/images/tutorials/website-in-vscode.png" caption="Das Grundgerüst einer HTML-Datei" alt="XXXX" />
+<Figure imagePath="/src/images/tutorials/website-in-vscode.png" caption="Bei Erfolg erstrahlt deine Website in rot." alt="Visual Studio Code mit der Vorschau der Website: Roter Hintergrund, weiße Textfarbe." />
 
 Herzlichen Glückwunsch zu deiner ersten Website! War gar nicht so schwer, oder? Wenn du möchtest, kannst du jetzt noch weitere Elemente hinzufügen und die Website weiter gestalten.
 
