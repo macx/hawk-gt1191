@@ -37,8 +37,10 @@ const sortedTags = tags.sort((a, b) =>
     font-size: var(--fs-s);
     line-height: 1;
 
+    margin-block: 0 var(--sp-content);
+
     &.divider {
-      margin-block-start: var(--sp-l);
+      margin-block: var(--sp-l) 0;
       border-block-start: 1px solid var(--clr-line);
       padding-block-start: var(--sp-m);
     }

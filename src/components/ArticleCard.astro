@@ -1,6 +1,7 @@
 ---
 import type { ImageMetadata } from 'astro'
 import { Image } from 'astro:assets'
+import { widont } from '../../remark-plugins/remark-widont.mjs'
 import FormattedDate from './FormattedDate.astro'
 
 const { article } = Astro.props
@@ -22,7 +23,9 @@ if (!images[imagePath]) {
 
   <a href={`/tutorials/${article.slug}/`}>
     <header>
-      <h3 class='title'>{article.data.title}</h3>
+      <h3 class='title'>
+        {widont(article.data.title)}
+      </h3>
 
       <FormattedDate date={article.data.pubDate} style='small' />
     </header>
