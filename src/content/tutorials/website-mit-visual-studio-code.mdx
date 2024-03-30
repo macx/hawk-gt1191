@@ -1,0 +1,136 @@
+---
+title: 'Visual Studio Code: So erstellst du eine Website mit HTML und CSS'
+description: 'Dieses Tutorial führt dich durch die Installation und Konfiguration von Visual Studio Code und zeigt dir Schritt für Schritt, wie du eine Website entwickeln kannst.'
+isDraft: true
+pubDate: 2024-03-30T14:50:00+01:00
+author: david-maciejewski
+cover:
+  path: '/src/images/tutorials/student-typing-on-laptop.png'
+  alt: 'XXXX'
+  caption: 'XXX'
+tags: ['html']
+---
+
+import Figure from '@components/Figure.astro'
+
+## VS Code
+
+Bei HTML- und CSS-Dateien, die du zur Erstellung von statischen Websites benötigst, handelt es sich um Textdateien, die du mit jedem Texteditor bearbeiten kannst. Besser geeignet sind sogenannte IDE (Integrated Development Environment) wie Visual Studio Code (VS Code). Das ist ein kostenloser Code-Editor, der von Microsoft entwickelt wurde und sich durch seine Vielseitigkeit und Erweiterbarkeit auszeichnet. Mit einer breiten Palette an Plugins und Erweiterungen kannst du die Arbeitsumgebung individuell anzupassen, um effizienter zu arbeiten.
+
+Lade dir VS Code von der [Microsoft-Website](https://code.visualstudio.com/) herunter und installiere es auf deinem Computer.
+
+### Plugins und Konfiguration
+
+Damit du den Inhalten und Tutorials des Seminars GT 1191 folgen kannst, benötigst du einige Plugins und Konfigurationen. Diese müsstest du normalerweise händisch installieren und einrichten. Dank der Profile von VS Code kannst du das aber mit einem Klick erledigen. Denn in diesen sind alle Informationen zur Konfiguration enthalten.
+
+Für das Seminar GT 1191 habe ich ein Profil erstellt, das alle notwendigen Plugins und Konfigurationen enthält, die wir nutzen.
+
+#### HAWK-GT1191 Profil
+
+Folgende Erweiterungen sind im HAWK-GT1191 Profil besonders hervorzuheben:
+
+[Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+: Formatiert deinen Code beim speichern, damit dieser leserlicher ist. Hilft Einsteigern als auch Profis und sollte bei jedem Projekt verwendet werden.
+
+[Live Preview](https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server)
+: Startet einen lokalen Webserver und zeigt die Website in deinem Browser an. So kannst du Änderungen in Echtzeit sehen.
+
+[Emmet](https://docs.emmet.io/)
+: Ermöglicht es, HTML und CSS wesentlich schneller zu schreiben.
+
+#### Profil importieren
+
+1. Öffne VS Code.
+2. Klicke auf das ⚙ Symbol in der linken unteren Ecke, um das Aktionsmenü zu öffnen.
+3. Wähle **Profiles**, dann **Import Profile**.
+5. Gebe oben im Dialog bei **Provide Profile Template URL** die folgende URL ein: https://gist.github.com/macx/c4afc6441561cf8e021d104eed0de505.
+Klicke anschließend auf <kbd>⏎ Enter</kbd>
+6. Wähle in der folgenden Auswahl alles aus und klicke auf **Create Profile**.
+8. Klicke nun beim Namen **HAWK-GT1191** auf `Create`.
+
+Jetzt ist sind alle Plugins installiert, die Sprache auf Deutsch umgestellt. sodass du direkt loslegen kannst.
+
+## Ein Website erstellen
+
+VS Code ist Projektbezogen, das bedeutet, dass du für jedes Projekt – respektive für jede Website – einen eigenen Ordner anlegst, in dem sich alle Dateien deiner Website befinden. Ein geöffnetes Fenster in Visual Studio Code entspricht einem Projekt.
+
+### Projekt erstellen
+
+Erstelle als erstes einen Ordner auf deinem Computer, in dem du alle Dateien für deine Website speichern möchtest. Öffne diesen Ordner in VS Code, indem du auf **Datei** > **Ordner öffnen** klickst und den Ordner auswählst. Bei einem neuen Fenster sieht das auch so aus:
+
+<Figure imagePath="/src/images/tutorials/vscode-new-window.png" caption="XXX" alt="XXX" />
+
+### Dateien anlegen
+
+Erstelle nun zwei Dateien im Projektordner: `index.html` und `styles.css`. Die `index.html`-Datei enthält den HTML-Code für die Website, während die `styles.css`-Datei die CSS-Styles enthält. Klicke im Explorer (erstes Icon links oben) mit der rechten Maustaste auf die freie Fläche und wähle **Neue Datei** oder gehe auf **Datei** > **Neue Datei** im Menü, um beide Dateien anzulegen.
+
+Die Startseite einer Website sollte in der Regel immer `index.html` genannt werden, den Namen der CSS-Datei kannst du frei wählen. Achte jedoch darauf, dass du weder Sonderzeichen, Leerzeichen, Großbuchstaben oder Umlaute verwendest.
+
+### HTML-Grundgerüst erstellen
+
+Öffne nun die `index.html`-Datei, füge ein Ausrufungszeichen `!` ein und drücke anschießend die <kbd>↹ Tab</kbd>-Taste. Das oben erwähnte Plugin Emmet wird daraus ein HTML-Grundgerüst erstellen. Das sieht dann so aus:
+
+<Figure caption="Das Grundgerüst einer HTML-Datei">
+  ```html
+  <!DOCTYPE html>
+  <html lang="de">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body>
+
+  </body>
+  </html>
+  ```
+</Figure>
+
+Füge jetzt noch im Body ein paar HTML-Elemente ein, um die Website zu füllen. Zum Beispiel eine Überschrift und einen Textabschnitt.
+
+> **Tipp:** Wenn du dich mit HTML und CSS noch nicht auskennst, empfehle ich dir, das Tutorial [Einstieg in HTML](/tutorials/einstieg-in-html/) zu lesen. Ein Tutorial für CSS ist in Planung.
+
+### CSS-Styles hinzufügen
+
+Als nächstes befüllen wir die `styles.css`-Datei mit CSS-Styles, um die Website zu gestalten. Füge dort der Einfachheit halber erst einmal nur ein paar Styles hinzu, um zu sehen, ob die Verknüpfung zwischen HTML und CSS funktioniert.
+
+<Figure caption="Das Grundgerüst einer HTML-Datei">
+  ```css
+  body {
+    background-color: red;
+    color: white;
+  }
+
+  h1 {
+    font-size: 2em;
+    color: yellow;
+  }
+  ```
+</Figure>
+
+Der vorangegange Code wird den Hintergrund der Website rot färben, den Text weiß und die Überschrift gelb. Das ist nicht schön, aber es reicht, um zu sehen, ob alles funktioniert. Das ist im Übrigen ein einfacher Trick, den du stets auch bei anderen Elementen anwenden kannst, um deinen Code zu testen.
+
+### CSS-Datei verknüpfen
+
+Die Website kann nun dargestellt werden, allerdings weiß diese noch nichts von der Existens der CSS-Datei. Lass uns diese nun miteinander verknüpfen. Füge dazu im Head-Bereich der `index.html`-Datei nach dem `<title>` folgenden Code ein:
+
+<Figure caption="Das Grundgerüst einer HTML-Datei">
+  ```html
+  <link rel="stylesheet" href="styles.css">
+  ```
+</Figure>
+
+### Ergebnis ansehen
+
+Wenn du beide Dateien gespeichert hast, sollten wir uns nun das Ergebnis im Browser ansehen. Die HTML-Datei einfach im Browser zu öffnen, funktioniert allerdings nicht, denn schließlich handelt es sich dabei immer noch um eine Textdatei. Zur Darstellung einer Website benötigen wir einen Webserver. Ein Webserver ist ein Programm, das HTTP-Anfragen – das ist das Standardprotokoll für Websites – entgegennimmt und HTML-Dateien an den Browser sendet. Glücklicherweise haben wir das Plugin Live Preview in VS Code installiert, das uns einen lokalen Webserver zur Verfügung stellt.
+
+Starte den Webserver, indem du einen Rechtsklick auf die `index.html`-Datei machst und **Vorschau anzeigen** auswählst. In Visual Studio Code wird dann rechts die Website in einem Browserfenster geöffnet. Du kannst die URL auch kopieren und in deinem Browser öffnen.
+
+Wenn das Egebnis wie folgt aussieht, hat das auch bei dir auch funktioniert.
+
+<Figure imagePath="/src/images/tutorials/website-in-vscode.png" caption="Das Grundgerüst einer HTML-Datei" alt="XXXX" />
+
+Herzlichen Glückwunsch zu deiner ersten Website! War gar nicht so schwer, oder? Wenn du möchtest, kannst du jetzt noch weitere Elemente hinzufügen und die Website weiter gestalten.
+
+Uur unserer Überraschung ist deine Website jetzt schon responiv und Mobile first. Damit das aber auch so bleibt, solltest du dich mit den Grundlagen moderner Websites beschäftigen. Schaue dir dazu weitere Tutorials an, oder melde dich zum Seminar an.
+
