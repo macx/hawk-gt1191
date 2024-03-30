@@ -1,7 +1,7 @@
 {
   "name": "hawk-gt1191",
   "type": "module",
-  "version": "2.6.0",
+  "version": "2.6.1",
   "browserslist": "> 2%, last 2 versions, not dead",
   "repository": "git@github.com:macx/hawk-gt1191.git",
   "author": "David Maciejewski <macx@macx.io>",
