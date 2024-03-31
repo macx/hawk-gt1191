@@ -1,5 +1,5 @@
 ErrorDocument 404 /404.html
 
 # Enforce a no-trailing-slash policy
-#RewriteCond %{REQUEST_FILENAME} !-d
-#RewriteRule ^(.*)/$ /$1 [L,R=301]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)/$ /$1 [L,R=301]
