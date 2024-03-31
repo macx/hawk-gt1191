@@ -1,6 +1,10 @@
 ---
 import AstroFont from '@gamesome/astro-font/AstroFont.astro'
 
+function removeTrailingSlash(str: string) {
+  return str.replace(/\/+$/, '')
+}
+
 interface Props {
   title: string
   description: string
@@ -13,10 +17,12 @@ interface Props {
 
 const { title, description, type = 'website', pubDate, redirect } = Astro.props
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site)
+const canonicalUrl = removeTrailingSlash(
+  new URL(Astro.url.pathname, Astro.site).toString()
+)
 
 const openGraphImage = Astro.url.pathname.startsWith('/tutorials')
-  ? new URL(`${canonicalURL}og.png`, Astro.url)
+  ? new URL(`${canonicalUrl}/og.png`, Astro.url)
   : new URL('images/website-cover.png', Astro.url)
 ---
 
@@ -24,7 +30,7 @@ const openGraphImage = Astro.url.pathname.startsWith('/tutorials')
 <meta charset='UTF-8' />
 <meta name='color-scheme' content='dark light' />
 <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-<link rel='canonical' href={canonicalURL} />
+<link rel='canonical' href={canonicalUrl} />
 {redirect ? <meta http-equiv='refresh' content='0;url=/404' /> : null}
 
 <!-- Primary Meta -->
@@ -56,7 +62,7 @@ const openGraphImage = Astro.url.pathname.startsWith('/tutorials')
 <!-- Open Graph / Facebook -->
 <meta property='og:title' content={title} />
 <meta property='og:description' content={description} />
-<meta property='og:url' content={canonicalURL} />
+<meta property='og:url' content={canonicalUrl} />
 <meta property='og:type' content={type} />
 {
   openGraphImage && (
