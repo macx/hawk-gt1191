@@ -21,7 +21,7 @@ if (!images[imagePath]) {
 <article class:list={['article', { draft: article.data.isDraft }]}>
   {article.data.isDraft && <div class='draft-banner' />}
 
-  <a href={`/tutorials/${article.slug}/`}>
+  <a href={`/tutorials/${article.slug}`}>
     <header>
       <h3 class='title'>
         {widont(article.data.title)}
