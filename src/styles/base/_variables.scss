@@ -54,6 +54,12 @@
 
   --clr-nav-shadow: rgba(109, 62, 62, 0.2);
 
+  --clr-kb-bg: transparent;
+  --clr-kb-text: var(--clr-text);
+  --clr-kb-border: #b4b4b4;
+  --clr-kb-shadow: 0 1px 1px rgba(0, 0, 0, 0.2),
+    0 2px 0 0 rgba(255, 255, 255, 0.7) inset;
+
   --icon-size: 1.5rem;
   --icon-size-header: 1.25rem;
 
@@ -128,6 +134,12 @@
     --clr-marker: hsl(60 100% 70% / 0.2);
 
     --clr-nav-shadow: rgb(255 2555 255 / 0.2);
+
+    --clr-kb-bg: rgb(255 255 255 / 0.05);
+    --clr-kb-text: var(--clr-text);
+    --clr-kb-border: rgb(255 255 255 / 0.3);
+    --clr-kb-shadow: 0 1px 1px rgba(255, 255, 255, 0.2),
+      0 2px 0 0 rgba(255, 255, 255, 0.1) inset;
 
     --footer-bg: linear-gradient(
       to bottom,

@@ -66,3 +66,20 @@ const openGraphImage = Astro.url.pathname.startsWith('/tutorials')
     </>
   )
 }
+
+<script is:inline>
+  ;(function () {
+    const mode = localStorage.getItem('data-theme')
+    const prefersScheme = window.matchMedia('(prefers-color-scheme: dark)')
+      .matches
+      ? 'dark'
+      : 'light'
+
+    if (mode) {
+      document.documentElement.setAttribute(
+        'data-theme',
+        mode === 'system' ? prefersScheme : mode
+      )
+    }
+  })()
+</script>

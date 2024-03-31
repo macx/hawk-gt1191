@@ -142,16 +142,14 @@ kbd {
 
   display: inline-block;
   border-radius: 0.2em;
-  border: 1px solid #b4b4b4;
-  box-shadow:
-    0 1px 1px rgba(0, 0, 0, 0.2),
-    0 2px 0 0 rgba(255, 255, 255, 0.7) inset;
+  border: 1px solid var(--clr-kb-border);
+  box-shadow: var(--clr-kb-shadow);
 
   font-size: var(--fs-s);
   font-weight: var(--fw);
   line-height: 1;
-  background-color: #eee;
-  color: #333;
+  background-color: var(--clr-kb-bg);
+  color: var(--clr-kb-text);
 
   padding-block: 0.2em;
   padding-inline: 0.6em;

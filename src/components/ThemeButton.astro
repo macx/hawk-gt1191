@@ -67,19 +67,18 @@
 <script is:inline>
   const themeToggleButton = document.getElementById('themeToggle')
   const svg = themeToggleButton.querySelector('svg')
-  const html = document.documentElement
   const prefersScheme = window.matchMedia('(prefers-color-scheme: dark)')
     .matches
     ? 'dark'
     : 'light'
 
-  if (!localStorage.getItem('theme')) {
+  if (!localStorage.getItem('data-theme')) {
     svg.dataset.env = prefersScheme
   } else {
     svg.dataset.env =
-      localStorage.getItem('theme') === 'system'
+      localStorage.getItem('data-theme') === 'system'
         ? 'system'
-        : localStorage.getItem('theme')
+        : localStorage.getItem('data-theme')
   }
 
   themeToggleButton.addEventListener('click', () => {
@@ -88,18 +87,18 @@
       ? 'dark'
       : 'light'
 
-    if (localStorage.getItem('theme') === 'system') {
+    if (localStorage.getItem('data-theme') === 'system') {
       localStorage.setItem('theme', 'light')
-      html.dataset.theme = 'light'
+      document.documentElement.setAttribute('data-theme', 'light')
       svg.dataset.env = 'light'
     } else {
-      if (html.dataset.theme === 'light') {
-        localStorage.setItem('theme', 'dark')
-        html.dataset.theme = 'dark'
+      if (document.documentElement.dataset.theme === 'light') {
+        localStorage.setItem('data-theme', 'dark')
+        document.documentElement.setAttribute('data-theme', 'dark')
         svg.dataset.env = 'dark'
-      } else if (html.dataset.theme === 'dark') {
-        localStorage.setItem('theme', 'system')
-        html.dataset.theme = prefersScheme
+      } else if (document.documentElement.dataset.theme === 'dark') {
+        localStorage.setItem('data-theme', 'system')
+        document.documentElement.setAttribute('data-theme', prefersScheme)
         svg.dataset.env = 'system'
       }
     }

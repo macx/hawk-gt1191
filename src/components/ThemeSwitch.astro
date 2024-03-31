@@ -126,7 +126,7 @@ import { Icon } from 'astro-icon/components'
             newTheme === 'system' ? prefersScheme : (newTheme as ThemeSchmemes)
           theme.name = newTheme
 
-          localStorage.setItem('theme', theme.name)
+          localStorage.setItem('data-theme', theme.name)
         }
 
         const applyThemeAttributes = (): void => {
@@ -153,10 +153,10 @@ import { Icon } from 'astro-icon/components'
         }
 
         const theme: Theme = {
-          name: localStorage.getItem('theme') || 'system',
+          name: localStorage.getItem('data-theme') || 'system',
           scheme:
             (localStorage
-              .getItem('theme')
+              .getItem('data-theme')
               ?.match(/light|dark/)?.[0] as ThemeSchmemes) ||
             (window.matchMedia('(prefers-color-scheme: dark)').matches
               ? 'dark'
