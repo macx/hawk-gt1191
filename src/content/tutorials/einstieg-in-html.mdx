@@ -12,6 +12,7 @@ tags: ['html']
 ---
 
 import Figure from '@components/Figure.astro'
+import { Link } from 'astro-link';
 import { SITE_CONST } from '../../const.ts'
 
 ## HTML
@@ -149,6 +150,7 @@ Bis hier haben wir uns nur mit der Struktur und dem Inhalt einer Website beschä
 
 Das `rel`-Attribut definiert die Beziehung zwischen dem aktuellen Dokument und der verlinkten Ressource. Der Wert `stylesheet` gibt an, dass es sich um ein Stylesheet handelt, das für das Layout der Website verwendet wird. Das `href`-Attribut enthält den Pfad zur CSS-Datei.
 
-Das Tutorial, wie du mit CSS deine Website gestaltest, ist in Vorbereitung. Wenn du Fragen hast, besuche uns gern im [Discord-Channel]({SITE_CONST.links.discord}).
+Das Tutorial, wie du mit CSS deine Website gestaltest, ist in Vorbereitung. Wenn du Fragen hast, besuche uns gern im <Link href={SITE_CONST.links.discord}>Discord-Channel</Link>.
 
 [^1]: CSS ist eine Stylesheet-Sprache, die verwendet wird, um das Aussehen einer Website zu definieren. Sie definiert die Farben, Schriftarten, Layouts und andere visuelle Aspekte einer Website.
+

@@ -1180,6 +1180,11 @@ astro-icon@^1.1.0:
     "@iconify/types" "^2.0.0"
     "@iconify/utils" "^2.1.5"
 
+astro-link@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/astro-link/-/astro-link-1.2.1.tgz#c3856948bbdf92f3a0f283e3bcfd353e2c657241"
+  integrity sha512-bYMpGBXfucSr7TRjNVaJPjCt3sbaTcSiPdPUreC4PUkplhoAZzXid5zVDL2l9AYWAWvWxKNJdBLH0oziHdOEcA==
+
 astro@^4.4.11:
   version "4.4.11"
   resolved "https://registry.yarnpkg.com/astro/-/astro-4.4.11.tgz#851eaecd0ff42b42176202eada8a0a9461aeaa93"

@@ -12,6 +12,7 @@ tags: ['socialmedia', 'html']
 ---
 
 import Figure from '@components/Figure.astro'
+import { Link } from 'astro-link';
 import { SITE_CONST } from '../../const.ts'
 
 ## Inhalte auf Social-Media teilen
@@ -82,4 +83,4 @@ Um zu überprüfen, ob deine Meta-Elemente korrekt gesetzt sind, gibt es Tools, 
 
 Jetzt wünsche ich viel Spaß beim ausprobieren! 🚀
 
-Wenn du Fragen hast, wende dich bitte über [Discord]({SITE_CONST.links.discord}) an die Community.
+Wenn du Fragen hast, wende dich bitte über <Link href={SITE_CONST.links.discord}>Discord</Link> an die Community.

@@ -20,8 +20,14 @@ export default defineConfig({
   site: 'https://hawk-gt1191.de',
   trailingSlash: 'ignore',
   redirects: {
-    '/komponenten': '/assets',
-    '/links': '/dokumentation'
+    '/komponenten': {
+      status: 301,
+      destination: '/assets'
+    },
+    '/links': {
+      status: 301,
+      destination: '/dokumentation'
+    }
   },
   markdown: {
     shikiConfig: {
