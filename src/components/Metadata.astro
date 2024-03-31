@@ -80,6 +80,8 @@ const openGraphImage = Astro.url.pathname.startsWith('/tutorials')
         'data-theme',
         mode === 'system' ? prefersScheme : mode
       )
+    } else {
+      document.documentElement.setAttribute('data-theme', prefersScheme)
     }
   })()
 </script>
