@@ -10,13 +10,22 @@ toc: false
 
 import Lead from '@components/Lead.astro'
 import { YouTube } from 'astro-embed'
+import { getImage } from 'astro:assets'
+
+import posterImage from '/src/images/pages/videoposter-grundlagen.png'
+export const youtubePoster = await getImage({
+  src: posterImage,
+  width: 706,
+  height: 398,
+  format: 'webp'
+})
 
 # Das erwartet dich in GT 1191
 
 <Lead text={frontmatter.description} />
 
 <figure>
-  <YouTube id="https://youtu.be/SJ1Pra-EP6c" params="rel=0" />
+  <YouTube id="https://youtu.be/SJ1Pra-EP6c" params="rel=0" poster={youtubePoster.src} />
 
   <figcaption>
     Ich erkläre dir im Video, dass HTML und CSS gar nicht so kompliziert ist.
