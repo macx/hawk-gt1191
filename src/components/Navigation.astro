@@ -15,7 +15,7 @@ const filteredPages = pages
   .sort((a, b) => (a.frontmatter.sort > b.frontmatter.sort ? 0 : -1))
 ---
 
-<nav role='navigation' class='navigation' aria-role='navigation'>
+<nav role='navigation' class='navigation'>
   <div class='navigation-items'>
     <ul>
       <li class='home'>
@@ -86,7 +86,11 @@ const filteredPages = pages
       <ThemeButton />
     </li>
     <li>
-      <a href='#top' class='header-button js-toggle-nav'>
+      <a
+        href='#top'
+        class='header-button js-toggle-nav'
+        title='Nach oben scrollen'
+      >
         <Icon name='material-symbols:arrow-upward-rounded' />
       </a>
     </li>

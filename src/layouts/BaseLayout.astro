@@ -84,6 +84,7 @@ const { title, description, pubDate, toc, cover, ogType } =
           let button = document.createElement('button')
           button.className = 'copy-code-btn'
           button.innerHTML = copyIcon
+          button.title = 'Code in die Zwischenablage kopieren'
           codeBlock.appendChild(button)
 
           button.addEventListener('click', async () => {
