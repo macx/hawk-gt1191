@@ -70,8 +70,8 @@ export default defineConfig({
     sitemap({
       lastmod: new Date(),
       filter: (page) =>
-        page !== 'https://hawk-gt1191.de/impressum/' &&
-        page !== 'https://hawk-gt1191.de/datenschutz/'
+        page !== 'https://hawk-gt1191.de/impressum' &&
+        page !== 'https://hawk-gt1191.de/datenschutz'
     }),
     astroFont({
       families: [
