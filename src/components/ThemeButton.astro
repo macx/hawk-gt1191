@@ -89,7 +89,7 @@
       : 'light'
 
     if (localStorage.getItem('data-theme') === 'system') {
-      localStorage.setItem('theme', 'light')
+      localStorage.setItem('data-theme', 'light')
       document.documentElement.setAttribute('data-theme', 'light')
       svg.dataset.env = 'light'
     } else {

@@ -30,7 +30,8 @@ export default defineConfig({
     '/links': {
       status: 301,
       destination: '/dokumentation'
-    }
+    },
+    '/hilfe': '/dokumentation'
   },
   markdown: {
     shikiConfig: {
