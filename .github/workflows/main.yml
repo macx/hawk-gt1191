@@ -20,11 +20,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Enable corepack
+        run: corepack enable
+
       - name: Set Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          corepack-enable: true
+          cache: 'yarn'
 
       - name: Run Install
         uses: borales/actions-yarn@v4
