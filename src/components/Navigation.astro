@@ -278,8 +278,10 @@ const filteredPages = pages
 </style>
 
 <script>
+  const navigaton = document.querySelector('.navigation')
   const navButtons = document.querySelectorAll('.js-toggle-nav')
 
+  console.log(navigaton)
   const toggleNavigation = function () {
     document.body.classList.toggle('with-nav')
   }
@@ -293,6 +295,12 @@ const filteredPages = pages
       button.addEventListener('click', toggleNavigation)
     })
   }
+
+  navigaton?.addEventListener('click', (event) => {
+    if (event.target !== event.currentTarget) return
+
+    closeNavigation()
+  })
 
   const toTopButton = document.querySelector('[href="#top"]')
 

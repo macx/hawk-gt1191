@@ -7,7 +7,7 @@
   "author": "David Maciejewski <macx@macx.io>",
   "license": "MIT",
   "scripts": {
-    "dev": "astro dev --open",
+    "dev": "astro dev --watch --open",
     "start": "astro dev",
     "build": "astro check && tsc --noEmit && astro build",
     "preview": "astro preview",
