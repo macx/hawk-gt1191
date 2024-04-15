@@ -67,9 +67,6 @@ strong {
 }
 
 main {
-  display: flex;
-  flex-direction: column;
-  gap: calc(var(--sp-content) + var(--sp));
   max-width: var(--layout-max-width);
   padding-block: var(--sp-l);
   margin-inline: auto;
@@ -78,6 +75,12 @@ main {
 
   width: 100%;
   flex: 1;
+
+  .stage {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--sp-content) + var(--sp));
+  }
 
   .content {
     width: 100%;
@@ -113,12 +116,11 @@ main {
   }
 
   @include mixins.respond('l') {
-    flex-direction: row;
-    justify-content: space-between;
     padding-block: var(--sp-l);
 
-    .content {
-      // flex: 1 0 auto;
+    .stage {
+      flex-direction: row;
+      justify-content: space-between;
     }
 
     aside {

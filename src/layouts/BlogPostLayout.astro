@@ -62,7 +62,9 @@ const toc = true
     <Tags tags={tags as string[]} divider={true} />
   </article>
 
-  <slot name='related' />
+  <Fragment slot='page-footer'>
+    <slot name='related' />
+  </Fragment>
 </BaseLayout>
 
 <style lang='scss'>

@@ -29,11 +29,15 @@ const { title, description, pubDate, toc, cover, ogType } =
     <Header />
 
     <main id='main'>
-      <div class:list={['content', { wide: layout === 'wide' }]}>
-        <slot />
+      <div class='stage'>
+        <div class:list={['content', { wide: layout === 'wide' }]}>
+          <slot />
+        </div>
+
+        {toc && <TableOfContent headings={headings} />}
       </div>
 
-      {toc && <TableOfContent headings={headings} />}
+      <slot name='page-footer' />
     </main>
 
     <Footer />

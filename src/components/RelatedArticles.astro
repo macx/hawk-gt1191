@@ -43,11 +43,24 @@ const { all, some, one, none } = mappedTags
 const output = [...all, ...some, ...one, ...none]
 ---
 
-<section class='related-tags'>
+<section class='related-articles'>
   <h2 class='title-centered'>Lese als Nächstes</h2>
 
   <div class='articles'>
     <ArticleCard article={output[0]} />
     <ArticleCard article={output[1]} />
+    <ArticleCard article={output[2]} />
   </div>
 </section>
+
+<style lang='scss'>
+  .related-articles {
+    margin-block-start: var(--sp-l);
+  }
+
+  .articles {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--sp-content);
+  }
+</style>
