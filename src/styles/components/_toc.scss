@@ -18,6 +18,7 @@
     font-size: var(--fs);
     font-weight: var(--fw-bold);
     text-transform: uppercase;
+    letter-spacing: 0.1em;
   }
 
   @include mixins.respond('l', 'to') {

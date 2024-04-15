@@ -43,7 +43,8 @@ h4 {
   gap: var(--sp);
   text-align: center;
 
-  font-size: 0.8em;
+  font-size: var(--fs);
+  font-weight: var(--fw-bold);
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-block: var(--sp-l) var(--sp);
