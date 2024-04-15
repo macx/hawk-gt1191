@@ -57,10 +57,12 @@ const toc = true
       )
     }
 
-    <slot />
+    <slot name='article' />
 
     <Tags tags={tags as string[]} divider={true} />
   </article>
+
+  <slot name='related' />
 </BaseLayout>
 
 <style lang='scss'>

@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content'
 import BaseLayout from '@layouts/BaseLayout.astro'
 import BlogPostLayout from '@layouts/BlogPostLayout.astro'
+import RelatedArticles from '@components/RelatedArticles.astro'
 
 export async function getStaticPaths() {
   const posts = await getCollection('tutorials')
@@ -13,7 +14,7 @@ export async function getStaticPaths() {
 }
 
 const post = Astro.props
-
+const currentPathname = post.slug.replace('/tutorials/', '')
 const { Content, headings } = await post.render()
 
 export const layout = 'wide'
@@ -26,7 +27,13 @@ post.data.headings = headings as unknown as string[]
     <BaseLayout redirect={true} />
   ) : (
     <BlogPostLayout {...post.data} layout={layout}>
-      <Content />
+      <Content slot='article' />
+
+      <RelatedArticles
+        tags={post.data.tags}
+        currentPathname={currentPathname}
+        slot='related'
+      />
     </BlogPostLayout>
   )
 }

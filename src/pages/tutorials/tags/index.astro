@@ -7,8 +7,9 @@ import Lead from '@components/Lead.astro'
 const posts = await getCollection('tutorials')
 const tags = [...new Set(posts.flatMap((post) => post.data.tags))] as string[]
 
-export const title = 'Tags'
-export const description = 'Tags'
+export const title = 'In den Tutorials verwendete Tags'
+export const description =
+  'Zur besseren Übersicht sind hier alle Tags aufgelistet, die in den Tutorials verwendet werden.'
 export const layout = 'wide'
 ---
 

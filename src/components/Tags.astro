@@ -19,7 +19,7 @@ const sortedTags = tags.sort((a, b) =>
       <li>Verwendete Tags:</li>
       {sortedTags.map((tag) => (
         <li class:list={['tag', { current: currentPath === tag }]}>
-          <a href={`/tutorials/tags/${tag}/`}>{tag}</a>
+          <a href={`/tutorials/tags/${tag}`}>{tag}</a>
         </li>
       ))}
     </ul>
@@ -40,9 +40,7 @@ const sortedTags = tags.sort((a, b) =>
     margin-block: 0 var(--sp-content);
 
     &.divider {
-      margin-block: var(--sp-l) 0;
-      border-block-start: 1px solid var(--clr-line);
-      padding-block-start: var(--sp-m);
+      margin-block: var(--sp-content) 0;
     }
 
     li {

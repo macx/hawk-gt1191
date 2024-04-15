@@ -1,0 +1,53 @@
+---
+import { getCollection } from 'astro:content'
+import ArticleCard from './ArticleCard.astro'
+
+const { tags, currentPathname } = Astro.props
+const searchTagsCount = tags.length
+
+const fetchedutorials = await getCollection('tutorials', ({ data }) => {
+  return import.meta.env.PROD ? data.isDraft !== true : true
+})
+
+const allTutorials = fetchedutorials
+
+const mappedTags = allTutorials
+  .filter(({ slug }) => slug !== currentPathname)
+  .filter((a) => new Date(a.data.pubDate) <= new Date())
+  .sort(
+    (a, b) =>
+      new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+  )
+  .reduce(
+    (filtered, tutorial) => {
+      const tutorialTags = tutorial.data.tags
+      const foundTagsCount = tags.reduce(
+        (count: number, tag: number) =>
+          count + (tutorialTags?.includes(String(tag)) === true ? 1 : 0),
+        0
+      )
+      const amount =
+        searchTagsCount === foundTagsCount
+          ? 'all'
+          : foundTagsCount > 1
+            ? 'some'
+            : foundTagsCount
+              ? 'one'
+              : 'none'
+      filtered[amount].push(tutorial)
+      return filtered
+    },
+    { all: [], some: [], one: [], none: [] }
+  )
+const { all, some, one, none } = mappedTags
+const output = [...all, ...some, ...one, ...none]
+---
+
+<section class='related-tags'>
+  <h2 class='title-centered'>Lese als Nächstes</h2>
+
+  <div class='articles'>
+    <ArticleCard article={output[0]} />
+    <ArticleCard article={output[1]} />
+  </div>
+</section>

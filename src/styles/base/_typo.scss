@@ -36,6 +36,35 @@ h4 {
   letter-spacing: 0.1em;
 }
 
+.title-centered {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--sp);
+  text-align: center;
+
+  font-size: 0.8em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-block: var(--sp-l) var(--sp);
+
+  &::before,
+  &::after {
+    display: block;
+    content: '';
+    block-size: 1px;
+    background-color: var(--clr-line);
+  }
+
+  &::before {
+    flex: 0 0 var(--sp-content);
+  }
+
+  &::after {
+    flex: 1 1 auto;
+  }
+}
+
 sup {
   line-height: 1;
   line-height: 1;

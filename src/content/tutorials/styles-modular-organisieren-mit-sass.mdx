@@ -81,7 +81,7 @@ Die folgende vereinfachte Struktur hat sich in vielen meiner kleinen und großen
   src/
   └── styles/
       ├── base/
-      │   ├── _fonnts.scss
+      │   ├── _fonts.scss
       │   ├── _index.scss
       │   ├── _typo.scss
       │   ├── _layout.scss
@@ -118,7 +118,7 @@ Wie du siehst, werden in der Hauptdatei keine dedizierten Styles mehr definiert.
 
 ### Die Basis
 
-Im Ordner `base` lege ich alle Style und sogenannte Tokens ab, die für das Grundgerüst der Seite benötigt werden. Dazu gehören ein CSS-Reset, Fonts, Variablen, Typografie, Mixins und nicht zu vergessen das Layout an sich.
+Im Ordner `base` lege ich alle Styles und sogenannte Tokens ab, die für das Grundgerüst der Seite benötigt werden. Dazu gehören ein CSS-Reset, Fonts, Variablen, Typografie, Mixins und nicht zu vergessen das Layout an sich.
 
 In der Datei `_index.scss` definiere ich nun, welche Dateien ich in welcher Reihenfolge geladen haben möchte:
 
@@ -157,7 +157,7 @@ Schauen wir uns kurz an, welche Dateien ich für welchen Zweck angelegt habe.
 
 ### Die Komponenten
 
-Alles andere, was über diese Basisdefintion hinausgeht, wird in den `components` abgelegt -- wobei es eigentlich egal ist, wie du sie nennst. Als Komponente kannst du dir zum Beispiel einr in siche geschlossenes Box mit INhalten vorstellen. Dessen Styles brauchen wir außerhalb nicht und wünschen uns wahrscheinlich auch nicht, dass Styles von außen Einfluss haben soll. Legen wir uns also die Datei `_navigation.scss` an. Dann eine Datei für den Header, eine für den Content und so weiter.
+Alles andere, was über diese Basisdefintion hinausgeht, wird in den `components` abgelegt -- wobei es eigentlich egal ist, wie du sie nennst. Als Komponente kannst du dir zum Beispiel einr in sich geschlossenes Box mit Inhalten vorstellen. Dessen Styles brauchen wir außerhalb nicht und wünschen uns wahrscheinlich auch nicht, dass Styles von außen Einfluss haben soll. Legen wir uns also die Datei `_navigation.scss` an. Dann eine Datei für den Header, eine für den Content und so weiter.
 
 Die Einbindung dieser Dateien in der Hauptdatei `main.scss` erfolgt analog zu den Basis-Styles in der `src/components/_index.scss`.
 
@@ -169,7 +169,7 @@ Stell dir vor, du hast eine Karte mit Überschrift, Bild und einen Text. Diese m
 
 <Figure imagePath="/src/images/tutorials/karten-mockup.jpeg" caption="Eine Karte mit Überschrift, Bild und Text" alt="" />
 
-Die Karten möchtest du nun aber je nach Seite bzw. Kategorie eine andere Hintergrundfarbe geben. Dafür jetzt jeweils eine eigene Klasse zu erstellen, also `.card1`, `.card2` usw., wäre nicht nur unnötig, sondern entspricht eben auch nicht dem Ansatz Mobil first[^2]. Denn im Grunde genommen sind die Styles für alle Karten identisch, mit Außnahme der Hintergrundfarbe. Styles, die doppelt doppelt oder dreifach definiert werden, ist ein No-Go.
+Die Karten möchtest du nun aber je nach Seite bzw. Kategorie eine andere Hintergrundfarbe geben. Dafür jetzt jeweils eine eigene Klasse zu erstellen, also `.card1`, `.card2` usw., wäre nicht nur unnötig, sondern entspricht eben auch nicht dem Ansatz Mobil first[^2]. Denn im Grunde genommen sind die Styles für alle Karten identisch, mit Außnahme der Hintergrundfarbe. Styles, die doppelt oder dreifach definiert werden, ist ein No-Go.
 
 ### HTML-Markup
 
@@ -220,7 +220,7 @@ Nun erstellen wir die Styles für die Karte in einer eigenen Datei namens `_card
   ```
 </Figure>
 
-Nun zu den Variaten. Die Karten auf der Seite **Projekte** erhalten zusätzlich die Klasse `.projekte`, die Karten auf der Seite **Fotografien** die Klasse `.fotografien` und so weiter. Ergänze dazu am Ende der Klasse `.card` folgende Styles:
+Nun zu den Variaten. Die Karten auf der Seite **Projekte** erhalten zusätzlich die Klasse `.projects`, die Karten auf der Seite **Fotografien** die Klasse `.photos` und so weiter. Ergänze dazu am Ende der Klasse `.card` folgende Styles:
 
 <Figure caption="`_card.scss`">
   ```scss
