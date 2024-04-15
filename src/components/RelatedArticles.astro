@@ -46,7 +46,7 @@ const output = [...all, ...some, ...one, ...none]
 <section class='related-articles'>
   <h2 class='title-centered'>Lese als Nächstes</h2>
 
-  <div class='articles'>
+  <div class='l-articles'>
     <ArticleCard article={output[0]} />
     <ArticleCard article={output[1]} />
     <ArticleCard article={output[2]} />
@@ -56,11 +56,5 @@ const output = [...all, ...some, ...one, ...none]
 <style lang='scss'>
   .related-articles {
     margin-block-start: var(--sp-l);
-  }
-
-  .articles {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: var(--sp-content);
   }
 </style>
