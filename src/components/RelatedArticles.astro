@@ -34,7 +34,7 @@ const mappedTags = allTutorials
             : foundTagsCount
               ? 'one'
               : 'none'
-      filtered[amount].push(tutorial)
+      filtered[amount].push(tutorial as never)
       return filtered
     },
     { all: [], some: [], one: [], none: [] }
