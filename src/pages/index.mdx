@@ -7,6 +7,7 @@ studipLink: 'https://studip.hawk.de/dispatch.php/course/details?sem_id=fc760068e
 ---
 
 import Lead from '@components/Lead.astro'
+import Figure from '@components/Figure.astro'
 import { YouTube } from 'astro-embed'
 import { getImage } from 'astro:assets'
 
@@ -22,13 +23,13 @@ export const youtubePoster = await getImage({
 
 <Lead>{frontmatter.description}</Lead>
 
-<figure>
-  <YouTube id="https://youtu.be/ioEGZMuh4BE" params="rel=0" poster={youtubePoster.src} />
-
-  <figcaption>
-    Worum es in diesem Seminar geht, erfährst du in diesem Video.
-  </figcaption>
-</figure>
+<Figure caption='Worum es in diesem Seminar geht, erfährst du in diesem Video.'>
+  <YouTube
+    id='https://youtu.be/ioEGZMuh4BE'
+    params='rel=0'
+    poster={youtubePoster.src}
+  />
+</Figure>
 
 ## Im Überblick
 

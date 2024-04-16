@@ -35,14 +35,40 @@ if (imagePath !== undefined && !images[imagePath]) {
         alt={alt}
         loading={lazy ? 'lazy' : 'eager'}
       />
-    ) : (
-      <slot />
-    )
+    ) : null
   }
+
+  <slot />
 
   {
     caption && typeof caption === 'string' ? (
-      <figcaption>{await markdown(caption)}</figcaption>
+      <figcaption>{await markdown.inline(caption)}</figcaption>
     ) : null
   }
 </figure>
+
+<style lang='scss' is:global>
+  @use '../styles/base/mixins';
+
+  figure {
+    @include mixins.media-item();
+
+    img {
+      display: block;
+    }
+
+    figcaption {
+      font-size: 0.8em;
+      padding-block: 0.5em 1em;
+      margin-block-end: 0;
+    }
+
+    &:has(figcaption) {
+      padding-block-end: var(--sp) 0;
+    }
+
+    > :is(img, .astro-code) + .astro-code {
+      margin-block-start: var(--sp);
+    }
+  }
+</style>

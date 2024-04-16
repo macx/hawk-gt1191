@@ -34,6 +34,7 @@ h4 {
   font-size: 0.8em;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+  margin-block-end: 1em;
 }
 
 .title-centered {
@@ -47,7 +48,7 @@ h4 {
   font-weight: var(--fw-bold);
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  margin-block: var(--sp-l) var(--sp);
+  margin-block: var(--sp-l) var(--sp-m);
 
   &::before,
   &::after {
@@ -103,7 +104,8 @@ code {
 .astro-code {
   position: relative;
   display: block;
-  padding: var(--sp-s) var(--sp);
+  padding-block: var(--sp-s);
+  padding-inline: var(--sp);
   border-radius: var(--radius);
   overflow: hidden;
 
@@ -113,6 +115,16 @@ code {
     font-variation-settings:
       'wght' 300,
       'slnt' 0;
+  }
+
+  &::before {
+    display: block;
+    content: '# ' attr(data-language);
+    font-size: var(--fs-xs);
+    line-height: 1;
+    color: var(--clr-code-title);
+    text-transform: uppercase;
+    margin-block-end: var(--sp-s);
   }
 
   .copy-code-btn {
@@ -125,8 +137,8 @@ code {
     place-items: center;
 
     position: absolute;
-    inset-block-end: 0;
-    inset-inline-end: 0;
+    inset-block-start: var(--sp-xs);
+    inset-inline-end: var(--sp-xs);
     z-index: 2;
 
     block-size: var(--button-size);
@@ -136,6 +148,7 @@ code {
     color: var(--clr-inverse);
     border-radius: var(--radius) 0 0 0;
     transition: var(--transition);
+    line-height: 1;
 
     cursor: pointer;
 
@@ -145,14 +158,43 @@ code {
       block-size: var(--icon-size);
     }
 
+    &::before {
+      position: absolute;
+      display: block;
+      content: 'Kopieren';
+      inset-block-start: clac(var(--sp-s) - var(--sp-xs));
+      inset-inline-end: 3rem;
+      z-index: 1;
+      line-height: 1;
+
+      font-size: var(--fs-xs);
+      color: var(--clr-code-title);
+      text-align: right;
+      opacity: 0;
+
+      transform: translateX(150%);
+      transition:
+        transform var(--transition),
+        opacity var(--transition);
+    }
+
     &:hover {
       background-color: var(--clr-inverse);
       color: var(--clr-primary);
+
+      &::before {
+        transform: translateX(0);
+        opacity: 1;
+      }
     }
   }
 
   figure & {
     margin-block: 0;
+
+    + .astro-code {
+      margin-block-start: var(--sp);
+    }
   }
 
   html[data-theme='dark'] & {

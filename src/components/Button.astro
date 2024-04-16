@@ -6,6 +6,7 @@ interface Props {
   primary?: boolean
   small?: boolean
   listener?: string
+  newWindow?: boolean
 }
 
 const {
@@ -14,15 +15,27 @@ const {
   href,
   primary = false,
   small = false,
-  listener
+  listener,
+  newWindow = false
 }: Props = Astro.props
 ---
 
 {
   type === 'link' && href ? (
-    <a href={href} class:list={['button', { primary: primary === true }]}>
-      {label}
-    </a>
+    newWindow === true ? (
+      <a
+        href={href}
+        class:list={['button', { primary: primary === true }]}
+        target='_blank'
+        rel='noopeer noreferrer'
+      >
+        {label}
+      </a>
+    ) : (
+      <a href={href} class:list={['button', { primary: primary === true }]}>
+        {label}
+      </a>
+    )
   ) : (
     <button
       class:list={['button', { primary: primary }, { small: small }]}

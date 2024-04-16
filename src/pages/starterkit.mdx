@@ -9,6 +9,7 @@ visible: true
 ---
 
 import Lead from '@components/Lead.astro'
+import Figure from '@components/Figure.astro'
 import Button from '@components/Button.astro'
 
 # {frontmatter.title}
@@ -18,7 +19,7 @@ import Button from '@components/Button.astro'
 Die Entwicklung einer modernen Website erfordert viele Einzelschritte. Ein Bild, das auf allen Endgeräten gut aussieht und Ladezeiten reduziert, muss dafür in mehreren Größen vorliegen. Dessen Erstellung ist in der Regel ein Ping-Pong-Spiel zwischen Bildbearbeitung und Website-Entwicklung. Das Starterkit nimmt dir diese und viele anderen Aufgaben ab.
 
 <Button
-  type="link"
+  type='link'
   label='Zum Starterkit'
   href='https://github.com/HAWK-GT1191/gt1191-starterkit'
   primary={false}
@@ -30,40 +31,30 @@ Die Entwicklung einer modernen Website erfordert viele Einzelschritte. Ein Bild,
 
 Folge bitte vorab der [Installationsanleitung](https://github.com/HAWK-GT1191/gt1191-starterkit#gt-1191-starterkit). Erfüllt dein Computer danach die Vorraussetzungen, lege dir ein Verzeichnis für deine neue Website an. Öffne dieses anschließend in Visual Studio Code über **Datei** > **Ordner öffnen** und gebe nun im Terminal &ndash; das erreichst du über **Anzeigen** > **Terminal anzeigen** &ndash; folgenden Befehl ein:
 
-<figure>
-  ```shell
-  git clone --depth 1
-  https://github.com/HAWK-GT1191/gt1191-starterkit.git .
+{/* prettier-ignore */}
+<Figure caption='Dieser Befehl kopiert dir die Dateien des Starterkits in dein Verzeichnis.'>
+  ```bash
+  git clone --depth 1 https://github.com/HAWK-GT1191/gt1191-starterkit.git .
   ```
-
-  <figcaption>
-    Dieser Befehl kopiert dir die Dateien des Starterkits in dein Verzeichnis.
-  </figcaption>
-</figure>
+</Figure>
 
 Installiere nun einmalig das Starterkit:
 
-<figure>
-  ```shell
+{/* prettier-ignore */}
+<Figure caption='Die Installation ist vergleichbar mit dem entpacken einer ZIP-Datei.'>
+  ```bash
   yarn install
   ```
-
-  <figcaption>
-    Die Installation ist vergleichbar mit dem entpacken einer ZIP-Datei.
-  </figcaption>
-</figure>
+</Figure>
 
 Mit dem folgenden Befehlt wird ein Webserver gestartet, der die vorkonfigurierte Website im Browser öffnet.
 
-<figure>
-  ```shell
+{/* prettier-ignore */}
+<Figure caption='Den Prozess kannst du mit CTL+C bzw. CMD+C beenden.'>
+  ```bash
   yarn dev
   ```
-
-  <figcaption>
-    Den Prozess kannst du mit CTL+C bzw. CMD+C beenden.
-  </figcaption>
-</figure>
+</Figure>
 
 ## Hintergründe und Alternativen
 
@@ -84,8 +75,11 @@ Das GT 1191 Starterkit Mini wandelt SCSS in CSS um, startet mit [BrowserSync](ht
 
 Auch ohne Starterkit kannst du Sass nutzen. Der folgende Befehl wandelt die Datei `src/styles.scss` in CSS um und speichert diese in `public/styles.css`:
 
-```shell
-sass --watch src/styles.scss:public/styles.css
-```
+{/* prettier-ignore */}
+<Figure>
+  ```bash
+  sass --watch src/styles.scss:public/styles.css
+  ```
+</Figure>
 
 Es gibt in Visual Studio Code auch Extensions, die das automatisieren. Diese verwenden in der Regel allerdings veraltete Versionen von Sass und sind daher nicht zu empfehlen.

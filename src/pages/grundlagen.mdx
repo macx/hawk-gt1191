@@ -9,6 +9,7 @@ toc: false
 ---
 
 import Lead from '@components/Lead.astro'
+import Figure from '@components/Figure.astro'
 import { YouTube } from 'astro-embed'
 import { getImage } from 'astro:assets'
 
@@ -24,13 +25,9 @@ export const youtubePoster = await getImage({
 
 <Lead text={frontmatter.description} />
 
-<figure>
+<Figure caption="Ich erkläre dir im Video, dass HTML und CSS gar nicht so kompliziert ist.">
   <YouTube id="https://youtu.be/SJ1Pra-EP6c" params="rel=0" poster={youtubePoster.src} />
-
-  <figcaption>
-    Ich erkläre dir im Video, dass HTML und CSS gar nicht so kompliziert ist.
-  </figcaption>
-</figure>
+</Figure>
 
 ## HTML
 
@@ -39,18 +36,14 @@ Auszeichnungssprache, mit der Struktur und Inhalt einer Webseite definiert
 werden. Mit HTML-Elementen können Texte, Bilder, Links, Tabellen und Formularen
 auf einer Webseite erstellt werden.
 
-<figure>
+<Figure caption="Ein Element besteht aus einem öffnenden Tag, dem Inhalt und einem
+    schließenden Tag. Das obige Beispiel ist ein `h1`-Element, das für
+    Überschriften verwendet wird. Es gibt noch viele weitere Elemente, die du in
+    diesem Seminar kennenlernen wirst.">
   ```html
   <h1>Das ist ein HTML-Element</h1>
   ```
-
-  <figcaption>
-    Ein Element besteht aus einem öffnenden Tag, dem Inhalt und einem
-    schließenden Tag. Das obige Beispiel ist ein `h1`-Element, das für
-    Überschriften verwendet wird. Es gibt noch viele weitere Elemente, die du in
-    diesem Seminar kennenlernen wirst.
-  </figcaption>
-</figure>
+</Figure>
 
 ### Semantik
 
@@ -65,18 +58,14 @@ verwendet wird, um das Aussehen einer Webseite zu definieren. Mit CSS können
 Farben, Schriftarten, Layouts und andere visuelle Aspekte einer Webseite
 angepasst werden.
 
-<figure>
+<Figure caption="Mit CSS werden Regeln erstellt, die auf HTML-Elemente angewendet werden. Das
+    obige Beispiel ändert die Textfarben aller `h1`-Elemente auf rot.">
   ```css
   h1 {
     color: red;
   }
   ```
-
-  <figcaption>
-    Mit CSS werden Regeln erstellt, die auf HTML-Elemente angewendet werden. Das
-    obige Beispiel ändert die Textfarben aller `h1`-Elemente auf rot.
-  </figcaption>
-</figure>
+</Figure>
 
 ### CSS-Präprozessoren
 
@@ -88,17 +77,13 @@ Bei einem Präprozessor handelt sich um eine Art Vorverarbeitungsschritt, der vo
 
 JavaScript ist eine Skriptsprache, die verwendet wird, um die Funktionalität einer Webseite zu erweitern. Mit ihr können dynamische Inhalte, interaktive Elemente und Benutzerinteraktionen erstellt werden.
 
-<figure>
+<Figure caption="Mit JavaScript können HTML-Elemente ausgewählt und manipuliert werden. Das
+    obige Beispiel wählt das erste `h1`-Element auf der Seite aus und speichert
+    es in einer Variablen.">
   ```js
   const heading = document.querySelector("h1");
   ```
-
-  <figcaption>
-    Mit JavaScript können HTML-Elemente ausgewählt und manipuliert werden. Das
-    obige Beispiel wählt das erste `h1`-Element auf der Seite aus und speichert
-    es in einer Variablen.
-  </figcaption>
-</figure>
+</Figure>
 
 [^1]: HTML steht für HyperText Markup Language und ist eine Auszeichnungssprache, die verwendet wird, um Webseiten zu erstellen. HTML-Dokumente bestehen aus einer Folge von Tags, die die Struktur und den Inhalt einer Webseite beschreiben.
 [^2]: Ein Screenreader ist eine Software, die den Inhalt einer Webseite in Sprache umwandelt und so blinden oder sehbehinderten Menschen den Zugang zu digitalen Inhalten ermöglicht.
