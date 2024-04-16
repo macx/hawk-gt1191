@@ -1,0 +1,278 @@
+---
+title: 'Dein Einstieg in CSS: Die Grundprinzipien'
+description: 'CSS ist die nächste Technologie, die du nach HTML lernen solltest. Mit den Cascading Stylesheets kannst du deine Website gestalten und layouten.'
+isDraft: false
+pubDate: 2024-04-16T16:30:00+00:00
+author: david-maciejewski
+cover:
+  path: '/src/images/tutorials/color-palette.png'
+  alt: 'Maler steht vor seiner Leinwand und malt ein buntes, abstraktes Bild.'
+  caption: 'Endlich kommt Farbe ins Spiel. Mit CSS machst du die HTML-Boxen bunt.'
+tags: ['html', 'css']
+---
+
+import Figure from '@components/Figure.astro'
+import Button from '@components/Button.astro'
+
+CSS (Cascading Style Sheets) ist eine Stylesheet-Sprache, mit der du das Erscheinungsbild und die Darstellung einer Website definieren kannst. Sie ermöglicht die Trennung von Inhalten und Design. Konkret bedeutet das, dass HTML die Struktur der Website vorgibt, während CSS die Gestaltung der Inhalte übernimmt. So kannst du das Layout, die Farben, Schriftarten und andere visuelle Aspekte einer Webseite unabhängig von den eigentlichen Inhalten steuern.
+
+> **Hinweis**: Bevor du dich mit CSS beschäftigst, solltest du bereits ein Grundverständnis von HTML haben. Lies dazu bitte das Tutorial [Einstieg in HTML](/tutorials/einstieg-in-html) und komme hier dann wieder zurück.
+
+## Regeln
+
+Eigenschaften bestimmen das Aussehen von HTML-Elementen. In CSS sind diese innerhalb von Regelsätzen (auch CSS-Regeln/Rules genannt) organisiert. Eine Regel besteht aus einem oder mehreren durch Komma (`,`) getrennten Selektoren und einem durch geschweiften Klammern (`{` und `}`) begrenzten Block von Deklarationen.
+
+Die Selektoren bestimmen, auf welche HTML-Elemente die Deklarationen angewendet werden sollen. Eine Deklaration besteht aus einer oder mehreren Eigenschaften und den dazugehörigen Werten. Eine Eigenschaft wird durch einen Doppelpunkt (`:`) vom Wert getrennt und mit einem Semikolon (`;`) abgeschlossen.
+
+<Figure caption="Diese CSS-Regel deklariert Schriftgröße, Schriftstärke und Farbe des Selektors `h2`. Das ist eine Überschrift der zweiten Ordnung.">
+  ```html
+  <h2>Meine Überschrift</h2>
+  ```
+
+  ```css
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: red;
+  }
+  ```
+</Figure>
+
+> **Übrigens**: Die geschweiften Klammern findest du auf einer Windows-Tastatur unter <kbd>AltGr</kbd> + <kbd>7</kbd> und <kbd>AltGr</kbd> + <kbd>0</kbd>. Auf einer Mac-Tastatur findest du sie unter <kbd>⌥ Option</kbd> + <kbd>8</kbd> und <kbd>⌥ Option</kbd> + <kbd>9</kbd>.
+
+## Selektoren
+
+Mit den Selektoren kannst du also festlegen, auf welche Elemente die CSS-Regeln angewendet werden sollen. Es gibt verschiedene Arten von Selektoren: Elementselektoren, Klassenselektoren, ID-Selektoren, Attributselektoren und Pseudoklassen.
+
+Elementselektor
+: Die Selektoren `p`, `div`, `a` wählen die HTML-Elemente `<p>`, `<div>` und `<a>` aus.
+
+Klassenselektor
+: Klassen werden mit einem Punkt (`.`) vor dem Klassennamen definiert. `.my-box` selektiert so `<div class="my-box">`.
+
+ID-Selektor
+: Die Rauto (`#`) wird vor die ID gesetzt. `#alert` selektiert `<div id="alert">`.
+
+Attributselektor
+: Attribute wie `<input type="text">` wählt man mittels Attributselektor aus: `[type="text"]`.
+
+Pseudoklassen
+: Werden verwendet, um Elemente in einem bestimmten Zustand auszuwählen: `:hover`, `:focus` oder `:active`. Zum Beispiel `button:hover`, oder `.btn:hover`.
+
+Stellen wir uns nun ein Formular vor, das zwei Buttons enthält. Einen Abbrechen-Button und einen Absende-Button:
+
+<Figure caption="Das HTML der beiden Buttons">
+  ```html
+  <button type="button" class="btn" id="cancel-button">Abbrechen</button>
+
+  <button type="submit" class="btn btn-primary">Absenden</button>
+  ```
+</Figure>
+
+Die Buttons sollen eine blaue Schrift und einen blauen Rahmen enthalten. Beim Darüberfahren mit der Maus soll sich der Hintergrund blau färben, die Schrift weiß. Das ist gleichzeitig auch die Vorgabe für den Primär-Button, den Absende-Button. Dieser ändert beim Darüberfahren mit der Maus die Hintergrundfarbe auf Dunkelblau.
+
+In CSS kannst du die Buttons über ihren Elementselektor `button` oder über ihre gemeinsame Klasse `.btn` selektieren. Dem Absende-Button haben wir eine zweite Klasse `.btn-primary` gegeben, um ihn von dem Abbrechen-Button zu unterscheiden. Die ID `#cancel-button` des Abbrechen-Buttons wollen wir später mit JavaScript steuern, spielt für die Gestaltung allerdings keine Rolle.
+
+Hier das CSS und das Ergebnis dazu:
+
+<Figure imagePath="/src/images/tutorials/form-buttons.png" alt="Zwei Buttons: Ein Abbrechen- und ein Absende-Button." caption="Komplexes Beispiel mit Attributen, ID und Klassen.">
+  ```css
+  .btn {
+    border: 1px solid blue;
+    background-color: transparent;
+    color: blue;
+  }
+
+  .btn-primary, a:focus, a:hover {
+    background-color: blue;
+    color: white;
+  }
+
+  .btn-primary:focus, .btn-primary:hover {
+    background-color: darkblue;
+  }
+  ```
+</Figure>
+
+> **Merkhilfe**: Bei einem Klassenselektor setzt du einen Punkt (`.`) vor den Klassennamen, bei einer ID das Rautezeichen (`#`) vor dessen Namen und bei Elementen nur dessen Elementnamen.
+
+## Kaskade
+
+Cascading Style Sheets bedeutet übersetzt so viel wie „gestufte Gestaltungsbögen“. Der Begriff „Kaskade“ bezieht sich auf die hierarchische Abfolge von CSS-Regeln. Die Reihenfolge, in der diese Regeln definiert sind, bestimmt, welche Regel Vorrang hat. Man kann es sich wie bei einem Wasserfall vorstellen: Das Wasser beginnt mit wenig Kraft, wird aber immer stärker, je weiter es nach unten fließt. Daher gilt das Prinzip: Je weiter unten eine Regel definiert ist, desto stärker wirkt sie sich aus. Ein Beispiel:
+
+<Figure caption="In diesen Regeln wird zwei Mal die Hintergrundfarbe von `<div>`-Elementen bestimmt.">
+  ```css
+  div {
+    background-color: red;
+    color: white;
+  }
+
+  p, div, span {
+    background-color: green;
+  }
+  ```
+</Figure>
+
+In dem vorangegangenen Beispiel erhalten alle `<div>`-Elemente die Hintergrundfarbe Rot und die Schriftfarbe weiß. In der zweiten Regel erhalten gleich drei Elemente, durch Komma getrennt, die Hintergrundfarbe Grün. Durch die Kaskade gewinnt die zweite Regel, weil sie nach der ersten kommt. Die Schriftfarbe bleibt jedoch Weiß, da sie in der zweiten Regel nicht überschrieben wird.
+
+### Browservorgaben
+
+Jeder Browser definiert darüber hinaus Standardstile für HTML-Elemente. Diese umfassen Dinge wie Schriftgröße, Schriftart, Farbe und Abstände. Die Mehrheit der Browser verwendet eine Standard-Schriftgröße von `16px` auf das `<body>`-Element an und verwendet für Überschriften und Absätze eine Standard-Schriftart wie „sans-serif“ (Serifenschrift wie Times). Links sind standardmäßig blau und unterstrichen, besuchte Links sind lila. Nicht alle Browser verwenden die gleichen Vorgaben, doch grundsätzlich sieht eine vom Browser vorformatierte Seite so aus:
+
+<Figure imagePath="/src/images/tutorials/unstyled-website.png" alt="Screenshot einer ungestylten Website." caption="Der Browser gibt vor, wie die Elemente aussehen sollen." />
+
+Die Standardstile werden ganz am Anfang des Dokuments angewendet, bevor deine eigenen CSS-Regeln zum Zuge kommen. Das bedeutet allerdings auch, dass du sie nachträglich überschreiben kannst.
+
+> **Merkhilfe**: Das, was als Letztes definiert wird, überschreibt das, was zuerst festgelegt wurde.
+
+## Vererbung
+
+Eigenschaften lassen sich auch vererben. Ungefähr so, wenn die Tochter die Haarfarbe der Mutter bekommt oder der Sohn wie der Vater im Alter weiße statt graue Haare bekommt. Bei CSS übertragen sich Eigenschaften von übergeordneten Elementen auf untergeordnete Elemente. Wenn du also die Schriftfarbe im `<body>`-Element auf Schwarz setzt, wird diese Farbe auch auf alle darin enthaltenen Elemente angewendet, es sei denn, du überschreibst sie mit einer anderen Regel.
+
+Auf Englisch heißt Vererbung „inheritance“ und diese lässt sich in zwei Kategorien unterteilen:
+
+- **Vererbbare Eigenschaften** (Inherited Properties) erhalten die Eigenschaften von übergeordneten Elementen. Dazu gehören Schriftgröße (`font-size`), Schriftart (`font-family`), Schriftstärke (`font-weight`), Schriftfarbe (`color`), Textausrichtung (`text-align`), Zeilenhöhe (`line-height`) und Listenstil (`list-style`).
+- **Nicht vererbbare Eigenschaften** (Non-Inherited Properties), die standardmäßig einen Initialwert erhalten, zum Beispiel vorgegeben vom Browser. Dazu gehören Breite (`width`), Höhe (`height`), Innenabstand (`padding`), Außenabstand (`margin`), Rahmen (`border`), Hintergrundfarbe (`background-color`), Anzeige (`display`) oder Position (`position`).
+
+> **Merkhilfe**: Auch in CSS erhalten die Kinder Eigenschaften der Eltern.
+
+## Spezifität
+
+Die CSS-Spezifität ist der Algorithmus der Browser, die Gewichtung und Relevanz der Selektoren zu bestimmen, die Vorrang vor den anderen haben, die dasselbe HTML-Element ansprechen. Klingt komplizierter, als es ist. Stelle dir vor, jemand sucht in einem Raum voller Menschen nach einer Person. Unter „Liebe Studierende“ fühlen sich an der Uni möglicherweise alle angesprochen; von Lisa kann es mehrere geben, Lisa Kathrin Müller nur eine. In CSS ist es ähnlich: Je spezifischer ein Selektor ist, desto höher ist seine Spezifität.
+
+Schauen wir uns das erst einmal an:
+
+<Figure caption="CSS-Regeln mit einer Klasse, einer ID und einem Elementnamen als Selektor.">
+  ```html
+  <div class="my-box" id="alert">Test</div>
+  ```
+
+  ```css
+  div.my-box {
+    background-color: yellow;
+  }
+
+  div#alert {
+    background-color: red;
+  }
+
+  div {
+    background-color: blue;
+  }
+  ```
+</Figure>
+
+Was glaubst du, welche Farbe bekommt am Ende das `div`-Element? Laut der Kaskade müsste die Hintergrundfarbe Blau sein, richtig? Das, was zuletzt definiert wird, überschreibt das, was zuerst definiert wird. Oder?
+
+Ja und Nein. Denn die Spezifität überwiegt die Reihenfolge. Stelle dir eine Drei-Punkte-Matrix vor, bei der die ID (zweites Beispiel im Code) den Wert `1-0-0` erhält, die Klasse (erstes Beispiel) den Wert `0-1-0` und der Elementseletor `0-0-1`. Solltest du zwei Klassen haben, würde der Wert `0-2-0` betragen, bei einer ID und zwei Klassen wäre das `1-2-0`. Die Spezifität wird durch die Summe der Werte bestimmt. Die ID hat also Vorrang vor der Klasse, die Klasse vor dem Element- oder Attributselektor.
+
+Folglich ist die Box in Rot gehalten. Ohne die ID-Regel wäre sie gelb, da die Klasse spezifischer ist als der Elementselektor.
+
+Das Ganze kannst du auch errechnen, doch einen Taschenrechner mit dir zu führen, ist nicht nötig. Denn zum einen habe ich dir unter [/dokumentation#css](Dokumentationen) die Dokumentation als auch einen Kalkulator verlinkt. Und zum anderen meine ich, dass du dir die Matrix überhaupt nicht merken musst. Wenn du verstanden hast, wo der Unterschied zwischen einer ID und einer Klasse besteht, kommst du einem Problem auch ohne Matrix auf die Spur.
+
+## Box-Modell
+
+Das Box-Modell ist ein Konzept in CSS, das beschreibt, wie Elemente auf einer Webseite dargestellt werden. Jedes Element wird als Rechteck betrachtet, das aus vier Bereichen besteht: Inhalt (Content), Innenabstand (Padding), Rand (Border) und der Außenabstand zu anderen HTML-Elementen (Margin). Diese Bereiche sind voneinander getrennt und können mit CSS gestaltet werden.
+
+<Figure imagePath="/src/images/tutorials/box-model.png" alt="Vier in sich verschachtelte Boxen ergeben das Box-Model." caption="Jedes HTML-Element auf einer Website besteht aus diesem Box-Model." />
+
+Eine Box mit schwarzen Rand und einem Innenabstand zum Text könnte in CSS so aussehen:
+
+<Figure imagePath="/src/images/tutorials/zwei-boxen.png" alt="Zwei Boxen nebeneinander" caption="Den Innenabstand regeln wir über `padding`, den Außenabstand über `margin`.">
+  ```css
+  .box {
+    border: 1px solid black;
+    border-radius: 0.5em;
+    padding: 1em;
+    margin: 1em;
+    max-inline-size: 200px;
+  }
+  ```
+</Figure>
+
+Eine Box hat vier Seiten. Den Himmelsrichtungen folgend und im Uhrzeigersinn: Oben, rechts, unten und links. Diese Seiten lassen sich auch einzeln definieren. Das sieht dann so aus:
+
+<Figure caption="Manche Eigenschaften lassen sich durch sogenannte shorthands auch bündeln.">
+  ```css
+  /* Definiert alle Seiten einzeln */
+  .box {
+    padding-top: 0.5em;
+    padding-right: 1em;
+    padding-bottom: 1em;
+    padding-left: 0.5em;
+  }
+
+  /* Das gleiche erreichen wir auch so … */
+  .box {
+    padding: 0.5em 1em 0.5em 1em;
+  }
+
+  /* … oder noch kürzer … */
+  .box {
+    padding: 0.5em 1em;
+  }
+
+  /* … oder so, wenn alle Seiten gleich groß sind */
+  .box {
+    padding: 1em;
+  }
+  ```
+</Figure>
+
+### Box-Sizing
+
+Standardmäßig wird im Box-Modell die Breite und Höhe, die du einer Box gibst, nur auf den Inhalt angewendet. Die Innenabstände und Ränder werden hinzuaddiert. Bei einer Box mit einer Breite von `200px`, einem Rand von `1px` und einem Innenabstand von `10px` ergibt sich eine Gesamtbreite von `222px`.
+
+Geregelt wird das durch die Eigenschaften `box-sizing`. Der Standardwert ist `content-box`, was bedeutet, dass die Innenabstände und Ränder der Breite hinzuaddiert werden. Mit `border-box` werden die Innenabstände und Ränder subtrahiert. Und das ist genau das, was wir wollen.
+
+Möchtest du zwei Boxen nebeneinander platzieren, die sich die Breite zu `50%` teilen, müsstest du von der Breite zuvor die Ränder und Abstände abziehen, damit sie auch nebeneinander passen. Setzt du das `box-sizing` auf `border-box`, musst du das nicht mehr machen.
+
+Hier noch einmal eine Beispielrechnung:
+
+<Figure caption="Beide `box-sizing`-Eigenschaften im Vergleich">
+  ```css
+  /* 200 + 10 + 10 + 1 + 1 = 222 */
+  .box {
+    box-sizing: content-box;
+    width: 200px;
+    padding: 10px;
+    border: 1px solid black;
+  }
+
+  /* 200 - 10 - 10 - 1 - 1 = 200 */
+  .box {
+    box-sizing: border-box;
+    width: 200px;
+    padding: 10px;
+    border: 1px solid black;
+  }
+  ```
+</Figure>
+
+Du kannst **und solltest** alle HTML-Elemente auf einer Seite immer auf `border-box` umstellen. Das geht mit dem Sternselektor `*`, der alle Elemente auf der Website selektiert, und einer universellen Regel:
+
+<Figure caption="Der Sternselektor wählt alle Elmente einer Seite aus.">
+  ```css
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  ```
+</Figure>
+
+## Übung
+
+Viel Theorie bis jetzt, richtig? Kommen wir also zur Praxis, damit du das Gelernte auch anwenden kannst. Die oben abgebildete Website mit den Standardstilen habe ich auf einer Plattform CodePen zur Verfügung gestellt. Dort kannst du HTML und CSS direkt online bearbeiten.
+
+Hier ein paar Vorschläge:
+
+- Ändere im `body` die Schriftgröße (`font-size: 18px;`) und Farbe (`color: red;`) und beobachte, wie sich das auf alle anderen Elemente auswirkt.
+- Kopiere dir den Code aus dem Abschnitt [Spezifität](#spezifität) und ändere die Reihenfolge der Regeln, entferne ID und/oder Klasse vom HTML-Element. Welche Hintergrundfarbe wird angezeigt?
+- Kopiere dir HTML und CSS aus dem Abschnitt [Selektoren](#selektoren) und baue die Buttons nach.
+
+<p>
+  <Button type="link" href="https://codepen.io/macx/pen/KKYxaJY" label="Zur Übung" newWindow={true} />
+</p>
+
+Wenn das alles funktioniert, hast du die Grundlagen von CSS verstanden. Herzlichen Glückwunsch! 🎉
+
+Du kannst jetzt mit dem Styling deiner eigenen Website beginnen.
