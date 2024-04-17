@@ -25,8 +25,12 @@ export const youtubePoster = await getImage({
 
 <Lead text={frontmatter.description} />
 
-<Figure caption="Ich erkläre dir im Video, dass HTML und CSS gar nicht so kompliziert ist.">
-  <YouTube id="https://youtu.be/SJ1Pra-EP6c" params="rel=0" poster={youtubePoster.src} />
+<Figure caption='Ich erkläre dir im Video, dass HTML und CSS gar nicht so kompliziert ist.'>
+  <YouTube
+    id='https://youtu.be/SJ1Pra-EP6c'
+    params='rel=0'
+    poster={youtubePoster.src}
+  />
 </Figure>
 
 ## HTML
@@ -36,10 +40,12 @@ Auszeichnungssprache, mit der Struktur und Inhalt einer Webseite definiert
 werden. Mit HTML-Elementen können Texte, Bilder, Links, Tabellen und Formularen
 auf einer Webseite erstellt werden.
 
-<Figure caption="Ein Element besteht aus einem öffnenden Tag, dem Inhalt und einem
+<Figure
+  caption='Ein Element besteht aus einem öffnenden Tag, dem Inhalt und einem
     schließenden Tag. Das obige Beispiel ist ein `h1`-Element, das für
     Überschriften verwendet wird. Es gibt noch viele weitere Elemente, die du in
-    diesem Seminar kennenlernen wirst.">
+    diesem Seminar kennenlernen wirst.'
+>
   ```html
   <h1>Das ist ein HTML-Element</h1>
   ```
@@ -77,10 +83,13 @@ Bei einem Präprozessor handelt sich um eine Art Vorverarbeitungsschritt, der vo
 
 JavaScript ist eine Skriptsprache, die verwendet wird, um die Funktionalität einer Webseite zu erweitern. Mit ihr können dynamische Inhalte, interaktive Elemente und Benutzerinteraktionen erstellt werden.
 
-<Figure caption="Mit JavaScript können HTML-Elemente ausgewählt und manipuliert werden. Das
+{/* prettier-ignore */}
+<Figure
+  caption='Mit JavaScript können HTML-Elemente ausgewählt und manipuliert werden. Das
     obige Beispiel wählt das erste `h1`-Element auf der Seite aus und speichert
-    es in einer Variablen.">
-  ```js
+    es in einer Variablen.'
+>
+  ```javascript
   const heading = document.querySelector("h1");
   ```
 </Figure>
