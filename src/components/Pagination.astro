@@ -80,8 +80,9 @@ const paginationList = Array.from(
     display: flex;
     justify-content: center;
     gap: var(--sp-xs);
-    // border-block-start: 1px solid var(--clr-line);
+    margin-block-start: var(--sp);
     padding-block: var(--sp-s);
+    font-weight: 600;
     background: linear-gradient(
       to bottom,
       rgb(0 0 0 / 0) calc(50% - 1px),
@@ -95,7 +96,7 @@ const paginationList = Array.from(
       align-items: center;
       justify-content: center;
       text-decoration: none;
-      color: var(--clr-primary);
+      color: var(--clr-inverse);
 
       border-radius: 50%;
       background-color: var(--clr-bg-card);
@@ -114,12 +115,12 @@ const paginationList = Array.from(
       &.current {
         background-color: var(--clr-primary);
         color: var(--clr-inverse);
-        pointer-events: none;
+        // pointer-events: none;
       }
 
       &.disabled {
         color: var(--clr-line);
-        pointer-events: none;
+        // pointer-events: none;
       }
     }
   }

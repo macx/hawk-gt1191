@@ -1,6 +1,6 @@
 ---
-title: 'Dein Einstieg in CSS: Die Grundprinzipien'
-description: 'CSS ist die nächste Technologie, die du nach HTML lernen solltest. Mit den Cascading Stylesheets kannst du deine Website gestalten und layouten.'
+title: 'Dein Einstieg in CSS: Regeln und Prinzipien'
+description: 'In diesem Tutorial lernst du die Grundlagen der Cascading Stylesheets, um deine Website gestalten zu können.'
 isDraft: false
 pubDate: 2024-04-16T16:30:00+00:00
 author: david-maciejewski
@@ -14,7 +14,7 @@ tags: ['html', 'css']
 import Figure from '@components/Figure.astro'
 import Button from '@components/Button.astro'
 
-CSS (Cascading Style Sheets) ist eine Stylesheet-Sprache, mit der du das Erscheinungsbild und die Darstellung einer Website definieren kannst. Sie ermöglicht die Trennung von Inhalten und Design. Konkret bedeutet das, dass HTML die Struktur der Website vorgibt, während CSS die Gestaltung der Inhalte übernimmt. So kannst du das Layout, die Farben, Schriftarten und andere visuelle Aspekte einer Webseite unabhängig von den eigentlichen Inhalten steuern.
+CSS (Cascading Style Sheets) ist eine Stylesheet-Sprache, mit der du das Erscheinungsbild und die Darstellung einer Website definieren kannst. Sie ermöglicht die Trennung von Inhalten und Design. Konkret bedeutet das, dass HTML die Struktur der Website vorgibt, während CSS die Gestaltung der Inhalte übernimmt. So kannst du das Layout, die Farben, Schriftarten und andere visuelle Aspekte einer Webseite unabhängig von den eigentlichen Inhalten
 
 > **Hinweis**: Bevor du dich mit CSS beschäftigst, solltest du bereits ein Grundverständnis von HTML haben. Lies dazu bitte das Tutorial [Einstieg in HTML](/tutorials/einstieg-in-html) und komme hier dann wieder zurück.
 
@@ -83,7 +83,7 @@ Hier das CSS und das Ergebnis dazu:
     color: blue;
   }
 
-  .btn-primary, a:focus, a:hover {
+  .btn-primary, .btn:focus, .btn:hover {
     background-color: blue;
     color: white;
   }
@@ -185,36 +185,7 @@ Eine Box mit schwarzen Rand und einem Innenabstand zum Text könnte in CSS so au
     border-radius: 0.5em;
     padding: 1em;
     margin: 1em;
-    max-inline-size: 200px;
-  }
-  ```
-</Figure>
-
-Eine Box hat vier Seiten. Den Himmelsrichtungen folgend und im Uhrzeigersinn: Oben, rechts, unten und links. Diese Seiten lassen sich auch einzeln definieren. Das sieht dann so aus:
-
-<Figure caption="Manche Eigenschaften lassen sich durch sogenannte shorthands auch bündeln.">
-  ```css
-  /* Definiert alle Seiten einzeln */
-  .box {
-    padding-top: 0.5em;
-    padding-right: 1em;
-    padding-bottom: 1em;
-    padding-left: 0.5em;
-  }
-
-  /* Das gleiche erreichen wir auch so … */
-  .box {
-    padding: 0.5em 1em 0.5em 1em;
-  }
-
-  /* … oder noch kürzer … */
-  .box {
-    padding: 0.5em 1em;
-  }
-
-  /* … oder so, wenn alle Seiten gleich groß sind */
-  .box {
-    padding: 1em;
+    max-width: 200px;
   }
   ```
 </Figure>
@@ -232,6 +203,7 @@ Hier noch einmal eine Beispielrechnung:
 <Figure caption="Beide `box-sizing`-Eigenschaften im Vergleich">
   ```css
   /* 200 + 10 + 10 + 1 + 1 = 222 */
+  /* Inhalt: 200px, Gesamt: 222px */
   .box {
     box-sizing: content-box;
     width: 200px;
@@ -239,7 +211,8 @@ Hier noch einmal eine Beispielrechnung:
     border: 1px solid black;
   }
 
-  /* 200 - 10 - 10 - 1 - 1 = 200 */
+  /* 200 - 10 - 10 - 1 - 1 = 178 */
+  /* Inhalt: 178px, Gesamt: 200px */
   .box {
     box-sizing: border-box;
     width: 200px;
@@ -258,6 +231,8 @@ Du kannst **und solltest** alle HTML-Elemente auf einer Seite immer auf `border-
   }
   ```
 </Figure>
+
+Mit dem [Interactive Box-Model Diagram](https://codepen.io/carolineartz/full/ogVXZj) kannst du das Box-Modell interaktiv erkunden.
 
 ## Übung
 
