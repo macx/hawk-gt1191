@@ -5,6 +5,7 @@ import icon from 'astro-icon'
 import sitemap from '@astrojs/sitemap'
 
 import { remarkModifiedTime } from './remark-plugins/remark-modified-time.mjs'
+import { remarkReadingTime } from './remark-plugins/remark-reading-time.mjs'
 import { remarkWidont } from './remark-plugins/remark-widont.mjs'
 import {
   remarkDefinitionList,
@@ -41,7 +42,12 @@ export default defineConfig({
     },
     gfm: true,
     smartypants: true,
-    remarkPlugins: [remarkWidont, remarkDefinitionList, remarkModifiedTime],
+    remarkPlugins: [
+      remarkWidont,
+      remarkDefinitionList,
+      remarkModifiedTime,
+      remarkReadingTime
+    ],
     rehypePlugins: [
       rehypeSlug,
       [

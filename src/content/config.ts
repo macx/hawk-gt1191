@@ -1,4 +1,5 @@
 import { defineCollection, reference, z } from 'astro:content'
+import readingTime from 'reading-time'
 
 const tutorials = defineCollection({
   type: 'content',
@@ -20,7 +21,13 @@ const tutorials = defineCollection({
       tags: z.array(z.string()).optional(),
       headings: z.array(z.string()).optional(),
       relatedPosts: z.array(reference('tutorials')).optional(),
-      layout: z.string().optional()
+      layout: z.string().optional(),
+      readingTime: z
+        .object({
+          minutes: z.number(),
+          words: z.number()
+        })
+        .optional()
     })
 })
 

@@ -5,20 +5,45 @@ import FormattedDate from './FormattedDate.astro'
 interface Props {
   date: Date
   author: object
+  readingTime: {
+    minutes: number
+    words: number
+  }
 }
 
-const { date, author } = Astro.props
+const { date, author, readingTime } = Astro.props
 const authorProfile = await getEntry('authors', (author as { id: string }).id)
 ---
 
 <div class='meta'>
   {authorProfile && <div class='byline'>Von {authorProfile.data.name}</div>}
 
-  <FormattedDate date={date} style='small' />
+  <div class='times'>
+    <FormattedDate date={date} style='small' />
+
+    <span class='reading-time'>
+      Lesezeit: <b>{readingTime.minutes} Min.</b> ({readingTime.words} Wörter)
+    </span>
+  </div>
 </div>
 
 <style lang='scss'>
   .meta {
+    container: meta / inline-size;
     margin-block-end: var(--sp-m);
+  }
+
+  .times {
+    font-size: var(--fs-s);
+    line-height: var(--lh);
+
+    .reading-time {
+      display: block;
+    }
+
+    @container meta (width > 30em) {
+      display: flex;
+      gap: var(--sp-s);
+    }
   }
 </style>
