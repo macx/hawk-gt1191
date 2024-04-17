@@ -1,6 +1,6 @@
 ---
 import { getEntry } from 'astro:content'
-import FormattedDate from './FormattedDate.astro'
+import FormattedDate from '@components/FormattedDate.astro'
 
 interface Props {
   date: Date
@@ -18,32 +18,15 @@ const authorProfile = await getEntry('authors', (author as { id: string }).id)
 <div class='meta'>
   {authorProfile && <div class='byline'>Von {authorProfile.data.name}</div>}
 
-  <div class='times'>
-    <FormattedDate date={date} style='small' />
-
-    <span class='reading-time'>
-      Lesezeit: <b>{readingTime.minutes} Min.</b> ({readingTime.words} Wörter)
-    </span>
-  </div>
+  <FormattedDate
+    date={date}
+    readingTime={readingTime.minutes}
+    wordCount={readingTime.words}
+  />
 </div>
 
 <style lang='scss'>
   .meta {
-    container: meta / inline-size;
     margin-block-end: var(--sp-m);
-  }
-
-  .times {
-    font-size: var(--fs-s);
-    line-height: var(--lh);
-
-    .reading-time {
-      display: block;
-    }
-
-    @container meta (width > 30em) {
-      display: flex;
-      gap: var(--sp-s);
-    }
   }
 </style>

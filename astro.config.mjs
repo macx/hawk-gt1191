@@ -112,7 +112,8 @@ export default defineConfig({
           'keyboard-double-arrow-left',
           'keyboard-double-arrow-right',
           'keyboard-arrow-left',
-          'keyboard-arrow-right'
+          'keyboard-arrow-right',
+          'schedule-outline'
         ],
         simpleIcons: ['discord', 'github']
       },

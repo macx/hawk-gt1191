@@ -1,24 +1,61 @@
 ---
+import { Icon } from 'astro-icon/components'
+
 interface Props {
   date: Date
-  style?: string
+  readingTime: number
+  wordCount?: number
 }
 
-const { date, style } = Astro.props as Props
+const { date, readingTime, wordCount } = Astro.props as Props
 ---
 
-<time datetime={date.toISOString()} class={style}>
-  {
-    date.toLocaleDateString('de-DE', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    })
-  }
-</time>
+<div class='date-time'>
+  <time datetime={date.toISOString()}>
+    {
+      date.toLocaleDateString('de-DE', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      })
+    }
+  </time>
 
-<style>
-  .small {
-    font-size: var(--fs-s);
+  {
+    readingTime && (
+      <div class='reading-time' title='Lesezeit'>
+        <Icon name='material-symbols:schedule-outline' />
+        <b>{readingTime} Min.</b>
+        {wordCount && <>({wordCount} Wörter)</>}
+      </div>
+    )
   }
-</style>
+
+  <style lang='scss'>
+    .date-time {
+      display: flex;
+      align-items: center;
+      gap: var(--sp);
+      font-size: var(--fs-s);
+
+      time {
+        display: block;
+      }
+
+      @container article-card (width < 25em) {
+        justify-content: space-between;
+      }
+    }
+
+    .reading-time {
+      display: inline-flex;
+      align-items: center;
+      gap: 1ch;
+
+      svg {
+        font-size: 1.125rem;
+        color: var(--clr-text-light);
+      }
+    }
+  </style>
+</div>

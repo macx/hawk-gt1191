@@ -6,10 +6,15 @@ import FormattedDate from './FormattedDate.astro'
 
 const { article } = Astro.props
 const imagePath = article.data.cover.path
-
 const images = import.meta.glob<{ default: ImageMetadata }>(
   '/src/images/**/*.{jpeg,jpg,png}'
 )
+const { remarkPluginFrontmatter } = await article.render()
+const minutesToRead = remarkPluginFrontmatter.minutesToRead
+const readingTime = {
+  minutes: Number(minutesToRead.minutes.toFixed(0)),
+  words: minutesToRead.words
+}
 
 if (!images[imagePath]) {
   throw new Error(
@@ -27,7 +32,10 @@ if (!images[imagePath]) {
         {widont(article.data.title)}
       </h3>
 
-      <FormattedDate date={article.data.pubDate} style='small' />
+      <FormattedDate
+        date={article.data.pubDate}
+        readingTime={readingTime.minutes}
+      />
     </header>
 
     <div class='image'>
@@ -60,6 +68,7 @@ if (!images[imagePath]) {
     position: relative;
     transition: box-shadow var(--transition);
     margin-block: 0;
+    container: article-card / inline-size;
 
     &:hover,
     &.focus {

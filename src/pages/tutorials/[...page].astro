@@ -37,7 +37,9 @@ export async function getStaticPaths({ paginate }: any) {
       layout='wide'
     >
       <h1>{title}</h1>
+
       <Lead text={description} />
+
       <section class='l-articles'>
         {articles.map((article: CollectionEntry<'tutorials'>) => (
           <ArticleCard article={article} />
