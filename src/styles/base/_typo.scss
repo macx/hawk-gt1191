@@ -82,6 +82,11 @@ sup {
   }
 }
 
+.t-small,
+small {
+  font-size: var(--fs-s);
+}
+
 ::selection {
   background-color: var(--clr-selection);
 }

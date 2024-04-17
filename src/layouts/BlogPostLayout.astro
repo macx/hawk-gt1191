@@ -19,8 +19,9 @@ const {
   tags,
   isDraft,
   headings,
-  layout = 'standard' as Layout
-} = Astro.props
+  layout = 'standard' as Layout,
+  readingTime
+} = Astro.props || { minutes: 0, words: 0 }
 
 const toc = true
 ---
@@ -43,7 +44,7 @@ const toc = true
 
       <Lead text={description} />
 
-      <ArticleMeta date={pubDate} author={author} />
+      <ArticleMeta date={pubDate} author={author} readingTime={readingTime} />
     </header>
 
     {

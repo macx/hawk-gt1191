@@ -15,10 +15,17 @@ export async function getStaticPaths() {
 
 const post = Astro.props
 const currentPathname = post.slug.replace('/tutorials/', '')
-const { Content, headings } = await post.render()
+const { Content, headings, remarkPluginFrontmatter } = await post.render()
+const minutesToRead = remarkPluginFrontmatter.minutesToRead
 
 export const layout = 'wide'
 
+console.log('LastMod', remarkPluginFrontmatter.lastModified)
+
+post.data.readingTime = {
+  minutes: Number(minutesToRead.minutes.toFixed(0)),
+  words: minutesToRead.words
+}
 post.data.headings = headings as unknown as string[]
 ---
 
