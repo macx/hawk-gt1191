@@ -20,8 +20,8 @@ const {
   isDraft,
   headings,
   layout = 'standard' as Layout,
-  readingTime
-} = Astro.props || { minutes: 0, words: 0 }
+  readingTime = { minutes: 0, words: 0 }
+} = Astro.props
 
 const toc = true
 ---

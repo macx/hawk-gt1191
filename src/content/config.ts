@@ -1,5 +1,4 @@
 import { defineCollection, reference, z } from 'astro:content'
-import readingTime from 'reading-time'
 
 const tutorials = defineCollection({
   type: 'content',
