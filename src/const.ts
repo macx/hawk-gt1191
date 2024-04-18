@@ -16,3 +16,22 @@ export const SITE_CONST: siteConfig = {
     github: 'https://github.com/hawk-gt1191'
   }
 }
+
+export interface TagAbbrevation {
+  [key: string]: string
+}
+
+const tagAbbrevations: TagAbbrevation = {
+  html: 'HTML',
+  css: 'CSS',
+  sass: 'Sass',
+  js: 'JavaScript',
+  ts: 'TypeScript',
+  socialmedia: 'Social Media',
+  showcase: 'Showcase',
+  images: 'Bilder'
+}
+
+export function getTagLongform(tag: string): string {
+  return tagAbbrevations[tag] || tag
+}

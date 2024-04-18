@@ -1,7 +1,7 @@
 ---
 import type { ImageMetadata } from 'astro'
 import { Image } from 'astro:assets'
-import { widont } from '../../remark-plugins/remark-widont.mjs'
+import { widont } from '@plugins/remark-widont.mjs'
 import FormattedDate from './FormattedDate.astro'
 
 const { article } = Astro.props
@@ -23,7 +23,7 @@ if (!images[imagePath]) {
 }
 ---
 
-<article class:list={['article', { draft: article.data.isDraft }]}>
+<article class:list={['article-card', { draft: article.data.isDraft }]}>
   {article.data.isDraft && <div class='draft-banner' />}
 
   <a href={`/tutorials/${article.slug}`}>
@@ -62,7 +62,7 @@ if (!images[imagePath]) {
 <style lang='scss'>
   @use '../styles/base/mixins';
 
-  .article {
+  .article-card {
     @include mixins.media-item('article');
 
     position: relative;
@@ -117,6 +117,7 @@ if (!images[imagePath]) {
     .title {
       font-size: 1.3rem;
       font-family: var(--ff);
+      min-height: 2lh;
       margin-block: 0 0.5em;
       transition: all var(--transition);
     }
@@ -149,6 +150,12 @@ if (!images[imagePath]) {
         transform: translateX(-5ch);
         transition: all var(--transition);
         opacity: 0;
+      }
+    }
+
+    @container article-card (width < 20em) {
+      .title {
+        min-height: 3lh;
       }
     }
   }
