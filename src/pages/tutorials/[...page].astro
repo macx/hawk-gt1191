@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content'
 import type { CollectionEntry } from 'astro:content'
 import BaseLayout from '@layouts/BaseLayout.astro'
+import { widont } from '@plugins/remark-widont.mjs'
 import ArticleCard from '@components/ArticleCard.astro'
 import Pagination from '@components/Pagination.astro'
 import Lead from '@components/Lead.astro'
@@ -9,9 +10,9 @@ import Lead from '@components/Lead.astro'
 const { page } = Astro.props
 const articles = (page as any).data
 
-const title: string = 'Tutorials zur Erstellung von Websites'
+const title: string = 'Tutorials zur Erstellung von modernen Websites'
 const description: string =
-  'Du hast eine konkrete Idee, weißt aber nicht, wie du sie umsetzen sollst? Hier findest du Tutorials aus dem Seminar GT 1191.'
+  'Du hast eine konkrete Idee, weißt aber nicht, wie du sie umsetzen sollst? Mit diesen Anleitungen gelingt dir die Umsetzung.'
 const visible: boolean = true
 export const limit: number = 6
 
@@ -36,9 +37,9 @@ export async function getStaticPaths({ paginate }: any) {
       visible={visible}
       layout='wide'
     >
-      <h1>{title}</h1>
+      <h1>{widont(title)}</h1>
 
-      <Lead text={description} />
+      <Lead text={description} wrap='pretty' />
 
       <section class='l-articles'>
         {articles.map((article: CollectionEntry<'tutorials'>) => (

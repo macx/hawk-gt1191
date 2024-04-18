@@ -3,6 +3,7 @@ import { type CollectionEntry, getCollection } from 'astro:content'
 import BaseLayout from '@layouts/BaseLayout.astro'
 import ArticleCard from '@components/ArticleCard.astro'
 import Tags from '@components/Tags.astro'
+import { getTagLongform } from '../../../const'
 
 export async function getStaticPaths() {
   const posts = await getCollection('tutorials', ({ data }) => {
@@ -35,7 +36,7 @@ interface Props {
 const { tag } = Astro.params
 const { posts, tags } = Astro.props
 
-const title = `Tutorials mit dem Tag ${tag}`
+const title = `Tutorials zum Thema ${getTagLongform(tag ?? '')}`
 const description = `Liste aller Tutorials mit dem Stichwort ${tag}.`
 const layout = 'wide'
 ---
