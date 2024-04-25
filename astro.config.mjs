@@ -90,7 +90,7 @@ export default defineConfig({
         {
           name: 'Domine Variable',
           type: 'sans-serif',
-          applyFontFamilyToSelector: ':is(h1, h2, h3, h4)',
+          applyFontFamilyToSelector: ':where(h1, h2, h3, h4)',
           imports: ['@fontsource-variable/domine/wght.css']
         },
         {

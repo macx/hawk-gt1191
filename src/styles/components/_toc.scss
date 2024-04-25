@@ -53,7 +53,7 @@
     }
   }
 
-  :is(ul ul) {
+  :where(ul ul) {
     padding-inline-start: 0;
 
     li {
@@ -83,7 +83,7 @@
       }
     }
 
-    :is(ul ul) {
+    :where(ul ul) {
       display: flex;
       column-gap: 1ch;
       flex-wrap: wrap;
@@ -110,7 +110,7 @@
       }
     }
 
-    :is(ul ul) {
+    :where(ul ul) {
       --level: var(--level, 1);
 
       padding-inline-start: var(--sp);

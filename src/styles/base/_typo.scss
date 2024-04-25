@@ -6,7 +6,7 @@
 └──────────────────────────────────┘
 */
 
-:is(h1, h2, h3, h4) {
+:where(h1, h2, h3, h4) {
   position: relative;
   font-family: var(--ff-headings);
   font-weight: var(--fw-headings);
@@ -256,7 +256,7 @@ blockquote {
   margin-trim: block;
 
   @supports not (margin-trim: block) {
-    > :is(h2, h3):first-child {
+    > :where(h2, h3):first-child {
       margin-block-start: 0;
     }
 

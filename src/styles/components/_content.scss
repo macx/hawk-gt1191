@@ -2,8 +2,8 @@
   font-size: clamp(1rem, 5vw - 1rem, 1.25rem);
   counter-reset: footnotes;
 
-  > :is(h2, h3, h4)[id],
-  > article > :is(h2, h3, h4)[id] {
+  > :where(h2, h3, h4)[id],
+  > article > :where(h2, h3, h4)[id] {
     --icon-size: 1.25rem;
     --inline-size: 1.75rem;
 
