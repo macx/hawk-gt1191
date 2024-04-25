@@ -1,6 +1,6 @@
 ---
 title: 'CSS Logical Properties: Die Leserichtung bestimmt, was oben ist'
-description: 'Im Supermarkt stehen wir am Ende der Schlange, nicht unten. Mit den logischen Werten und Eigenschaften von CSS können wir auf physische Himmelsrichtungen verzichten.'
+description: 'Physische Abmessungen in CSS waren gestern. Damit wir auch andere Sprachen und Kulturen unterstützen können, gibt es die logischen Eigenschaften und Werte.'
 isDraft: false
 pubDate: 2024-04-25T14:40:00+00:00
 author: david-maciejewski
@@ -17,7 +17,7 @@ import Codepen from '@components/Codepen.astro'
 
 ## Hintergründe
 
-Seit der Entwicklung von <abbr title='Cascading Stylesheets'>CSS</abbr>[^1] im Jahr 1996 durch das World Wide Web Consortium (W3C), wird die Größe von Elementen einer Website tradionell nach den physischen Abmessungen des Bildschrimes bemessen. Boxen haben eine Breite (`width`) und Höhe (`height`) und dessen Abstände, Position oder Ränder werden über `top`, `right`, `bottom` oder `left` bestimmt.
+Seit der Entwicklung von <abbr title='Cascading Stylesheets'>CSS</abbr>[^1] im Jahr 1996 durch das World Wide Web Consortium (W3C), wird die Größe von Elementen einer Website traditionell nach den physischen Abmessungen des Bildschirms bemessen. Boxen haben eine Breite (`width`) und Höhe (`height`) und dessen Abstände, Position oder Ränder werden über `top`, `right`, `bottom` oder `left` bestimmt.
 
 <Figure caption="Auch das die Kurzschreibweise `padding` verwendet physische Abmessungen.">
   ```css
@@ -32,7 +32,7 @@ Seit der Entwicklung von <abbr title='Cascading Stylesheets'>CSS</abbr>[^1] im J
 
 ### Leserichtung
 
-Das funktioniert in den Sprachen und Kulturen gut, in denen die Leserichtung von links nach rechts und von oben nach unten verläuft – wie bei uns. Im Japanischen, Chinesischen und Koreanischen beginnen die Zeilen jedoch am rechten Rand und verlaufen nach links. Text in lateinischer Schrift verläuft in der Regel von unten nach oben, wobei die Buchstaben im Uhrzeigersinn gedreht werden, währen die Han-Zeichen aufrecht stehen. In Mongolisch beginnen die Zeilen am linken Rand und verlaufen nach rechts.
+Das funktioniert in den Sprachen und Kulturen gut, in denen die Leserichtung von links nach rechts und von oben nach unten verläuft – wie bei uns. Im Japanischen, Chinesischen und Koreanischen beginnen die Zeilen jedoch am rechten Rand und verlaufen nach links. Text in lateinischer Schrift verläuft in der Regel von unten nach oben, wobei die Buchstaben im Uhrzeigersinn gedreht werden, während die Han-Zeichen aufrecht stehen. In Mongolisch beginnen die Zeilen am linken Rand und verlaufen nach rechts.
 
 Mit der Eigenschaft `writing-mode: vertical-rl` können wir den Text in CSS vertikal von rechts nach links und mit `writing-mode: vertical-lr` von links nach rechts fließen lassen, um die Leserichtung zu ändern und die oben genannten Sprachen zu unterstützen.
 
@@ -40,7 +40,7 @@ Wenn wir wie im Beispiel oben den blauen Rand aber weiterhin mit `border-left` f
 
 ### Demo
 
-Auf der [folgenden Seite](https://codepen.io/macx/full/ZEZwVmw) habe ich dir ein Beispiel vorbereitet, wie sich physische und flow-basierte Eigenschaften auf andere Sprachen auswirken.
+Auf der [folgenden Seite](https://codepen.io/macx/full/ZEZwVmw) habe ich dir ein Beispiel vorbereitet, wie sich physische und Flow-basierte Eigenschaften auf andere Sprachen auswirken.
 
 <Codepen id="ZEZwVmw" height="500" tab="result"/>
 
@@ -72,7 +72,7 @@ Das Beispiel von oben sähe mit logischen Eigenschaften so aus:
 
 Auf der Seite [Dokumentation](http://localhost:4321/dokumentation#css) habe ich dir die Referenz zu den logischen Eigenschaften und Werten verlinkt. Das hilft anfangs, wenn du für eine physische Eigenschaft die logische Entsprechung suchst.
 
-> **Merkhilfe:** Wenn wir von oben und unten sprechen ist nun `block` zu verwenden, bei Links oder Rechts verwendet bitte `inline`. Die Größe wird über `size` und dessen Richtung bestimmt.
+> **Merkhilfe:** Im Supermarkt stehen wir am Anfang oder am Ende der Schlange, nicht oben oder unten.
 
 [^1]: CSS ist eine Stylesheet-Sprache, die verwendet wird, um das Aussehen einer Website zu definieren. Sie definiert die Farben, Schriftarten, Layouts und andere visuelle Aspekte einer Website.
 
