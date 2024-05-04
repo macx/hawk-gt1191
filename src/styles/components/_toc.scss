@@ -6,6 +6,10 @@
     inset-block-start: calc(var(--header-height) + var(--sp-content));
     padding-inline-start: 2px;
 
+    overflow-y: auto;
+    max-block-size: calc(100dvh - var(--header-height) - var(--sp-l));
+    overscroll-behavior: contain;
+
     .button {
       display: none !important;
     }

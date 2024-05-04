@@ -5,7 +5,8 @@
     "paths": {
       "@components/*": ["src/components/*"],
       "@layouts/*": ["src/layouts/*"],
-      "@plugins/*": ["remark-plugins/*"]
+      "@plugins/*": ["remark-plugins/*"],
+      "@snippets/*": ["src/content/snippets/*"]
     },
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
