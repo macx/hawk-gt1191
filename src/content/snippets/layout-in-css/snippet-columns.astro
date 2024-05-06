@@ -1,0 +1,50 @@
+---
+import Snippet from '@components/Snippet.astro'
+---
+
+<Snippet>
+  <div class='demo-columns sn-element'>
+    <div class='sn-element title'>Mehrspaltiges Layout</div>
+
+    <p class='sn-element'>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora ratione,
+      officia natus consectetur illo distinctio. Aperiam nisi, dolor nobis,
+      expedita.
+    </p>
+
+    <p class='sn-element'>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora ratione,
+      officia natus consectetur illo distinctio. Aperiam nisi, dolor nobis,
+      expedita natus.
+    </p>
+
+    <p class='sn-element'>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora ratione,
+      officia natus consectetur illo distinctio. Aperiam nisi, dolor nobis,
+      expedita illo et earum beatae repudiandae modi inventore ullam dolorem
+      sint.
+    </p>
+  </div>
+</Snippet>
+
+<style>
+  @scope (.demo-columns) {
+    :scope {
+      column-width: 20ch;
+
+      .title {
+        font-size: 1.25em;
+        font-weight: bold;
+        margin-block-end: 1rem;
+      }
+
+      p {
+        text-wrap: pretty;
+
+        &:last-child {
+          margin-block-end: 0;
+        }
+      }
+    }
+  }
+</style>

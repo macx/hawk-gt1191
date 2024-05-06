@@ -1,0 +1,77 @@
+---
+import Snippet from '@components/Snippet.astro'
+---
+
+<Snippet title='Interaktive Demo'>
+  <Fragment slot='settings'>
+    <div class='sn-settings'>
+      <div class='sn-value'>
+        <label for='el-size-input'>Mindestbreite:</label>
+        <input
+          type='range'
+          name='size'
+          id='el-size-input'
+          min='100'
+          max='350'
+          step='50'
+          value='200'
+          list='el-size-markers'
+        />
+        <span>
+          <output id='el-size-output'>200</output>px
+        </span>
+
+        <datalist id='el-size-markers'>
+          <option value='100'></option>
+          <option value='150'></option>
+          <option value='200'></option>
+          <option value='250'></option>
+          <option value='300'></option>
+          <option value='350'></option>
+        </datalist>
+      </div>
+    </div>
+  </Fragment>
+
+  <Fragment>
+    <div class='demo-grid-flex sn-element' style='--min: 200px'>
+      <div class='sn-element'>#1</div>
+      <div class='sn-element'>#2</div>
+      <div class='sn-element'>#3</div>
+      <div class='sn-element'>#4</div>
+      <div class='sn-element'>#5</div>
+      <div class='sn-element'>#6</div>
+    </div>
+  </Fragment>
+</Snippet>
+
+<style>
+  @scope (.demo-grid-flex) {
+    :scope {
+      --min: var(--min, 200px);
+
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(var(--min), 1fr));
+      gap: 0.6em;
+
+      input {
+        cursor: pointer;
+      }
+    }
+  }
+</style>
+
+<script is:inline>
+  ;(function () {
+    const snGridFlexInput = document.querySelector('#el-size-input')
+    const snGridFlexOnput = document.querySelector('#el-size-output')
+    const flexContainer = document.querySelector('.demo-grid-flex')
+
+    snGridFlexOnput.textContent = snGridFlexInput.value
+
+    snGridFlexInput.addEventListener('input', (event) => {
+      snGridFlexOnput.textContent = event.target.value
+      flexContainer.style.setProperty('--min', `${event.target.value}px`)
+    })
+  })()
+</script>

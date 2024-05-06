@@ -1,0 +1,41 @@
+---
+import Snippet from '@components/Snippet.astro'
+---
+
+<Snippet>
+  <div class='demo-float sn-element'>
+    <div class='sn-element sn-image image'>Bild</div>
+
+    <p class='sn-element'>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora ratione,
+      officia natus consectetur illo distinctio. Aperiam nisi, dolor nobis,
+      expedita.
+    </p>
+    <p class='sn-element'>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora ratione,
+      officia natus consectetur illo distinctio. Aperiam nisi, dolor nobis,
+      expedita illo et earum beatae repudiandae modi inventore ullam dolorem
+      sint.
+    </p>
+  </div>
+</Snippet>
+
+<style>
+  @scope (.demo-float) {
+    :scope {
+      .image {
+        float: left;
+        display: grid;
+        place-items: center;
+        block-size: 100px;
+        aspect-ratio: 1 / 1;
+        margin-inline-end: 1rem;
+        border-radius: 50%;
+      }
+
+      p:last-child {
+        margin-block-end: 0;
+      }
+    }
+  }
+</style>

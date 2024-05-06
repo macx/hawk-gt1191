@@ -1,0 +1,28 @@
+---
+import Snippet from '@components/Snippet.astro'
+---
+
+<Snippet>
+  <div class='demo-grid sn-element'>
+    <div class='sn-element'>#1</div>
+    <div class='sn-element'>#2</div>
+    <div class='sn-element'>#3</div>
+    <div class='sn-element'>#4</div>
+    <div class='sn-element wide'>#5</div>
+  </div>
+</Snippet>
+
+<style>
+  @scope (.demo-grid) {
+    :scope {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 1fr 100px;
+      gap: 0.6em;
+
+      .wide {
+        grid-column: span 2;
+      }
+    }
+  }
+</style>

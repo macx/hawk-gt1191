@@ -1,0 +1,21 @@
+---
+import Snippet from '@components/Snippet.astro'
+---
+
+<Snippet>
+  <div class='demo-header sn-element'>
+    <div class='sn-element'>Logo</div>
+    <div class='sn-element'>Navigation</div>
+  </div>
+</Snippet>
+
+<style>
+  @scope (.demo-header) {
+    :scope {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0;
+    }
+  }
+</style>

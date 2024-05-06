@@ -1,0 +1,58 @@
+---
+import Snippet from '@components/Snippet.astro'
+---
+
+<Snippet>
+  <div class='demo-position sn-element'>
+    <div class='sn-element title'>Produkttitel</div>
+
+    <div class='sn-element sn-image image'>Produktbild</div>
+
+    <div class='sn-element descr'>
+      <div>
+        Eine Produktbeschreibung ist ein Text, der die wichtigsten Informationen
+        zu einem Produkt enthält. Sie sollte kurz und prägnant&nbsp;sein.
+      </div>
+
+      <div>Preis: 19,99 €</div>
+    </div>
+
+    <div class='sn-element new'>Neu eingetroffen</div>
+  </div>
+</Snippet>
+
+<style>
+  @scope (.demo-position) {
+    :scope {
+      position: relative;
+
+      .title {
+        font-size: 1.25em;
+        font-weight: bold;
+      }
+
+      .image {
+        display: grid;
+        place-items: center;
+        aspect-ratio: 30 / 10;
+      }
+
+      .descr {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        div:last-child {
+          flex: 0 0 15ch;
+          text-align: end;
+        }
+      }
+
+      .new {
+        position: absolute;
+        inset: 0 0 auto auto;
+        background-color: rgb(255 0 0 / 0.5) !important;
+      }
+    }
+  }
+</style>

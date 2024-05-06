@@ -1,0 +1,81 @@
+---
+interface Props {
+  title?: string
+}
+
+const { title = 'Ergebnis' } = Astro.props
+---
+
+<section class='snippet'>
+  <div class='sn-title'># {title}</div>
+
+  <slot name='settings' />
+
+  <slot />
+</section>
+
+<style>
+  @scope (.snippet) {
+    :scope {
+      --sn-clr-bg: #24292e;
+      --sn-clr-text: #e1e4e8;
+
+      display: block;
+      background-color: var(--sn-clr-bg);
+      color: var(--sn-clr-text);
+      border-radius: var(--radius);
+      padding-block: var(--sp-s);
+      padding-inline: var(--sp);
+      font-size: var(--fs);
+
+      .sn-title {
+        display: block;
+        font-family: var(--ff-code);
+        font-size: var(--fs-xs);
+        color: var(--clr-code-title);
+        line-height: 1;
+        margin-block: 3em var(--sp-s);
+        text-transform: uppercase;
+
+        &:first-child {
+          margin-block-start: 0;
+        }
+      }
+
+      .sn-element {
+        background-color: var(--clr-primary);
+        color: var(--clr-inverse);
+        border: 1px solid rgb(255 255 255 / 0.3);
+        border-radius: var(--radius);
+        padding: 0.3em 0.6em;
+
+        &:has(.sn-element) & {
+          background-color: rgb(0 0 0 / 0.2);
+        }
+      }
+
+      .sn-image {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400' preserveAspectRatio='none'%3E%3Cpath d='m0 0 400 400M400 0 0 400' stroke='%23fff' stroke-width='2px' stroke-opacity='0.5'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
+
+      .sn-settings {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-block-end: var(--sp);
+
+        .sn-value {
+          display: flex;
+          align-items: center;
+          gap: 1ch;
+        }
+      }
+
+      html[data-theme='dark'] & {
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+    }
+  }
+</style>
