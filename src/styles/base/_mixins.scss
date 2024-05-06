@@ -42,6 +42,15 @@
   }
 }
 
+@mixin upper-title($margin-block: 0) {
+  margin-block: $margin-block;
+  font-family: var(--ff-headings);
+  font-size: var(--fs);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
 @mixin focus() {
   outline: 3px dotted var(--clr-primary);
   outline-offset: 2px;

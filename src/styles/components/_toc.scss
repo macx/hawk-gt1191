@@ -18,11 +18,7 @@
 
 .toc-title {
   h2 {
-    margin-block: 0;
-    font-size: var(--fs);
-    font-weight: var(--fw-bold);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    @include mixins.upper-title();
   }
 
   @include mixins.respond('l', 'to') {
