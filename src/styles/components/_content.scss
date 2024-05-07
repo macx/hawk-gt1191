@@ -1,5 +1,7 @@
+@use '../base/mixins' as mx;
+
 .content {
-  font-size: clamp(1rem, 5vw - 1rem, 1.25rem);
+  font-size: clamp(1.125em, 5vw - 1rem, 1.25rem);
   counter-reset: footnotes;
 
   > :where(h2, h3, h4)[id],
@@ -7,14 +9,14 @@
     --icon-size: 1.25rem;
     --inline-size: 1.75rem;
 
-    a:any-link {
+    :any-link {
       color: currentColor;
     }
 
     .heading-icon {
       position: absolute;
-      top: 50%;
-      left: 0;
+      inset-block-start: 50%;
+      inset-inline-start: 0;
       opacity: 0;
       inline-size: var(--inline-size);
       transform: translateY(-59%);
@@ -30,7 +32,7 @@
     &:focus {
       .heading-icon {
         opacity: 1;
-        left: calc(var(--inline-size) * -1);
+        inset-inline-start: calc(var(--inline-size) * -1);
 
         &:hover,
         &:focus {
@@ -69,10 +71,8 @@
         content: counter(ordered-list) '.';
         color: var(--clr-primary);
         font-weight: var(--fw-bold);
-        //   border-radius: 50%;
         float: left;
         margin-inline-start: calc(var(--padding-inline) * -1);
-        // margin-inline-end: var(--sp-s);
         width: 3ch;
         text-align: right;
       }
@@ -113,7 +113,7 @@
     dd {
       margin-block-start: 0.2em;
       margin-inline-start: 0;
-      font-size: var(--fs-s);
+      font-size: 0.9em;
 
       + dt {
         margin-block-start: 0.8em;
@@ -153,5 +153,8 @@
   hr {
     margin-block: var(--sp-content);
     border-color: var(--clr-line);
+  }
+
+  @inlcude mx.respond('m') {
   }
 }
