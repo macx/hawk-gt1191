@@ -2,7 +2,7 @@
 title: 'CSS-Layouts: Display Grid, Flexbox und Co. erklärt'
 description: 'Du bist mit den Grundlagen von CSS vertraut und möchtest jetzt deine Website layouten? Dieses Tutorial verschafft dir einen Überblick über die Techniken.'
 isDraft: false
-pubDate: 2024-05-06T16:50:00+00:00
+pubDate: 2024-05-07T15:12:00+00:00
 author: david-maciejewski
 cover:
   path: '/src/images/tutorials/website-wireframes.png'
@@ -24,15 +24,15 @@ import SnippetColumns from '@snippets/layout-in-css/snippet-columns.astro'
 
 > **Hinweis:** Bevor du dich mit den Layouttechniken vertraut machst, solltest du bereits ein Grundverständnis von HTML und CSS haben. Lies dazu bitte die Tutorials [Einstieg in HTML](/tutorials/einstieg-in-html) und [Einstieg in CSS](/tutorials/einstieg-in-css) und komme hier dann wieder zurück.
 
-## Flow Layout (normaler Fluss)
+## Flow-Layout (normaler Fluss)
 
-Das CSS Flow Layout beschreibt, wie HTML-Elemente im normalen Fluss auf einer Webseite ohne dein Zutun angeordnet werden. Die Reihenfolge der Elemente im Quellcode bestimmt dabei die Reihenfolge, in der sie auf der Seite erscheinen. In HTML unterscheidet man zwischen Block-Elementen und Inline-Elementen.
+Das CSS-Flow-Layout beschreibt, wie HTML-Elemente im normalen Fluss auf einer Webseite ohne dein Zutun angeordnet werden. Maßgeblich für die Reihenfolge ist dabei zunächst die Reihenfolge im Quellcode. Bei HTML-Elementen unterscheidet man darüber hinaus zwischen Block-Elementen und Inline-Elementen.
 
 Block-Elemente
-: Block-Elemente erscheinen untereinander und haben eine Breite von 100 Prozent. Dazu gehören: u.&thinsp;a. `<div>`, `<p>`, `<h1>`, `<ul>`, `<li>`.
+: Block-Elemente erscheinen untereinander und haben eine Breite von 100&#160;Prozent. Dazu gehören: u.&#8239;a. `<div>`, `<p>`, `<h1>`, `<ul>`, `<li>`.
 
 Inline-Elemente
-: Im Gegensatz zu Block-Elementen erscheinen Inline-Elemente wie einzelne Wörter in einem Absatz nebeneinander und sind nur so breit wie ihr Inhalt. Dazu gehören: u.&thinsp;a. `<span>`, `<a>`, `<img>`, `<strong>`, `<em>`.
+: Im Gegensatz zu Block-Elementen erscheinen Inline-Elemente wie einzelne Wörter in einem Absatz nebeneinander und sind nur so breit wie ihr Inhalt. Dazu gehören: u.&#8239;a. `<span>`, `<a>`, `<img>`, `<strong>`, `<em>`.
 
 Schauen wir uns einmal beide Elemente im Vergleich an:
 
@@ -40,13 +40,13 @@ Schauen wir uns einmal beide Elemente im Vergleich an:
   <SnippetFlow title="Block-Elemente" />
 </Figure>
 
-Auch die [Leserichtung](http://localhost:4321/tutorials/logische-eigenschaften-in-css) bestimmt, wie Inline-Elemente auf der Seite angeordnet werden. Während im Deutschen und Englischen Elemente wie die Leserichtung von links nach rechts angeordnet werden, ist das in anderen Sprachen wie Arabisch oder Hebräisch genau umgekehrt.
+Auch die [Leserichtung](http://localhost:4321/tutorials/logische-eigenschaften-in-css) bestimmt, wie Inline-Elemente auf der Seite angeordnet werden. Während in der deutschen und englischen Sprache Wörter von links nach rechts angeordnet werden, ist dies in anderen Sprachen wie Arabisch oder Hebräisch umgekehrt.
 
 ## Display-Eigenschaft
 
 Jedes HTML-Element hat die Eigenschaft `display`, die festlegt, wie das Element auf der Seite angezeigt wird. Block-Elemente haben dabei im normalen Fluss den Wert `block`, Inline-Elemente den Wert `inline`. Das kannst du aber auch ändern, um das Layout deiner Seite zu beeinflussen.
 
-Ein Link innerhalb eines Absatzes wird standardmäßig inline angezeigt, da das `<a>`-Element mit `display: inline` vorbelegt ist. Möchtest du mit einem Link eine ganze Gruppe von HTML-Elementen verlinken, solltest du den Anzeigewert auf `display: block` ändern, damit dieser wie ein Block-Element behandelt wird und in eine neue Zeile umbrucht. Denn bei Inline-Elementen kannst du die Höhe und Breite nicht verändern, da diese wird durch ihren Inhalt bestimmt wird.
+Ein Link innerhalb eines Absatzes wird standardmäßig inline angezeigt, da das `<a>`-Element mit `display: inline` vorbelegt ist. Wenn du eine ganze Gruppe von HTML-Elementen verlinken möchtest, solltest du den Wert auf `display: block` ändern, damit dieser wie ein Block-Element behandelt wird und in eine neue Zeile umbricht. Denn bei Inline-Elementen kann die Höhe und Breite nicht verändernt werden, da diese durch ihren Inhalt bestimmt werden.
 
 <Figure caption="Block-Elemente werden untereinander, Inline-Elemente nebeneinander angeordnet.">
   ```html
@@ -68,13 +68,15 @@ Ein Link innerhalb eines Absatzes wird standardmäßig inline angezeigt, da das 
   ```
 </Figure>
 
-Die `display`-Eigenschaft verfügt auch über weitere Werte, die das Layout beeinflussen. Die wichtigsten sind `display: flex` und `display: grid`, mit denen du komplexe Layouts erstellen kannst.
+Die `display`-Eigenschaft verfügt neben `block` und `inline` über weitere Werte, die das Layout beeinflussen. Die wichtigsten sind `flex` und `grid`, mit denen du komplexe Layouts erstellen kannst.
 
 ## Flexbox
 
-Flexbox ist eine eindimensionale Layouttechnik, Elemente horizontal in einer Zeile oder vertikal in einer Spalte anzuordnen. Um in einem Header beispielsweise das Logo links und die Navigation rechts anzuordnen, setze beim Header die `display`-Eigenschaft auf `flex`.
+Flexbox ist eine eindimensionale Layouttechnik, Elemente horizontal in einer Zeile oder vertikal in einer Spalte anzuordnen. Dabei wird das übergeordnete Element als Flex-Container bezeichnet, während die darin enthaltenen Elemente als Flex-Items bezeichnet werden. Die `display: flex`-Eigenschaft wird auf dem Flex-Container angewendet, um die Flexbox zu aktivieren.
 
-<Figure caption="Mit Flebox können wir auch Block-Elemente leicht nebeneinander platzieren.">
+Möchtest du beispielsweise in deinem Header das Logo links und die Navigation rechts platzieren, kannst du das mit Flexbox einfach umsetzen:
+
+<Figure caption="Mit Flebox kannst du sogar Block-Elemente leicht nebeneinander platzieren.">
   ```html
   <header class="site-header">
     <div>Logo</div>
@@ -91,19 +93,19 @@ Flexbox ist eine eindimensionale Layouttechnik, Elemente horizontal in einer Zei
   <SnippetFlebox />
 </Figure>
 
-Zur dargestellten Verteilung der Elemente innerhalb des Headers benötigst du allerdings noch weitere Eigenschaften: `justify-content` ordnet die Elemente auf der Hauptachse an, `align-items` auf der Querachse.
+Damit das Logo und die Navigation am Ende tatächlich links und rechts platziert werden, benötigst du noch weitere Eigenschaften: `justify-content` ordnet die Elemente auf der Hauptachse an, `align-items` auf der Querachse.
 
 ### Haupt- und Querachse
 
-In Flexbox gibt es zwei Achsen. Die Hauptachse verläuft in unserer Leserichtung horizontal, die Querachse steht dazu im rechten Winkel, also vertikal. Du kannst die Achsen mit der `flex-direction`-Eigenschaft ändern, wenn du zum Beispiel möchtest, dass die Elemente auf einem Smartphone vertikal und auf größeren Displays horizontal angeordnet werden sollen. Mit `flex-direction: row` wird die Hauptachse horizontal und mit `flex-direction: column` vertikal ausgerichtet.
+In Flexbox gibt es zwei Achsen. Die Hauptachse verläuft in unserer Leserichtung horizontal, die Querachse steht dazu im rechten Winkel, also vertikal. Du kannst die Richtung der Achsen auch verändern. Bei `flex-direction: row` verläuft die Hauptachse horizontal, bei `flex-direction: column` vertikal.
 
-Josh Comeau hat ein [interaktiven Leitfaden](https://www.joshwcomeau.com/css/interactive-guide-to-flexbox/#introduction-to-flexbox-1) zu Flexbox erstellt, das dir die wichtigsten Eigenschaften und deren Anwendung näherbringt.
+> Josh Comeau hat einen [interaktiven Leitfaden](https://www.joshwcomeau.com/css/interactive-guide-to-flexbox/#introduction-to-flexbox-1) zu Flexbox erstellt, der dir die wichtigsten Eigenschaften und deren Anwendung näherbringt. Auf der Seite [Dokumentation](/dokumentation) habe ich dir weitere Links zusammengestelltt.
 
-## Grid Layout
+## Grid-Layout
 
-Während Flexbox für ein eindimensionales Layout ausgelegt ist, ist das Grid Layout für zwei Dimensionen ausgelegt, also für die Anordnung von Elementen in Zeilen und Spalten. Die Möglichkeiten von CSS Grid sind vielfältig, aber gleichzeitig auch sehr komplex.
+Während Flexbox für ein eindimensionales Layout ausgelegt ist, ist das Grid-Layout für zwei Dimensionen ausgelegt, also für die Anordnung von Elementen in Zeilen und Spalten. Die Möglichkeiten von CSS Grid sind vielfältig, gleichzeitig aber auch sehr komplex.
 
-Ähnlich wie bei Flexbox aktivieren wir das Grid-Layout beim darüberliegenden Element mit der Eigenschaft `display: grid`. Schauen wir uns ein relativ einfaches Beispiel an:
+Ähnlich wie bei Flexbox aktivieren wir das Grid-Layout beim übergeordneten Element mit der Eigenschaft `display: grid`. Schauen wir uns folgendes Beispiel an:
 
 <Figure caption="Dank CSS Grid wird aus den HTML-Elementen ein Layout erstellt.">
   ```html
@@ -130,19 +132,21 @@ Während Flexbox für ein eindimensionales Layout ausgelegt ist, ist das Grid La
   <SnippetGridLayout/>
 </Figure>
 
-Das Beispiel enhält ein Raster mit drei Spalten (`grid-template-columns`) und zwei Zeilen (`grid-template-rows`). Mit der Anzahl der Werte teilen wir dem Browser jeweils mit, wie viele Spalten bzw. Zeilen wir haben wollen.
+Das Beispiel enhält ein Raster mit drei Spalten (`grid-template-columns`) und zwei Zeilen (`grid-template-rows`). Mit der Anzahl der Werte teilen wir dem Browser jeweils mit, wie viele Spalten bzw. Zeilen wir haben möchten.
 
-Die Einheit der Werte bestimmt dabei dann dessen Breite oder Höhe. Die Maßeinheit `fr` steht für „Fractional Unit“ (Bruchteilseinheit). Mit `1fr` teilst du den verfügbaren Platz in gleich große Teile auf. Bei drei Spalten erhält jede Spalte also ein Drittel (33,333&thinsp;%) des verfügbaren Platzes.
+Die Einheit der Werte bestimmt dabei dann dessen Breite oder Höhe. Die Maßeinheit `fr` steht für „Fractional Unit“ (Bruchteilseinheit). Mit mehreren `1fr` teilst du den verfügbaren Platz in gleich große Teile auf. Bei drei Spalten erhält jede Spalte also ein Drittel (33,333&#8239;%) des verfügbaren Platzes.
 
 Mit absoluten Werten wie `100px` oder relativen Werten wie `10em` kannst du die Größe der Spalten oder Zeilen auch direkt vorbelegen. Das ist besonders dann sinnvoll, wenn du eine feste Breite oder Höhe benötigst, die sich nicht an den verfügbaren Platz anpassen soll.
 
 Das `gap`-Attribut sorgt für einen Abstand zwischen den Elementen. Mit `grid-column: span 2` wird das fünfte Element über zwei Spalten dargestellt.
 
-### Flexible Layouts ohne Breakpoints
+### Flexible Layouts ohne Breakpoints[^1]
 
-Mit CSS Grid können wir auch flexible Layouts erstellen, bei denen wir dem Browser überlassen, wie viele Spalten er nebeneinander darstellen soll. Das ist besonders nützlich für responsive Layouts, bei denen wir keine festen Breakpoints[^1] definieren möchten.
+Mit CSS Grid können wir auch flexible Layouts erstellen, bei denen wir dem Browser überlassen, wie viele Spalten er nebeneinander darstellen soll. Das ist besonders nützlich für responsive Layouts, bei denen wir keine festen Breakpoints definieren möchten.
 
-In dem folgenden Beispiel wollen wir Spalten mit einer Mindestbreite von 200 Pixeln und einer maximalen Breite von einer Fractional Unit (`fr`) darstellen. Das bedeutet, dass die Spalten mindestens 200 Pixel breit sind, sich aber auch an den verfügbaren Platz anpassen können. Mit `auto-fit` teilen wir dem Browser mit, dass er so viele Spalten nebeneinander darstellen soll, wie es der verfügbare Platz zulässt. Spiele mit dem Schieberegler, um die Mindestbreite der Spalten zu verändern.
+In dem folgenden Beispiel wollen wir Spalten mit einer Mindestbreite von 200&nbsp;Pixeln und einer maximalen Breite von einer Fractional Unit (`fr`) darstellen. Das bedeutet, dass die Spalten mindestens 200&nbsp;Pixel breit sind, sich aber auch an den verfügbaren Platz anpassen können. Mit `auto-fit` teilen wir dem Browser mit, dass er so viele Spalten nebeneinander darstellen soll, wie es der verfügbare Platz zulässt.
+
+Verändere im folgenden Beispiel in der interaktiven Demo die Mindestbreite mit dem Schieberegler, um zu verstehen, wie sich das auf das Flex-Layout auswirkt.
 
 <Figure caption="Passe mit dem Schieberegler die Mindestbreite der Elemente an.">
   ```html
@@ -165,13 +169,13 @@ In dem folgenden Beispiel wollen wir Spalten mit einer Mindestbreite von 200 Pix
   <SnippetGridFlex/>
 </Figure>
 
-Auch für CSS Grid hat Josh Comeau einen [interaktiven Leitfaden](https://www.joshwcomeau.com/css/interactive-guide-to-grid/) erstellt, der dir die wichtigsten Eigenschaften und deren Anwendung näherbringt.
+> Auch für CSS Grid hat Josh Comeau einen [interaktiven Leitfaden](https://www.joshwcomeau.com/css/interactive-guide-to-grid/) erstellt, der dir die wichtigsten Eigenschaften und deren Anwendung näherbringt.
 
 ## Floats
 
 Ein gefloatetes Element ändert das Verhalten vom Element und den umliegenden Elementen im normalem Fluss. Das Element wird dabei nach links oder rechts verschoben und aus dem normalen Fluss entfernt, sodass der umliegende Inhalt um das Element herumfließt.
 
-In dem folgenden Beispiel wollen wir zwei Absätze um ein Bild herumfließen lassen. Das ist mit der Eigenschaft `float` auf dem Bild möglich.
+Klingt komplizierter als es ist. In dem folgenden Beispiel wollen wir zwei Absätze um ein Bild herumfließen lassen. Das ist mit der Eigenschaft `float: left` oder `float: right` auf dem Bild möglich.
 
 <Figure caption="Alle folgenden Elemente nach dem Bild werden nun um das Bild herum angeordnet.">
   ```html
@@ -193,7 +197,7 @@ In dem folgenden Beispiel wollen wir zwei Absätze um ein Bild herumfließen las
   <SnippetFloat />
 </Figure>
 
-Wenn du ein Element mit `float` verschiebst, kann das zu unerwarteten Ergebnissen führen, insbesondere wenn die Höhe des gefloateten Elements nicht explizit festgelegt ist. Der Browser kann das Elternelement[^2] eines gefloatete Elements nicht automatisch anpassen. Dies führt dazu, dass das Elternelement „kollabiert“ und keine sichtbare Höhe hat.
+Wenn du ein Element mit `float` verschiebst, kann das zu unerwarteten Ergebnissen führen, insbesondere wenn die Höhe des gefloateten Elements nicht explizit festgelegt ist. Der Browser kann das übergeordnete Element eines gefloateten Elements nicht automatisch anpassen, was dazu führt, dass dieses „kollabiert“ und keine sichtbare Höhe hat.
 
 Die Eigenschaft `display: flow-root;` am Elternelement behebt dieses Problem, indem es einen neuen Kontext für die Blockformatierung erstellt. Unabhängig davon wird die `float`-Eigenschaft heute nur noch selten verwendet, da wir mit [Flexbox](#flexbox) und [Grid](#grid-layout) für die meisten Anforderungen geeignetere Alternativen haben.
 
@@ -211,10 +215,10 @@ Mit der Positionierung durch die Eigenschaft `position` kannst du einzelne Eleme
 : Das Element wird vollständig aus dem normalen Fluss herausgelöst, so als befände es sich auf einer seperaten Ebene. Nachfolgende Elemente rutschen nach oben.
 
 `position: fixed`
-: Das Element wird relativ zum Viewport positioniert und bleibt immer an der gleichen Stelle, auch wenn du die Seite scrollst. Auf dieser Seite siehst du das anhand des Headers.
+: Das Element wird relativ zum Viewport positioniert und bleibt immer an der gleichen Stelle, auch wenn du durch die Seite scrollst. Der Header auf dieser Website ist so platziert.
 
 `position: sticky`
-: Das Element bleibt beim scrollen der Seite innerhalb seines übergeordneten Elements platziert, bis dessen unterer Rand erreicht ist. Bei dem Inhaltsverzeichis auf dieser Seite habe ich das so umgesetzt.
+: Das Element bleibt beim scrollen der Seite innerhalb seines übergeordneten Elements platziert, bis dessen unterer Rand erreicht ist. Auf dieser Website kannst du das beim rechts platzierten Inhaltsverzeichnis auf größeren Displays beobachten.
 
 <Figure caption="Das Element wird absolut oben rechts positioniert.">
   ```html
@@ -230,8 +234,8 @@ Mit der Positionierung durch die Eigenschaft `position` kannst du einzelne Eleme
 
   .new {
     position: absolute;
-    block-start: 0; /* Y-Koordinate */
-    inline-end: 0;  /* X-Koordinate */
+    inset-block-start: 0; /* Y-Koordinate */
+    inset-inline-end: 0;  /* X-Koordinate */
     z-index: 2; /* Ebene */
   }
   ```
@@ -240,26 +244,27 @@ Mit der Positionierung durch die Eigenschaft `position` kannst du einzelne Eleme
 
 Die Angabe von `position: absolute` bewirkt zunächst erst einmal nichts, also fügen wir noch die Eigenschaften `block-start` und `inline-start` hinzu. Diese bestimmen die Position des Elements auf der Y- und X-Achse.
 
-`block-start` und `inline-end` sind die [logische Eigenschaften](/tutorials/logische-eigenschaften-in-css) von `top` und `right`. Mit ihnen ist der relative Abstand des Elements zum übergeordneten Element gemeint. Der Nullpunkt für die Koordinaten ist dabei die linke obere Ecke des übergeordneten Elements, oder in diesem Fall die rechte obere Ecke, da wir hier `inline-end` statt `inline-start` oder `left` benutzt haben.
+`inset-block-start` und `inset-inline-end` sind die [logische Eigenschaften](/tutorials/logische-eigenschaften-in-css) von `top` und `right`, mit denen du vielleicht mehr anfangen kannst. Mit ihnen ist der relative Abstand des Elements zum übergeordneten Element gemeint. Der Nullpunkt für die Koordinaten ist dabei die linke obere Ecke des übergeordneten Elements, oder in diesem Fall die rechte obere Ecke, da wir hier `inset-inline-end` statt `inset-inline-start` bzw. `left` benutzt haben.
 
-Ohne die Angabe von `position: relative` beim übergeordneten Element würde das absolut positionierte Element relativ zum Viewport[^3] positioniert werden. Das ist in den meisten Fällen nicht das gewünschte Verhalten. Diese Eigenschaft setzt quasi den Nullpunkt für die Koordinaten zurück, bzw. bekommt das übergeordnete Element sein eigenes Koordinatensystem.
+Ohne die Angabe von `position: relative` beim übergeordneten Element würde das absolut positionierte Element relativ zum Viewport[^2] positioniert werden. Das ist in den meisten Fällen nicht das gewünschte Verhalten. Mit dieser Eigenschaft setzen wir quasi für das übergeordneten Element einen neuen Nullpunkt, sodass sich das absolut poisitionierte Element daran ausrichtet.
 
 ## Mehrspalten-Layout
 
 Das CSS-Modul für mehrspaltiges Layout bietet eine einfache Möglichkeit, Inhalte in Spalten anzuordnen, ähnlich wie der Text in einer Zeitung.
 
-> **Vorsicht:** Vermeide Spalten, wenn der Inhalt nur lesbar wäre, wenn dafür rauf- und runtergescrollen müsste. Das wäre eine schlechte Usability.
+Um einen Block in einen mehrspaltigen Container zu verwandeln, kannst du die Eigenschaften `column-count` oder `column-width` verwenden.
 
-Um einen Block in einen mehrspaltigen Container zu verwandeln, kannst du die Eigenschaften `column-count` oder `column-width` verwenden. Mit `column-count` teilst du dem Browser mit, wie viele Spalten du haben möchtest. Mit `column-width` teilst du dem Browser mit, dass er den Container mit so vielen Spalten wie möglich einer bestimmten Breite füllen soll. In diesem Beispiel haben wir die Breite auf 20 Zeichen (`ch`) festgelegt.
+Mit `column-count` teilst du dem Browser mit, wie viele Spalten du haben möchtest. Mit `column-width` teilst du dem Browser mit, dass er den Container mit so vielen Spalten wie möglich einer bestimmten Breite füllen soll.
 
+In dem folgenden Beispiel haben wir die Breite auf 20 Zeichen (`ch`) festgelegt.
 
-<Figure caption="Das Element wird absolut oben rechts positioniert.">
+<Figure caption="Das Mehrspalten-Layout ist einfach umzusetzen, typografich aber nicht sonderlich schön.">
   ```html
   <div class="columns">
     <h2>Mehrspaltiges Layout</h2>
-    <p>Lorem ipsum …</p>
-    <p>Lorem ipsum …</p>
-    <p>Lorem ipsum …</p>
+    <p>Lorem ipsum&#x202f;…</p>
+    <p>Lorem ipsum&#x202f;…</p>
+    <p>Lorem ipsum&#x202f;…</p>
   </div>
   ```
   ```css
@@ -270,17 +275,22 @@ Um einen Block in einen mehrspaltigen Container zu verwandeln, kannst du die Eig
   <SnippetColumns />
 </Figure>
 
+> **Vorsicht:** Vermeide Spalten, wenn der Inhalt nur lesbar wäre, wenn dafür rauf- und runtergescrollen müsste. Das wäre eine schlechte Usability.
+
 ## Meine Empfehlung für dein Layout
 
-Gibt es das pefekte Layout für alle Einsatzbereiche? Nein, das wäre zu einfach. Tatsächlich führen mehrere Wege nach Rom, wie ich immer gern sage. Die eine Lösung kann funktonieren, die andere vielleicht nur mit etwas mehr Aufwand. Grundsätzlich würde ich dir aber folgendes gern mit auf dem Weg geben:
+Gibt es das pefekte Layout für alle Einsatzbereiche? Nein, das wäre zu einfach. Tatsächlich führen mehrere Wege nach Rom, wie ich immer gern sage. Die eine Lösung kann funktonieren, die andere vielleicht nur mit etwas mehr Aufwand.
 
-- Vertraue auf den **normalen Fluss**, wenn es geht. Das ist die einfachste und zuverlässigste Methode, um insbesondere auch bei mobilen Endgeräten einen linearen Lesefluss zu gewährleisten.
+Grundsätzlich würde ich dir aber folgendes gern mit auf dem Weg geben:
+
+- Vertraue auf den **normalen Fluss**, wenn es geht. Das ist die einfachste und zuverlässigste Art, um insbesondere auch bei mobilen Endgeräten einen linearen Lesefluss zu gewährleisten.
 - **Flexbox** ist super, wenn du einfach nur zwei oder mehr Elemente neben- oder untereinander platzieren möchtest. Das ist besonders für Navigationen oder für eine Gruppierung von Elementen geeignet.
-- **Grid Layout** kannst du verwenden, wenn du ein Elemente in die Mitte eines anderen platzieren möchtest, kannst damit aber auch (sehr) komplexe Layouts erstellen. Da die Lernkurve sehr steil ist, ist das nichts, das du wie Flexbox mal eben in einer Zeile schreiben kannst.
+- Das **Grid-Layout** ist sehr umfangreich, da sind deiner Kreativität kaum Grenzen gesetzt. Wenn du fertige Codeschnipsel hast, die eine Aufgabe für dich erledigen sollen, nehme die. Bei einer eigenen Lösung solltest du dich allerdings noch tiefer mit der Materie befassen, indem du die [Dokumentation](/dokumentation) liest.
 - Am Ende bleibt dann noch die **Positionierung**, mit der du recht spärlich umgehen solltest, um ein Chaos zu vermeiden. Die Positionierung ist allerdings unabdingbar, wenn du Elemente irgendwohin „kleben“ möchtest, wie die Navigation oder ein Inhaltsverzeichnis, wie auf dieser Seite.
 
-Ich wünsche dir mit diesem Rundumschlag auf jeden Fall viel Spaß und bin gespannt, was du jetzt für kreative Websites bauen wirst. Wenn dir dieses Tutorial gefallen hat, teile es doch gern mit deinen Kontakten auf Social Media. 👍 🎉
+Ich hoffe, ich konnte dir eine gute Zusammenfassung der wichtigsten Layouttechniken in CSS geben. Damit solltest du in der Lage sein, die meisten Layouts zu erstellen, die du für deine Website benötigst. Ich bin gespannt auf die Ergebnisse, wünsche dir in jedem Fall viel Spaß beim ausprobieren!
+
+Wenn dir dieses Tutorial gefallen hat, teile es doch gern mit deinen Kontakten auf Social Media. 👍 🎉
 
 [^1]: Breakpoints sind festgelegte Punkte, an denen das Layout einer Website angepasst wird, um auf unterschiedlichen Geräten gut auszusehen. Das können zum Beispiel Smartphones, Tablets oder Desktop-Computer sein.
-[^2]: Das Elternelement ist das übergeordnete Element, in dem sich das gefloatete Element (folglich auch Kindselement genannt) befindet.
-[^3]: Der Viewport ist der sichtbare Bereich des Browsers, in dem die Webseite angezeigt wird. Wenn du die Seite scrollst, bewegt sich der Viewport mit.
+[^2]: Der Viewport ist der sichtbare Bereich des Browsers, in dem die Webseite angezeigt wird. Wenn du die Seite scrollst, bewegt sich der Viewport mit.
