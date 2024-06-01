@@ -1,0 +1,28 @@
+---
+const { tutorials } = Astro.props
+
+import LatestTutorials from './LatestTutorials.astro'
+---
+
+<aside class='articles'>
+  {tutorials && <LatestTutorials max={tutorials} />}
+</aside>
+
+<style>
+  aside {
+    display: block;
+    flex: 1 0 15rem;
+
+    h2 {
+      font-size: var(--fs);
+      font-weight: var(--fw-bold);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-block: var(--sp-l) var(--sp-m);
+
+      &:first-child {
+        margin-block-start: 0;
+      }
+    }
+  }
+</style>

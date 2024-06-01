@@ -4,13 +4,16 @@ import '../styles/main.scss'
 import Header from '@components/Header.astro'
 import Footer from '@components/Footer.astro'
 import TableOfContent from '@components/TableOfContents.astro'
+import Aside from '@components/Aside.astro'
 import Metadata from '@components/Metadata.astro'
 
 type Layout = 'wide' | 'standard'
 
 const { headings, layout = 'standard' as Layout, redirect } = Astro.props
-const { title, description, pubDate, toc, cover, ogType } =
+const { title, description, pubDate, toc, aside, cover, ogType } =
   Astro.props.frontmatter || Astro.props
+
+const asideConfig = aside ? aside : false
 ---
 
 <!doctype html>
@@ -29,12 +32,13 @@ const { title, description, pubDate, toc, cover, ogType } =
     <Header />
 
     <main id='main'>
-      <div class='stage'>
+      <div class:list={['stage', { 'with-articles': asideConfig }]}>
         <div class:list={['content', { wide: layout === 'wide' }]}>
           <slot />
         </div>
 
-        {toc && <TableOfContent headings={headings} />}
+        {toc && headings && <TableOfContent headings={headings} />}
+        {asideConfig && <Aside tutorials={asideConfig.tutorials} />}
       </div>
 
       <slot name='page-footer' />

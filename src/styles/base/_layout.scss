@@ -1,4 +1,4 @@
-@use './mixins';
+@use './mixins' as mx;
 
 *,
 *::before,
@@ -12,7 +12,7 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-height) + var(--sp));
 
-  @include mixins.respond('m') {
+  @include mx.respond('m') {
     scroll-padding-top: calc(var(--header-height) + var(--sp-l));
   }
 }
@@ -80,6 +80,17 @@ main {
     display: flex;
     flex-direction: column;
     gap: calc(var(--sp-content) + var(--sp));
+
+    &.with-articles {
+      .content {
+        margin-inline: auto;
+        order: 1;
+      }
+
+      .articles {
+        order: 2;
+      }
+    }
   }
 
   .content {
@@ -91,13 +102,17 @@ main {
     }
   }
 
+  aside {
+    container: aside / inline-size;
+  }
+
   &:not(:has(aside)) {
     .content {
       margin-inline: auto;
     }
   }
 
-  @include mixins.respond('l', 'to') {
+  @include mx.respond('l', 'to') {
     &:has(.toc-list.hidden-l) {
       gap: var(--sp);
     }
@@ -111,7 +126,7 @@ main {
     }
   }
 
-  @include mixins.respond('l') {
+  @include mx.respond('l') {
     .stage {
       flex-direction: row;
       justify-content: space-between;
@@ -127,4 +142,12 @@ main {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: var(--sp-content);
+
+  @include mx.respond('l') {
+    .with-articles & {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp);
+    }
+  }
 }

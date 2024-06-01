@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content'
+import ArticleCard from './ArticleCard.astro'
+import Button from '@components/Button.astro'
+
+const { max = 3 } = Astro.props
+
+const allTutorials = await getCollection('tutorials', ({ data }) => {
+  return import.meta.env.PROD ? data.isDraft !== true : true
+})
+
+const filteredTutorials = allTutorials
+  .sort(
+    (a, b) =>
+      new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+  )
+  .slice(0, max)
+---
+
+<h2>Tutorials</h2>
+
+<div class='l-articles'>
+  {filteredTutorials.map((article) => <ArticleCard article={article} />)}
+
+  <div>
+    <Button
+      type='link'
+      label='Alle Tutorials'
+      href='/tutorials'
+      primary={false}
+    />
+  </div>
+</div>
