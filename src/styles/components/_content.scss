@@ -73,7 +73,7 @@
         font-weight: var(--fw-bold);
         float: left;
         margin-inline-start: calc(var(--padding-inline) * -1);
-        width: 3ch;
+        inline-size: 3ch;
         text-align: right;
       }
     }

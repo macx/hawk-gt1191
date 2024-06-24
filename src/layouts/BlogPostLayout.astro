@@ -36,10 +36,10 @@ const toc = true
   pubDate={pubDate}
   ogType='article'
 >
+  {isDraft && <div class='draft-banner' />}
+
   <article>
     <header>
-      {isDraft && <div class='draft-banner' />}
-
       <h1>{title}</h1>
 
       <Lead text={description} />
@@ -71,6 +71,10 @@ const toc = true
 <style lang='scss'>
   @use '../styles/base/mixins';
 
+  article {
+    container: article / inline-size;
+  }
+
   .draft-banner {
     position: fixed;
     inset: var(--header-height) 0 auto auto;
@@ -79,6 +83,7 @@ const toc = true
     background-color: var(--clr-warning);
     color: var(--clr-inverse);
     pointer-events: none;
+    inline-size: max-content;
 
     box-shadow: 0 0.3em 0.5em -0.3em rgb(0 0 0 / 0.6);
 
@@ -86,7 +91,7 @@ const toc = true
       display: block;
       text-align: center;
       padding-block: 0.8em 0.6em;
-      padding-inline: var(--sp-content);
+      padding-inline: var(--sp);
       line-height: 1;
 
       font-size: var(--fs-xs);

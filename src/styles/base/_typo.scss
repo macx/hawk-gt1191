@@ -317,3 +317,18 @@ blockquote {
     }
   }
 }
+
+/*
+┌──────────────────────────────────┐
+  MISC
+└──────────────────────────────────┘
+*/
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.st {
+  text-decoration: line-through;
+  color: var(--clr-warning);
+}

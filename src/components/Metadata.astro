@@ -21,7 +21,7 @@ interface Props {
 const { title, description, type = 'website', pubDate, redirect } = Astro.props
 
 const canonicalUrl = removeTrailingSlash(
-  new URL(Astro.url.pathname, Astro.site).toString()
+  new URL(Astro.url.pathname, Astro.site).toString().toLowerCase()
 )
 
 const openGraphImage = Astro.url.pathname.startsWith('/tutorials')

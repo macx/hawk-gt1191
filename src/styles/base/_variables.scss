@@ -24,7 +24,16 @@
 
   --clr-bg: hsl(204, 15%, 94%);
   --clr-bg-card: hsl(0, 0%, 100%);
+  --clr-bg-table-odd: hsl(0, 0%, 98%);
+  --clr-bg-table-odd: rgb(0 0 0 / 0.03);
+  --clr-bg-table-placeholder: hsl(124 47% 63% / 0.3);
+
   --clr-line: color-mix(
+    in oklab,
+    var(--clr-bg) 15%,
+    var(--clr-mix-modifier) 15%
+  );
+  --clr-table-line: color-mix(
     in oklab,
     var(--clr-bg) 15%,
     var(--clr-mix-modifier) 15%
@@ -123,7 +132,14 @@
       var(--clr-bg),
       var(--clr-mix-modifier) 10%
     );
+    --clr-bg-table-odd: rgb(0 0 0 / 0.08);
+
     --clr-line: color-mix(in oklab, var(--clr-bg), var(--clr-mix-modifier) 22%);
+    --clr-table-line: color-mix(
+      in oklab,
+      var(--clr-bg),
+      var(--clr-mix-modifier) 16%
+    );
 
     --clr-text: #d9d9d9;
     --clr-text-light: rgba(217, 217, 217, 0.7);
