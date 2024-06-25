@@ -59,8 +59,9 @@ const toc = true
     }
 
     <slot name='article' />
+
+    <Tags tags={tags as string[]} divider={true} />
   </article>
-  <Tags tags={tags as string[]} divider={true} />
 
   <Fragment slot='page-footer'>
     <slot name='related' />

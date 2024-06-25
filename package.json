@@ -13,6 +13,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "validate": "astro check",
+    "test": "cypress run",
+    "test:ui": "cypress open",
     "lint": "prettier --write --plugin-search-dir=. .",
     "release": "yarn lint && yarn build && release-it"
   },
@@ -54,6 +56,7 @@
     "typescript": "^5.4.5"
   },
   "devDependencies": {
+    "cypress": "^13.12.0",
     "prettier": "^3.2.5",
     "prettier-config-standard": "^7.0.0",
     "prettier-plugin-astro": "^0.13.0"
