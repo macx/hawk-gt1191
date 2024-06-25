@@ -1,4 +1,4 @@
-import { getCollection, getEntry } from 'astro:content'
+import { getCollection } from 'astro:content'
 import { SITE_CONST } from '../const.ts'
 
 export async function GET() {
