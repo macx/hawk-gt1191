@@ -19,7 +19,9 @@ const sortedTags = tags.sort((a, b) =>
       <li>Verwendete Tags:</li>
       {sortedTags.map((tag) => (
         <li class:list={['tag', { current: currentPath === tag }]}>
-          <a href={`/tutorials/tags/${tag}`}>{tag}</a>
+          <a href={`/tutorials/tags/${tag}`} class='tag'>
+            {tag}
+          </a>
         </li>
       ))}
     </ul>

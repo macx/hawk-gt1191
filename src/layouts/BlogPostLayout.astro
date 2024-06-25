@@ -38,7 +38,7 @@ const toc = true
 >
   {isDraft && <div class='draft-banner' />}
 
-  <article>
+  <article class='article'>
     <header>
       <h1>{title}</h1>
 
@@ -59,9 +59,8 @@ const toc = true
     }
 
     <slot name='article' />
-
-    <Tags tags={tags as string[]} divider={true} />
   </article>
+  <Tags tags={tags as string[]} divider={true} />
 
   <Fragment slot='page-footer'>
     <slot name='related' />
@@ -71,7 +70,7 @@ const toc = true
 <style lang='scss'>
   @use '../styles/base/mixins';
 
-  article {
+  .article {
     container: article / inline-size;
   }
 
