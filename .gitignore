@@ -8,6 +8,7 @@ dist/
 !.yarn/sdks
 !.yarn/versions
 !.yarn/install-state.gz
+install-state.gz
 
 # generated types
 .astro/
