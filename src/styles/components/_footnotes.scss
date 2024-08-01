@@ -25,10 +25,13 @@
   li {
     display: flex;
     counter-increment: footnotes;
-    padding: var(--sp-s);
+    padding-block: var(--sp-s);
+    padding-inline: 0 var(--sp-s);
 
     &::before {
       content: counter(footnotes) '.';
+      flex: 0 0 2.5ch;
+      margin-inline-start: 0;
     }
 
     p {
