@@ -47,7 +47,8 @@ const { title = 'Ergebnis' } = Astro.props
         color: var(--clr-inverse);
         border: 1px solid rgb(255 255 255 / 0.3);
         border-radius: var(--radius);
-        padding: 0.3em 0.6em;
+        padding-block: var(--sp-xs);
+        padding-inline: var(--sp);
 
         &:has(.sn-element) & {
           background-color: rgb(0 0 0 / 0.2);
@@ -77,5 +78,9 @@ const { title = 'Ergebnis' } = Astro.props
         background-color: rgba(0, 0, 0, 0.5);
       }
     }
+  }
+
+  .snippet + .snippet {
+    margin-block-start: var(--sp);
   }
 </style>

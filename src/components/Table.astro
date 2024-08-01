@@ -1,0 +1,233 @@
+---
+interface Props {
+  mode?: 'responsive' | 'scroll'
+}
+
+const { mode = 'responsive' } = Astro.props
+---
+
+<div class:list={['table', mode]}>
+  <div class='inner'>
+    <slot />
+  </div>
+</div>
+
+<style>
+  .table {
+    background-color: var(--clr-bg-card);
+    box-shadow: 0 0.53em 1em -0.5rem rgba(0, 0, 0, 0.15);
+    container: table / inline-size;
+    margin-block: var(--sp);
+
+    table {
+      background-color: transparent;
+      box-shadow: none;
+      margin-block: 0;
+    }
+
+    &.scroll {
+      --shadow: 60px;
+
+      .inner {
+        overflow-x: auto;
+        overscroll-behavior: contain;
+        /* mask-image: linear-gradient(90deg, #000 60%, transparent); */
+      }
+
+      table {
+        position: relative;
+        inline-size: max-content;
+        min-inline-size: 100%;
+      }
+
+      /* mask-image: linear-gradient(90deg, blue 60%, red);
+      mask-mode: alpha; */
+
+      /*&::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        mask-image: linear-gradient(90deg, #000 60%, transparent);
+        border: 2px solid red;
+      } */
+
+      /* &::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        z-index: 2;
+
+        background-image: linear-gradient(
+          90deg,
+          transparent calc(100% - var(--shadow)),
+          transparent calc(100% - var(--shadow)),
+          rgb(0 0 0 / 0.15) 100%
+        );
+        border-inline-end: 1px solid rgb(0 0 0 / 0.3);
+         filter: contrast(175%) brightness(3%);
+        pointer-events: none;
+      } */
+    }
+
+    /* @container content and (width < 200px) {
+      table {
+        display: none;
+      }
+    } */
+
+    /* &.responsive {
+      display: none;
+    } */
+
+    /* @container (width < 700px) {
+
+    } */
+
+    &.responsive {
+      table {
+        table-layout: auto;
+      }
+
+      @container article (width < 35em) {
+        table {
+          table-layout: fixed;
+        }
+
+        thead th {
+          display: none;
+        }
+
+        th,
+        td {
+          display: block;
+          padding-block: var(--sp-xs);
+          padding-inline: var(--sp);
+          border-block-end: 1px solid var(--clr-table-line);
+        }
+
+        tbody {
+          tr + tr {
+            border-block-start: 5px solid rgb(0 0 0 / 0.1);
+          }
+
+          td {
+            display: block;
+
+            &::before {
+              display: block;
+              content: attr(data-label);
+              font-size: var(--fs-s);
+              font-weight: var(--fw-bold);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .table {
+    &.responsive {
+    }
+  }
+</style>
+
+<style is:global>
+  table {
+    table-layout: auto;
+    border-collapse: collapse;
+    inline-size: 100%;
+    background-color: var(--clr-bg-card);
+    box-shadow: 0 0.53em 1em -0.5rem rgba(0, 0, 0, 0.15);
+    margin-block: var(--sp);
+
+    thead th {
+      text-align: start;
+      font-size: var(--fs-s);
+      font-weight: var(--fw-bold);
+    }
+
+    th,
+    td {
+      padding-block: var(--sp-xs);
+      padding-inline: var(--sp);
+      border-block-end: 1px solid var(--clr-table-line);
+    }
+
+    tbody tr:nth-child(odd) td {
+      background-color: var(--clr-bg-table-odd);
+    }
+
+    :where(.wp, .num, .symb) {
+      display: inline-block;
+      /* min-inline-size: 1.5ch; */
+      min-block-size: 1cap;
+    }
+
+    .ws {
+      background-color: var(--clr-bg-table-ws);
+    }
+
+    .symb {
+      background-color: var(--clr-bg-table-symb);
+    }
+  }
+
+  .table-meta {
+    font-size: var(--fs-s);
+
+    ul {
+      display: flex;
+      column-gap: var(--sp);
+      flex-wrap: wrap;
+      padding-inline-start: 0;
+    }
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 1ch;
+      list-style: none;
+      white-space: nowrap;
+
+      span {
+        &[class] {
+          display: block;
+          inline-size: 1.5ch;
+          aspect-ratio: 1;
+          clip-path: circle(50%);
+        }
+
+        &.ws {
+          background-color: var(--clr-bg-table-ws);
+        }
+
+        &.symb {
+          background-color: var(--clr-bg-table-symb);
+        }
+      }
+    }
+  }
+</style>
+
+<script>
+  let tables = document.querySelectorAll('.table.responsive table')
+
+  tables.forEach((table) => {
+    const tableHead = table.querySelector('thead')
+    const tableBody = table.querySelector('tbody')
+
+    if (tableHead) {
+      const ths = tableHead.querySelectorAll('th')
+      const trs = tableBody!.querySelectorAll('tr')
+
+      trs.forEach((tr) => {
+        const tds = tr.querySelectorAll('td')
+
+        tds.forEach((td, i) => {
+          td.setAttribute('data-label', ths[i].textContent ?? '')
+        })
+      })
+    }
+  })
+</script>
