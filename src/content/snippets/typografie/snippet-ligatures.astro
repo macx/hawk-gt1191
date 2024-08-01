@@ -1,0 +1,64 @@
+---
+import Snippet from '@components/Snippet.astro'
+
+const { title } = Astro.props
+---
+
+<Snippet title={title}>
+  <div class='demo-ligatures'>
+    <div class='headline without-ligatures large'>fi fl ff ffi ffl</div>
+
+    <div class='headline without-ligatures'>
+      Wasser<span>fl</span>asche, Sport<span>fi</span>schen, Rohsto<span
+        >ff</span
+      >e, ab<span>fl</span>auen, er<span>fi</span>nden, 2/3
+    </div>
+
+    <div class='headline with-ligatures large'>fi fl ff ffi ffl</div>
+
+    <div class='headline with-ligatures'>
+      Wasser<span>fl</span>asche, Sport<span>fi</span>schen, Rohsto<span
+        >ff</span
+      >e, ab<span>fl</span>auen, er<span>fi</span>nden, 2/3
+    </div>
+  </div>
+</Snippet>
+
+<style>
+  @scope (.demo-ligatures) {
+    :scope {
+      .headline {
+        font-family: var(--ff-headings);
+        font-size: 1.875rem;
+        font-weight: var(--fw-bold);
+        margin-block-end: var(--sp);
+
+        &.large {
+          font-size: 5rem;
+          line-height: 1;
+        }
+
+        &.without-ligatures {
+          font-variant-ligatures: none;
+          text-rendering: optimizeSpeed;
+
+          span {
+            color: var(--clr-warning);
+          }
+        }
+
+        &.with-ligatures {
+          font-variant: common-ligatures diagonal-fractions;
+          text-rendering: optimizeLegibility;
+          /* text-rendering: auto; */
+
+          span {
+            background-color: var(--clr-marker);
+            /* color: var(--clr-success); */
+            color: var(--clr-text);
+          }
+        }
+      }
+    }
+  }
+</style>

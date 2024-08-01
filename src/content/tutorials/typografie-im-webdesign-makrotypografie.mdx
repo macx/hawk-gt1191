@@ -1,0 +1,262 @@
+---
+title: 'Typografie im Web: Mit CSS den Satzspiegel gestalten'
+description: 'TBA'
+isDraft: true
+pubDate: 2024-08-15T15:08:00+01:00
+author: david-maciejewski
+cover:
+  path: '/src/images/tutorials/typografie-papercut.jpg'
+  alt: 'Ein Schrifsetzer setzt Buchstaben in seiner Druckerei.'
+  caption: 'Beim Bleisatz werden sorgfältig Buchstaben gesetzt. Diese Sorgfalt und Liebe zum Detail können wir auch auf Websites übertragen.'
+tags: ['html']
+---
+
+import Figure from '@components/Figure.astro'
+import Table from '@components/Table.astro'
+import Codepen from '@components/Codepen.astro'
+
+import SnippetLigatures from '@snippets/typografie/snippet-ligatures.astro'
+
+In den folgenen Abschnitten werfen wir einen genauen Blick auf die Regeln der Mikro- und Makrotypografie und wie wir diese konkret in HTML und CSS anwenden können. Nutze dieses Tutorial gern als Nachschlagewerk, um deine Website typografisch aufzuwerten.
+
+> **Hinweis:** In diesem Tutorial beschäftigen wir uns mit der Makrotypografie. Im [ersten Teil](/tutorials/typografie-im-webdesign-mikrotypografie) der Serie widmen wir uns mit den Grundlagen und der Mikrotypografie.
+
+## Texte gestalten
+
+### Schriftart
+
+### Schriftgröße
+
+### Schriftweite
+
+- Zeichenabstand
+
+### Zeilenabstand
+
+### Schriftschnitt
+
+- kursiv, fett, unterstrichen
+
+
+## Ein kurzer Rückblick auf die Entwicklung der Typografie
+
+Es braucht nicht immer abgefahrene Formen oder Animationen, um eine Website ins rechte Licht zu rücken. Mit einer guten Typografie[^1] können wir ebenso glänzen. Und zeigen, dass wir vom Fach sind. Dazu lohnt ein kurzer Blick in die Geschichte des Buchdrucks, ins 15. Jahrhundert.
+
+### Johannes Gutenberg und der Bleisatz
+
+Johannes Gutenberg[^2] entwickelte um 1440 ein Verfahrunen, um einzelne Buchstaben aus Metall zu gießen, die dann zu Wörtern, Sätzen und ganzen Seiten zusammengesetzt werden konnten. Diese Methode wird als Bleisatz bezeichnet. Der Name leitet sich von dem Material ab, aus dem die Buchstaben gegossen wurden: einer Blei-Zinn-Antimon-Legierung.
+
+Die Seiten werden anschließend in eine Druckpresse eingespannt und mit Druckfarbe eingefärbt. Durch das Anwenden von Druck wird die Farbe von der Druckform auf das Papier übertragen, wodurch der Text oder das Bild gedruckt wird.
+
+Wurden Bücher zuvor stets per Hand geschrieben, konnten diese mit Gutenbergs Methode schneller und günstiger hergestellt werden, was zu einer Demokratisierung des Wissens führte. Seine bedeutende Erfindung markierte einen Wendepunkt in der Geschichte und ermöglichte die Massenproduktion von Büchern. Insbesondere sein Hauptwerk, die Gutenberg-Bibel, zwischen 1452 und 1454 entstanden, wird allgemein für ihre hohe ästhetische und technische Qualität gerühmt.
+
+<Figure imagePath="/src/images/tutorials/gutenberg-bibel.jpg" caption="Die Gutenberg-Bibel, hergestellt im Bleisatz. Quelle: Wikipedia" alt="Bild zeigt die Gutenberg-Bibel, eine Doppelseite auf aufgeklappt." />
+
+### Ästhetische und technische Qualität
+
+Auch wenn der Buchdruck dank Gutenberg für damalige Verhältnisse enorme Zeitersparnisse brachte, war das Setzen der Lettern im Bleisatz immer noch zeitaufwendig. Das erforderte nicht nur handwerkliches Geschick, sondern auch ein großes Maß an Sorgfalt und Liebe zum Detail. Die Schriftsetzer mussten darauf achten, dass die Buchstaben korrekt gesetzt wurden, die Zeilenabstände stimmten und die Seiten harmonisch wirkten.
+
+Durch diese Arbeit und Hingabe entstanden typografische Regeln und Prinzipen, die auch heute noch gelten. Vorrausgesetzt, man möchte sich von der Masse absetzen und eine gute Lesbarkeit und Ästhetik erreichen.
+
+> **Hintergrund:** Im Rahmen meiner Lehre zum Schriftsetzer im Jahr 1993, habe ich als einer der letzten Schüler im Bleisatz gearbeitet und an der [Original Heidelberger Tiegel](https://www.youtube.com/watch?v=srQqHySRefY) gedruckt. Die Uni Mainz, bei der es noch heute eine [Lehrdruckerei](https://www.buchwissenschaft.uni-mainz.de/lehrdruckerei/) gibt, hat auf YouTube eine [Playlist zur Erklärung des Bleisatzes](https://www.youtube.com/playlist?list=PLmGfeHeU4DbFzvQ4eht3LXNtD8r52CMno) veröffentlicht, bei der du dich in die Materie einarbeiten kannst.
+
+## Mikrotypografie
+
+Die Mikrotypografie ist ein Segment der angewandten Typografie, das sich auf die Detailgestaltung von Schrift im Schriftsatz bezieht. Im Gegensatz zur [Makrotypografie](#makrotypografie), die sich mit Layout und Gesamterscheinung beschäftigt, behandelt die Mikrotypografie feinere Aspekte wie Leerraum, Schriftweiten, Zeichenabstände und Schriftsatzarten.
+
+Das sind Dinge, die wir mit CSS auszeichen können. Doch die typografische Gestaltung fängt schon beim Verfassen des Textes an. Neben der für uns relevanten deutschen Rechtschreibung[^3] gibt es auch typografische Regeln, die wir beachten sollten. Hier sind die wichtigsten:
+
+### Anführungszeichen
+
+Im alten Schreibmaschinensatz und auf unseren Tastaturen gibt es für öffnendes und schließendes Anführungszeichen[^4] nur ein Zeichen (`"`), das zugleich als Ersatzzeichen für Zoll oder Sekunden dient.
+
+
+In der Textverarbeitung werden Anführungszeichen oft mit dem Zollzeichen (`""`) dargestellt und mit der Tastenkombination <kbd>⇧ Shift</kbd> + <kbd>2</kbd> eingegeben. Der Name deutet es schon an: Beim Zollzeichen handelt es sich nicht um Anführungszeichen, sondern um die grafische Darstellung der alten Maßeinheit Zoll.
+
+In der Mikrotypografie werden die typografischen Anführungszeichen (`„”`) verwendet. Word zum Beispiel ersetzt die Zollzeichen automatisch durch Anführungszeichen. Im Buchdruck werden stattdessen auch gern die Guillemets (`«»`) verwendet. In der folgenden Tabelle findest du die Tastenkombinationen, um diese Zeichen zu schreiben.
+
+<Table mode="responsive">
+| Zeichen | Windows | Mac |
+|---------|---------|-----|
+| `„“` | <span class="nowrap"><kbd>Alt</kbd> + <kbd>0171</kbd></span><br /><span class="nowrap"><kbd>Alt</kbd> + <kbd>0187</kbd></span> | <span class="nowrap"><kbd>⌥ Option</kbd> + <kbd>^</kbd><br /><kbd>⇧ Shift</kbd> + <kbd>⌥ Option</kbd> + <kbd>2</kbd></span> |
+| `«»` | <span class="nowrap"><kbd>Alt</kbd> + <kbd>0171</kbd></span><br /><span class="nowrap"><kbd>Alt</kbd> + <kbd>0187</kbd></span> | <span class="nowrap"><kbd>⌥ Option</kbd> + <kbd>^</kbd></span><br /><span class="nowrap"><kbd>⇧ Shift</kbd> + <kbd>⌥ Option</kbd> + <kbd>2</kbd></span> |
+</Table>
+
+### Leerzeichen
+
+Ein Leerzeichen zu setzen klingt fast schon zu banal, um sich darüber Gedanken zu machen, oder? Tatsächlich gibt es Leerzeichen in **unterschiedlichen Varianten**, mit denen wir das Schriftbild erheblich aufwerten können.
+
+Es gibt Leerzeichen in unterschiedlichen Breiten -- wichtig bei Zahlen (mehr dazu später) und in geschützter und ungeschützter Variante. Im Fließtext führt ein Leerzeichen **am Ende einer Zeile** immer zu einem Umbruch, es ist also nicht geschützt vor einem Umbruch. Ein geschützes Leerzeichen zwischen zwei Wörtern hingegen verhindert den Umbruch.
+
+Eine Taste zum einfügen eines geschützten Leerzeichens gibt es nicht. Du kannst dieses wie viele andere Zeichen aller Art als Zeichenfolge -- entweder mit ihrem HTML-Namen, oder als Dezimalwert -- eingeben. Und hier sind gleich zwei Varianten in unterschiedlichen Breiten:
+
+<Table mode="responsive">
+| Name | HTML-Named | HTML-Dezimal |
+|------|---------|-----------|
+| Non-breaking space | `&nbsp;` | `&#160;` |
+| Narrow No-Break Space | | `&#8239;` |
+</Table>
+
+Wenn du also nicht möchtest, dass zwei Wörter voneinander getrennt werden, sollte du ein geschützes Leerzeichen einfügen. Das macht zum Beispiel immer am Ende eines Absatzes bei den letzten beiden Wörtern Sinn, um [Hurenkinder und Schusterjungen](#hurenkinder-und-schusterjungen) zu vermeiden.
+
+```html
+keine&nbsp;Trennung
+```
+
+Das schmale Leerzeichen spielt bei Zahlen eine besondere Rolle. Mehr dazu im nächsten Abschnitt.
+
+### Zahlen und Werte
+
+Wann schreibt man denn bei Zahlen nun Ziffern und wann Buchstaben? Der Duden hat das [schön aufgeschlüsselt](https://www.duden.de/sprachwissen/sprachratgeber/Schreibung-von-Zahlen-0). Ich war lange der Meinung, dass man Zahlen bis 12 grundsätzlich ausschreibt, das gilt heute nicht mehr. Heute schreibt man sie aus, wenn sie in erzählerischen Texten verwendet werden. So schreibst du statt „über <b>100</b> Zeilen Code“ eben „über <b>einhundert</b> Zeilen Code“.
+
+Und wie sieht das bei Werten aus, bei denen wir mit Maßen und Gewichten arbeiten? Dort verwenden wir Ziffern, ergänzen sie aber je nach Rechtschreibung mit einem Leerzeichen. In der Mikrotypografie allerdings mit einem schmalen Leerzeichen, das darüber hinaus auch noch geschützt ist, damit Ziffer und Wert nicht voneinander getrennt werden. 28&#8239;% werden dann so geschrieben:
+
+```html
+28&#8239;%
+```
+
+In der folgenden Tabelle habe ich dir die gebräuchlichsten Sonderzeichen aufgelistet und auch Fälle gelistet, wo du ein Leerzeichen setzt und wo nicht.
+
+| Zeichen || HTML-Code |
+|---------|-----------|---|
+| Prozent | 28&#8239;% | 28<span class="ws">`&#8239;`</span><span class="symb">%</span> |
+| Grad | 28° | 28<span class="symb">°</span> |
+| Grad Celsius | 28&#8239;°C | 28<span class="ws">`&#8239;`</span><span class="symb">°C</span> |
+| Promille | 28&#8239;‰ | 28<span class="ws">`&#8239;`</span><span class="symb">`&#8239;`</span> |
+| Wurzel |  √28 | <span class="symb">`&#8730;`</span>28 |
+| Quadrat&shy;meter | 28&#8239;m² | 28<span class="ws">`&#8239;`</span>m<span class="symb">`&#178;`</span> |
+| Kubik&shy;meter | 28&#8239;m³ | 28<span class="ws">`&#8239;`</span>m<span class="symb">`&#179;`</span> |
+| Brüche | ½, ⅓, ⅔ | <span class="symb">`&#189;`</span>, <span class="symb">`&#189;`</span>, <span class="symb">`&#189;`</span> |
+
+<div class="table-meta">
+  <ul>
+    <li><span class="ws"></span><span>Schmales Leerzeichen</span></li>
+    <li><span class="symb"></span><span>Symbol</span></li>
+  </ul>
+</div>
+
+### Bindestrich
+
+Der Bindestrich wird in der Regel zur Zusammensetzung von Wortgruppen verwendet. Dann also, wenn es der Leserlichkeit oder der Vermeidung von Missverständnissen dient. In allen anderen Fällen sollte auf den Bindestrich verzichtet werden. Denn: Der Bindestrich tennt manchmal mehr, als er verbinden sollte. Hier sind ein paar Beispiele:
+
+| ❌ Falsch oder Misverständlich | ✅ Richtig |
+|--------|---------|
+| Binde-Strich | Fünfprozenthürde |
+| Straßenbahn-Fahrer | Hand-Augen-Koordination |
+| Online-Retailworkshop vs.<br />Onlineretail-Workshop| Ober- und Unterkante |
+| Frisör-Meister-Betrieb | E-Mail-Adresse |
+
+Genauso wie ein ungeschütztes Leerzeichen, erzeugen auch Bindestriche am Zeilenende einen Umbruch. Das kann in manchen Fällen unerwünscht sein. Abhilfe schafft hier ein geschützter Bindestrich[^5]:
+
+<Table mode="responsive">
+| Name | Dezimal | Hexadezimal |
+|------|---------|-----------|
+| Non-breaking Hyphen | `&#8209;` | `&#x2011;` |
+</Table>
+
+Mit folgenden Tastenkombinationen kannst du den geschützten Bindestrich ebenfalls eingeben:
+
+<Table mode="responsive">
+| Windows | Mac |
+|---------|-----|
+| <span class="nowrap"><kbd>Alt</kbd> + <kbd>8209</kbd></span> | <span class="nowrap"><kbd>⌘ Command</kbd> + <kbd>⇧ Shift</kbd> + <kbd>-</kbd></span> |
+</Table>
+
+### Gedankenstrich
+
+Einschübe und Gedanken werden durch einen Halbgeviertstrich[^6] gekennzeichnet, umgangssprachlich daher Gedankenstrich genannt. Der Halbgeviertstrich findet auch als Bis-Strich bei der Notation von Intervallen wie „37–39“ oder Öffnungezeiten wie „07:00–22:00 Uhr”, sowie bei Geldbeträgen als Nullersatzstrich wie „28,– EUR“ Verwendung. So schreibst du ihn:
+
+<Table mode="responsive">
+| HTML-Code | Windows | Mac |
+|-----------|---------|-----|
+| `&ndash;` | <span class="nowrap"><kbd>Alt</kbd> + <kbd>0150</kbd></span><br /><span class="nowrap"><kbd>Strg</kbd> + <kbd>num</kbd> + <kbd>-</kbd></span> | <span class="nowrap"><kbd>⌥ Option</kbd> + <kbd>-</kbd></span> |
+</Table>
+
+In der englischen Typgrafie, sowie in Tabellen wird statt dem Halbgeviertstrich der Geviertstrich[^7] verwendet. So schreibst du ihn:
+
+<Table mode="responsive">
+| HTML-Code | Windows | Mac |
+-----------|---------|-----|
+| `&mdash;` | <span class="nowrap"><kbd>Alt</kbd> + <kbd>0151</kbd></span> | <span class="nowrap"><kbd>⌥ Option</kbd> + <kbd>⇧ Shift</kbd> + <kbd>-</kbd></span> |
+</Table>
+
+### Umbrüche und Trennstriche
+
+In den vorherigen drei Abschnitten sprach ich davon, Umbrüche zu verhindern. Es gibt aber auch Situationen, bei denen wir Umbrüche explizit ermöglichen möchten. Zum Beispiel, wenn lange Wörter, E-Mail-Adressen oder URLs nicht mehr in die Zeile passen. Dafür können wir mit einem bedingten Trennstrich eine Soll&#xAD;bruch&#x00AD;stelle setzen, bei der der Browser je nach Platz entscheiden kann, ob er das Wort trennt oder nicht.
+
+<Table mode="scroll">
+| HTML-Named | Dezimal | Hexadezimal |
+|---------|-----------|----|
+| `&shy;` | `&#173;` | `&#xAD;` |
+</Table>
+
+Hier findest du das ganze noch einmal als Demo, bei der du die Fenstergröße verändern kannst, um zu sehen, wie die Wörter umgebrochen werden.
+
+<Codepen id="KKJazaw" height="500" tab="result"/>
+
+### Apostroph
+
+Das Apostroph -- von der Form her ähnlich einer 9 -- kennzeichnet den Auslassungspunkt in Wörtern, die verkürzt werden. Zum Beispiel: „Das ist ’ne gute Idee“, oder „Geht’s dir gut?“. Beim Genitiv wird das Apostroph hingegen nicht verwendet: „Davids Auto“.
+
+<Table mode="responsive">
+| HTML-Code | Windows | Mac |
+|---|---------|-----|
+| `&rsquo;` | <span class="nowrap"><kbd>Alt</kbd> + <kbd>0146</kbd></span> | <span class="nowrap"><kbd>⌥ Option</kbd> + <kbd>#</kbd></span> |
+</Table>
+
+### Abkürzungen
+
+: Foobar
+
+## Makrotypografie
+
+### Schriftart und Schriftgröße
+
+### Zeilenabstand
+
+### Zeilenlänge und Laufweite
+
+### Kontrast
+
+### Hurenkinder und Schusterjungen
+
+Hurenkinder (auch „Witwen“ genannt) und Schusterjungen („Waisen“) sind in der Typografie zwei unterschiedliche, aber verwandte Typen von Satzfehlern, die den Leserhythmus stören und unästhetisch sind. Ein Hurenkind ist die letzte Zeile eines Absatzes, die oben auf einer Seite oder Spalte steht, während ein Schusterjunge die erste Zeile eines Absatzes ist, die unten auf einer Seite oder Spalte steht.
+
+Einzelne Wörter am Ende eine Absatzes sind ebenfalls problematisch, zählen ebenfalls zu den Witwen.
+
+### Ligaturen
+
+Ligaturen sind spezielle Zeichen, die aus zwei oder mehr Buchstaben bestehen und in einem einzigen Glyphen verschmolzen sind. Sie werden in der Regel verwendet, um das Erscheinungsbild von Texten zu verbessern und die Lesbarkeit zu erhöhen. Hier zwei Beispiele: das obere zeigt den Text ohne, das untere mit Ligaturen.
+
+<Figure caption="Oben: ohne Ligaturen. Unten: mit Ligaturen.">
+  <SnippetLigatures title="Ligaturen" />
+</Figure>
+
+Mit dem folgenden CSS-Code kannst du Ligaturen in deinem Text aktivieren:
+
+<Figure caption="Foobar">
+```css
+/* Aktiviert Ligaturen */
+p { font-variant-ligatures: common-ligatures; }
+
+/* Aktiviert Ligaturen und Bruchzahlen */
+p { font-variant: common-ligatures diagonal-fractions; }
+```
+</Figure>
+
+Wasserflasche, Sportfischen, Rohstoffe, abflauen, erfiden
+
+### Line height
+
+### Letterspacing
+
+Geviert z.blur. u.a. Prozent ..
+
+[^1]: Typografie ist die Kunst des Schriftsatzes und der Gestaltung von Schriftstücken. Sie umfasst die Auswahl und Anordnung von Schriftarten, Schriftgrößen, Zeilenabständen, Zeilenlängen und Zeichenabständen. Quelle: [Wikipedia](https://de.wikipedia.org/wiki/Typografie)
+[^2]: Johannes Gutenberg (* um 1400 in Mainz; † 3. Februar 1468 ebenda) war ein deutscher Erfinder, Drucker und Verleger. Er gilt als Erfinder des Buchdrucks mit beweglichen Metalllettern. Quelle: [Wikipedia](https://de.wikipedia.org/wiki/Johannes_Gutenberg)
+[^3]: Die Rechtschreibung ist die Festlegung der korrekten Schreibweise von Wörtern und Zeichen in einer Sprache. Quelle: [Duden](https://www.duden.de/sprachwissen/rechtschreibregeln)
+[^4] Anführungszeichen sind Satzzeichen, die am Anfang und am Ende der direkten Rede, eines wörtlichen Zitats oder des zitierten Titels bzw. Namens eines Werkes stehen. Quelle: [Wikipedia](https://de.wikipedia.org/wiki/Anf%C3%BChrungszeichen#Typografische_Anf%C3%BChrungszeichen)
+[^5]: Geschützte Bindestrich. Quelle: [Wikipedia](https://de.wikipedia.org/wiki/Gesch%C3%BCtzter_Bindestrich)
+[^6]: Der Halbgeviertstrich ist ein Interpunktionszeichen und wird in der Typografie durch einen Halbgeviertstrich realisiert. Quelle: [Wikipedia](https://de.wikipedia.org/wiki/Halbgeviertstrich)
+[^7]: Der Geviertstrich ist ein Interpunktionszeichen und wird in der Typografie durch einen Geviertstrich realisiert. Quelle: [Wikipedia](https://de.wikipedia.org/wiki/Geviertstrich)
+```
