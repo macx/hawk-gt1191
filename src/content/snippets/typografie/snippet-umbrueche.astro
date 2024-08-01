@@ -1,0 +1,91 @@
+---
+import Snippet from '@components/Snippet.astro'
+---
+
+<Snippet title='Interaktive Demo'>
+  <Fragment slot='settings'>
+    <div class='sn-settings'>
+      <div class='sn-value'>
+        <label for='el-size-input'>Box-Breite:</label>
+        <input
+          type='range'
+          name='size'
+          id='el-size-input'
+          min='50'
+          max='100'
+          step='10'
+          value='100'
+          list='el-size-markers'
+        />
+        <span>
+          <output id='el-size-output'>100</output>%
+        </span>
+
+        <datalist id='el-size-markers'>
+          <option value='50'></option>
+          <option value='60'></option>
+          <option value='70'></option>
+          <option value='80'></option>
+          <option value='90'></option>
+          <option value='100'></option>
+        </datalist>
+      </div>
+    </div>
+  </Fragment>
+
+  <Fragment>
+    <div class='demo-umbrueche'>
+      <div class='sn-element title'>
+        Der
+        Donau&#xAD;dampf&#xAD;schiff&#xAD;fahrts&#xAD;gesell&#xAD;schafts&#xAD;kapitän
+        sticht mit seiner Mann&#xAD;schaft wieder in&#xA0;See
+      </div>
+    </div>
+  </Fragment>
+</Snippet>
+
+<style>
+  @scope (.demo-umbrueche) {
+    :scope {
+      .title {
+        --width: 100%;
+
+        font-family: var(--ff-headings);
+        font-size: clamp(2.5rem, 4vw, 4.3rem);
+        line-height: 1.2;
+        font-weight: var(--fw-bold);
+        max-width: var(--width);
+        transition: max-width ease-out 120ms;
+      }
+    }
+    span {
+      border: 2px solid red;
+    }
+  }
+
+  @scope (.sn-settings) {
+    :scope {
+      #el-size-output {
+        display: inline-block;
+        inline-size: 3ch;
+        text-align: end;
+        margin-inline-end: 0.2em;
+      }
+    }
+  }
+</style>
+
+<script is:inline>
+  ;(function () {
+    const snInput = document.querySelector('#el-size-input')
+    const snOnput = document.querySelector('#el-size-output')
+    const demoContainer = document.querySelector('.title')
+
+    snOnput.textContent = snInput.value
+
+    snInput.addEventListener('input', (event) => {
+      snOnput.textContent = event.target.value
+      demoContainer.style.setProperty('--width', `${event.target.value}%`)
+    })
+  })()
+</script>
