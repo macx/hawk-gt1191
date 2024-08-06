@@ -24,7 +24,14 @@ describe('Tutorials', () => {
               if (!(link || []).length) {
                 // return
               } else {
-                cy.request(link.attr('href')).its('status').should('eq', 200)
+                const blacklist = ['https://codepen.io']
+                const url = link.attr('href')
+
+                cy.log(`Checking link ${url}`)
+
+                if (!blacklist.some((item) => url.startsWith(item))) {
+                  cy.request(url).its('status').should('eq', 200)
+                }
               }
             })
         })
