@@ -1,0 +1,185 @@
+---
+title: 'Webfonts: So bindest du Schriftarten in deine Website ein'
+description: 'Arial, Helvetia und Times New Roman sind dir zu langweilig? Dann binde doch eigene Webfonts ein. Hier lernst du, wie das funktioniert.'
+isDraft: false
+pubDate: 2024-08-06T15:30:00+01:00
+author: david-maciejewski
+cover:
+  path: '/src/images/tutorials/gupter-google-fonts.png'
+  alt: 'Screenshot von Google Fonts, zeigt die Schriftart Gupter.'
+  caption: 'Die Schriftart Gupter ist kostenlos bei Google Fonts erhältlich.'
+tags: ['webfonts','typografie']
+---
+
+import Figure from '@components/Figure.astro'
+
+Mit eigenen Schriftarten kannst du deiner Website eine ganz eigene Note verleihen. Damit deine Besucher die Schriftart auch sehen können, musst du sie in deine Website einbinden. Das geht mit sogenannten Webfonts. Diese können auf deinem Server liegen oder von einem externen Dienst wie Google Fonts kommen.
+
+## Das benötigst du
+
+Um deine eigenen Webfonts einbinden zu können, benötigst du stets folgende drei Dinge. Und zwar pro Schriftart und **Schriftschnitt**[^1]:
+
+[Die Schrift als Datei](#schriftart-auswählen)
+: Die Schriftart muss im Dateiformat **WOFF2** vorliegen. Das ist ein spezielles Format für Webfonts. Es ist komprimiert und sorgt dafür, dass die Schriftart schnell geladen wird.
+
+[Deklaration der Schriftart](#schriftart-einbinden)
+: Mit einer `@font-face` at-rule[^2] in deiner CSS-Datei veranlasst du den Browser, deine Schriftart zu laden.
+
+[Schriftart zuweisen](#schriftart-zuweisen)
+: Im CSS definierst du, welche HTML-Elemente die Schriftart verwenden sollen.
+
+Wie das konkret funktioniert, zeige ich dir im weiteren Verlauf. Zuerst möchte ich dir noch ein paar Dinge mit auf den Weg geben.
+
+### Rechtliche Aspekte
+
+Wenn du auf deiner Website Schriften einbindest und die Website aufgerufen wird, wird die Schriftart temporär im Browsercache gespeichert. Theoretisch können die Schriften von hier aus weiterverwendet werden, was vergleichbar mit dem Kopieren von Musik oder Filmen ist und daher rechtlich nicht immer erlaubt ist. Deshalb solltest du darauf achten, dass du die Lizenz dafür erworben hast oder der Webfont unter einer Lizenz steht, die dir erlaubt, die Schriftart unentgeltlich auf deiner Website zu verwenden.
+
+### DSVO-Konformität
+
+Bindest du Webfonts direkt von der Website eines Anbieters ein, kann das das Datenschutzrecht verletzen. Denn der Anbieter kann Informationen über die Besucher deiner Website sammeln, zumindest die IP-Adresse, die als personenbezogene Daten gilt. In diesem Fall solltest du die Schriftart lokal auf deinem Server speichern und von dort aus einbinden. Wie du das machst, zeige ich dir ebenfalls im weiteren Verlauf.
+
+## Schriftart auswählen
+
+Anbieter von Webfonts gibt es im Prinzip wie Sand am Meer. Die wohl bekanntesten sind [Google Fonts](https://fonts.google.com/) und komerzielle Anbieter wie [MyFonts](https://www.myfonts.com/). Manche Designer vertreiben ihre Schriftarten aber auch über ihre eigene Website. Im Bereich [Assets](/assets#fonts) habe ich dir weitere Quellen verlinkt.
+
+### Schriftschnitte
+
+Wähle ein oder zwei Schriftarten aus, die zu deiner Website passen. Oft werden Überschriften mit einer anderen Schriftart als der Fließtext dargestellt. Wähle dazu nur die Schriftschnitte der jeweiligen Schrift, die du tatsächlich auch verwenden möchtest. Denn jeder Schriftschnitt ist eine zusätzliche Datei, die der Browser laden muss. Desto mehr du einbindest, desto langsamer wird deine Website.
+
+Für den Fließtext wähle den Schriftschnitt „Regular“ bzw. „Normal“ mit der Ziffer 400, sowie „Medium“ (500) oder „Bold“ (700) für fettgeschriebenen Text und Überschriften. Merke dir die Zahlen, denn sie spielen im CSS eine entscheidene Rolle. Desto kleiner die Zahl, desto dünner ist der Schriftschnitt, desto größer die Zahl, desto fetter ist der Schriftschnitt.
+
+### Variable Schriftarten
+
+Es gibt auch (gesondert gekennzeichnete) variable Schriftarten[^3], die verschiedene Schriftschnitte in einer Datei vereinen. Diese zu verwenden, macht dann Sinn, wenn du viele verschiedene Schriftschnitte einer Schriftart verwenden möchtest, da die Dateigröße kleiner ist als die Summe aller einzelnen Schriftschnitte bei der einzelnen Einbindung. Weniger Sinn macht das, wenn du nur einen Schnitt benötigst, denn dessen Dateigröße ist mit ziemlicher Wahrscheinlichkeit kleiner als die einer variablen Schriftart.
+
+## Schriftart einbinden
+
+Kommen wir zum spannenden Teil: der Einbindung der Schriftart in deine Website. Drei Methoden gibt es, die ich dir im Folgenden vorstellen möchte.
+
+### Lokal über deinen Server
+
+Die „lokale Einbindung“ meint den Ort, über den die Website aufrufbar ist. Während der Entwicklung wird das der Ordner auf deiner Festplatte sein, wo auch deine Website liegt. Wenn du die Website später veröffentlichst, wird das der Server sein, auf dem deine Website liegt.
+
+Die Vorteile liegen klar auf der Hand: Weil niemand sonst bei der Auslieferung der Schriftart involviert ist außer deine Website, ist das datenschutzrechtlich unbedenklich. Verschreibst du dich allerdings beim Code oder bei der Angabe des Pfades zur Datei, wird die Schriftart nicht geladen.
+
+Jede Schriftart und jeder Schriftschnitt benötigt seine eigene `@font-face`-Deklaration. Die Deklaration einer Schriftart in CSS ist sozusagen die „Anleitung“, wie der Browser die Schriftart laden soll. Das sieht so aus:
+
+<Figure caption="Beispielhafte Einbindung der Schriftart Gupter">
+```css
+@font-face {
+  font-family: 'Gupter';
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+  src:
+    local('Gupter'),
+    url('/assets/fonts/gupter-regular.woff2') format('woff2');
+}
+```
+</Figure>
+
+In diesem Beispiel wird die Schriftart „Gupter“ mit dem Schriftschnitt „Regular“ und der Ziffer 400 deklariert. `local()` gibt an, dass der Browser zuerst prüfen soll, ob die Schriftart lokal auf dem Gerät des Nutzers vorhanden ist. `url()` gibt den Pfad zur Schriftart an, während `format()` das Dateiformat angibt.
+
+Definiere `local()` nur dann an, wenn du sicher bist, dass die Schrift auf dem Gerät des Nutzers auch genau so heißt, bzw. die Wahrscheinlichkeit, dass dieser die Schriftart auf dem Gerät hat, sehr hoch ist. Bei der Schriftart Gupter ist das eher unwahrscheinlich, bei Roboto schon eher wahrscheinlich. Wenn du dir nicht sicher bist, lass es lieber weg.
+
+> **Wichtig:** Den Code solltest auf oberste Ebene in deine CSS-Datei einbinden. Einfach ausgedrückt: Definiere zuerst die Schriften, dann gestalte deine Website.
+
+### Über einen Dienst wie Google Fonts
+
+Die Einbindung über Google Fonts ist die einfachste Methode, um Schriftarten in deine Website einzubinden, denn die oben gezeigte `@font-face`-Deklation kommt dabei von Googles Servern. Das ist wie bereits erwähnt datenschutzrechtlich bedenklich.
+
+Um die Schriftart nutzen zu können, musst nur den Code einfügen, den dir Google Fonts unter „Embed code“ zur Verfügung stellt, nachdem du die Schriftschnitte ausgewählt hast.
+
+Entweder bindest du den Code über das `link`-Element im `<head>`-Bereich deiner Website ein, oder du wählst die Option „@import“ und fügst den `style`-Block dort ein. So sieht das aus:
+
+<Figure caption="Die beiden Methoden zur Einbindung der Schriftart Gupter in den Schriftschnitten 400 und 500 im Vergleich.">
+```html
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Hier kommt dein Font rein -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gupter:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
+</head>
+```
+```html
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Hier kommt dein Font rein -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Gupter:wght@400;500&display=swap');
+  </style>
+
+  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
+</head>
+```
+</Figure>
+
+Du kannst den `@import`-Code auch direkt in deine CSS-Datei ganz oben einbinden. Dann wird die Schrift aber erst geladen, wenn dein CSS geladen wurde. Das kann dazu führen, dass deine Website kurzzeitig ohne die Schriftart dargestellt wird und dann plötzlich die Schriftart wechselt.
+
+> **Tipp:** Wenn du Schritarten von Google Fonts datenschutzkonform verwenden möchtest, nutze dazu bitte den [google-webfonts-helper](https://gwfh.mranftl.com/fonts). Mit diesem Tool kannst du die Schriftarten direkt im richtigen Format herunterladen und dann bei dir [lokal einbinden](#lokal-über-deinenserver).
+
+### Als NPM-Paket
+
+Wenn du ein Framework benutzt, dass mit NPM-Paketen arbeitet, wie zum Beispiel React, Vue.js oder Sweltje, kannst du Schriftarten auch als Pakete einbinden. Das hat den Vorteil, dass du die Schriftart lokal einbindest und die `@font-face`-Deklaration nicht selbst schreiben musst.
+
+Der Dienst [Fontsource](https://fontsource.org/) bietet viele Schriftarten als NPM-Pakete an. Ich zeige dir, wie du beim [GT 1191-Starterkit](/starterkit), mit dem du super einfach und schnell Websites erstellen kannst, Schriftarten einbinden kannst.
+
+Wähle bei Fontsource die Schriftart aus, die du nutzen möchtest, zum Beispiel die [Gupter](https://fontsource.org/fonts/gupter), klicke dann oben rechts auf den Link „Install“. Wähle bei „Installation“ dann „yarn“ und installiere dann das Paket wie dort angegeben über das Terminal:
+
+<Figure caption="Dieser Befehl installiert die Schriftart Gupter.">
+```bash
+yarn add @fontsource/gupter
+```
+</Figure>
+
+Öffne nun die Datei `main.js` aus dem Starterkit und füge oben folgenden Code für die Schriftschnitte 400 und 500 ein:
+
+<Figure caption="Das lädt die Schrift-Deklaration der Schriftart Gupter in den Schriftschnitten 400 und 500.">
+```bash
+import '@fontsource/gupter/400.css';
+import '@fontsource/gupter/500.css';
+```
+</Figure>
+
+## Schriftart zuweisen
+
+Wenn du die Schriftart als Datei eingebunden hast, heißt das leider immer noch nicht, dass deine Website nun im neuen Glanze erscheint. Du musst noch festlegen, welche Elemente die Schriftart verwenden sollen. Das machst du mit der CSS-Eigenschaft `font-family`. Wenn du also möchtest, dass alle Überschriften die Schriftart „Gupter“ verwenden, dann definierst du das so in deiner CSS-Datei:
+
+<Figure caption="Zuweisung der Schriftart Gupter an alle h-Elemente.">
+```css
+:where(h1, h2, h3, h4) {
+  font-family: 'Gupter', sans-serif;
+}
+```
+</Figure>
+
+Das `:where()` addressiert hier alle Überschriften, hält dessen [Spezifität](/tutorials/einstieg-in-css#spezifität) allerdings niedrig. Das `sans-serif` ist ein Fallback, falls die Schriftart nicht geladen werden kann. In diesem Fall würde der Browser einfach eine serifenlose Schrift (Sans Serif) verwenden, also wahrscheinlich Arial oder Helvetica. Du kannst zwischen `serif`, `sans-serif` und `monospace` wählen, je nachdem von welchem Schriftschnitt deine Schriftart abstammt.
+
+Möchtest du nun, dass der gesamte Fließtext deiner Website die Schriftart „Gupter“ verwendet, dann definierst du das so:
+
+<Figure caption="Mit diesem CSS legst du zentral die Schriftart Gupter fest.">
+```css
+body {
+  font-family: 'Gupter', sans-serif;
+}
+```
+</Figure>
+
+Durch die [Vererbung](/tutorials/einstieg-in-css#vererbung) wird die Schriftart dann auch auf alle anderen Elemente angewendet, die nicht explizit eine andere Schriftart zugewiesen bekommen haben.
+
+Nun wünsche ich dir viel Spaß beim Ausprobieren und Experimentieren mit deinen neuen Schriftarten! Wenn wir das Tutorial gefallen hat, empfehle es gern weiter. Oder lies dir noch weitere [Tutorials](/tutorials) von uns durch, um noch mehr über Webentwicklung zu lernen.
+
+[^1]: Ein Schriftschnitt ist eine Variante einer Schriftart, z.B. Fett, Kursiv oder normal. Quelle: [Wikipedia](https://de.wikipedia.org/wiki/Schriftschnitt)
+[^2]: Eine at-rule ist ein CSS-Statement, das bestimmt, wie sich CSS zu verhalten hat. Quelle: [MDN Web Docs](https://developer.mozilla.org/de/docs/Web/CSS/At-rule)
+[^3]: Ein variabler Font ist eine Schriftart, die verschiedene Schriftschnitte in einer Datei vereint. Quelle: [Wikipedia](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_fonts/Variable_fonts_guide)
+
+

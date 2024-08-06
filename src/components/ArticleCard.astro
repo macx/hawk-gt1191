@@ -1,7 +1,7 @@
 ---
 import type { ImageMetadata } from 'astro'
 import { Image } from 'astro:assets'
-import { formatTitle } from '@plugins/remark-widont.mjs'
+import { formatTitle, widont } from '@plugins/remark-widont.mjs'
 import FormattedDate from './FormattedDate.astro'
 
 const { article } = Astro.props
@@ -52,7 +52,7 @@ if (!images[imagePath]) {
     </div>
 
     <div class='description'>
-      <p>{article.data.description}</p>
+      <p>{widont(article.data.description)}</p>
 
       <span class='more'>Weiterlesen</span>
     </div>
