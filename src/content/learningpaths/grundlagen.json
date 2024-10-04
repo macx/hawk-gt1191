@@ -1,0 +1,12 @@
+{
+  "title": "Grundlagen",
+  "slug": "grundlagen",
+  "path": "/tutorials/lernpfade",
+  "description": "erfährst du, wie du mit HTML und CSS Websites erstellen kannst.",
+  "order": 1,
+  "related": [
+    "einstieg-in-html",
+    "einstieg-in-css",
+    "website-mit-visual-studio-code"
+  ]
+}

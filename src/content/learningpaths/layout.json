@@ -1,0 +1,8 @@
+{
+  "title": "Layout",
+  "slug": "layout",
+  "path": "/tutorials/lernpfade/layout",
+  "description": "steigst du tiefer in die Gestaltung von Websites ein.",
+  "order": 2,
+  "related": ["layouts-in-css", "logische-eigenschaften-in-css"]
+}

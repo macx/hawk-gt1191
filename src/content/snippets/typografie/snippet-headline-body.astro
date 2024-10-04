@@ -1,0 +1,41 @@
+---
+import Snippet from '@components/Snippet.astro'
+
+const { title } = Astro.props
+---
+
+<Snippet title={title}>
+  <div class='demo-headline-body'>
+    <div class='headline'>In the Summertime</div>
+
+    <div class='bodytext'>
+      I was in your presence for an hour or so. Or was it a day? I truly don’t
+      know. Where the sun never set, where the trees hung low. By that soft and
+      shining sea. Did you respect me for what I did. Or for what I didn’t do,
+      or for keeping it hid? Did I lose my mind when I tried to get rid. Of
+      everything you see? In the summertime, ah in the summertime. In the
+      summertime, when you were with me. I got the heart and you got the blood.
+      We cut through iron and.
+    </div>
+  </div>
+</Snippet>
+
+<style>
+  @scope (.demo-headline-body) {
+    :scope {
+      .headline {
+        font-family: var(--ff-headings);
+        font-size: 1.875rem;
+        font-weight: var(--fw-bold);
+        margin-block-end: 0.2em;
+      }
+
+      .bodytext {
+        font-family: var(--ff-text);
+        font-size: 1rem;
+        font-weight: var(--fw-normal);
+        line-height: 1.5;
+      }
+    }
+  }
+</style>

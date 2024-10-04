@@ -21,9 +21,17 @@ h1 {
   margin-block: 0 0.8em;
   text-wrap: balance;
 
-  .stage:not(:has(aside)) &:has(+ .lead) {
+  :where(.stage:not(:has(aside)) &:has(+ .lead):not([class])) {
     max-inline-size: var(--title-max-size);
     text-wrap: pretty;
+  }
+
+  &.balance {
+    text-wrap: balance;
+  }
+
+  &.small-margin {
+    margin-block: 0 var(--sp-s);
   }
 }
 
@@ -33,7 +41,7 @@ h1 {
   margin-block-end: 0.2em;
 }
 
-:where(.article h1 > span) {
+:where(.article, .title-header) h1 > span {
   display: block;
   font-size: 1.5rem;
 }
@@ -83,6 +91,14 @@ h4 {
   }
 }
 
+.title-header {
+  max-inline-size: var(--title-max-size);
+
+  h1 {
+    text-wrap: balance;
+  }
+}
+
 sup {
   line-height: 1;
   line-height: 1;
@@ -101,6 +117,14 @@ sup {
 .t-small,
 small {
   font-size: var(--fs-s);
+
+  &:is(p) {
+    margin-block-end: 0.5em;
+  }
+}
+
+.t-nowrap {
+  white-space: nowrap;
 }
 
 ::selection {

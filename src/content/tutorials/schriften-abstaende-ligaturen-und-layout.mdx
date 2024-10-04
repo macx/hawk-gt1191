@@ -1,0 +1,196 @@
+---
+title: 'Typografie im Web: Schriften, Abstände, Ligaturen und Layout'
+description: 'Kleine Details in der Typografie und Layout können den Unterschied machen. Hier lernst du, wie du deine Website mit Text gestalten kannst.'
+isDraft: true
+pubDate: 2024-10-15T15:08:00+01:00
+author: david-maciejewski
+cover:
+  path: '/src/images/tutorials/airport-terminal-sign.jpg'
+  alt: 'Ein Schrifsetzer setzt Buchstaben in seiner Druckerei.'
+  caption: 'Typografie am Flughafen. Foto von <a href="https://unsplash.com/de/@etiennegirardet">Etienne Girardet</a> (Unsplash)'
+tags: ['html']
+---
+
+import Figure from '@components/Figure.astro'
+import Table from '@components/Table.astro'
+import Codepen from '@components/Codepen.astro'
+
+import SnippetHeadlineBody from '@snippets/typografie/snippet-headline-body.astro'
+import SnippetRelativeFontSize from '@snippets/typografie/snippet-relative-font-size.astro'
+import SnippetLigatures from '@snippets/typografie/snippet-ligatures.astro'
+
+## Mit Texten gestalten
+
+Im [ersten Teil](/tutorials/grundlagen-der-mikrotypografie) der Serie „Typografie im Web“ haben wir einen Blick in die Historie der Typografie geworfen, den Begriff der Maktrotypografie erörtert und gelernt, wie man Texte korrekt formatiert. Da die Grundlagen damit gelegt sind, widmen wir uns in diesem Tutorial um die Gestaltung dieser Texte im Layout deiner Website.
+
+> **Hinweis:** Falls du das Tutorial [Grundlagen der Mikrotypografie](/tutorials/grundlagen-der-mikrotypografie) noch nicht gelesen hast, empfehle ich dir, dies nachzuholen.
+
+## Das Schriftbild
+
+Unter dem Schriftbild versteht man die Gesamtheit der optischen Erscheinung einer Schrift. Dazu gehören Schriftart, Schriftgröße, Schriftweite, Zeichenabstand, Zeilenabstand und Schriftschnitt. Eine gute Typografie zeichnet sich nicht nur dadurch aus, unser Streben nach einem schönen Schriftbild zu befriedigen, sondern auch die Lesbarkeit der Texte zu erhöhen.
+
+### Schriftart
+
+Heute erhalten Fließtext und Überschriften oft unterschiedliche Schriftarten. Beispielsweise könntest du für den Fließtext eine serifenlose Schriftart (Sans Serif) wie „Open Sans“ im Schriftschnitt 400 und für Überschriften eine serifenbetonte Schriftart wie „Merriweather“ (Serif) im Schriftschnitt 500 verwenden. Das sähe dann so aus:
+
+<Figure caption="Oben: Das CSS, um die Schriftarten den HTML-Elementen zuzuweisen. Unten: Das Ergebnis">
+  ```css
+  body {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+  }
+
+  :where(h1, h2, h3, h4) {
+    font-family: 'Merriweather', serif;
+    font-weight: 500;
+  }
+  ```
+  <SnippetHeadlineBody title="Das Ergebnis" />
+</Figure>
+
+> **Tipp:** Ich zeige dir im Tutorial [So bindest du Schriftarten in deine Website ein](/tutorials/webfonts-schriften-einbinden) Schritt für Schritt, wie du Webfonts technisch einbindest.
+
+### Schriftgröße
+
+Die Standardgröße für Fließtext im Browser ist vorgegeben und beträgt `16px` (Pixel). Dieser Wert kann von den Usern in den Einstellungen überschrieben werden. Das tun sie nicht böswillig, um dein fein austariertes Design zu ruinieren, sondern um die Lesbarkeit der Texte zu erhöhen. Vielleicht haben die Besucher schlechte Augen, sitzen in einem Büro, auf dem die Sonne direkt auf den Monitor scheint, oder sie bevorzugen einfach eine größere Schrift.
+
+Lass deine Website nicht „in Schönheit sterben“, entscheide dich im Zweifelsfall lieber für eine größere statt kleinere Schriftgröße. Daher empfehle ich dir, die 16 Pixel nicht zu unterschreiten, da der Text sonst zu klein und schwer lesbar ist. Für mobile Geräte empfehle ich sogar 18 Pixel, für Tablets und Desktop-Monitore 20 oder gar 22 Pixel, da hier der Abstand vom Auge zum Bildschirm größer ist.
+
+#### Relative Schriftgrößen
+
+Wenn du die Schriftgröße in Pixeln festlegst, wirkt sich das negativ auf die Skalierbarkeit und damit auf die Zugaänglichkeit der Website aus. Damit sich die Schriftgröße an äußere Bedingenungen anpassen kann, solltest du relative Einheiten wie `em` oder `rem` verwenden. `em` bezieht sich auf die Schriftgröße des Elternelements, während `rem` sich auf die Schriftgröße des `html`-Elements bezieht, also den voreingestellten Wert von `16px`.
+
+Sofern nicht anders festgelegt, entspricht `1em` im Fließtext `16px`, während `1em` bei einer `h1`-Überschrift `24px` entspricht. Anders sieht es bei `rem` aus: Hier entspricht `1rem` immer `16px`, es sei denn, du änderst auch das. Hier ein Beispiel:
+
+| Gerätekategorie | Empfohlene Schriftgröße | Relativ zu `16px` |
+|--------------|--------------|----|
+| Mobile | `18px` | `1.125rem` |
+| Tablet | `20px` | `1.25rem`  |
+| Desktop | `22px` | `1.375rem` |
+
+Wenn du möchtest, dass sich die Überschrift relativ zum Fließtext verhält, solltest du `em` verwenden. Vergrößerst du die Schriftgröße des Fließtextes, vergrößert sich auch die Schriftgröße der Überschrift. Hier eine interaktive Demo:
+
+<Figure caption="Oben: Das CSS, um die Schriftarten den HTML-Elementen zuzuweisen. Unten: Das Ergebnis">
+  ```css
+  html { font-size: 16px; }
+  body { font-size: 1rem; }
+
+  .headline { font-size: 2em; }
+  ```
+
+  <SnippetRelativeFontSize title="Das Ergebnis" />
+</Figure>
+
+
+#### Dynamische Schriftgrößen
+
+Du kannst die Schriftgröße auch dynamisieren, sodass diese sich an die Bildschirmgröße anpasst. Das geht mit der Einheit `vw` (Viewport Width). Zusätzlich kannst du mit der Funktion `clamp()` eine Mindest- und Höchstgröße festlegen. Hier ein Beispiel:
+
+<Figure caption="Beispiel für dynamische Schriftgröße">
+```css
+body {
+  font-size: clamp(1rem, 1vw + 0.7rem, 1.25rem);
+}
+```
+</Figure>
+
+Die Berechnung der Schriftgröße erfolgt wie folgt: `1rem` (16px) ist die Mindestgröße, `1vw + 0.7rem` ist die dynamische Größe und `1.25rem` (20px) ist die Maximalgröße. Die Schriftgröße passt sich also zwischen 1rem und 1.25rem an die Bildschirmgröße an. Auf der Seite [Assets](/assets#typografie) habe ich dir ein paar Links zu Tools interlegt, mit denen du die Größen berechnen kannst. Das konkrete Beispiel hier habe ich [hier](https://modern-fluid-typography.vercel.app?rootFontSize=16&minSize=16&fluidSize=1&relativeSize=0.7&maxSize=20) berechnet.
+
+### Textrendering
+
+Die Schriftqualität kann durch das Textrendering beeinflusst werden. Mit dem CSS-Attribut `text-rendering` kannst du festlegen, wie der Text gerendert werden soll. Die möglichen Werte sind: `auto`, `optimizeSpeed`, `optimizeLegibility` und `geometricPrecision`. Diese Eigenschaft ist eigentlich eine für SVG-Elemente, allerdings sind die Browser auch so tolerant, dass du sie auch bei Text anwenden kannst.
+
+Der Standardwert ist `auto`, was bedeutet, dass der Browser entscheidet, wie der Text gerendert wird. In der Regel werden dadurch auch Ligaturen angezeigt, wenn die Schriftart dies unterstützt (mehr dazu später). Mein Tipp: Lass die Einstellungen am Besten so, wie sie sind. Wir haben noch andere Möglichkeiten, die Schriftqualität zu beeinflussen.
+
+Eine davon ist die Darstellung auf dem Monitor selbst. Bei Windows wird Schrift glatter dargestellt als auf einem Mac. Das liegt daran, dass Windows die Schriftart mit Cleartype glättet, während Apple die Schriftart mit Subpixel-Rendering glättet. Klingt dir zu kompliziert? Einfach gesagt sehen die Schriften auf einem Mac fetter aus als auf einem Windows-PC. Um das Problem in den Griff zu bekommen, kannst du die Schriftqualität mit dem CSS-Attribut `font-smoothing` beeinflussen:
+
+<Figure caption="Beispiel für das CSS-Attribut `font-smoothing`">
+```css
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+```
+</Figure>
+
+
+
+
+ Der Wert `optimizeSpeed` sorgt dafür, dass der Text schnell gerendert wird, was zu einer geringeren Qualität führen kann. `optimizeLegibility` sorgt dafür, dass der Text so gerendert wird, dass er besser lesbar ist. `geometricPrecision` sorgt dafür, dass der Text so gerendert wird, dass er geometrisch genau ist.
+
+- `auto`: Der Browser entscheidet, wie der Text gerendert wird.
+- `optimizeSpeed`: Der Text wird schnell gerendert, was zu einer geringeren Qualität führen kann.
+- `optimizeLegibility`: Der Text wird so gerendert, dass er besser lesbar ist.
+- `geometricPrecision`: Der Text wird so gerendert, dass er geometrisch genau ist.
+
+### Schriftweite
+
+- Zeichenabstand
+
+### Zeilenabstand
+
+
+### Schriftschnitt
+
+- kursiv, fett, unterstrichen
+
+
+
+: Foobar
+
+### Zeilenlänge und Laufweite
+
+### Kontrast
+
+### Hurenkinder und Schusterjungen
+
+Hurenkinder (auch „Witwen“ genannt) und Schusterjungen („Waisen“) sind in der Typografie zwei unterschiedliche, aber verwandte Typen von Satzfehlern, die den Leserhythmus stören und unästhetisch sind. Ein Hurenkind ist die letzte Zeile eines Absatzes, die oben auf einer Seite oder Spalte steht, während ein Schusterjunge die erste Zeile eines Absatzes ist, die unten auf einer Seite oder Spalte steht.
+
+<Figure caption="Foobar">
+  WHOO
+</Figure>
+
+Einzelne Wörter am Ende eine Absatzes in einer Zeile sind ebenfalls problematisch, zählen ebenfalls zu den Witwen.
+
+### Ligaturen
+
+Ligaturen sind spezielle Zeichen, die aus zwei oder mehr Buchstaben bestehen und in einem einzigen Glyphen verschmolzen sind. Sie werden in der Regel verwendet, um das Erscheinungsbild von Texten zu verbessern und die Lesbarkeit zu erhöhen. Hier zwei Beispiele: das obere zeigt den Text ohne, das untere mit Ligaturen.
+
+<Figure caption="Oben: ohne Ligaturen. Unten: mit Ligaturen.">
+  <SnippetLigatures title="Ligaturen" />
+</Figure>
+
+In erster Linie versucht der Browser, Ligaturen und Textoptimieren automatisch anzuzeigen, wenn die Schriftart dies unterstützt.
+
+Zum steuern der OpenType-Funktionen, wie Ligaturen, kannst du CSS verwenden.
+
+
+
+Mit dem folgenden CSS-Code kannst du Ligaturen in deinem Text aktivieren:
+
+<Figure caption="Foobar">
+```css
+/* Aktiviert Ligaturen */
+p { font-variant-ligatures: common-ligatures; }
+
+/* Aktiviert Ligaturen und Bruchzahlen */
+p { font-variant: common-ligatures diagonal-fractions; }
+```
+</Figure>
+
+Wasserflasche, Sportfischen, Rohstoffe, abflauen, erfiden
+
+### Line height
+
+### Letterspacing
+
+Geviert z.blur. u.a. Prozent ..
+
+[^1]: Typografie ist die Kunst des Schriftsatzes und der Gestaltung von Schriftstücken. Sie umfasst die Auswahl und Anordnung von Schriftarten, Schriftgrößen, Zeilenabständen, Zeilenlängen und Zeichenabständen. Quelle: [Wikipedia](https://de.wikipedia.org/wiki/Typografie)
+[^2]: Johannes Gutenberg (* um 1400 in Mainz; † 3. Februar 1468 ebenda) war ein deutscher Erfinder, Drucker und Verleger. Er gilt als Erfinder des Buchdrucks mit beweglichen Metalllettern. Quelle: [Wikipedia](https://de.wikipedia.org/wiki/Johannes_Gutenberg)
+[^3]: Die Rechtschreibung ist die Festlegung der korrekten Schreibweise von Wörtern und Zeichen in einer Sprache. Quelle: [Duden](https://www.duden.de/sprachwissen/rechtschreibregeln)
+[^4] Anführungszeichen sind Satzzeichen, die am Anfang und am Ende der direkten Rede, eines wörtlichen Zitats oder des zitierten Titels bzw. Namens eines Werkes stehen. Quelle: [Wikipedia](https://de.wikipedia.org/wiki/Anf%C3%BChrungszeichen#Typografische_Anf%C3%BChrungszeichen)
+[^5]: Geschützte Bindestrich. Quelle: [Wikipedia](https://de.wikipedia.org/wiki/Gesch%C3%BCtzter_Bindestrich)
+[^6]: Der Halbgeviertstrich ist ein Interpunktionszeichen und wird in der Typografie durch einen Halbgeviertstrich realisiert. Quelle: [Wikipedia](https://de.wikipedia.org/wiki/Halbgeviertstrich)
+[^7]: Der Geviertstrich ist ein Interpunktionszeichen und wird in der Typografie durch einen Geviertstrich realisiert. Quelle: [Wikipedia](https://de.wikipedia.org/wiki/Geviertstrich)
+```

@@ -1,0 +1,176 @@
+---
+import { getCollection } from 'astro:content'
+import BaseLayout from '@layouts/BaseLayout.astro'
+import ArticleCard from '@components/ArticleCard.astro'
+import Switch from '@components/Switch.astro'
+
+export async function getStaticPaths() {
+  const learningPaths = await getCollection('learningpaths')
+
+  learningPaths.sort((a: any, b: any) => a.data.order - b.data.order)
+
+  return learningPaths.map(({ data }: { data: any }) => ({
+    params: { slug: data.slug },
+    props: { ...data, learningPaths }
+  }))
+}
+
+const { title, description, related, learningPaths } = Astro.props
+const layout = 'wide'
+const tutorials = await getCollection('tutorials')
+
+const collection = (related ?? []).map((slug: string) => {
+  const tutorial = tutorials.find((tutorial) => tutorial.slug === slug)
+  return tutorial ? tutorial : null
+})
+---
+
+<BaseLayout title={title} description={description} layout={layout}>
+  <div class='learnpath-header'>
+    <div class='title-header'>
+      <h1 class='small-margin'>
+        <span>Tutorials:</span>
+        Lernpfade
+      </h1>
+
+      <div class='t-small'>
+        Lernpfade sind kuratierte Tutorials in einer aufeinander
+        aufbauenden&nbsp;Reihenfolge. <a href='/tutorials'
+          ><span class='nowrap'>Nach Datum sortieren</span></a
+        >
+      </div>
+    </div>
+
+    <div>
+      <Switch
+        entries={learningPaths.map(({ data }: { data: any }) => ({
+          title: data.title || '',
+          slug: data.slug || ''
+        }))}
+      />
+
+      Im Lernpfad <strong>{title}</strong>
+      {description}
+    </div>
+  </div>
+
+  {
+    collection && collection.length > 1 && (
+      <ul class='timeline'>
+        {collection.map((tutorial: any) => (
+          <li>
+            <ArticleCard article={tutorial} />
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</BaseLayout>
+
+<style lang='scss'>
+  @use '../../../styles/base/mixins' as m;
+
+  .timeline {
+    container: timeline / inline-size;
+    padding: 0;
+    margin-block: var(--sp-m);
+    counter-reset: count -1;
+
+    --tl-dot-size: 2rem;
+    --tl-dot-border-width: 2px;
+    --tl-dot-clr-bg: var(--clr-bg);
+    --tl-dot-clr-border: var(--clr-primary);
+    --tl-dot-vertical-offset: var(--sp);
+    --tl-dot-counter-size: 1rem;
+
+    --tl-line-size: 2px;
+    --tl-line-clr: var(--clr-line);
+
+    --tl-spacing-horizontal: var(--sp);
+    --tl-spacing-vertical: 24px;
+
+    @include m.respond('l') {
+      --tl-dot-size: 3rem;
+      --tl-dot-counter-size: 1.5rem;
+    }
+
+    li {
+      padding-block: 0 var(--tl-spacing-vertical);
+      padding-inline: calc(var(--tl-dot-size) + var(--tl-spacing-horizontal)) 0;
+      min-block-size: calc(var(--tl-dot-size) + var(--tl-spacing-vertical) * 2);
+
+      position: relative;
+      list-style: none;
+      margin-block: 0;
+      counter-increment: count 1;
+
+      &::before,
+      &::after {
+        transition: all 100ms;
+      }
+
+      &::before {
+        display: grid;
+        place-content: center;
+
+        content: counter(count, decimal);
+        font-weight: var(--fw-strong);
+        font-size: var(--tl-dot-counter-size);
+
+        position: absolute;
+        inset-block-start: var(--tl-dot-vertical-offset);
+        inset-inline-start: 0;
+        z-index: 2;
+        background-color: var(--tl-dot-clr-bg);
+        inline-size: var(--tl-dot-size);
+        block-size: var(--tl-dot-size);
+        border-radius: 50%;
+        border: var(--tl-dot-border-width) solid var(--tl-dot-clr-border);
+      }
+
+      &::after {
+        content: '';
+        display: block;
+        inline-size: var(--tl-line-size);
+        background-color: var(--tl-line-clr);
+        position: absolute;
+        inset-block-start: 0;
+        inset-inline-start: calc(var(--tl-dot-size) / 2 - var(--tl-line-size));
+        block-size: 100%;
+        z-index: 1;
+      }
+
+      &:first-child::after {
+        inset-block-start: calc(
+          var(--tl-dot-size) / 2 + var(--tl-dot-vertical-offset)
+        );
+        block-size: calc(
+          100% - calc(var(--tl-dot-vertical-offset) + var(--tl-dot-size) / 2)
+        );
+      }
+
+      &:last-child::after {
+        block-size: calc(
+          var(--tl-dot-size) / 2 + var(--tl-dot-vertical-offset)
+        );
+      }
+    }
+  }
+
+  .learnpath-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-m);
+    margin-block-end: var(--sp-l);
+
+    @include m.respond('l') {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+
+      .title-header {
+        flex: 1 0 40%;
+      }
+    }
+  }
+</style>

@@ -7,6 +7,13 @@ import Lead from '@components/Lead.astro'
 const posts = await getCollection('tutorials')
 const tags = [...new Set(posts.flatMap((post) => post.data.tags))] as string[]
 
+const sortedTags = tags
+  .map((tag) => ({
+    name: tag,
+    number: posts.filter((post) => post.data.tags?.includes(tag)).length
+  }))
+  .sort((a, b) => b.number - a.number)
+
 export const title = 'In den Tutorials verwendete Tags'
 export const description =
   'Zur besseren Übersicht sind hier alle Tags aufgelistet, die in den Tutorials verwendet werden.'

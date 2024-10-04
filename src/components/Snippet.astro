@@ -9,6 +9,7 @@ const { title = 'Ergebnis' } = Astro.props
 <section class='snippet'>
   <div class='sn-title'># {title}</div>
 
+  <slot name='css' />
   <slot name='settings' />
 
   <slot />
@@ -67,10 +68,19 @@ const { title = 'Ergebnis' } = Astro.props
         align-items: center;
         margin-block-end: var(--sp);
 
+        border: 1px solid rgb(255 255 255 / 0.3);
+        border-radius: var(--radius);
+        padding-block: var(--sp-xs);
+        padding-inline: var(--sp);
+
         .sn-value {
           display: flex;
           align-items: center;
           gap: 1ch;
+        }
+
+        [type='range'] {
+          cursor: pointer;
         }
       }
 

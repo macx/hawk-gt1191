@@ -151,3 +151,21 @@ main {
     }
   }
 }
+
+.text-and-button {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp);
+
+  @include mx.respond('l') {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--sp-l);
+
+    > div:last-child {
+      flex: 1 0 auto;
+      text-align: right;
+    }
+  }
+}

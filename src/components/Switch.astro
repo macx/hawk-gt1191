@@ -1,0 +1,79 @@
+---
+const pathname = new URL(Astro.request.url).pathname
+const currentPath = pathname.split('/').slice(3).join('').trim()
+
+console.log(currentPath)
+
+interface LearnPath {
+  title: string
+  slug: string
+}
+
+export interface Props {
+  entries: LearnPath[]
+}
+
+const { entries } = Astro.props
+---
+
+<nav>
+  <ul class='switch'>
+    {
+      entries.map(
+        (entry) =>
+          entry.slug && (
+            <li>
+              <a
+                href={entry.slug}
+                class:list={[currentPath === entry.slug ? 'current' : null]}
+              >
+                {entry.title}
+              </a>
+            </li>
+          )
+      )
+    }
+  </ul>
+</nav>
+
+<style>
+  .switch {
+    --sw-radius: 0.5rem;
+    --sw-padding-block: 0.25rem;
+    --sw-padding-inline: 1rem;
+
+    display: inline-flex;
+    align-items: center;
+    padding: 0;
+    margin-block: 0 var(--sp-m);
+
+    background-color: var(--clr-bg-card);
+    border: 1px solid var(--clr-line);
+    border-radius: calc(var(--sw-radius) + var(--sw-padding-block));
+
+    li {
+      list-style: none;
+      margin-block: 0;
+    }
+
+    a {
+      display: block;
+      padding-block: var(--sw-padding-block);
+      padding-inline: var(--sw-padding-inline);
+      border-radius: var(--sw-radius);
+      text-decoration: none;
+      color: var(--clr-text);
+      transition: color var(--transition);
+
+      &:hover,
+      &:focus {
+        color: var(--clr-primary);
+      }
+
+      &.current {
+        background-color: var(--clr-primary);
+        color: var(--clr-inverse);
+      }
+    }
+  }
+</style>

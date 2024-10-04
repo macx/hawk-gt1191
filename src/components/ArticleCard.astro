@@ -159,6 +159,35 @@ if (!images[imagePath]) {
       }
     }
 
+    @container timeline (width > 32em) {
+      > a {
+        display: grid;
+        grid-template-areas:
+          'image header'
+          'image description';
+        grid-template-columns: 30cqi auto;
+        grid-template-rows: auto 1fr;
+        column-gap: var(--sp-m);
+        row-gap: var(--sp);
+        padding: var(--sp);
+
+        header {
+          grid-area: header;
+          padding: 0;
+        }
+
+        .title,
+        .description {
+          grid-area: description;
+          padding: 0;
+        }
+
+        .image {
+          grid-area: image;
+        }
+      }
+    }
+
     @container aside (width < 25em) {
       &:first-child {
         border-block-end-width: 0;

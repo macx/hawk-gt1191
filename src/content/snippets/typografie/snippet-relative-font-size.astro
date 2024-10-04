@@ -1,0 +1,120 @@
+---
+import Snippet from '@components/Snippet.astro'
+import { codeToHtml } from 'shiki'
+
+const code = await codeToHtml('foo\bar', {
+  lang: 'js',
+  theme: 'vitesse-light',
+  transformers: [
+    {
+      code(node) {
+        this.addClassToHast(node, 'language-js')
+      },
+      line(node, line) {
+        node.properties['data-line'] = line
+        if ([1, 3, 4].includes(line)) this.addClassToHast(node, 'highlight')
+      },
+      span(node, line, col) {
+        node.properties['data-token'] = `token:${line}:${col}`
+      }
+    }
+  ]
+})
+
+// const codeBlock = document.querySelector('#code')
+
+// if (codeBlock) {
+//   codeBlock.innerHTML = code
+// }
+---
+
+<Snippet title='Interaktive Demo'>
+  <Fragment slot='settings'>
+    <div class='sn-settings'>
+      <div class='sn-value'>
+        <label for='el-size-input'>Basis-Schriftgröße:</label>
+        <input
+          type='range'
+          name='size'
+          id='el-size-input'
+          min='14'
+          max='26'
+          step='2'
+          value='16'
+          list='el-size-markers'
+        />
+        <span>
+          <output id='el-size-output'>200</output>px
+        </span>
+
+        <datalist id='el-size-markers'>
+          <option value='14'></option>
+          <option value='16'></option>
+          <option value='18'></option>
+          <option value='20'></option>
+          <option value='22'></option>
+          <option value='24'></option>
+          <option value='26'></option>
+        </datalist>
+      </div>
+    </div>
+  </Fragment>
+
+  <Fragment>
+    <div class='demo-relative-font-size' style='--fs: 16px'>
+      <div class='headline'>Purpose of life</div>
+
+      <div class='bodytext'>
+        To see the world, things dangerous to come to, to see behind walls, draw
+        closer, to find each other, and to feel. That is the purpose of life.
+      </div>
+    </div>
+  </Fragment>
+</Snippet>
+
+<style>
+  @scope (.demo-relative-font-size) {
+    :scope {
+      --font-size: var(--fs, 16px);
+
+      font-size: var(--font-size);
+      text-wrap: balance;
+
+      .headline {
+        font-family: var(--ff-headings);
+        font-size: 2em;
+        font-weight: var(--fw-bold);
+        margin-block-end: 0.2em;
+        transition: font-size 100ms ease-in;
+      }
+
+      .bodytext {
+        transition: font-size 100ms ease-in;
+      }
+    }
+  }
+</style>
+
+<script is:inline>
+  ;(function () {
+    const snGridFlexInput = document.querySelector('#el-size-input')
+    const snGridFlexOnput = document.querySelector('#el-size-output')
+    const demoContainer = document.querySelector('.demo-relative-font-size')
+    const figureCode = demoContainer
+      .closest('figure')
+      .querySelector('.astro-code')
+
+    snGridFlexOnput.textContent = snGridFlexInput.value
+
+    snGridFlexInput.addEventListener('input', (event) => {
+      snGridFlexOnput.textContent = event.target.value
+      demoContainer.style.setProperty('--fs', `${event.target.value}px`)
+
+      if (figureCode) {
+        figureCode.querySelector(
+          '.line:first-child span:nth-child(5)'
+        ).textContent = event.target.value
+      }
+    })
+  })()
+</script>

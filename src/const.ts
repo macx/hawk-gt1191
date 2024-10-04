@@ -29,7 +29,11 @@ const tagAbbrevations: TagAbbrevation = {
   ts: 'TypeScript',
   socialmedia: 'Social Media',
   showcase: 'Showcase',
-  images: 'Bilder'
+  images: 'Bilder',
+  typografie: 'Typografie',
+  webfonts: 'Webfonts',
+  zeichen: 'Zeichen',
+  historie: 'Historie'
 }
 
 export function getTagLongform(tag: string): string {

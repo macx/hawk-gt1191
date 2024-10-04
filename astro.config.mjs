@@ -33,7 +33,8 @@ export default defineConfig({
       destination: '/dokumentation'
     },
     '/hilfe': '/dokumentation',
-    '/seminar': '/'
+    '/seminar': '/',
+    '/tutorials/lernpfade': '/tutorials/lernpfade/grundlagen'
   },
   markdown: {
     shikiConfig: {

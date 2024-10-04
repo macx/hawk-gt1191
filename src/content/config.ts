@@ -39,7 +39,19 @@ const authors = defineCollection({
   })
 })
 
+const learningPaths = defineCollection({
+  type: 'data',
+  schema: z.object({
+    title: z.string(),
+    slug: z.string(),
+    path: z.string(),
+    description: z.string(),
+    tutorialSlugs: z.array(z.string())
+  })
+})
+
 export const collections = {
   tutorials: tutorials,
-  authors: authors
+  authors: authors,
+  learningPaths: learningPaths
 }
