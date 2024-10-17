@@ -2,11 +2,9 @@
 import { getCollection } from 'astro:content'
 import type { CollectionEntry } from 'astro:content'
 import BaseLayout from '@layouts/BaseLayout.astro'
-import { widont } from '@plugins/remark-widont.mjs'
 import { formatTitle } from '@plugins/remark-widont.mjs'
 import ArticleCard from '@components/ArticleCard.astro'
 import Pagination from '@components/Pagination.astro'
-import Lead from '@components/Lead.astro'
 import Button from '@components/Button.astro'
 
 const { page } = Astro.props
@@ -47,11 +45,8 @@ export async function getStaticPaths({ paginate }: any) {
 
       <blockquote class='text-and-button'>
         <div>
-          <p class='t-small'>
-            Die Tutorials sind nach Veröffentlichungsdatum&nbsp;sortiert.
-          </p>
-          Siehe dir die <b>Lernpfade</b> an. Dort bauen die Tutorials
-          aufeinander&nbsp;auf.
+          Die Tutorials sind nach Veröffentlichungsdatum sortiert. In den{' '}
+          <b>Lernpfaden</b> bauen die Tutorials aufeinander&nbsp;auf.
         </div>
 
         <div>

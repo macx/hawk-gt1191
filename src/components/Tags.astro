@@ -1,14 +1,15 @@
 ---
 export interface Props {
-  tags: string[]
+  tags?: string[]
+  preSorted?: { name: string; number: number }[]
   divider?: boolean
 }
 
-const { tags, divider } = Astro.props
+const { tags, preSorted, divider } = Astro.props
 const pathname = new URL(Astro.request.url).pathname
 const currentPath = pathname.split('/').slice(3).join('').trim()
 
-const sortedTags = tags.sort((a, b) =>
+const sortedTags = tags?.sort((a, b) =>
   a.localeCompare(b, 'de', { sensitivity: 'base' })
 )
 ---
@@ -24,6 +25,23 @@ const sortedTags = tags.sort((a, b) =>
           </a>
         </li>
       ))}
+    </ul>
+  )
+}
+
+{
+  preSorted && preSorted.length > 0 && (
+    <ul class:list={['tags', { divider: divider === true }]}>
+      <li>Verwendete Tags:</li>
+      {preSorted.map((tag) =>
+        tag.number > 0 ? (
+          <li class:list={['tag', { current: currentPath === tag.name }]}>
+            <a href={`/tutorials/tags/${tag.name}`} class='tag'>
+              {tag.name}
+            </a>
+          </li>
+        ) : null
+      )}
     </ul>
   )
 }

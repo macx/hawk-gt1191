@@ -1,31 +1,5 @@
 ---
 import Snippet from '@components/Snippet.astro'
-import { codeToHtml } from 'shiki'
-
-const code = await codeToHtml('foo\bar', {
-  lang: 'js',
-  theme: 'vitesse-light',
-  transformers: [
-    {
-      code(node) {
-        this.addClassToHast(node, 'language-js')
-      },
-      line(node, line) {
-        node.properties['data-line'] = line
-        if ([1, 3, 4].includes(line)) this.addClassToHast(node, 'highlight')
-      },
-      span(node, line, col) {
-        node.properties['data-token'] = `token:${line}:${col}`
-      }
-    }
-  ]
-})
-
-// const codeBlock = document.querySelector('#code')
-
-// if (codeBlock) {
-//   codeBlock.innerHTML = code
-// }
 ---
 
 <Snippet title='Interaktive Demo'>

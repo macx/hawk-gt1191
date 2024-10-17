@@ -67,8 +67,12 @@ if (imagePath !== undefined && !images[imagePath]) {
       padding-block-end: var(--sp) 0;
     }
 
-    > :is(img, .astro-code) + :where(.astro-code, .snippet) {
-      margin-block-start: var(--sp);
+    > :is(.astro-code) {
+      border: 0;
+
+      &:where(.astro-code, .snippet):not(:first-child) {
+        margin-block-start: var(--sp);
+      }
     }
   }
 </style>

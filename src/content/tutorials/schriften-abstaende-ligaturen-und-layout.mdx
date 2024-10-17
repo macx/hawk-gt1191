@@ -1,8 +1,8 @@
 ---
-title: 'Typografie im Web: Schriften, Abstände, Ligaturen und Layout'
+title: 'Typografie im Web: Schriften, Abstände, Ligaturen im Layout'
 description: 'Kleine Details in der Typografie und Layout können den Unterschied machen. Hier lernst du, wie du deine Website mit Text gestalten kannst.'
 isDraft: true
-pubDate: 2024-10-15T15:08:00+01:00
+pubDate: 2024-12-08T15:12:00+01:00
 author: david-maciejewski
 cover:
   path: '/src/images/tutorials/airport-terminal-sign.jpg'
@@ -21,7 +21,7 @@ import SnippetLigatures from '@snippets/typografie/snippet-ligatures.astro'
 
 ## Mit Texten gestalten
 
-Im [ersten Teil](/tutorials/grundlagen-der-mikrotypografie) der Serie „Typografie im Web“ haben wir einen Blick in die Historie der Typografie geworfen, den Begriff der Maktrotypografie erörtert und gelernt, wie man Texte korrekt formatiert. Da die Grundlagen damit gelegt sind, widmen wir uns in diesem Tutorial um die Gestaltung dieser Texte im Layout deiner Website.
+Im [ersten Teil](/tutorials/grundlagen-der-mikrotypografie) der Serie „Typografie im Web“ haben wir einen Blick in die Historie der Typografie geworfen, den Begriff der Maktrotypografie erörtert und gelernt, wie man Texte korrekt formatiert. Da die Grundlagen damit gelegt sind, können wir uns in diesem Tutorial nun um die Gestaltung dieser Texte im Layout deiner Website kümmern.
 
 > **Hinweis:** Falls du das Tutorial [Grundlagen der Mikrotypografie](/tutorials/grundlagen-der-mikrotypografie) noch nicht gelesen hast, empfehle ich dir, dies nachzuholen.
 
@@ -33,14 +33,14 @@ Unter dem Schriftbild versteht man die Gesamtheit der optischen Erscheinung eine
 
 Heute erhalten Fließtext und Überschriften oft unterschiedliche Schriftarten. Beispielsweise könntest du für den Fließtext eine serifenlose Schriftart (Sans Serif) wie „Open Sans“ im Schriftschnitt 400 und für Überschriften eine serifenbetonte Schriftart wie „Merriweather“ (Serif) im Schriftschnitt 500 verwenden. Das sähe dann so aus:
 
-<Figure caption="Oben: Das CSS, um die Schriftarten den HTML-Elementen zuzuweisen. Unten: Das Ergebnis">
+<Figure caption="Durch die Deklaration der Open Sans am Body und der Vererbung erhalten alle weiteren Elemente die selbe Schriftart.">
   ```css
   body {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
   }
 
-  :where(h1, h2, h3, h4) {
+  :is(h1, h2, h3, h4) {
     font-family: 'Merriweather', serif;
     font-weight: 500;
   }
@@ -48,39 +48,43 @@ Heute erhalten Fließtext und Überschriften oft unterschiedliche Schriftarten. 
   <SnippetHeadlineBody title="Das Ergebnis" />
 </Figure>
 
-> **Tipp:** Ich zeige dir im Tutorial [So bindest du Schriftarten in deine Website ein](/tutorials/webfonts-schriften-einbinden) Schritt für Schritt, wie du Webfonts technisch einbindest.
+> **Tipp:** Im Tutorial [So bindest du Schriftarten in deine Website ein](/tutorials/webfonts-schriften-einbinden) zeige ich dir Schritt für Schritt, wie du Webfonts einbinden kannst, um sie dann wie oben deklareiren zu können.
 
 ### Schriftgröße
 
-Die Standardgröße für Fließtext im Browser ist vorgegeben und beträgt `16px` (Pixel). Dieser Wert kann von den Usern in den Einstellungen überschrieben werden. Das tun sie nicht böswillig, um dein fein austariertes Design zu ruinieren, sondern um die Lesbarkeit der Texte zu erhöhen. Vielleicht haben die Besucher schlechte Augen, sitzen in einem Büro, auf dem die Sonne direkt auf den Monitor scheint, oder sie bevorzugen einfach eine größere Schrift.
+Die Standardgröße für Fließtext im Browser ist vorgegeben und beträgt `16px` (Pixel) beim `html`-Element. Dieser Wert kann von den Usern in den Einstellungen überschrieben werden.
 
-Lass deine Website nicht „in Schönheit sterben“, entscheide dich im Zweifelsfall lieber für eine größere statt kleinere Schriftgröße. Daher empfehle ich dir, die 16 Pixel nicht zu unterschreiten, da der Text sonst zu klein und schwer lesbar ist. Für mobile Geräte empfehle ich sogar 18 Pixel, für Tablets und Desktop-Monitore 20 oder gar 22 Pixel, da hier der Abstand vom Auge zum Bildschirm größer ist.
+Wenn du die Schriftgröße in fixen Pixeln festlegst, wirkt sich das allerdings negativ auf die Skalierbarkeit und damit auf die Zugänglichkeit der Website aus. Damit sich die Schriftgröße an äußere Bedingenungen anpassen kann, solltest du relative Einheiten wie `em` oder `rem` verwenden.
 
 #### Relative Schriftgrößen
 
-Wenn du die Schriftgröße in Pixeln festlegst, wirkt sich das negativ auf die Skalierbarkeit und damit auf die Zugaänglichkeit der Website aus. Damit sich die Schriftgröße an äußere Bedingenungen anpassen kann, solltest du relative Einheiten wie `em` oder `rem` verwenden. `em` bezieht sich auf die Schriftgröße des Elternelements, während `rem` sich auf die Schriftgröße des `html`-Elements bezieht, also den voreingestellten Wert von `16px`.
+em
+: Die relative Einheit `em` bezieht sich auf die Schriftgröße des Elternelements. `1em` entsprechen 100&#8239;%, 150&#8239;% wären dann `1.5em`.
 
-Sofern nicht anders festgelegt, entspricht `1em` im Fließtext `16px`, während `1em` bei einer `h1`-Überschrift `24px` entspricht. Anders sieht es bei `rem` aus: Hier entspricht `1rem` immer `16px`, es sei denn, du änderst auch das. Hier ein Beispiel:
+rem
+: Die relative Einheit `rem` bezieht sich auf die Schriftgröße des `html`- oder `body`-Elements, also den voreingestellten Wert von `16px`. Das **r** in `rem` steht für **root**.
 
-| Gerätekategorie | Empfohlene Schriftgröße | Relativ zu `16px` |
-|--------------|--------------|----|
-| Mobile | `18px` | `1.125rem` |
-| Tablet | `20px` | `1.25rem`  |
-| Desktop | `22px` | `1.375rem` |
+Schauen wir uns exemplarisch folgendes Beispiel an. In der Box soll der Fließtext 18 Pixel groß sein, also etwas größer als der Fließtext der anderen Elemente auf der Website. Die Überschrift soll 150&#8239;% der Schriftgröße unserer Box betragen.
 
-Wenn du möchtest, dass sich die Überschrift relativ zum Fließtext verhält, solltest du `em` verwenden. Vergrößerst du die Schriftgröße des Fließtextes, vergrößert sich auch die Schriftgröße der Überschrift. Hier eine interaktive Demo:
+<Figure caption="Die Schriftgrößer der Überschrift wird relativ zum Elternelement, also der Box „announcement“&nbsp;gesetzt.">
+  ```html
+  <section class="announcement">
+    <h2>Bekanntmachung</h2>
 
-<Figure caption="Oben: Das CSS, um die Schriftarten den HTML-Elementen zuzuweisen. Unten: Das Ergebnis">
-  ```css
-  html { font-size: 16px; }
-  body { font-size: 1rem; }
-
-  .headline { font-size: 2em; }
+    Wir treffen uns Freitags in Haus E, Raum 08 (HIWEE08).
+  </section>
   ```
-
-  <SnippetRelativeFontSize title="Das Ergebnis" />
+  ```css
+  .announcement { font-size: 18px; }
+  .announcement h2 { font-size: 1.5em; }
+  ```
 </Figure>
 
+Die Überschrift entspräche umgerechnet `27px`. Die Formel dazu lautet: `18px * 150 / 100 = 27px`.
+
+Wenn wir allerdings möchten, dass alle Überschriften, unabhängig davon, wo sie sich befinden, die gleiche Schriftgröße haben, sollten wir die Einheit `rem` verwenden: `1.5rem` wären dann `24px`. Die Formel: `16px * 150 / 100 = 24px`.
+
+> Unter [Assets](/assets#typografie) habe ich dir ein paar Links zu Tools interlegt, mit denen du die Größen berechnen kannst.
 
 #### Dynamische Schriftgrößen
 
@@ -95,6 +99,18 @@ body {
 </Figure>
 
 Die Berechnung der Schriftgröße erfolgt wie folgt: `1rem` (16px) ist die Mindestgröße, `1vw + 0.7rem` ist die dynamische Größe und `1.25rem` (20px) ist die Maximalgröße. Die Schriftgröße passt sich also zwischen 1rem und 1.25rem an die Bildschirmgröße an. Auf der Seite [Assets](/assets#typografie) habe ich dir ein paar Links zu Tools interlegt, mit denen du die Größen berechnen kannst. Das konkrete Beispiel hier habe ich [hier](https://modern-fluid-typography.vercel.app?rootFontSize=16&minSize=16&fluidSize=1&relativeSize=0.7&maxSize=20) berechnet.
+
+#### Empfehlung
+
+Wie oben erwähnt, können Nutzer die Standard-Schriftgröße in den Einstellungen ihres Browsers anpassen. Das tun sie nicht böswillig, um dein fein austariertes Design zu ruinieren, sondern um die Lesbarkeit der Texte zu erhöhen, aus welchen legitimen Gründen auch immer.
+
+Lass deine Website nicht „in Schönheit sterben“, entscheide dich im Zweifelsfall lieber für eine größere statt kleinere Schriftgröße. Daher empfehle ich dir, die 16 Pixel nicht zu unterschreiten, da der Text sonst zu klein und schwer lesbar ist. Für mobile Geräte empfehle ich sogar 18 Pixel, für Tablets und Desktop-Monitore 20 oder gar 22 Pixel, da hier der Abstand vom Auge zum Bildschirm größer ist.
+
+| Gerätekategorie | Empfohlene Schriftgröße | Relativ zu `16px` |
+|--------------|--------------|----|
+| Mobile | `18px` | `1.125rem` |
+| Tablet | `20px` | `1.25rem`  |
+| Desktop | `22px` | `1.375rem` |
 
 ### Textrendering
 

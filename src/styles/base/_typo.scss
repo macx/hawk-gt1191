@@ -137,7 +137,8 @@ small {
 └──────────────────────────────────┘
 */
 
-code {
+code,
+.code {
   display: inline-block;
   font-family: var(--ff-code);
   font-size: 0.95em;
@@ -153,6 +154,7 @@ code {
   padding-inline: var(--sp);
   border-radius: var(--radius);
   overflow: hidden !important;
+  border: 1px solid var(--clr-line);
 
   code {
     display: block;

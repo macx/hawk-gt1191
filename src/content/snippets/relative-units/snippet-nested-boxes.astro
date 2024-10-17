@@ -1,0 +1,59 @@
+---
+import Snippet from '@components/Snippet.astro'
+
+const { title } = Astro.props
+---
+
+<Snippet title={title}>
+  <div class='demo-nested-boxes'>
+    <div class='sn-element'>
+      <p>
+        <span class='code'>&#x3C;body&#x3E;</span><br />
+        <span class='t-small'>100&#8239;% des Viewports</span>
+      </p>
+
+      <div class='sn-element'>
+        <p>
+          <span class='code'>&#x3C;div class=&#x22;container&#x22;&#x3E;</span
+          ><br />
+          <span class='t-small'>100&#8239;% vom Body</span>
+        </p>
+
+        <div class='flex'>
+          <div class='sn-element box50'>
+            <span class='t-small'>50&#8239;% vom Container</span>
+          </div>
+
+          <div class='sn-element box50'>
+            <p class='t-small'>50&#8239;% vom Container</p>
+
+            <div class='sn-element'>
+              <span class='t-small'>Wie lang bin ich?</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    @scope (.demo-nested-boxes) {
+      :scope {
+        .flex {
+          display: flex;
+          justify-content: space-between;
+          gap: var(--sp);
+        }
+
+        .box50 {
+          flex: 1;
+          inline-size: 50%;
+        }
+
+        .light-text {
+          color: rgb(255 255 255 / 0.6);
+        }
+      }
+    }
+  </style>
+</Snippet>
