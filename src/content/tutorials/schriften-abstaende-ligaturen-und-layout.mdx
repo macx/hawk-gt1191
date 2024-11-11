@@ -1,6 +1,6 @@
 ---
 title: 'Typografie im Web: Schriften, Abstände, Ligaturen im Layout'
-description: 'Kleine Details in der Typografie und Layout können den Unterschied machen. Hier lernst du, wie du deine Website mit Text gestalten kannst.'
+description: 'Kleine Details in der Typografie und Layout können den Unterschied machen. Hier lernst du, mit welchen Mitteln du Text gestalten kannst.'
 isDraft: true
 pubDate: 2024-12-08T15:12:00+01:00
 author: david-maciejewski
@@ -19,7 +19,7 @@ import SnippetHeadlineBody from '@snippets/typografie/snippet-headline-body.astr
 import SnippetRelativeFontSize from '@snippets/typografie/snippet-relative-font-size.astro'
 import SnippetLigatures from '@snippets/typografie/snippet-ligatures.astro'
 
-## Mit Texten gestalten
+## Texte gestalten
 
 Im [ersten Teil](/tutorials/grundlagen-der-mikrotypografie) der Serie „Typografie im Web“ haben wir einen Blick in die Historie der Typografie geworfen, den Begriff der Maktrotypografie erörtert und gelernt, wie man Texte korrekt formatiert. Da die Grundlagen damit gelegt sind, können wir uns in diesem Tutorial nun um die Gestaltung dieser Texte im Layout deiner Website kümmern.
 
@@ -52,65 +52,80 @@ Heute erhalten Fließtext und Überschriften oft unterschiedliche Schriftarten. 
 
 ### Schriftgröße
 
-Die Standardgröße für Fließtext im Browser ist vorgegeben und beträgt `16px` (Pixel) beim `html`-Element. Dieser Wert kann von den Usern in den Einstellungen überschrieben werden.
+Die vom Browser vorgegebene Größe für Fließtext beträgt `16px` (Pixel) beim Root-Element `html`, die vom User aber auch in den Einstellungen des Browsers geändert werden kann.
 
-Wenn du die Schriftgröße in fixen Pixeln festlegst, wirkt sich das allerdings negativ auf die Skalierbarkeit und damit auf die Zugänglichkeit der Website aus. Damit sich die Schriftgröße an äußere Bedingenungen anpassen kann, solltest du relative Einheiten wie `em` oder `rem` verwenden.
+Um die Zugänglichkeit der Website nicht zu gefährden, solltest du die Schriftgröße nicht in absoluten Pixeln, sondern in relativen Einheiten wie `rem` oder `em` angeben. `1rem` entspricht dabei der Schriftgröße des Root-Elements, also `16px`.
 
-#### Relative Schriftgrößen
+> Im Tutorial [Absolute und relative Einheiten in CSS](/tutorials/absolute-und-relative-einheiten) erläutere ich dir die Unterschiede und wann du besser relativen Einheiten nutzen solltest.
 
-em
-: Die relative Einheit `em` bezieht sich auf die Schriftgröße des Elternelements. `1em` entsprechen 100&#8239;%, 150&#8239;% wären dann `1.5em`.
+Wenn du die Lesbarkeit verbessern möchtest, kannst du die Schriftgröße auch auf `18px` erhöhen, was `1.125rem` entspricht. Ein gutes Basis-Setup könnte so aussehen:
 
-rem
-: Die relative Einheit `rem` bezieht sich auf die Schriftgröße des `html`- oder `body`-Elements, also den voreingestellten Wert von `16px`. Das **r** in `rem` steht für **root**.
-
-Schauen wir uns exemplarisch folgendes Beispiel an. In der Box soll der Fließtext 18 Pixel groß sein, also etwas größer als der Fließtext der anderen Elemente auf der Website. Die Überschrift soll 150&#8239;% der Schriftgröße unserer Box betragen.
-
-<Figure caption="Die Schriftgrößer der Überschrift wird relativ zum Elternelement, also der Box „announcement“&nbsp;gesetzt.">
-  ```html
-  <section class="announcement">
-    <h2>Bekanntmachung</h2>
-
-    Wir treffen uns Freitags in Haus E, Raum 08 (HIWEE08).
-  </section>
-  ```
-  ```css
-  .announcement { font-size: 18px; }
-  .announcement h2 { font-size: 1.5em; }
-  ```
-</Figure>
-
-Die Überschrift entspräche umgerechnet `27px`. Die Formel dazu lautet: `18px * 150 / 100 = 27px`.
-
-Wenn wir allerdings möchten, dass alle Überschriften, unabhängig davon, wo sie sich befinden, die gleiche Schriftgröße haben, sollten wir die Einheit `rem` verwenden: `1.5rem` wären dann `24px`. Die Formel: `16px * 150 / 100 = 24px`.
-
-> Unter [Assets](/assets#typografie) habe ich dir ein paar Links zu Tools interlegt, mit denen du die Größen berechnen kannst.
-
-#### Dynamische Schriftgrößen
-
-Du kannst die Schriftgröße auch dynamisieren, sodass diese sich an die Bildschirmgröße anpasst. Das geht mit der Einheit `vw` (Viewport Width). Zusätzlich kannst du mit der Funktion `clamp()` eine Mindest- und Höchstgröße festlegen. Hier ein Beispiel:
-
-<Figure caption="Beispiel für dynamische Schriftgröße">
+<Figure caption="Die Schriftgröße wird im Root-Element definiert, alle anderen Elemente beziehen sich dann relativ auf diesen.">
 ```css
 body {
-  font-size: clamp(1rem, 1vw + 0.7rem, 1.25rem);
+  font-size: 1.125rem; /* entspricht 18px */
+  line-height: 1.4;
+}
+
+h1 {
+  font-size: 1.9rem; /* entspricht 30px */
 }
 ```
 </Figure>
 
-Die Berechnung der Schriftgröße erfolgt wie folgt: `1rem` (16px) ist die Mindestgröße, `1vw + 0.7rem` ist die dynamische Größe und `1.25rem` (20px) ist die Maximalgröße. Die Schriftgröße passt sich also zwischen 1rem und 1.25rem an die Bildschirmgröße an. Auf der Seite [Assets](/assets#typografie) habe ich dir ein paar Links zu Tools interlegt, mit denen du die Größen berechnen kannst. Das konkrete Beispiel hier habe ich [hier](https://modern-fluid-typography.vercel.app?rootFontSize=16&minSize=16&fluidSize=1&relativeSize=0.7&maxSize=20) berechnet.
-
-#### Empfehlung
-
-Wie oben erwähnt, können Nutzer die Standard-Schriftgröße in den Einstellungen ihres Browsers anpassen. Das tun sie nicht böswillig, um dein fein austariertes Design zu ruinieren, sondern um die Lesbarkeit der Texte zu erhöhen, aus welchen legitimen Gründen auch immer.
-
-Lass deine Website nicht „in Schönheit sterben“, entscheide dich im Zweifelsfall lieber für eine größere statt kleinere Schriftgröße. Daher empfehle ich dir, die 16 Pixel nicht zu unterschreiten, da der Text sonst zu klein und schwer lesbar ist. Für mobile Geräte empfehle ich sogar 18 Pixel, für Tablets und Desktop-Monitore 20 oder gar 22 Pixel, da hier der Abstand vom Auge zum Bildschirm größer ist.
+Für Tablets und Desktop-Bildschirme empfehle ich sogar `20px` oder gar `22px`, da hier der Abstand vom Auge zum Bildschirm größer ist.
 
 | Gerätekategorie | Empfohlene Schriftgröße | Relativ zu `16px` |
 |--------------|--------------|----|
 | Mobile | `18px` | `1.125rem` |
 | Tablet | `20px` | `1.25rem`  |
 | Desktop | `22px` | `1.375rem` |
+
+#### Dynamische Schriftgrößen
+
+Um die Schriftgräße dynamisch an die Bildschirmgröße anzupassen, verwende die `clamp()`-Funktion in Kombination mit der Einheit `vw` (Viewport Width). Der angepasste Code würde dann so aussehen:
+
+<Figure caption="Beispiel für dynamische Schriftgröße">
+```css
+body {
+  font-size: clamp(1.125rem, 0.5vw + 1rem, 1.375rem);
+  line-height: 1.4;
+}
+```
+</Figure>
+
+[Clamp](https://developer.mozilla.org/en-US/docs/Web/CSS/clamp) nimmt drei Werte entgegen: den Minimalwert, den bevorzugten Wert und den Maximalwert. Der bevorzugte Wert ist in diesem Fall `0.5vw + 1rem`. Das bedeutet, dass die Schrift sich zwischen `1.125rem` und `1.375rem` an die Bildschirmgröße anpasst. Auf der Seite [Assets](/assets#typografie) habe ich dir ein paar Links zu Tools interlegt, mit denen du die Größen berechnen kannst. Das konkrete Beispiel hier habe ich [hier](https://modern-fluid-typography.vercel.app?rootFontSize=16&minSize=18&fluidSize=0.5&relativeSize=1&maxSize=22) berechnet.
+
+### Zeilenlänge und Laufweite
+
+Die Zeilenlänge und Laufweite sind zwei wichtige Aspekte der Typografie, die die Lesbarkeit und Ästhetik von Texten beeinflussen. Die Zeilenlänge bezieht sich auf die Breite einer Textzeile, während die Laufweite den Abstand zwischen den Buchstaben in einem Wort beschreibt.
+
+#### Zeilenlänge
+
+Die optimale Zeilenlänge für Fließtext liegt zwischen 45 und 75 Zeichen pro Zeile. Texte mit zu kurzen Zeilen können unruhig wirken, während Texte mit zu langen Zeilen schwer zu lesen sind. Um die Zeilenlänge zu beeinflussen, kannst du die maximale Breite eines Textblocks festlegen. Ein Wert von `60ch` entspricht beispielsweise etwa 60 Zeichen pro Zeile.
+
+<Figure caption="Beispiel für die Begrenzung der Zeilenlänge">
+```css
+p {
+  max-inline-size: 60ch;
+}
+```
+</Figure>
+
+#### Laufweite
+
+Die Laufweite oder der Abstand zwischen den Buchstaben in einem Wort kann die Lesbarkeit und Ästhetik eines Textes erheblich beeinflussen. Eine zu enge Laufweite kann dazu führen, dass die Buchstaben verschmelzen und schwer zu lesen sind, während eine zu weite Laufweite den Text unverbunden und unästhetisch erscheinen lässt.
+
+Um die Laufweite zu beeinflussen, kannst du den CSS-Eigenschaft `letter-spacing` verwenden. Ein Wert von `0.05em` entspricht beispielsweise einem Abstand von 0,05em zwischen den Buchstaben.
+
+<Figure caption="Beispiel für die Einstellung der Laufweite">
+```css
+p {
+  letter-spacing: 0.05em;
+}
+```
+</Figure>
+
 
 ### Textrendering
 
@@ -154,7 +169,6 @@ body {
 
 : Foobar
 
-### Zeilenlänge und Laufweite
 
 ### Kontrast
 
