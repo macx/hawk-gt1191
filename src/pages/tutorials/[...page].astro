@@ -14,7 +14,7 @@ const title: string = 'Tutorials: Moderne Websites mit HTML und CSS erstellen'
 const description: string =
   'Du hast eine konkrete Idee, weißt aber nicht, wie du sie umsetzen sollst? Mit diesen Anleitungen gelingt dir die Umsetzung.'
 const visible: boolean = true
-export const limit: number = 6
+export const limit: number = 9
 
 export async function getStaticPaths({ paginate }: any) {
   const articles: CollectionEntry<'tutorials'>[] = await getCollection(

@@ -127,6 +127,17 @@
           no-repeat;
         margin-inline-start: calc(var(--spacing) * -1);
       }
+
+      .new {
+        display: inline-block;
+        background-color: var(--clr-primary);
+        color: var(--clr-text-inverse);
+        font-size: var(--fs-xs);
+        padding-inline: 1ch;
+        margin-inline-start: 1.5ch;
+        font-weight: var(--fw-bold);
+        border-radius: var(--radius);
+      }
     }
 
     dd {

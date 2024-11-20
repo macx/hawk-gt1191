@@ -45,6 +45,7 @@
 
   --clr-shade: #cfd8dc;
   --clr-text: rgb(15, 23, 42);
+  --clr-text-inverse: #d9d9d9;
   --clr-text-light: rgba(15, 23, 42, 0.7);
   --clr-text-code: #1976d2;
   --clr-inverse: hsl(0, 0%, 100%);
@@ -146,6 +147,7 @@
     );
 
     --clr-text: #d9d9d9;
+    --clr-text-inverse: rgb(15, 23, 42);
     --clr-text-light: rgba(217, 217, 217, 0.7);
     --clr-header: rgba(20, 35, 45, 0.8);
     --clr-inverse: rgb(255 255 255 / 1);
