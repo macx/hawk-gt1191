@@ -5,11 +5,10 @@ import ArticleCard from '@components/ArticleCard.astro'
 import Switch from '@components/Switch.astro'
 
 export async function getStaticPaths() {
-  const learningPaths = await getCollection('learningpaths')
-
+  const learningPaths = await getCollection('learningPaths')
   learningPaths.sort((a: any, b: any) => a.data.order - b.data.order)
 
-  return learningPaths.map(({ data }: { data: any }) => ({
+  return learningPaths.map(({ data }) => ({
     params: { slug: data.slug },
     props: { ...data, learningPaths }
   }))
@@ -19,8 +18,8 @@ const { title, description, related, learningPaths } = Astro.props
 const layout = 'wide'
 const tutorials = await getCollection('tutorials')
 
-const collection = (related ?? []).map((slug: string) => {
-  const tutorial = tutorials.find((tutorial) => tutorial.slug === slug)
+const collection = (related ?? []).map((id: string) => {
+  const tutorial = tutorials.find((tutorial) => tutorial.id === id)
   return tutorial ? tutorial : null
 })
 ---
@@ -45,7 +44,7 @@ const collection = (related ?? []).map((slug: string) => {
       <Switch
         entries={learningPaths.map(({ data }: { data: any }) => ({
           title: data.title || '',
-          slug: data.slug || ''
+          id: data.id || ''
         }))}
       />
 

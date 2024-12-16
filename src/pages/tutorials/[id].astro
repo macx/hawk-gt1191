@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content'
+import { getCollection, render } from 'astro:content'
 import BaseLayout from '@layouts/BaseLayout.astro'
 import BlogPostLayout from '@layouts/BlogPostLayout.astro'
 import RelatedArticles from '@components/RelatedArticles.astro'
@@ -8,14 +8,14 @@ export async function getStaticPaths() {
   const posts = await getCollection('tutorials')
 
   return posts.map((post) => ({
-    params: { slug: post.slug },
+    params: { id: post.id },
     props: post
   }))
 }
 
 const post = Astro.props
-const currentPathname = post.slug.replace('/tutorials/', '')
-const { Content, headings, remarkPluginFrontmatter } = await post.render()
+const currentPathname = post.id.replace('/tutorials/', '')
+const { Content, headings, remarkPluginFrontmatter } = await render(post)
 const minutesToRead = remarkPluginFrontmatter.minutesToRead
 const readingTime = {
   minutes: Number(minutesToRead.minutes.toFixed(0)),

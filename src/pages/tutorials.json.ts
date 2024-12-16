@@ -22,9 +22,9 @@ export async function GET() {
     return {
       title: tutorial.data.title,
       pubDate: tutorial.data.pubDate,
-      slug: tutorial.slug,
-      path: `tutorials/${tutorial.slug}`,
-      url: `${SITE_CONST.site}/tutorials/${tutorial.slug}`,
+      id: tutorial.id,
+      path: `tutorials/${tutorial.id}`,
+      url: `${SITE_CONST.site}/tutorials/${tutorial.id}`,
       tags: tutorial.data.tags
     }
   })

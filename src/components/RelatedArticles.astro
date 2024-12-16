@@ -12,7 +12,7 @@ const fetchedutorials = await getCollection('tutorials', ({ data }) => {
 const allTutorials = fetchedutorials
 
 const mappedTags = allTutorials
-  .filter(({ slug }) => slug !== currentPathname)
+  .filter(({ id }) => id !== currentPathname)
   .filter((a) => new Date(a.data.pubDate) <= new Date())
   .sort(
     (a, b) =>

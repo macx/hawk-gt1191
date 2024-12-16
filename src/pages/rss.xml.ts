@@ -16,8 +16,9 @@ export async function GET(context: { site: string }) {
       title: article.data.title,
       pubDate: article.data.pubDate,
       description: article.data.description,
-      link: `/tutorials/${article.slug}/`
+      link: `/tutorials/${article.id}`
     })),
-    stylesheet: '/rss-styles.xsl'
+    stylesheet: '/rss-styles.xsl',
+    trailingSlash: false
   })
 }
