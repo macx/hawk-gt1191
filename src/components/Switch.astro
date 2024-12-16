@@ -2,11 +2,9 @@
 const pathname = new URL(Astro.request.url).pathname
 const currentPath = pathname.split('/').slice(3).join('').trim()
 
-console.log(currentPath)
-
 interface LearnPath {
   title: string
-  slug: string
+  id: string
 }
 
 export interface Props {
@@ -21,11 +19,11 @@ const { entries } = Astro.props
     {
       entries.map(
         (entry) =>
-          entry.slug && (
+          entry.id && (
             <li>
               <a
-                href={entry.slug}
-                class:list={[currentPath === entry.slug ? 'current' : null]}
+                href={entry.id}
+                class:list={[currentPath === entry.id ? 'current' : null]}
               >
                 {entry.title}
               </a>

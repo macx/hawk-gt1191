@@ -8,7 +8,7 @@
       "@components/*": ["src/components/*"],
       "@layouts/*": ["src/layouts/*"],
       "@plugins/*": ["remark-plugins/*"],
-      "@snippets/*": ["src/content/snippets/*"]
+      "@snippets/*": ["src/snippets/*"]
     },
     "module": "NodeNext",
     "moduleResolution": "NodeNext",

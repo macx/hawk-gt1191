@@ -6,7 +6,7 @@ import path from 'path'
 import { ImageResponse } from '@vercel/og'
 
 interface Props {
-  params: { slug: string }
+  params: { id: string }
   props: { tutorial: CollectionEntry<'tutorials'> }
 }
 
@@ -132,7 +132,7 @@ export async function GET({ props }: Props) {
       ]
     })
   } catch (e: any) {
-    console.log('ERROR', e)
+    console.error('ERROR', e)
     return new Response(`Failed to generate the open graph image`, {
       status: 500
     })
@@ -145,7 +145,7 @@ export async function getStaticPaths() {
   })
 
   return tutorials.map((tutorial) => ({
-    params: { slug: tutorial.slug },
+    params: { id: tutorial.id },
     props: { tutorial }
   }))
 }

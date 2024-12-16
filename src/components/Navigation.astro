@@ -8,11 +8,11 @@ const currentPath = pathname.split('/').slice(0, 2).join('').trim()
 const { siteLinks } = Astro.props
 
 // Get Pages for Navigation
-const pages = await Astro.glob('../pages/*.mdx')
+const pages = Object.values(import.meta.glob('../pages/*.mdx', { eager: true }))
 
 const filteredPages = pages
-  .filter((page) => page.frontmatter.visible === true)
-  .sort((a, b) => (a.frontmatter.sort > b.frontmatter.sort ? 0 : -1))
+  .filter((page: any) => page.frontmatter.visible === true)
+  .sort((a: any, b: any) => (a.frontmatter.sort > b.frontmatter.sort ? 0 : -1))
 ---
 
 <nav role='navigation' class='navigation'>
@@ -24,7 +24,7 @@ const filteredPages = pages
         </a>
       </li>
       {
-        filteredPages.map((page) => (
+        filteredPages.map((page: any) => (
           <li>
             <a
               href={page.url}

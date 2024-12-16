@@ -1,8 +1,9 @@
 import { defineCollection, reference, z } from 'astro:content'
+import { glob } from 'astro/loaders'
 
 const tutorials = defineCollection({
-  type: 'content',
-  schema: ({}) =>
+  loader: glob({ pattern: '**/*.mdx', base: './src/data/tutorials' }),
+  schema: () =>
     z.object({
       title: z.string(),
       description: z.string(),
@@ -31,7 +32,7 @@ const tutorials = defineCollection({
 })
 
 const authors = defineCollection({
-  type: 'data',
+  loader: glob({ pattern: '**/[^_]*.json', base: './src/data/authors' }),
   schema: z.object({
     name: z.string(),
     bio: z.string(),
@@ -40,18 +41,22 @@ const authors = defineCollection({
 })
 
 const learningPaths = defineCollection({
-  type: 'data',
+  loader: glob({
+    pattern: '**/[^_]*.json',
+    base: './src/data/learningpaths'
+  }),
   schema: z.object({
     title: z.string(),
     slug: z.string(),
     path: z.string(),
     description: z.string(),
-    tutorialSlugs: z.array(z.string())
+    order: z.number(),
+    related: z.array(z.string())
   })
 })
 
 export const collections = {
-  tutorials: tutorials,
-  authors: authors,
-  learningPaths: learningPaths
+  tutorials,
+  authors,
+  learningPaths
 }
