@@ -4,7 +4,10 @@ import FormattedDate from '@components/FormattedDate.astro'
 
 interface Props {
   date: Date
-  author: object
+  author: {
+    id: string
+    [key: string]: any
+  }
   readingTime: {
     minutes: number
     words: number
@@ -12,7 +15,7 @@ interface Props {
 }
 
 const { date, author, readingTime } = Astro.props
-const authorProfile = await getEntry('authors', (author as { id: string }).id)
+const authorProfile = await getEntry('authors', author.id)
 ---
 
 <div class='meta'>

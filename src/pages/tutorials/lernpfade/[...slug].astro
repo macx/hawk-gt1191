@@ -44,7 +44,7 @@ const collection = (related ?? []).map((id: string) => {
       <Switch
         entries={learningPaths.map(({ data }: { data: any }) => ({
           title: data.title || '',
-          id: data.id || ''
+          slug: data.slug || ''
         }))}
       />
 

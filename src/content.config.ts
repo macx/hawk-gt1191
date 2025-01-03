@@ -1,5 +1,5 @@
 import { defineCollection, reference, z } from 'astro:content'
-import { glob } from 'astro/loaders'
+import { glob, file } from 'astro/loaders'
 
 const tutorials = defineCollection({
   loader: glob({ pattern: '**/*.mdx', base: './src/data/tutorials' }),
@@ -32,10 +32,10 @@ const tutorials = defineCollection({
 })
 
 const authors = defineCollection({
-  loader: glob({ pattern: '**/[^_]*.json', base: './src/data/authors' }),
+  loader: file('./src/data/authors.json'),
   schema: z.object({
     name: z.string(),
-    bio: z.string(),
+    bio: z.string().optional(),
     threads: z.string().optional()
   })
 })
