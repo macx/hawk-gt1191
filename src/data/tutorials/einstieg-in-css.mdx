@@ -25,11 +25,11 @@ Eigenschaften bestimmen das Aussehen von HTML-Elementen. In CSS sind diese inner
 Die Selektoren bestimmen, auf welche HTML-Elemente die Deklarationen angewendet werden sollen. Eine Deklaration besteht aus einer oder mehreren Eigenschaften und den dazugehörigen Werten. Eine Eigenschaft wird durch einen Doppelpunkt (`:`) vom Wert getrennt und mit einem Semikolon (`;`) abgeschlossen.
 
 <Figure caption="Diese CSS-Regel deklariert Schriftgröße, Schriftstärke und Farbe des Selektors `h2`. Das ist eine Überschrift der zweiten Ordnung.">
-  ```html
+  ```html title="HTML"
   <h2>Meine Überschrift</h2>
   ```
 
-  ```css
+  ```css title="CSS"
   h2 {
     font-size: 1.5rem;
     font-weight: 500;
@@ -61,13 +61,11 @@ Pseudoklassen
 
 Stellen wir uns nun ein Formular vor, das zwei Buttons enthält. Einen Abbrechen-Button und einen Absende-Button:
 
-<Figure caption="Das HTML der beiden Buttons">
-  ```html
-  <button type="button" class="btn" id="cancel-button">Abbrechen</button>
+```html title="HTML"
+<button type="button" class="btn" id="cancel-button">Abbrechen</button>
 
-  <button type="submit" class="btn btn-primary">Absenden</button>
-  ```
-</Figure>
+<button type="submit" class="btn btn-primary">Absenden</button>
+```
 
 Die Buttons sollen eine blaue Schrift und einen blauen Rahmen enthalten. Beim Darüberfahren mit der Maus soll sich der Hintergrund blau färben, die Schrift weiß. Das ist gleichzeitig auch die Vorgabe für den Primär-Button, den Absende-Button. Dieser ändert beim Darüberfahren mit der Maus die Hintergrundfarbe auf Dunkelblau.
 
@@ -76,7 +74,7 @@ In CSS kannst du die Buttons über ihren Elementselektor `button` oder über ihr
 Hier das CSS und das Ergebnis dazu:
 
 <Figure imagePath="/src/images/tutorials/form-buttons.png" alt="Zwei Buttons: Ein Abbrechen- und ein Absende-Button." caption="Komplexes Beispiel mit Attributen, ID und Klassen.">
-  ```css
+  ```css title="CSS"
   .btn {
     border: 1px solid blue;
     background-color: transparent;
@@ -101,7 +99,7 @@ Hier das CSS und das Ergebnis dazu:
 Cascading Style Sheets bedeutet übersetzt so viel wie „gestufte Gestaltungsbögen“. Der Begriff „Kaskade“ bezieht sich auf die hierarchische Abfolge von CSS-Regeln. Die Reihenfolge, in der diese Regeln definiert sind, bestimmt, welche Regel Vorrang hat. Man kann es sich wie bei einem Wasserfall vorstellen: Das Wasser beginnt mit wenig Kraft, wird aber immer stärker, je weiter es nach unten fließt. Daher gilt das Prinzip: Je weiter unten eine Regel definiert ist, desto stärker wirkt sie sich aus. Ein Beispiel:
 
 <Figure caption="In diesen Regeln wird zwei Mal die Hintergrundfarbe von `<div>`-Elementen bestimmt.">
-  ```css
+  ```css title="CSS"
   div {
     background-color: red;
     color: white;
@@ -143,11 +141,11 @@ Die CSS-Spezifität ist der Algorithmus der Browser, die Gewichtung und Relevanz
 Schauen wir uns das erst einmal an:
 
 <Figure caption="CSS-Regeln mit einer Klasse, einer ID und einem Elementnamen als Selektor.">
-  ```html
+  ```html title="HTML"
   <div class="my-box" id="alert">Test</div>
   ```
 
-  ```css
+  ```css title="CSS"
   div.my-box {
     background-color: yellow;
   }
@@ -179,7 +177,7 @@ Das Box-Modell ist ein Konzept in CSS, das beschreibt, wie Elemente auf einer We
 Eine Box mit schwarzen Rand und einem Innenabstand zum Text könnte in CSS so aussehen:
 
 <Figure imagePath="/src/images/tutorials/zwei-boxen.png" alt="Zwei Boxen nebeneinander" caption="Den Innenabstand regeln wir über `padding`, den Außenabstand über `margin`.">
-  ```css
+  ```css title="CSS"
   .box {
     border: 1px solid black;
     border-radius: 0.5em;
@@ -201,7 +199,7 @@ Möchtest du zwei Boxen nebeneinander platzieren, die sich die Breite zu `50%` t
 Hier noch einmal eine Beispielrechnung:
 
 <Figure caption="Beide `box-sizing`-Eigenschaften im Vergleich">
-  ```css
+  ```css title="CSS"
   /* 200 + 10 + 10 + 1 + 1 = 222 */
   /* Inhalt: 200px, Gesamt: 222px */
   .box {
@@ -225,7 +223,7 @@ Hier noch einmal eine Beispielrechnung:
 Du kannst **und solltest** alle HTML-Elemente auf einer Seite immer auf `border-box` umstellen. Das geht mit dem Sternselektor `*`, der alle Elemente auf der Website selektiert, und einer universellen Regel:
 
 <Figure caption="Der Sternselektor wählt alle Elmente einer Seite aus.">
-  ```css
+  ```css title="CSS"
   *, *::before, *::after {
     box-sizing: border-box;
   }

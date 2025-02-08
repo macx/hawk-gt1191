@@ -83,6 +83,7 @@
   }
 
   themeToggleButton.addEventListener('click', () => {
+    console.log('clicked')
     const prefersScheme = window.matchMedia('(prefers-color-scheme: dark)')
       .matches
       ? 'dark'
@@ -90,16 +91,29 @@
 
     if (localStorage.getItem('data-theme') === 'system') {
       localStorage.setItem('data-theme', 'light')
+
       document.documentElement.setAttribute('data-theme', 'light')
+      document.documentElement.setAttribute(
+        'data-code-theme',
+        'catppuccin-latte'
+      )
       svg.dataset.env = 'light'
     } else {
       if (document.documentElement.dataset.theme === 'light') {
         localStorage.setItem('data-theme', 'dark')
         document.documentElement.setAttribute('data-theme', 'dark')
+        document.documentElement.setAttribute(
+          'data-code-theme',
+          'catppuccin-frappe'
+        )
         svg.dataset.env = 'dark'
       } else if (document.documentElement.dataset.theme === 'dark') {
         localStorage.setItem('data-theme', 'system')
         document.documentElement.setAttribute('data-theme', prefersScheme)
+        document.documentElement.setAttribute(
+          'data-code-theme',
+          prefersScheme === 'dark' ? 'catppuccin-frappe' : 'catppuccin-latte'
+        )
         svg.dataset.env = 'system'
       }
     }

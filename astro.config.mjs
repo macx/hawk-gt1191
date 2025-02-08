@@ -16,6 +16,8 @@ import rehypeExternalLinks from 'rehype-external-links'
 import rehypeAutoLinkHeadings from 'rehype-autolink-headings'
 import rehypeSlug from 'rehype-slug'
 
+import expressiveCode from 'astro-expressive-code'
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://hawk-gt1191.de',
@@ -34,11 +36,14 @@ export default defineConfig({
     },
     '/hilfe': '/dokumentation',
     '/seminar': '/',
-    '/tutorials/lernpfade': '/tutorials/lernpfade/grundlagen'
+    '/tutorials/lernpfade': '/tutorials/lernpfade/grundlagen',
+    '/tutorials/art-direction-im-kreditantragsprozess': {
+      status: 301,
+      destination: '/tutorials/responsive-images'
+    }
   },
   markdown: {
     shikiConfig: {
-      theme: 'github-dark',
       wrap: true
     },
     gfm: true,
@@ -66,6 +71,11 @@ export default defineConfig({
     ]
   },
   integrations: [
+    expressiveCode({
+      themes: ['catppuccin-frappe', 'catppuccin-latte'],
+      themeCssSelector: (theme) => `[data-code-theme='${theme.name}']`,
+      styleOverrides: {}
+    }),
     mdx({
       remarkRehype: {
         handlers: {

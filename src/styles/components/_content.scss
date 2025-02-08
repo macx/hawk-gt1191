@@ -1,7 +1,7 @@
 @use '../base/mixins' as mx;
 
 .content {
-  font-size: clamp(1.125em, 5vw - 1rem, 1.25rem);
+  font-size: var(--fs-content);
   counter-reset: footnotes;
 
   > :where(h2, h3, h4)[id],
@@ -79,7 +79,7 @@
     }
   }
 
-  a[href^='http'] {
+  a[href^='http']:not(.button) {
     overflow-wrap: break-word;
     word-wrap: break-word;
 

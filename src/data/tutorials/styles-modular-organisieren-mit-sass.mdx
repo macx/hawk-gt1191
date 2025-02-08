@@ -16,29 +16,26 @@ import Figure from '@components/Figure.astro'
 
 Kurz erklärt: [Sass](https://sass-lang.com/) ist eine Erweiterung von CSS, die es uns ermöglicht, Variabeln, Schleifen, Mixins, Funktionen und vieles mehr zu verwenden. Auch wenn CSS da inzwischen in einigen Punkten aufgeholt hat, gibt es 2024, also zum Zeitpunkt der Veröffentlichung dieses Tutorials, noch gute Gründe, die für den Einsatz von Sass sprechen. HIer ist einer davon:
 
-<Figure caption='Unsere Eingabe in einer `.scss`-Datei'>
-  ```scss
-  :root {
-    --color-article: #334155;
-    --color-game: #166534;
-    --color-tool: #991b1b;
-  }
+```scss title="styles.scss"
+:root {
+  --color-article: #334155;
+  --color-game: #166534;
+  --color-tool: #991b1b;
+}
 
-  $types: 'article', 'game', 'tool';
+$types: 'article', 'game', 'tool';
 
-  @each $type in $types {
-    .label-#{$type} { background: var(--color-#{$type}); }
-  }
+@each $type in $types {
+  .label-#{$type} { background: var(--color-#{$type}); }
+}
 
-  ````
-</Figure>
+````
 
 In diesem Code werden drei Farbwerte definiert, die anschließend in einer Schleife iteriert werden. Für jeden Wert in der Liste `$types` wird ein neuer Eintrag erzeugt, der die Hintergrundfarbe aus den Custom Properties des `:root`-Elements erhält.
 
 Daraus ertellt der Präprozessor dann folgendes CSS.
 
-<Figure caption="Das Ergebnis aus der Umwandlung in CSS">
-```css
+```css title="styles.css"
 :root {
   --color-article: #334155;
   --color-game: #166534;
@@ -57,7 +54,6 @@ Daraus ertellt der Präprozessor dann folgendes CSS.
   background: var(--clr-type-tool);
 }
 ````
-</Figure>
 
 Wer also hier noch zehn weitere Farben definieren möchte, muss diese nur noch `$types` zuordnen. Das spart Zeit.
 
@@ -104,14 +100,12 @@ Die Hauptdatei `main.scss` ist die Datei, in die der Inhalt aller anderen Dateie
 
 Schauen wir uns also mal die `main.scss` an:
 
-<Figure caption="Die Datei `/src/main.scss`">
-  ```scss
-  @charset 'UTF-8';
+```scss title="/src/main.scss"
+@charset 'UTF-8';
 
-  @use 'base';
-  @use 'components';
-  ```
-</Figure>
+@use 'base';
+@use 'components';
+```
 
 Wie du siehst, werden in der Hauptdatei keine dedizierten Styles mehr definiert. Vielmehr lade ich an dieser Stelle durch die Verwendung von `@use` (Benutze) die Module `base` und `components`. Da es sich hierbei aber eigentlich um Verzeichnisse handelt, wird in diesen automatisch die Datei `_index.scss` gesucht. Im Prinzip handelt sich dann um ein Inhaltsverzeichnis, in den die Dateien aufgelistet werden, die wir verwenden möchten.
 
@@ -121,15 +115,13 @@ Im Ordner `base` lege ich alle Styles und sogenannte Tokens ab, die für das Gru
 
 In der Datei `_index.scss` definiere ich nun, welche Dateien ich in welcher Reihenfolge geladen haben möchte:
 
-<Figure caption="Das Inhaltsverzeichnis in `/src/base/_index.scss`">
-  ```scss
-  @forward 'fonts';
-  @forward 'mixins';
-  @forward 'variables';
-  @forward 'layout';
-  @forward 'typo';
-  ```
-</Figure>
+```scss title="/src/base/_index.scss"
+@forward 'fonts';
+@forward 'mixins';
+@forward 'variables';
+@forward 'layout';
+@forward 'typo';
+```
 
 Mit `@forward` werden die Inhalte der einzelnen Dateien in die Hauptdatei geladen. Das ist sozusagen das Gegenstück zu `@use`. Stelle dir am Besten vor, dass du alle Styles in dieser Auflistung an die Hauptdatei weiterleitest (englisch: <span lang="en">to forward</span>).
 
@@ -174,73 +166,68 @@ Die Karten möchtest du nun aber je nach Seite bzw. Kategorie eine andere Hinter
 
 Der Code einer Karte könnte dann so aussehen:
 
-<Figure caption="Achte darauf, dass die Karte zwei Klassen erhalten hat: `.card` und `.projects`.">
-  ```html
-  <a href="/projekte" class="card projects">
-    <div class="title">Projekte</div>
+```html
+<a href="/projekte" class="card projects">
+  <div class="title">Projekte</div>
 
-    <div class="image">
-      <img src="/images/projekte.jpg" alt="Projekte" />
-    </div>
+  <div class="image">
+    <img src="/images/projekte.jpg" alt="Projekte" />
+  </div>
 
-    <div class="text">Das sind meine Projekte</div>
-  </a>
-  ```
-</Figure>
+  <div class="text">Das sind meine Projekte</div>
+</a>
+```
+
+Achte darauf, dass die Karte zwei Klassen erhalten hat: `.card` und `.projects`.
 
 ### Sass-Styles
 
 Nun erstellen wir die Styles für die Karte in einer eigenen Datei namens `_card.scss` im Verzeichnis `src/styles/components` und binden diese in der `src/styles/components/_index.scss` ein. Da alle Karten gleich aussehen sollen, bekommen diese die Klasse `.card`. Die Styles dafür könnten so aussehen:
 
-<Figure caption="`_card.scss`">
-  ```scss
-  .card {
-    background-color: rgb(255 255 255);
-    box-shadow: 0 0 1rem rgb(0 0 0 / o.1);
+```scss title="_card.scss"
+.card {
+  background-color: rgb(255 255 255);
+  box-shadow: 0 0 1rem rgb(0 0 0 / o.1);
 
-    .title,
-    .text {
-      padding-block: 0.5rem;
-      padding-inline: 1rem;
-    }
+  .title,
+  .text {
+    padding-block: 0.5rem;
+    padding-inline: 1rem;
+  }
 
-    .title {
-      font-size: 1.5rem;
-      font-weight: 700;
-    }
+  .title {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
 
-    .image {
-      img {
-        display: block;
-        width: 100%;
-      }
+  .image {
+    img {
+      display: block;
+      width: 100%;
     }
   }
-  ```
-</Figure>
+}
+```
 
 Nun zu den Variaten. Die Karten auf der Seite **Projekte** erhalten zusätzlich die Klasse `.projects`, die Karten auf der Seite **Fotografien** die Klasse `.photos` und so weiter. Ergänze dazu am Ende der Klasse `.card` folgende Styles:
 
-<Figure caption="`_card.scss`">
-  ```scss
-  .card {
-    /* Stelle dir hier den Code aus dem vorherigen Beispiel vor. */
+```scss title="_card.scss"
+.card {
+  /* Stelle dir hier den Code aus dem vorherigen Beispiel vor. */
 
-    &.projects {
-      background-color: rgb(254 215 170);
-    }
-
-    &.photos {
-      background-color: rgb(167 243 208);
-    }
+  &.projects {
+    background-color: rgb(254 215 170);
   }
-  ```
-</Figure>
+
+  &.photos {
+    background-color: rgb(167 243 208);
+  }
+}
+```
 
 Mit diesen Styles hast du dir nun eine gute Basis geschaffen. Wenn du von nun an Änderungen an den Karten machen möchtest, öffne dazu einfach die Datei `_cards.scss`. Schaue dir nun an, welche Inhalte du noch in einer eigenen Komponente zusammenstellen könntest.
 
 Viel Spaß beim Ausprobieren!
-
 
 [^1]: Ein Präprozessor ist ein Programm, das den Quellcode eines Computerprogramms verarbeitet, bevor dieser von einem Compiler oder Interpreter verarbeitet wird. Der Präprozessor kann beispielsweise Makros ersetzen, Dateien einbinden oder bedingte Kompilierung ermöglichen. ([Wikipedia](https://de.wikipedia.org/wiki/Pr%C3%A4prozessor))
 [^2]: Mobil First ist ein Ansatz, bei dem die Seite zuerst für mobile Geräte entwickelt wird und dann erst für größere Bildschirme. Ein Hauptaugebmerk liegt dabei bei der Usability und Ladezeit. ([Wikipedia](https://de.wikipedia.org/wiki/Responsive_Webdesign))

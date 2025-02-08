@@ -131,6 +131,10 @@ import { Icon } from 'astro-icon/components'
 
         const applyThemeAttributes = (): void => {
           document.documentElement.setAttribute('data-theme', theme.scheme)
+          document.documentElement.setAttribute(
+            'data-code-theme',
+            theme.scheme === 'dark' ? 'catppuccin-frappe' : 'catppuccin-latte'
+          )
 
           inputElements.forEach((el) => {
             if (theme.name === 'system') {

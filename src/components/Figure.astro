@@ -50,20 +50,24 @@ if (imagePath !== undefined && !images[imagePath]) {
 <style lang='scss' is:global>
   @use '../styles/base/mixins';
 
-  figure {
+  figure:not([class]) {
     @include mixins.media-item();
 
     img {
       display: block;
     }
 
-    figcaption {
+    img + .expressive-code {
+      margin-block-start: var(--sp);
+    }
+
+    > figcaption {
       font-size: 0.8em;
       padding-block: 0.5em 1em;
       margin-block-end: 0;
     }
 
-    &:has(figcaption) {
+    &:has(> figcaption) {
       padding-block-end: var(--sp) 0;
     }
 

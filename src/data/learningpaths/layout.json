@@ -4,9 +4,5 @@
   "path": "/tutorials/lernpfade/layout",
   "description": "steigst du tiefer in die Gestaltung von Websites ein.",
   "order": 2,
-  "related": [
-    "absolute-und-relative-einheiten",
-    "logische-eigenschaften-in-css",
-    "layouts-in-css"
-  ]
+  "related": ["layouts-in-css", "responsive-images"]
 }

@@ -24,7 +24,7 @@ if (!images[imagePath]) {
 }
 ---
 
-<article class:list={['article-card', { draft: article.data.isDraft }]}>
+<article class:list={['article-card', { draft: article.data?.isDraft }]}>
   {article.data.isDraft && <div class='draft-banner' />}
 
   <a href={`/tutorials/${article.id}`}>
@@ -41,7 +41,7 @@ if (!images[imagePath]) {
 
     <div class='image'>
       {
-        imagePath && (
+        imagePath && article.data.cover.path && (
           <Image
             src={images[imagePath]()}
             widths={[380, 670, 710]}

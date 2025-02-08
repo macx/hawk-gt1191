@@ -152,9 +152,9 @@ code,
   display: block;
   padding-block: var(--sp-s);
   padding-inline: var(--sp);
-  border-radius: var(--radius);
   overflow: hidden !important;
   border: 1px solid var(--clr-line);
+  border-radius: var(--radius);
 
   code {
     display: block;
@@ -247,6 +247,19 @@ code,
 
   html[data-theme='dark'] & {
     background-color: rgb(0 0 0 / 0.5) !important;
+  }
+}
+
+.expressive-code {
+  --ec-codeFontSize: var(--fs-code);
+  --ec-codeLineHt: var(--lh);
+  --ec-brdCol: var(--clr-line);
+  --ec-frm-edActTabBrdCol: var(--clr-line);
+
+  margin-block: 0 var(--sp);
+
+  &:has(+ figcaption) {
+    margin-block: 0;
   }
 }
 

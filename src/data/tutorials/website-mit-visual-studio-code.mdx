@@ -71,21 +71,19 @@ Die Startseite einer Website sollte in der Regel immer `index.html` genannt werd
 
 Öffne nun die `index.html`-Datei, füge ein Ausrufungszeichen `!` ein und drücke anschießend die <kbd>↹ Tab</kbd>-Taste. Das oben erwähnte Plugin Emmet wird daraus ein HTML-Grundgerüst erstellen. Das sieht dann so aus:
 
-<Figure caption="index.html">
-  ```html
-  <!DOCTYPE html>
-  <html lang="de">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-  </head>
-  <body>
+```html title="index.html"
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
 
-  </body>
-  </html>
-  ```
-</Figure>
+</body>
+</html>
+```
 
 Füge jetzt noch im Body ein paar HTML-Elemente ein, um die Website zu füllen. Zum Beispiel eine Überschrift und einen Textabschnitt.
 
@@ -95,19 +93,17 @@ Füge jetzt noch im Body ein paar HTML-Elemente ein, um die Website zu füllen. 
 
 Als nächstes befüllen wir die `styles.css`-Datei mit CSS-Styles, um die Website zu gestalten. Füge dort der Einfachheit halber erst einmal nur ein paar Styles hinzu, um zu sehen, ob die Verknüpfung zwischen HTML und CSS funktioniert.
 
-<Figure caption="styles.css">
-  ```css
-  body {
-    background-color: red;
-    color: white;
-  }
+```css title="styles.css"
+body {
+  background-color: red;
+  color: white;
+}
 
-  h1 {
-    font-size: 2em;
-    color: yellow;
-  }
-  ```
-</Figure>
+h1 {
+  font-size: 2em;
+  color: yellow;
+}
+```
 
 Der vorangegange Code wird den Hintergrund der Website rot färben, den Text weiß und die Überschrift gelb. Das ist nicht schön, aber es reicht, um zu sehen, ob alles funktioniert. Das ist im Übrigen ein einfacher Trick, den du stets auch bei anderen Elementen anwenden kannst, um deinen Code zu testen.
 
@@ -115,11 +111,14 @@ Der vorangegange Code wird den Hintergrund der Website rot färben, den Text wei
 
 Die Website kann nun dargestellt werden, allerdings weiß diese noch nichts von der Existens der CSS-Datei. Lass uns diese nun miteinander verknüpfen. Füge dazu im Head-Bereich der `index.html`-Datei nach dem `<title>` folgenden Code ein:
 
-<Figure caption="Hiermit bindest du die CSS-Datei im HTML ein.">
-  ```html
+```html title="index.html" ins={5}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
   <link rel="stylesheet" href="styles.css">
-  ```
-</Figure>
+</head>
+```
 
 ### Ergebnis ansehen
 

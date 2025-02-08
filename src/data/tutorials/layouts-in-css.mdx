@@ -49,7 +49,7 @@ Jedes HTML-Element hat die Eigenschaft `display`, die festlegt, wie das Element 
 Ein Link innerhalb eines Absatzes wird standardmäßig inline angezeigt, da das `<a>`-Element mit `display: inline` vorbelegt ist. Wenn du eine ganze Gruppe von HTML-Elementen verlinken möchtest, solltest du den Wert auf `display: block` ändern, damit dieser wie ein Block-Element behandelt wird und in eine neue Zeile umbricht. Denn bei Inline-Elementen kann die Höhe und Breite nicht verändernt werden, da diese durch ihren Inhalt bestimmt werden.
 
 <Figure caption="Block-Elemente werden untereinander, Inline-Elemente nebeneinander angeordnet.">
-  ```html
+  ```html title="HTML"
   <p>
     Lies bitte das Tutorial <a href="/tutorials/einstieg-in-html">Einstieg in HTML</a>.
   </p>
@@ -59,7 +59,7 @@ Ein Link innerhalb eines Absatzes wird standardmäßig inline angezeigt, da das 
     <img src="/images/tutorials/html-logo.png" alt="HTML-Logo" />
   </a>
   ```
-  ```css
+  ```css title="CSS"
   /* Alle Links mit einem href-Attribut */
   :any-link { display: inline; text-decoration: underline; }
 
@@ -77,13 +77,13 @@ Flexbox ist eine eindimensionale Layouttechnik, Elemente horizontal in einer Zei
 Möchtest du beispielsweise in deinem Header das Logo links und die Navigation rechts platzieren, kannst du das mit Flexbox einfach umsetzen:
 
 <Figure caption="Mit Flebox kannst du sogar Block-Elemente leicht nebeneinander platzieren.">
-  ```html
+  ```html title="HTML"
   <header class="site-header">
     <div>Logo</div>
     <nav>Navigation</nav>
   </header>
   ```
-  ```css
+  ```css title="CSS"
   .site-header {
     display: flex;
     justify-content: space-between;
@@ -108,7 +108,7 @@ Während Flexbox für ein eindimensionales Layout ausgelegt ist, ist das Grid-La
 Ähnlich wie bei Flexbox aktivieren wir das Grid-Layout beim übergeordneten Element mit der Eigenschaft `display: grid`. Schauen wir uns folgendes Beispiel an:
 
 <Figure caption="Dank CSS Grid wird aus den HTML-Elementen ein Layout erstellt.">
-  ```html
+  ```html title="HTML"
   <div class="grid">
     <div>#1</div>
     <div>#2</div>
@@ -117,7 +117,7 @@ Während Flexbox für ein eindimensionales Layout ausgelegt ist, ist das Grid-La
     <div class="wide">#5</div>
   </div>
   ```
-  ```css
+  ```css title="CSS"
   .grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -149,7 +149,7 @@ In dem folgenden Beispiel wollen wir Spalten mit einer Mindestbreite von 200&nbs
 Verändere im folgenden Beispiel in der interaktiven Demo die Mindestbreite mit dem Schieberegler, um zu verstehen, wie sich das auf das Flex-Layout auswirkt.
 
 <Figure caption="Passe mit dem Schieberegler die Mindestbreite der Elemente an.">
-  ```html
+  ```html title="HTML"
   <div class="grid">
     <div>#1</div>
     <div>#2</div>
@@ -159,7 +159,7 @@ Verändere im folgenden Beispiel in der interaktiven Demo die Mindestbreite mit 
     <div>#6</div>
   </div>
   ```
-  ```css
+  ```css title="CSS"
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -178,14 +178,14 @@ Ein gefloatetes Element ändert das Verhalten vom Element und den umliegenden El
 Klingt komplizierter als es ist. In dem folgenden Beispiel wollen wir zwei Absätze um ein Bild herumfließen lassen. Das ist mit der Eigenschaft `float: left` oder `float: right` auf dem Bild möglich.
 
 <Figure caption="Alle folgenden Elemente nach dem Bild werden nun um das Bild herum angeordnet.">
-  ```html
+  ```html title="HTML"
   <div>
     <div class="image">Image</div>
     <p>Lorem ipsum …</p>
     <p>Lorem ipsum …</p>
   </div>
   ```
-  ```css
+  ```css title="CSS"
   .image {
     float: left;
     block-size: 100px;
@@ -221,13 +221,13 @@ Mit der Positionierung durch die Eigenschaft `position` kannst du einzelne Eleme
 : Das Element bleibt beim scrollen der Seite innerhalb seines übergeordneten Elements platziert, bis dessen unterer Rand erreicht ist. Auf dieser Website kannst du das beim rechts platzierten Inhaltsverzeichnis auf größeren Displays beobachten.
 
 <Figure caption="Das Element wird absolut oben rechts positioniert.">
-  ```html
+  ```html title="HTML"
   <div class="product">
     …
     <div class="new">Neu eingetroffen</div>
   </div>
   ```
-  ```css
+  ```css title="CSS"
   .product {
     position: relative; /* Setzt den Nullpunkt zurück */
   }
@@ -259,7 +259,7 @@ Mit `column-count` teilst du dem Browser mit, wie viele Spalten du haben möchte
 In dem folgenden Beispiel haben wir die Breite auf 20 Zeichen (`ch`) festgelegt.
 
 <Figure caption="Das Mehrspalten-Layout ist einfach umzusetzen, typografich aber nicht sonderlich schön.">
-  ```html
+  ```html title="HTML"
   <div class="columns">
     <h2>Mehrspaltiges Layout</h2>
     <p>Lorem ipsum&#x202f;…</p>
@@ -267,7 +267,7 @@ In dem folgenden Beispiel haben wir die Breite auf 20 Zeichen (`ch`) festgelegt.
     <p>Lorem ipsum&#x202f;…</p>
   </div>
   ```
-  ```css
+  ```css title="CSS"
   .columns {
     column-width: 20ch;
   }

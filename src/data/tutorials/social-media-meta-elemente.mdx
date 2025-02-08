@@ -29,16 +29,14 @@ Doch woher kommen diese Informationen? Wie kannst du sicherstellen, dass dort da
 
 Maßgeblich verantwortlich dafür sind [Meta-Daten](https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/The_head_metadata_in_HTML#metadata_the_meta_element) im `<head>`-Bereich der Website. Diese enthalten Informationen, die von Suchmaschinen und Social-Media-Plattformen ausgelesen werden. Konkret sieht das so aus:
 
-<Figure>
-  ```html
-  <meta property="og:title" content="...">
-  <meta property="og:description" content="...">
-  <meta property="og:url" content="https://...">
-  <meta property="og:type" content="article">
-  <meta property="og:image" content="https://...">
-  <meta property="og:image:alt" content="...">
-  ```
-</Figure>
+```html
+<meta property="og:title" content="...">
+<meta property="og:description" content="...">
+<meta property="og:url" content="https://...">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://...">
+<meta property="og:image:alt" content="...">
+```
 
 In der `property`-Eigenschaft wird der Name des Meta-Elements angegeben, in der `content`-Eigenschaft der Wert. Die `og:`-Präfixe stehen für das [Open Graph Protokoll](https://ogp.me/), das von Facebook entwickelt wurde und von den meisten Plattformen unterstützt wird. Im Detail sind das:
 

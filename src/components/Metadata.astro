@@ -89,8 +89,22 @@ const openGraphImage = Astro.url.pathname.startsWith('/tutorials')
         'data-theme',
         mode === 'system' ? prefersScheme : mode
       )
+      document.documentElement.setAttribute(
+        'data-code-theme',
+        mode === 'system'
+          ? prefersScheme === 'dark'
+            ? 'catppuccin-frappe'
+            : 'catppuccin-latte'
+          : mode === 'dark'
+            ? 'catppuccin-frappe'
+            : 'catppuccin-latte'
+      )
     } else {
       document.documentElement.setAttribute('data-theme', prefersScheme)
+      document.documentElement.setAttribute(
+        'data-code-theme',
+        prefersScheme === 'dark' ? 'catppuccin-frappe' : 'catppuccin-latte'
+      )
     }
   })()
 </script>

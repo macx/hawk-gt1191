@@ -99,6 +99,9 @@
   --fs-xs: 0.75rem;
   --fs-l: 1.25rem;
 
+  --fs-content: clamp(1.125rem, 5vw - 1rem, 1.25rem);
+  --fs-code: clamp(1rem, 5vw - 1rem, 1.125rem);
+
   // Line Heights
   --lh: 1.5;
   --lh-s: 1.3;
