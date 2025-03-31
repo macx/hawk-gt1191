@@ -1,5 +1,4 @@
 ---
-import AstroFont from '@gamesome/astro-font/AstroFont.astro'
 import { SITE_CONST } from '../const.ts'
 
 // Remove trailing slash from URL
@@ -40,9 +39,6 @@ const openGraphImage = Astro.url.pathname.startsWith('/tutorials')
 <title>{title} | {SITE_CONST.title}</title>
 <meta name='description' content={description} />
 {pubDate && <meta property='article:published_time' content={pubDate} />}
-
-<!-- Fonts -->
-<AstroFont />
 
 <!-- Icons -->
 <link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png' />

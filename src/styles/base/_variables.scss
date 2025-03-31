@@ -175,5 +175,15 @@
       rgba(255, 255, 255, 0.1) 2px,
       rgba(255, 255, 255, 0)
     );
+
+    .beoe-light {
+      display: none;
+    }
+  }
+
+  &[data-theme='light'] {
+    .beoe-dark {
+      display: none;
+    }
   }
 }

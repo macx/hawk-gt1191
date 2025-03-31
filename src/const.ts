@@ -12,7 +12,7 @@ export const SITE_CONST: siteConfig = {
     'Lerne im Seminar GT 1191, wie du Websites mit HTML, CSS und guter UI/UX erstellst.',
   links: {
     studip:
-      'https://studip.hawk.de/dispatch.php/course/details?sem_id=fc760068e7bca04db0eb188955db45f1&again=yes',
+      'https://studip.hawk.de/dispatch.php/course/overview?cid=a7139a7637944253e742f446f2fde6e1',
     discord: 'https://discord.gg/Kke2BsapYu',
     github: 'https://github.com/hawk-gt1191'
   }

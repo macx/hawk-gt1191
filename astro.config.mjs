@@ -1,8 +1,8 @@
 import { defineConfig } from 'astro/config'
 import mdx from '@astrojs/mdx'
-import astroFont from '@gamesome/astro-font'
 import icon from 'astro-icon'
 import sitemap from '@astrojs/sitemap'
+import expressiveCode from 'astro-expressive-code'
 
 import { remarkModifiedTime } from './remark-plugins/remark-modified-time.mjs'
 import { remarkReadingTime } from './remark-plugins/remark-reading-time.mjs'
@@ -16,7 +16,10 @@ import rehypeExternalLinks from 'rehype-external-links'
 import rehypeAutoLinkHeadings from 'rehype-autolink-headings'
 import rehypeSlug from 'rehype-slug'
 
-import expressiveCode from 'astro-expressive-code'
+import rehypeMermaid from '@beoe/rehype-mermaid'
+import { getCache } from '@beoe/cache'
+
+const cache = await getCache()
 
 // https://astro.build/config
 export default defineConfig({
@@ -57,6 +60,16 @@ export default defineConfig({
     rehypePlugins: [
       rehypeSlug,
       [
+        rehypeMermaid,
+        {
+          strategy: 'file',
+          fsPath: 'public/beoe',
+          webPath: '/beoe',
+          darkScheme: 'class',
+          cache
+        }
+      ],
+      [
         rehypeAutoLinkHeadings,
         {
           content: {
@@ -91,27 +104,6 @@ export default defineConfig({
       filter: (page) =>
         page !== 'https://hawk-gt1191.de/impressum' &&
         page !== 'https://hawk-gt1191.de/datenschutz'
-    }),
-    astroFont({
-      families: [
-        {
-          name: 'Open Sans Variable',
-          imports: ['@fontsource-variable/open-sans/wdth.css']
-        },
-        {
-          name: 'Domine Variable',
-          type: 'sans-serif',
-          applyFontFamilyToSelector: ':where(h1, h2, h3, h4)',
-          imports: ['@fontsource-variable/domine/wght.css']
-        },
-        {
-          name: 'JetBrains Mono Variable',
-          type: 'mono',
-          fallbacks: ['Courier New'],
-          applyFontFamilyToSelector: 'code',
-          imports: ['@fontsource-variable/jetbrains-mono/wght.css']
-        }
-      ]
     }),
     icon({
       include: {
