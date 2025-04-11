@@ -39,7 +39,7 @@ export async function GET({ props }: Props) {
         {
           type: 'div',
           props: {
-            tw: 'absolute top-0 left-0 w-full h-full blur-lg opacity-40 flex',
+            tw: 'absolute top-0 left-0 w-full h-full opacity-40 flex',
             style: {
               zIndex: '0',
               filter: 'blur(10px)'
