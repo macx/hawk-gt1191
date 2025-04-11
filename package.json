@@ -16,7 +16,8 @@
     "test": "cypress run",
     "test:ui": "cypress open",
     "lint": "prettier --write --plugin-search-dir=. .",
-    "release": "yarn lint && yarn build && release-it"
+    "release": "yarn lint && yarn build && release-it",
+    "postinstall": "playwright install chromium"
   },
   "publishConfig": {
     "access": "public"

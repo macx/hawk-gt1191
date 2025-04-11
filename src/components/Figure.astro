@@ -50,6 +50,14 @@ if (imagePath !== undefined && !images[imagePath]) {
 <style lang='scss' is:global>
   @use '../styles/base/mixins';
 
+  figure.beoe {
+    @include mixins.media-item();
+
+    img {
+      margin-inline: auto;
+    }
+  }
+
   figure:not([class]) {
     @include mixins.media-item();
 
