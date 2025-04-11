@@ -34,6 +34,9 @@ jobs:
         with:
           cmd: install
 
+      - name: Install Playwright Browsers
+        run: yarn playwright install
+
       - name: Build production bundle
         run: yarn run build
 
