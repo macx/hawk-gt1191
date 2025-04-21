@@ -61,6 +61,10 @@ if (imagePath !== undefined && !images[imagePath]) {
   figure:not([class]) {
     @include mixins.media-item();
 
+    .expressive-code {
+      margin-block-start: 0;
+    }
+
     img {
       display: block;
     }

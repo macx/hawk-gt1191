@@ -256,10 +256,12 @@ code,
   --ec-brdCol: var(--clr-line);
   --ec-frm-edActTabBrdCol: var(--clr-line);
 
-  margin-block: 0 var(--sp);
+  &:not([class*='snippet']) {
+    margin-block: var(--sp);
 
-  &:has(+ figcaption) {
-    margin-block: 0;
+    &:has(+ figcaption) {
+      margin-block: 0;
+    }
   }
 }
 
@@ -289,6 +291,12 @@ kbd {
   margin-inline: 0.3ch;
   white-space: nowrap;
   vertical-align: middle;
+}
+
+del,
+del code {
+  text-decoration: line-through;
+  color: var(--clr-warning);
 }
 
 /*

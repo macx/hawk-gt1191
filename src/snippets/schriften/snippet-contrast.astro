@@ -1,0 +1,42 @@
+---
+import Snippet from '@components/Snippet.astro'
+---
+
+<Snippet title='Farbkontrast'>
+  <Fragment>
+    <div class='demo-contrast light'>
+      I was in your presence for an hour or so. Or was it a day? I truly don’t
+      know. Where the sun never set, where the trees hung low.
+    </div>
+
+    <div class='demo-contrast dark'>
+      I was in your presence for an hour or so. Or was it a day? I truly don’t
+      know. Where the sun never set, where the trees hung low.
+    </div>
+  </Fragment>
+</Snippet>
+
+<style>
+  @scope (.demo-contrast) {
+    :scope {
+      --color-light: #ffffff;
+      --color-dark: #000000;
+
+      padding: var(--sp);
+
+      &:last-child {
+        margin-block-start: var(--sp);
+      }
+
+      &.light {
+        background-color: var(--color-light);
+        color: var(--color-dark);
+      }
+
+      &.dark {
+        background-color: var(--color-dark);
+        color: var(--color-light);
+      }
+    }
+  }
+</style>

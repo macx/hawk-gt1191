@@ -1,0 +1,204 @@
+---
+import Snippet from '@components/Snippet.astro'
+---
+
+<Snippet title='Interaktive Demo'>
+  <Fragment slot='settings'>
+    <div class='sn-settings'>
+      <div class='sn-value'>
+        <label for='el-fs-input' class='code'>font-size:</label>
+        <input
+          type='range'
+          name='size'
+          id='el-fs-input'
+          min='0.8'
+          max='2.0'
+          step='0.2'
+          value='1'
+          list='el-fs-markers'
+        />
+        <span>
+          <output id='el-fs-output' class='code'>1rem</output>
+        </span>
+
+        <datalist id='el-fs-markers'>
+          <option value='0.8'></option>
+          <option value='1.0'></option>
+          <option value='1.2'></option>
+          <option value='1.4'></option>
+          <option value='1.6'></option>
+          <option value='1.8'></option>
+          <option value='2.0'></option>
+        </datalist>
+      </div>
+
+      <div class='sn-value'>
+        <label for='el-size-input' class='code'>line-height:</label>
+        <input
+          type='range'
+          name='size'
+          id='el-lh-input'
+          min='1.0'
+          max='2.0'
+          step='0.1'
+          value='1.4'
+          list='el-lh-markers'
+        />
+        <span>
+          <output id='el-lh-output' class='code'>1.4</output>
+        </span>
+
+        <datalist id='el-lh-markers'>
+          <option value='1.0'></option>
+          <option value='1.1'></option>
+          <option value='1.2'></option>
+          <option value='1.3'></option>
+          <option value='1.4'></option>
+          <option value='1.5'></option>
+          <option value='1.6'></option>
+          <option value='1.7'></option>
+          <option value='1.8'></option>
+          <option value='1.9'></option>
+          <option value='2.0'></option>
+        </datalist>
+      </div>
+
+      <div class='sn-value'>
+        <label for='el-size-input' class='code'>letter-spacing:</label>
+        <input
+          type='range'
+          name='size'
+          id='el-ls-input'
+          min='-0.025'
+          max='0.200'
+          step='0.025'
+          value='0.050'
+          list='el-ls-markers'
+        />
+        <span>
+          <output id='el-ls-output' class='code'>0.05em</output>
+        </span>
+
+        <datalist id='el-ls-markers'>
+          <option value='-0.025'></option>
+          <option value='0.000'></option>
+          <option value='0.025'></option>
+          <option value='0.050'></option>
+          <option value='0.075'></option>
+          <option value='0.100'></option>
+          <option value='0.125'></option>
+          <option value='0.150'></option>
+          <option value='0.175'></option>
+          <option value='0.200'></option>
+        </datalist>
+      </div>
+
+      <div class='sn-value'>
+        <label for='el-mis-input' class='code'>max-inline-size:</label>
+        <input
+          type='range'
+          name='size'
+          id='el-mis-input'
+          min='30'
+          max='60'
+          step='5'
+          value='45'
+          list='el-mis-markers'
+        />
+        <span>
+          <output id='el-mis-output' class='code'>45ch</output>
+        </span>
+
+        <datalist id='el-mis-markers'>
+          <option value='30'></option>
+          <option value='35'></option>
+          <option value='40'></option>
+          <option value='45'></option>
+          <option value='50'></option>
+          <option value='55'></option>
+          <option value='60'></option>
+        </datalist>
+      </div>
+    </div>
+  </Fragment>
+
+  <Fragment>
+    <div
+      class='demo-container'
+      style='--fs: 1.2rem; --lh: 1.4; --ls: 0.025; --mis: 45ch'
+    >
+      I was in your presence for an hour or so. Or was it a day? I truly don’t
+      know. Where the sun never set, where the trees hung low. By that soft and
+      shining sea. Did you respect me for what I did. Or for what I didn’t do,
+      or for keeping it hid? Did I lose my mind when I tried to get rid. Of
+      everything you see? In the summertime, ah in the summertime. In the
+      summertime, when you were with me. I got the heart and you got the blood.
+      We cut through iron and.
+    </div>
+  </Fragment>
+</Snippet>
+
+<style>
+  @scope (.demo-container) {
+    :scope {
+      line-height: var(--lh);
+      font-size: var(--fs);
+      letter-spacing: var(--ls);
+      max-inline-size: var(--mis);
+      transition: all 120ms linear;
+    }
+  }
+</style>
+
+<script is:inline>
+  ;(function () {
+    const snDemoContainer = document.querySelector('.demo-container')
+    const snFontSizeInput = document.querySelector('#el-fs-input')
+    const snFontSizeOutput = document.querySelector('#el-fs-output')
+    const snLineHeightInput = document.querySelector('#el-lh-input')
+    const snLineHeightOutput = document.querySelector('#el-lh-output')
+    const snLetterSpacingInput = document.querySelector('#el-ls-input')
+    const snLetterSpacingOutput = document.querySelector('#el-ls-output')
+    const snMaxInlineSizeInput = document.querySelector('#el-mis-input')
+    const snMaxInlineSizeOutput = document.querySelector('#el-mis-output')
+
+    // Set initial values
+    const snFontSizeValue = parseFloat(snFontSizeInput.value).toFixed(1)
+    snFontSizeOutput.textContent = `${snFontSizeValue}rem`
+    const snLineHeightValue = parseFloat(snLineHeightInput.value).toFixed(1)
+    snLineHeightOutput.textContent = snLineHeightValue
+    const snLetterSpacingValue = parseFloat(snLetterSpacingInput.value).toFixed(
+      3
+    )
+    snLetterSpacingOutput.textContent = `${snLetterSpacingValue}em`
+    const snMaxInlineSizeValue = parseFloat(snMaxInlineSizeInput.value).toFixed(
+      0
+    )
+    snMaxInlineSizeOutput.textContent = `${snMaxInlineSizeValue}ch`
+
+    // Add Event Listeners
+    snFontSizeInput.addEventListener('input', (event) => {
+      const value = parseFloat(event.target.value).toFixed(1)
+      snFontSizeOutput.textContent = `${value}rem`
+      snDemoContainer.style.setProperty('--fs', `${value}rem`)
+    })
+
+    snLineHeightInput.addEventListener('input', (event) => {
+      const value = parseFloat(event.target.value).toFixed(1)
+      snLineHeightOutput.textContent = value
+      snDemoContainer.style.setProperty('--lh', value)
+    })
+
+    snLetterSpacingInput.addEventListener('input', (event) => {
+      const value = parseFloat(event.target.value).toFixed(3)
+      snLetterSpacingOutput.textContent = `${value}em`
+      snDemoContainer.style.setProperty('--ls', `${value}em`)
+    })
+
+    snMaxInlineSizeInput.addEventListener('input', (event) => {
+      const value = parseFloat(event.target.value).toFixed(0)
+      snMaxInlineSizeOutput.textContent = `${value}ch`
+      snDemoContainer.style.setProperty('--mis', `${value}ch`)
+    })
+  })()
+</script>

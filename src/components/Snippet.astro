@@ -6,7 +6,7 @@ interface Props {
 const { title = 'Ergebnis' } = Astro.props
 ---
 
-<section class='snippet'>
+<section class='snippet expressive-code'>
   <div class='sn-title'># {title}</div>
 
   <slot name='css' />
@@ -18,12 +18,14 @@ const { title = 'Ergebnis' } = Astro.props
 <style>
   @scope (.snippet) {
     :scope {
-      --sn-clr-bg: #24292e;
-      --sn-clr-text: #e1e4e8;
+      --sn-clr-bg: var(--ec-codeBg, #24292e);
+      --sn-clr-text: var(--ec-codeFg, #e1e4e8);
+      --sn-clr-border: var(--ec-brdCol, rgb(255 255 255 / 0.3));
 
       display: block;
       background-color: var(--sn-clr-bg);
       color: var(--sn-clr-text);
+      border: 1px solid var(--sn-clr-border);
       border-radius: var(--radius);
       padding-block: var(--sp-s);
       padding-inline: var(--sp);
@@ -46,7 +48,7 @@ const { title = 'Ergebnis' } = Astro.props
       .sn-element {
         background-color: var(--clr-primary);
         color: var(--clr-inverse);
-        border: 1px solid rgb(255 255 255 / 0.3);
+        border: 1px solid var(--sn-clr-border);
         border-radius: var(--radius);
         padding-block: var(--sp-xs);
         padding-inline: var(--sp);
@@ -64,19 +66,25 @@ const { title = 'Ergebnis' } = Astro.props
 
       .sn-settings {
         display: flex;
-        justify-content: center;
+        flex-direction: column;
         align-items: center;
+        gap: var(--sp-xs);
         margin-block-end: var(--sp);
 
-        border: 1px solid rgb(255 255 255 / 0.3);
+        border: 1px solid var(--sn-clr-border);
+        background-color: var(--clr-bg-card);
         border-radius: var(--radius);
-        padding-block: var(--sp-xs);
+        padding-block: var(--sp-s);
         padding-inline: var(--sp);
 
         .sn-value {
-          display: flex;
-          align-items: center;
-          gap: 1ch;
+          display: grid;
+          grid-template-columns: 1fr 10em 1fr;
+          gap: var(--sp);
+
+          label {
+            text-align: end;
+          }
         }
 
         [type='range'] {
@@ -84,8 +92,9 @@ const { title = 'Ergebnis' } = Astro.props
         }
       }
 
-      html[data-theme='dark'] & {
-        background-color: rgba(0, 0, 0, 0.5);
+      .sn-mark {
+        background-color: var(--clr-marker);
+        /* outline: 2px solid var(--clr-warning); */
       }
     }
   }

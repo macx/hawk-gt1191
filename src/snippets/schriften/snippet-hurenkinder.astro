@@ -1,0 +1,70 @@
+---
+import Snippet from '@components/Snippet.astro'
+---
+
+<Snippet title='Demo'>
+  <Fragment>
+    <div class='demo-columns'>
+      <div>
+        <p>
+          I’ll remember you. When I’ve forgotten all the rest. You to me were
+          true. You to me were the best. When there is no more. You cut to the
+          core. Quicker than anyone I knew. When I’m all alone. In the great
+          unknown. I’ll remember
+        </p>
+      </div>
+
+      <div>
+        <p><span class='sn-mark'>you.</span></p>
+
+        <p>
+          My old man, he’s like some feudal lord. Got more lives than a cat.
+          Never seen him quarrel with my mother even once.
+        </p>
+      </div>
+    </div>
+
+    <div class='demo-columns'>
+      <div>
+        <p>
+          Hey, hey, babe, I got blood in my eyes for you. I got blood in my eyes
+          for you, babe, I don't care what in the world you do.
+        </p>
+
+        <p><span class='sn-mark'>Our conversation was</span></p>
+      </div>
+
+      <div>
+        <p>
+          short and sweet. It nearly swept me off-a my feet. And I’m back in the
+          rain, oh, oh. And you are on dry land. You made it there somehow.
+          You’re a big girl now.
+        </p>
+      </div>
+    </div>
+  </Fragment>
+</Snippet>
+
+<style>
+  @scope (.demo-columns) {
+    :scope {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--sp);
+
+      p {
+        margin-block: 0 1em;
+
+        &:last-child {
+          margin-block-end: 0;
+        }
+      }
+
+      &:last-child {
+        border-block-start: 1px solid var(--clr-line);
+        padding-block-start: var(--sp-s);
+        margin-block-start: var(--sp-s);
+      }
+    }
+  }
+</style>
