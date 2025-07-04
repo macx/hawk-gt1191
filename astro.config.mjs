@@ -25,18 +25,10 @@ const cache = await getCache()
 export default defineConfig({
   site: 'https://hawk-gt1191.de',
   trailingSlash: 'never',
-  build: {
-    format: 'directory'
-  },
+  build: { format: 'directory' },
   redirects: {
-    '/komponenten': {
-      status: 301,
-      destination: '/assets'
-    },
-    '/links': {
-      status: 301,
-      destination: '/dokumentation'
-    },
+    '/komponenten': { status: 301, destination: '/assets' },
+    '/links': { status: 301, destination: '/dokumentation' },
     '/hilfe': '/dokumentation',
     '/seminar': '/',
     '/tutorials/lernpfade': '/tutorials/lernpfade/grundlagen',
@@ -46,9 +38,7 @@ export default defineConfig({
     }
   },
   markdown: {
-    shikiConfig: {
-      wrap: true
-    },
+    shikiConfig: { wrap: true },
     gfm: true,
     smartypants: true,
     remarkPlugins: [
@@ -91,9 +81,7 @@ export default defineConfig({
     }),
     mdx({
       remarkRehype: {
-        handlers: {
-          ...defListHastHandlers
-        },
+        handlers: { ...defListHastHandlers },
         footnoteLabel: 'Fußnoten',
         footnoteBackLabel: 'Zurück zum Inhalt'
       },
@@ -128,9 +116,7 @@ export default defineConfig({
               overrides: {
                 removeViewBox: false,
 
-                inlineStyles: {
-                  onlyMatchedOnce: false
-                }
+                inlineStyles: { onlyMatchedOnce: false }
               }
             }
           }
@@ -138,17 +124,7 @@ export default defineConfig({
       }
     })
   ],
-  vite: {
-    css: {
-      preprocessorOptions: {
-        scss: {
-          api: 'modern-compiler'
-        }
-      }
-    }
-  },
-  experimental: {
-    responsiveImages: true,
-    svg: true
-  }
+  vite: { css: { preprocessorOptions: { scss: { api: 'modern-compiler' } } } },
+  image: { responsiveStyles: true },
+  experimental: {}
 })
