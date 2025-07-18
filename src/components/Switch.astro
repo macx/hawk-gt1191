@@ -37,17 +37,18 @@ const { entries } = Astro.props
 <style>
   .switch {
     --sw-radius: 0.5rem;
-    --sw-padding-block: 0.25rem;
+    --sw-padding-block-start: 0.25rem;
+    --sw-padding-block-end: 0.5rem;
     --sw-padding-inline: 1rem;
 
-    display: inline-flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     padding: 0;
-    margin-block: 0 var(--sp-m);
+    margin-block: 0 var(--sp);
 
     background-color: var(--clr-bg-card);
     border: 1px solid var(--clr-line);
-    border-radius: calc(var(--sw-radius) + var(--sw-padding-block));
+    border-radius: calc(var(--sw-radius) + var(--sw-padding-block-start));
 
     li {
       list-style: none;
@@ -56,10 +57,11 @@ const { entries } = Astro.props
 
     a {
       display: block;
-      padding-block: var(--sw-padding-block);
+      padding-block: var(--sw-padding-block-start) var(--sw-padding-block-end);
       padding-inline: var(--sw-padding-inline);
       border-radius: var(--sw-radius);
       text-decoration: none;
+      text-align: center;
       color: var(--clr-text);
       transition: color var(--transition);
 

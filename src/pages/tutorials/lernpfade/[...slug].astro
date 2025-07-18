@@ -27,17 +27,15 @@ const collection = (related ?? []).map((id: string) => {
 <BaseLayout title={title} description={description} layout={layout}>
   <div class='learnpath-header'>
     <div class='title-header'>
-      <h1 class='small-margin'>
+      <h1>
         <span>Tutorials:</span>
         Lernpfade
       </h1>
 
-      <div class='t-small'>
-        Lernpfade sind kuratierte Tutorials in einer aufeinander
-        aufbauenden&nbsp;Reihenfolge. <a href='/tutorials'
-          ><span class='nowrap'>Liste aller Tutorials</span></a
-        >
-      </div>
+      <p class='t-small'>
+        Lernpfade sind kuratierte Tutorials in logischer Reihenfolge zum
+        schrittweisen Erlernen eines&nbsp;Themas.
+      </p>
     </div>
 
     <div>
@@ -48,13 +46,15 @@ const collection = (related ?? []).map((id: string) => {
         }))}
       />
 
-      Im Lernpfad <strong>{title}</strong>
-      {description}
+      <p>
+        Im Lernpfad <strong>{title}</strong>
+        {description}
+      </p>
     </div>
   </div>
 
   {
-    collection && collection.length > 1 && (
+    collection && collection.length > 0 && (
       <ul class='timeline'>
         {collection.map((tutorial: any) => (
           <li>
@@ -64,6 +64,10 @@ const collection = (related ?? []).map((id: string) => {
       </ul>
     )
   }
+
+  <p>
+    Weiterführende Tutorials findest du&nbsp;<a href='/tutorials'>hier</a>.
+  </p>
 </BaseLayout>
 
 <style lang='scss'>
@@ -157,18 +161,31 @@ const collection = (related ?? []).map((id: string) => {
   }
 
   .learnpath-header {
-    display: flex;
-    flex-direction: column;
-    gap: var(--sp-m);
     margin-block-end: var(--sp-l);
 
-    @include m.respond('l') {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: flex-end;
+    .title-header {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-s);
+      margin-block-end: var(--sp-m);
 
+      h1 {
+        margin-block: 0;
+      }
+    }
+
+    @include m.respond('m') {
       .title-header {
-        flex: 1 0 40%;
+        max-inline-size: unset;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: var(--sp-m);
+
+        p {
+          flex: 0 1 60%;
+          text-align: end;
+        }
       }
     }
   }

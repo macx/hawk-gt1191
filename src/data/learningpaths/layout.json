@@ -2,12 +2,11 @@
   "title": "Layout",
   "slug": "layout",
   "path": "/tutorials/lernpfade/layout",
-  "description": "steigst du tiefer in die Gestaltung von Websites ein.",
+  "description": "lernst du, wie du HTML-Elemente mit CSS und gestalten zu zueinander in Relation setzen kannst.",
   "order": 2,
   "related": [
     "layouts-in-css",
-    "responsive-images",
-    "grundlagen-der-mikrotypografie",
-    "schriften-abstaende-ligaturen-und-layout"
+    "absolute-und-relative-einheiten",
+    "logische-eigenschaften-in-css"
   ]
 }
