@@ -55,7 +55,7 @@ const collection = (related ?? []).map((id: string) => {
 
   {
     collection && collection.length > 0 && (
-      <ul class='timeline'>
+      <ul class='timeline' data-articles={collection.length}>
         {collection.map((tutorial: any) => (
           <li>
             <ArticleCard article={tutorial} />
@@ -91,6 +91,12 @@ const collection = (related ?? []).map((id: string) => {
 
     --tl-spacing-horizontal: var(--sp);
     --tl-spacing-vertical: 24px;
+
+    &[data-articles='1'] {
+      li::after {
+        display: none;
+      }
+    }
 
     @include m.respond('l') {
       --tl-dot-size: 3rem;
@@ -183,7 +189,8 @@ const collection = (related ?? []).map((id: string) => {
         gap: var(--sp-m);
 
         p {
-          flex: 0 1 60%;
+          flex: 1 1 auto;
+          max-inline-size: 50ch;
           text-align: end;
         }
       }
