@@ -13,39 +13,39 @@ interface Props {
 
 const { imagePath, imageFormat, caption, alt, lazy = true } = Astro.props
 
-const images = import.meta.glob<{ default: ImageMetadata }>(
-  '/src/images/**/*.{jpeg,jpg,png}'
-)
-
-if (imagePath !== undefined && !images[imagePath]) {
-  throw new Error(
-    `Das Bild "${imagePath}" existiert im angegeben Verzeichnis nicht.`
+let images = undefined
+if (imagePath !== undefined) {
+  images = import.meta.glob<{ default: ImageMetadata }>(
+    '/src/images/**/*.{jpeg,jpg,png}'
   )
+  if (!images[imagePath]) {
+    throw new Error(
+      `Das Bild "${imagePath}" existiert im angegeben Verzeichnis nicht.`
+    )
+  }
 }
 ---
 
 <figure>
   {
-    imagePath !== undefined ? (
-      images[imagePath] ? (
-        <Image
-          src={
-            ((await images[imagePath]()) as { default: ImageMetadata }).default
-          }
-          widths={[380, 670, 710]}
-          sizes={`(max-width: 480px) 380px, (max-width: 800) 670px, 710px`}
-          format={imageFormat ? 'png' : undefined}
-          alt={alt}
-          loading={lazy ? 'lazy' : 'eager'}
-        />
-      ) : (
-        <img
-          src={imagePath}
-          alt={alt}
-          loading={lazy ? 'lazy' : 'eager'}
-          style='max-width: 100%; height: auto; display: block; margin-inline: auto;'
-        />
-      )
+    imagePath !== undefined && images && images[imagePath] ? (
+      <Image
+        src={
+          ((await images[imagePath]()) as { default: ImageMetadata }).default
+        }
+        widths={[380, 670, 710]}
+        sizes={`(max-width: 480px) 380px, (max-width: 800) 670px, 710px`}
+        format={imageFormat ? 'png' : undefined}
+        alt={alt}
+        loading={lazy ? 'lazy' : 'eager'}
+      />
+    ) : imagePath !== undefined ? (
+      <img
+        src={imagePath}
+        alt={alt}
+        loading={lazy ? 'lazy' : 'eager'}
+        style='max-width: 100%; height: auto; display: block; margin-inline: auto;'
+      />
     ) : null
   }
 
