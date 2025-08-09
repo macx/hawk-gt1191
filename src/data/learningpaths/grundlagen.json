@@ -1,13 +1,13 @@
 {
   "title": "Grundlagen",
   "slug": "grundlagen",
-  "path": "/tutorials/lernpfade",
-  "description": "erfährst du, wie du mit HTML und CSS Websites erstellen kannst.",
-  "order": 1,
+  "path": "/tutorials/lernpfade/grundlagen",
+  "description": "lernst du, was moderne Websites heute auszeichnet. Angefangen von Layout-Methoden, der semantischen Auszeichnung, bis hin zur besseren Auszeichnung von Elementen mit logischen CSS-Eigenschaften.",
+  "order": 2,
   "related": [
-    "wie-funktioniert-eigentlich-eine-website",
-    "einstieg-in-html",
-    "einstieg-in-css",
-    "website-mit-visual-studio-code"
+    "layouts-in-css",
+    "einfuehrung-in-semantisches-html",
+    "absolute-und-relative-einheiten",
+    "logische-eigenschaften-in-css"
   ]
 }

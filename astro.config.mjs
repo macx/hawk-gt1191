@@ -31,7 +31,7 @@ export default defineConfig({
     '/links': { status: 301, destination: '/dokumentation' },
     '/hilfe': '/dokumentation',
     '/seminar': '/',
-    '/tutorials/lernpfade': '/tutorials/lernpfade/grundlagen',
+    '/tutorials/lernpfade': '/tutorials/lernpfade/einfuehrung',
     '/tutorials/art-direction-im-kreditantragsprozess': {
       status: 301,
       destination: '/tutorials/responsive-images'

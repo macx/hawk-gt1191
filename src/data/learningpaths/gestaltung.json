@@ -2,7 +2,7 @@
   "title": "Gestaltung",
   "slug": "gestaltung",
   "path": "/tutorials/lernpfade/gestaltung",
-  "description": "lernst du, wie du HTML-Elemente mit CSS gestalten kannst. Du erfährst, wie du Farben, Schriftarten und Layouts anpassen kannst, um ansprechende Webseiten zu erstellen.",
+  "description": "geht es um die Ausgestaltung deiner Website. Du lernst, wie du Webfonts und Bilder einbindest und Text richtig auszeichnest.",
   "order": 3,
   "related": [
     "webfonts-schriften-einbinden",

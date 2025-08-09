@@ -1,0 +1,13 @@
+{
+  "title": "Einführung",
+  "slug": "einfuehrung",
+  "path": "/tutorials/lernpfade",
+  "description": "erfährst du, was HTML und CSS ist, wie man es anwendet und wie man mit ihnen Websites erstellen kann.",
+  "order": 1,
+  "related": [
+    "wie-funktioniert-eigentlich-eine-website",
+    "einstieg-in-html",
+    "einstieg-in-css",
+    "website-mit-visual-studio-code"
+  ]
+}

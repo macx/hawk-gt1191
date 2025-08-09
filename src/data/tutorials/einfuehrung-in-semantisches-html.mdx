@@ -1,0 +1,165 @@
+---
+title: 'Mehr als nur Container: Eine Einführung in semantisches HTML'
+description: 'Semantische HTML-Elemente geben dem Inhalt eine Bedeutung. Dies trägt zur Barrierefreiheit bei und erleichtert die Verständlichkeit und Wartbarkeit des Code.'
+isDraft: false
+pubDate: 2025-08-09T18:00:00+00:00
+author: david-maciejewski
+cover:
+  path: '/src/images/tutorials/mobile-device-concept.png'
+  alt: 'Ein Smartphone ist umrahmt von verschiedenen grafischen Elementen, die Teile einer Website darstellen.'
+  caption: 'Dem Auge können wir eine Struktur schnell vorgaukeln. Im HTML müssen wir das entsprechend&nbsp;auszeichnen.'
+tags: ['html', 'semantik', 'barrierefreiheit']
+---
+
+import Figure from '@components/Figure.astro'
+
+Ein oft unterschätztes, aber extrem wichtiges Thema in der Webentwicklung ist **semantisches HTML**. In diesem Tutorial erfährst du, warum es so wichtig ist, semantische Elemente zu verwenden und wie sie dir helfen, besseren, wartbaren und zugänglichen Code zu schreiben.
+
+## Was „Semantik“ bedeutet
+
+Wikipedia beschreibt Semantik als die „Lehre von der Bedeutung“[^1]. Im Kontext von HTML bezieht sich Semantik darauf, wie wir HTML-Elemente verwenden, um den Inhalt einer Webseite zu strukturieren und zu kennzeichnen.
+
+Stell dir vor, du liest ein Buch. Du erkennst sofort das Cover, das Inhaltsverzeichnis, die Kapitelüberschriften und die Fußnoten. Jedes dieser Elemente hat eine klare **Bedeutung** (eine Semantik), die dir hilft, die Struktur zu verstehen und zu navigieren.
+
+Auch im Web können wir solche Strukturen schaffen. Semantisches HTML bedeutet, dass wir HTML-Tags und -Elemente verwenden, die genau beschreiben, welche Art von Inhalt sie umschließen.
+
+Früher wurden Websites hauptsächlich mit `<div>`-Tags gebaut. Man spricht hier auch abfällig von „Divitis“ oder „div soup“ (div-Suppe). Das ist leider auch immer mehr der Fall, wenn grafische Tools wie Figma oder die KI-gestützte Webentwicklung zum Einsatz kommen.
+
+Schauen wir uns einmal ein Beispiel ohne Semantik an:
+
+<Figure caption="Die einzigen semantischen Elemente hier sind die Überschriften.">
+```html
+<div class="header">
+  <h1>Meine coole Webseite</h1>
+  <div class="navigation">
+    <a href="#">Home</a>
+    <a href="#">Über uns</a>
+    <a href="#">Kontakt</a>
+  </div>
+</div>
+
+<div class="main-content">
+  <div class="article">
+    <h2>Toller Artikel</h2>
+    <p>Das ist der Inhalt meines Artikels...</p>
+  </div>
+</div>
+
+<div class="footer">
+  <p>&copy; 2025 Meine Webseite</p>
+</div>
+```
+</Figure>
+
+Das funktioniert zwar optisch, aber die `<div>`-Elemente sagen dem Browser, einem Screenreader oder einer Suchmaschine absolut nichts über den Inhalt. Es sind bedeutungslose Boxen. Wir als EntwicklerInnen geben ihnen nur durch Klassen- oder ID-Namen einen Hinweis, das hat mit Semantik aber wenig zu tun. Das können wir besser!
+
+## Die wichtigsten semantischen Layout-Elemente
+
+Es gibt in HTML eine ganze Reihe von Elementen, die genau dieses Problem lösen. Sie geben unserer Seitenstruktur eine klare Bedeutung.
+
+`<header>`
+: Definiert den Kopfbereich einer Seite oder eines Abschnitts. Enthält oft das Logo, den Seitentitel und die Hauptnavigation.
+
+`<nav>`
+: Steht für „Navigation” und umschließt die Hauptnavigationslinks der Seite.
+
+`<main>`
+: Definiert den Hauptinhalt der Seite. Pro Seite sollte es nur ein `<main>`-Element geben und es enthält keine Elemente, die nichts mit dem Hauptinhalt zu tun haben.
+
+`<section>`
+: Gruppiert thematisch zusammengehörige Inhalte, die typischerweise eine eigene Überschrift haben. Stellt es euch wie ein Kapitel in einem Buch vor.
+
+`<article>`
+: Definiert einen in sich geschlossenen, unabhängigen Inhalt, der auch für sich allein stehen könnte (z. B. ein Blogbeitrag, ein Forenpost, ein Magazin-Artikel).
+
+`<aside>`
+: Definiert Inhalte, die nur lose mit dem Hauptinhalt in Verbindung stehen, z. B. eine Sidebar mit weiterführenden Links oder Werbung.
+
+`<footer>`
+: Definiert den Fußbereich einer Seite oder eines Abschnitts. Enthält oft Copyright-Informationen, Kontaktlinks oder Impressumsangaben.
+
+## Praktische Anwendung
+
+### Seitenstruktur
+
+Lass uns unser Beispiel von oben überarbeiten. Wir ersetzen die nichtssagenden `<div>`-Tags durch ihre semantischen Gegenstücke. Alle grünen Elemente sind neu hinzugekommen.
+
+<Figure caption="So geht semantisches HTML: Mit klaren, bedeutungsvollen Elementen.">
+```html ins=<header> ins=</header> ins=<li> ins=</li> ins=<main> ins=</main> ins=<article> ins=</article> ins=<footer> ins=</footer> ins=<nav> ins=</nav> ins=<ul> ins=</ul>
+<header>
+  <h1>Meine coole Webseite</h1>
+  <nav>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Über uns</a></li>
+      <li><a href="#">Kontakt</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <article>
+    <h2>Toller Artikel</h2>
+    <p>Das ist der Inhalt meines Artikels...</p>
+  </article>
+</main>
+
+<footer>
+  <p>&copy; 2025 Meine Webseite</p>
+</footer>
+```
+</Figure>
+
+Siehst du den Unterschied? Der Code ist sofort lesbarer und selbsterklärend. Jedes Element beschreibt jetzt seinen Zweck. Dabei könnten wir sogar auf Klassen und IDs verzichten, wenn wir sie nicht für CSS oder JavaScript benötigen.
+
+Ist dir auch die `<ul>` (Unordered List) in der Navigation aufgefallen? Bei einer Navigation handelt es sich um eine zusammenhängende Liste von Links, also verwenden wir eine ungeordnete Liste. Das ist nicht nur semantisch korrekt, sondern auch für Screenreader und Suchmaschinen hilfreich.
+
+Jedes `<li>` (List Item) repräsentiert einen Menüpunkt. Das Styling (z. B. ob die Liste horizontal oder vertikal angezeigt wird) machen wir später ausschließlich mit CSS.
+
+Das ist der Schlüssel zu sauberem, semantischem HTML.
+
+### Semantik im Text
+
+Semantik hört nicht bei der Seitenstruktur auf. Auch bei der Textauszeichnung gibt es wichtige Unterschiede. Die beiden Tags `<b>` und `<strong>` sind ein gutes Beispiel dafür. Beide sehen gleich aus, indem sie den Text fett machen, aber ihre Bedeutung ist verschieden.
+
+`<b>`
+: Das „Bold“-Tag ist rein präsentationsbezogen. Es sagt dem Browser nur: „Stell diesen Text fett dar.“ Es hat keine inhaltliche Bedeutung.
+
+`<strong>`
+: Das „Strong Importance“-Tag ist semantisch. Es sagt dem Browser und Screenreadern: „Dieser Text hat eine starke Wichtigkeit.“
+
+Ein Screenreader würde einen mit `<strong>` ausgezeichneten Text mit einer anderen Betonung vorlesen, während ein `<b>`-Tag einfach ignoriert wird.
+
+<Figure caption="Der Unterschied zwischen b und strong in der Praxis.">
+```html
+<p>Die Veranstaltung findet am <b>Samstag</b> statt.</p>
+<p><strong>Achtung:</strong> Betreten der Baustelle verboten!</p>
+```
+</Figure>
+
+Ähnliches gilt für `<i>` (Italic, rein visuell) vs. `<em>` (Emphasis, semantische Betonung).
+
+### Semantische Styles
+
+In CSS gibt es keine strukturellen Unterschiede zwischen Klassen. Allerdings ist es eine gute Praxis, semantische Klassennamen zu verwenden, die den Zweck des Elements näher beschreiben.
+
+Anstatt `.top-section-wrapper` zu verwenden, könntest du `.header` oder `.navigation` verwenden. Einen dargestellten Fehler, zum Beispiel wenn der User das Formular falsch ausfüllt, könntest du die Klasse `.error-message` statt `.red` geben. Und wenn du eine primäre Farbe für deine Website verwendest, könntest du sie `.primary`, statt `.blue` nennen. So bleibt der Code verständlich und änderbar, ohne dass du die Klassennamen anpassen musst.
+
+Das alles macht deinen CSS-Code nicht nur lesbarer, sondern auch verständlicher für andere EntwicklerInnen.
+
+## Die Vorteile auf einen Blick
+
+Zusammenfassend lässt sich sagen, dass die Verwendung von semantischem HTML drei riesige Vorteile hat:
+
+Barrierefreiheit (Accessibility)
+: Screenreader und andere Hilfstechnologien können die Seitenstruktur verstehen und Nutzern eine bessere Orientierung bieten. Ein Nutzer kann beispielsweise direkt zum `<main>`-Inhalt springen und muss sich nicht durch den Header kämpfen.
+
+SEO (Suchmaschinenoptimierung)
+: Suchmaschinen wie Google können den Inhalt deiner Seite besser interpretieren. Eine Überschrift in einem `<article>`-Tag wird als wichtiger eingestuft als ein beliebiges `<div>`. Das kann dein Ranking verbessern.
+
+Wartbarkeit (Maintainability)
+: Dein Code wird für dich und andere EntwicklerInnen sofort verständlich. `<header>` ist selbsterklärend. `<div class="top-section-wrapper">` ist es nicht. Das ist die Essenz von Clean Code.
+
+Arbeite am Besten von Anfang an mit semantischen HTML-Elementen und überlege dir, welches Element am besten passt. Werfe auch gern einen Blick in die [HTML-Element-Dokumentation](https://developer.mozilla.org/de/docs/Web/HTML/Reference/Elements) von Mozilla, um mehr über die verschiedenen Tags zu erfahren.
+
+[^1]: Semantik, auch Bedeutungslehre genannt, ist die wissenschaftliche Beschäftigung mit Bedeutung und mit den verschiedenen Beziehungen zwischen einem Zeichen und dem Bezeichneten. Quelle: [Wikipedia](https://de.wikipedia.org/wiki/Semantik)
