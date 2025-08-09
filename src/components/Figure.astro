@@ -26,15 +26,26 @@ if (imagePath !== undefined && !images[imagePath]) {
 
 <figure>
   {
-    imagePath !== undefined && images[imagePath] ? (
-      <Image
-        src={images[imagePath]()}
-        widths={[380, 670, 710]}
-        sizes={`(max-width: 480px) 380px, (max-width: 800) 670px, 710px`}
-        format={imageFormat ? 'png' : undefined}
-        alt={alt}
-        loading={lazy ? 'lazy' : 'eager'}
-      />
+    imagePath !== undefined ? (
+      images[imagePath] ? (
+        <Image
+          src={
+            ((await images[imagePath]()) as { default: ImageMetadata }).default
+          }
+          widths={[380, 670, 710]}
+          sizes={`(max-width: 480px) 380px, (max-width: 800) 670px, 710px`}
+          format={imageFormat ? 'png' : undefined}
+          alt={alt}
+          loading={lazy ? 'lazy' : 'eager'}
+        />
+      ) : (
+        <img
+          src={imagePath}
+          alt={alt}
+          loading={lazy ? 'lazy' : 'eager'}
+          style='max-width: 100%; height: auto; display: block; margin-inline: auto;'
+        />
+      )
     ) : null
   }
 

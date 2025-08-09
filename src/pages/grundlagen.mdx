@@ -11,15 +11,6 @@ toc: false
 import Lead from '@components/Lead.astro'
 import Figure from '@components/Figure.astro'
 import { YouTube } from 'astro-embed'
-import { getImage } from 'astro:assets'
-
-import posterImage from '/src/images/pages/videoposter-grundlagen.png'
-export const youtubePoster = await getImage({
-  src: posterImage,
-  width: 706,
-  height: 398,
-  format: 'webp'
-})
 
 # Das erwartet dich in GT 1191
 
@@ -29,7 +20,7 @@ export const youtubePoster = await getImage({
   <YouTube
     id='https://youtu.be/SJ1Pra-EP6c'
     params='rel=0'
-    poster={youtubePoster.src}
+    poster='/src/images/pages/videoposter-grundlagen.png'
   />
 </Figure>
 

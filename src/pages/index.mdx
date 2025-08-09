@@ -10,15 +10,6 @@ studipLink: 'https://studip.hawk.de/dispatch.php/course/details?sem_id=fc760068e
 import Lead from '@components/Lead.astro'
 import Figure from '@components/Figure.astro'
 import { YouTube } from 'astro-embed'
-import { getImage } from 'astro:assets'
-
-import posterImage from '/src/images/pages/videoposter-intro.png'
-export const youtubePoster = await getImage({
-  src: posterImage,
-  width: 706,
-  height: 398,
-  format: 'webp'
-})
 
 # Lerne in GT&#160;1191, wie du Websites erstellst
 
@@ -28,7 +19,7 @@ export const youtubePoster = await getImage({
   <YouTube
     id='https://youtu.be/ioEGZMuh4BE'
     params='rel=0'
-    poster={youtubePoster.src}
+    poster='/src/images/pages/videoposter-intro.png'
   />
 </Figure>
 

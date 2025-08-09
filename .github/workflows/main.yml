@@ -38,7 +38,7 @@ jobs:
         run: yarn playwright install
 
       - name: Build production bundle
-        run: yarn run build
+        run: yarn run build --force
 
       - name: Install SSH Key
         uses: shimataro/ssh-key-action@v2
