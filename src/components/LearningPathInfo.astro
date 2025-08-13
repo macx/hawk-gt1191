@@ -1,0 +1,66 @@
+---
+import { getCollection } from 'astro:content'
+import ArticleCard from './ArticleCard.astro'
+
+const { currentPathname } = Astro.props
+const learningPaths = await getCollection('learningPaths')
+const tutorials = await getCollection('tutorials')
+
+const currentCollection = learningPaths.find((collection) =>
+  collection.data.related?.some((article) => article === currentPathname)
+)
+
+const collectionProps = currentCollection?.data
+---
+
+{
+  collectionProps && (
+    <div class='card'>
+      <p>
+        Dieses Tutorial ist Teil des Lernpfads
+        <a href={`/tutorials/lernpfade/${collectionProps.slug}`}>
+          {collectionProps.title}
+        </a>
+        {'.'}
+        Lernpfade sind kuratierte Tutorials in logischer Reihenfolge zum
+        schrittweisen Erlernen eines Themas.
+      </p>
+
+      {collectionProps.related.filter((id) => id !== currentPathname).length >
+        0 && (
+        <>
+          Weitere Artikel aus diesem Lernpfad:
+          <ul>
+            {collectionProps.related
+              .filter((id) => id !== currentPathname)
+              .map((id) => {
+                const tutorial = tutorials.find((c) => c.id === id)
+                return tutorial ? (
+                  <li>
+                    <a href={`/tutorials/${tutorial.id}`}>
+                      {tutorial.data.title}
+                    </a>
+                  </li>
+                ) : null
+              })}
+          </ul>
+        </>
+      )}
+    </div>
+  )
+}
+
+<style lang='scss'>
+  @use '../styles/base/mixins';
+
+  div.card {
+    @include mixins.media-item();
+
+    margin-inline: 0;
+    font-size: var(--fs-s);
+
+    ul {
+      margin-block-end: 0;
+    }
+  }
+</style>
