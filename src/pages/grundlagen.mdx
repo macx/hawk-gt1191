@@ -5,7 +5,7 @@ description: 'In diesem Semester lernst die Grundlagen von HTML, CSS und JavaScr
 navTitle: 'Grundlagen'
 visible: true
 sort: 1
-toc: false
+toc: true
 ---
 
 import Lead from '@components/Lead.astro'
@@ -33,6 +33,16 @@ export const youtubePoster = await getImage({
   />
 </Figure>
 
+## Figma, KI und Co.
+
+Musst du HTML, CSS und JavaScript überhaupt noch lernen? Tools wie Figma oder KI-gestützte Design- und Entwicklungswerkzeuge können quasi per Knopfdruck Code generieren. Warum also der Aufwand?
+
+In GT 1191 konzentrieren wir uns auf die Grundlagen und erhalten ein tiefes Verständnis für die Funktionsweise von Webseiten. In der Praxis wirst du oft auf Situationen stoßen, in denen ein **solides Verständnis der Grundlagen** erforderlich ist, um Probleme zu lösen oder maßgeschneiderte Lösungen zu entwickeln.
+
+Wenn die KI nicht wirklich versteht, was du willst, und du sie ständig um Änderungen bittest, oder wenn die automatisch generierten Codes nicht den besten Praktiken in Bezug auf Leistung, Zugänglichkeit und Wartbarkeit entsprechen, solltest du die Grundlagen lernen.
+
+Also schauen wir doch mal, was dich im Seminar und auf dieser Website erwartet.
+
 ## HTML
 
 <abbr title='Hypertext Markup Language'>HTML</abbr>[^1] ist eine
@@ -51,11 +61,11 @@ auf einer Webseite erstellt werden.
   ```
 </Figure>
 
-### Semantik
-
-Semantische HTML-Elemente haben eine Bedeutung. Sie helfen dabei, die Struktur und den Inhalt der Webseite klarer zu definieren und machen sie für Suchmaschinen und Screenreader[^2] zugänglicher.
-
-Im Gegensatz dazu sind generische Elemente wie `<div>` und `<span>` neutral und haben keine spezifische Bedeutung. Sie dienen hauptsächlich dazu, den Inhalt zu gruppieren oder zu formatieren.
+Generische Elemente wie `<div>` und `<span>` werden verwendet, um
+Inhalte zu gruppieren oder zu formatieren, haben aber keine spezifische
+Bedeutung. Semantische Elemente wie `<header>`, `<nav>` und `<main>` haben
+hingegen eine klare Bedeutung und helfen dabei, die Struktur und den Inhalt der
+Webseite zu definieren. Sie helfen dabei, die Struktur und den Inhalt der Webseite klarer zu definieren und machen sie für Suchmaschinen und Screenreader[^2] zugänglicher.
 
 ## CSS
 
@@ -72,12 +82,6 @@ angepasst werden.
   }
   ```
 </Figure>
-
-### CSS-Präprozessoren
-
-Im Seminar verwenden wir darüber hinaus den Präprozessor Sass[^4]. Es bietet eine Reihe von Funktionen, die über die Möglichkeiten von herkömmlichem CSS hinausgehen. Dazu gehören Variablen, Mixins, Funktionen und vieles mehr. Mit ihnen kann das CSS modularer, wiederverwendbarer und besser strukturiert werden.
-
-Bei einem Präprozessor handelt sich um eine Art Vorverarbeitungsschritt, der vor der eigentlichen Kompilierung oder Ausführung des Codes stattfindet.
 
 ## JavaScript
 

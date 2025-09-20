@@ -1,0 +1,359 @@
+---
+title: 'Barrierefrei und responsiv: So erstellst du die perfekte Navigation für deine Website'
+description: 'Wir erstellen mit HTML, CSS und JavaScript eine Navigation, die auf jedem Gerät funktioniert und für alle Nutzer zugänglich ist.'
+isDraft: true
+pubDate: 2025-08-25T09:00:00+00:00
+author: david-maciejewski
+cover:
+  path: '/src/images/tutorials/perfect-navigation.png'
+  alt: 'Maler steht vor seiner Leinwand und malt ein buntes, abstraktes Bild.'
+  caption: 'Endlich kommt Farbe ins Spiel. Mit CSS machst du die HTML-Boxen bunt.'
+tags: ['html', 'css', 'javascript']
+---
+
+import Figure from '@components/Figure.astro'
+import Codepen from '@components/Codepen.astro'
+
+## Einführung
+
+Für eine Navigation, die sich automatisch der Größe des Bildschirms anpasst, gibt es viele Ansätze. In diesem Tutorial schauen wir uns zunächst die Grundsätze an. Im Nächsten Schritt rüsten wir technisch auf und machen die Navigation barrierefrei. Das bedeutet, dass sie nicht nur auf Smartphones und Tablets funktioniert, sondern auch für Menschen mit Behinderungen zugänglich ist.
+
+Das ist insofern wichtig, als dass wir allen Nutzern eine optimale Benutzererfahrung bieten möchten. Aber auch der Gesetzgeber verpflichtet Unternehmen mit dem <abbr title="Barrierefreiheitsstärkungsgesetz">BFSG</abbr>, ihre digitalen Angebote barrierefrei zu gestalten.
+
+> **Hinweis:** Nutze das [Starterkit](/starterkit), um diesem Tutorial einfach folgen zu können. Mit dem vorkonfigurierten Starterkit kannst du im Handumdrehen Websites erstellen.
+
+## Die Basis
+
+Jede gute Website beginnt mit sauberem, semantischem HTML. Das bedeutet, wir verwenden HTML-Elemente für den Zweck, für den sie gedacht sind. Für unsere Navigation benötigen wir einen Header, ein Navigationselement und eine Liste mit Links.
+
+### HTML-Grundgerüst
+
+Passe die folgende HTML-Datei entsprechend an. Entferne den `<include />`-Tag und setze den folgenden Code ein:
+
+<Figure caption="Das Grundgerüst besteht aus dem Header mit der Navigation, sowie dem Inhalt der Seite.">
+```html
+// src/index.html
+<header class="main-header">
+  <a href="/" class="website-title">
+    Barrierefreie Navigation
+  </a>
+
+  <nav id="main-nav" aria-label="Hauptnavigation">
+    <ul id="main-nav-list">
+      <li><a href="#section1">Sektion 1</a></li>
+      <li><a href="#section2">Sektion 2</a></li>
+      <li><a href="#section3">Sektion 3</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <h1>Barrierearme Navigation</h1>
+
+  <p>Hier kommt der Inhalt deiner Seite.</p>
+</main>
+```
+</Figure>
+
+Diese Struktur ist einfach, aber effektiv. Sie enthält:
+
+- `<header>`: Dies ist der Kopfbereich unserer Seite. Er enthält typischerweise das Logo, den Titel unserer Website und die Hauptnavigation.
+- `<a>`: Ein Link zur Startseite. In der Regel erwarten Nutzer, dass sie durch Klicken auf das Logo oder den Titel zur Startseite gelangen.
+- `<nav>`: Dieses Element signalisiert, dass hier die Navigation zu finden ist. Das `aria-label` ist eine wichtige Ergänzung für die Zugänglichkeit, da es Screenreadern genau sagt, um welche Art von Navigation es sich handelt.
+- `<ul>`: Eine ungeordnete Liste ist die semantisch korrekte Art, eine Gruppe von Navigationslinks darzustellen. Die Reihenfolge ist dabei nicht relevant.
+
+> Damit wir die Navigation auch gleich in Aktion sehen können, füge doch im `<main>`-Bereich ein paar Paragrafen Blindtext ein. Auf der Seite [Assets](/assets#text) findet du Links zu Blindtext-Generatoren.
+
+Im Moment sieht das noch sehr unspektakulär aus. Das ändern wir jetzt mit CSS.
+
+### Styes für mobile Endgeräte
+
+Der Kopf der Website `<header>` soll in unserem Szenario beim scrollen am oberen Rand des Bildschirms bleiben, während die Navigation als Overlay von rechts ins Bild fährt, wenn man auf einen Menü-Button tippt. Den Button gibt es noch nicht, aber wir bereiten das Styling schon mal vor.
+
+<Figure caption="Das Grundgerüst unserer Navigation.">
+```css {24} {36} {46-49} {58}
+// src/styles/main.css
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --sp-content: 1.5rem;
+
+  --header-size: 5rem;
+
+  --clr-bg: #fff;
+  --clr-text: #000;
+  --clr-line: #eee;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui;
+  background-color: var(--clr-bg);
+  color: var(--clr-text);
+
+  /* Platzhalter, damit der Inhalt nicht
+  vom fixierten Header verdeckt wird */
+  padding-block-start: var(--header-size);
+}
+
+.main-header {
+  /* Header bleibt am oberen Rand fixiert */
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 20;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  block-size: var(--header-size); /* Höhe des Headers */
+  padding-inline: var(--sp-content);
+  border-block-end: 1px solid var(--clr-line);
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(3px); /* Milchglas-Effekt */
+}
+
+/* Die eigentliche Navigation (Mobile) */
+#main-nav {
+  /* Positionierung am rechten oberen Rand */
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline-end: 0;
+  z-index: 22;
+
+  block-size: 100dvh; /* Nimmt die volle Bildschirmhöhe ein */
+  inline-size: min(20rem, 80vw); /* Breite des Menüs */
+
+  background-color: var(--clr-bg);
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+
+  /* Menü initial ausserhalb des Bildschirms verstecken */
+  transform: translateX(100%);
+  transition: transform 300ms ease-in-out; /* Sanfte Animation */
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: var(--header-size) var(--sp-content) var(--sp-content);
+
+    /* Styling für die Links */
+    a {
+      display: block;
+      color: currentColor; /* Vererbt die Textfarbe */
+      padding-block: 0.85em;
+      text-decoration: none;
+    }
+  }
+}
+```
+</Figure>
+
+Was passiert hier?
+
+- `box-sizing: border-box`: Stellt sicher, dass Padding und Border in der Breite und Höhe der Elemente enthalten sind. Das vereinfacht das Layout.
+- Im `root`-Bereich definieren zentrale Werte wie Größern und Farben an zentraler Stelle. Diese werden später mit `var(--name)` referenziert. Das macht spätere Änderungen kinderleicht.
+- Fixierter Header: Mit `position: fixed` bleibt der Header auch beim scrollen immer sichtbar. `padding-block-start` am body verhindert, dass der Seiteninhalt dahinter verschwindet.
+- Navigation als Overlay: Die Navigation wird mit `position: fixed` am rechten oberen Rand positioniert und nimmt die volle Höhe des Bildschirms ein. Der entscheidende Trick ist `transform: translateX(100%)`. Damit schieben wir das Element um 100% seiner eigenen Breite nach rechts -- es ist also ausserhalb des sichtbaren Bereichs.
+
+Wenn du die Navigation erst einmal weiter gestalten möchtest, kommentiere die entsprechenden CSS-Regeln aus.
+
+<Figure caption="So blendest du die Navigation manuell ein.">
+```css ins={3}
+#main-nav {
+  /* Menü initial ausserhalb des Bildschirms verstecken */
+  /* transform: translateX(100%); */
+}
+```
+</Figure>
+
+Stand jetzt sollte der Header sollte der `<header>` stets sichtbar sein. Die Navigation ist initial verborgen und wird erst sichtbar, wenn der Benutzer auf den Menü-Button klickt. Darum kümmern wir uns jetzt.
+
+### Interaktivität mit JavaScript
+
+Mit HTML haben wir die Navigation strukturiert und mit CSS gestylt. Jetzt kommt der spannendste Teil: Wir erwecken das Menü mit JavaScript zum Leben. JavaScript ist eine Programmiersprache, die es uns ermöglicht, interaktive Elemente auf der Webseite zu erstellen.
+
+In unserer Navigation brauchen wir zwei Buttons, die das Menü ein- und ausblenden. Diese Buttons fügen wir aber nicht direkt ins sichtbare HTML ein. Warum?
+
+Progressive Enhancement
+: Nutzer, die JavaScript deaktiviert haben, können einen Button ohnehin nicht verwenden. Indem wir ihn mit JavaScript einfügen, stellen wir sicher, dass er nur für diejenigen existiert, bei denen er auch funktioniert.
+
+Sauberes HTML
+: Unser HTML-Code bleibt schlank und auf die statische Struktur beschränkt.
+
+Hier kommt das `<template>`-Element ins Spiel. Stell es dir wie eine Blaupause oder eine Vorlage für HTML-Code vor. Der Inhalt des Templates wird vom Browser nicht gerendert (also nicht angezeigt). Wir werden es später mit JavaScript klonen und in unsere Navigation einfügen.
+
+Erweitere nun dein HTML und füge das `template` direkt in dein `<nav>`-Element ein. Es enthält ein SVG für den Button, der später das Menü öffnet und schließt.
+
+<Figure caption="Mit dem Template-Element erstellen wir einen Button, der später das Menü öffnet und schließt.">
+```html ins={5-13}
+// src/index.html
+<nav id="main-nav" aria-label="Hauptnavigation">
+  <ul id="main-nav-list"> … </ul>
+
+  <template id="main-nav-button">
+    <button type="button" aria-label="Menü" aria-expanded="false" aria-controls="main-nav-list">
+      <svg viewBox="0 0 24 24" aria-hidden="true" class="icon" stroke-width="2" stroke="#333">
+        <path d="M4 6h16" class="line top" />
+        <path d="M4 12h16" class="line middle" />
+        <path d="M4 18h16" class="line bottom" />
+      </svg>
+    </button>
+  </template>
+</nav>
+```
+</Figure>
+
+Bei dem Button verwenden wir keinen Link `a`, sondern ein `button`-Element. Das hat den Vorteil, dass es von Haus aus interaktiv ist und für Screenreader besser zugänglich ist. Der Button hat ein SVG-Icon, das die drei Striche eines typischen Hamburger-Menüs darstellt.
+
+Darüber hinaus verwenden wir wichtige ARIA-Attribute, um die Barrierefreiheit zu verbessern:
+
+- `aria-expanded="false"`: Teilt Screenreadern mit, dass das Element, das dieser Button steuert (unsere Navigation), initial beim Aufruf der Website geschlossen ist.
+- `aria-controls="main-nav-list"`: Stellt die Verbindung zur Navigationsliste her, der wir die entsprechende ID gegeben haben.
+
+Entferne bitte die Zeilen für den Demo-Modus und füge dann folgende Funktionalität in deine JavaScript-Datei ein, um den Button zu erstellen und die Navigation zu steuern:
+
+<Figure caption="Das Grundgerüst unserer Navigation.">
+```js del={2-4} ins={6-30}
+// src/main.js
+// Aktivieren des Demo-Modus
+import { demoMode } from './scripts/demo.js';
+demoMode();
+
+// 1. Alle nötigen Elemente aus dem DOM holen
+const nav = document.querySelector("#main-nav");
+const navList = document.querySelector("#main-nav-list");
+const navButtonTpl = document.querySelector("#main-nav-button");
+
+// 2. Button aus dem Template klonen und in die Navigation einfügen
+const navButtonClone = navButtonTpl.content.cloneNode(true);
+const navButton = navButtonClone.querySelector("button");
+nav.insertBefore(navButtonClone, navList);
+
+// 3. Event Listener hinzufügen: Was passiert bei einem Klick?
+navButton.addEventListener("click", () => {
+  // Prüfen, ob das Menü geschlossen ist
+  const isOpened = navButton.getAttribute("aria-expanded") === "true";
+
+  if (isOpened) {
+    // Wenn es offen ist, schliessen
+    navButton.setAttribute("aria-expanded", "false");
+    navList.classList.remove("is-open");
+  } else {
+    // Wenn es geschlossen ist, öffnen
+    navButton.setAttribute("aria-expanded", "true");
+    navList.classList.add("is-open");
+  }
+});
+```
+</Figure>
+
+Jetzt benötigen wir noch die CSS-Regel, die auf die Klasse `.is-open` reagiert. Diese Klasse wird hinzugefügt, wenn der Button geklickt wird und das Menü geöffnet wird. Wenn das Menü geschlossen ist, wird die Klasse entfernt.
+
+<Figure caption="Das Grundgerüst unserer Navigation.">
+```css ins={4-7} ins={10-26}
+// src/styles/main.css
+#main-nav {
+  ul {
+    &.is-open {
+      /* Menü wird sichtbar, wenn es die Klasse .is-open hat */
+      transform: translateX(0);
+    }
+  }
+
+  /* Styling für den eingefügten Button */
+  button {
+    all: unset; /* Alle Standard-Button-Stile entfernen */
+    position: relative;
+    z-index: 23;
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+    inline-size: var(--header-size);
+    block-size: var(--header-size);
+  }
+
+  .icon {
+    display: block;
+    inline-size: 24px;
+    stroke: #333;
+  }
+}
+```
+</Figure>
+
+Dieses Grundgerüst sollte fürs erste reichen. Teste es! Wenn du jetzt auf den Button klickst, sollte das Menü von rechts ins Bild fahren und beim erneuten Klick wieder verschwinden.
+
+## Responsive Anpassung für den Desktop
+
+Unsere mobile Version funktioniert! Nun sollten wir die Navigation auch noch für größere Bildschirme anpassen. Hier wollen wir die Links direkt im Header anzeigen und den Menü-Button verstecken, da wir auf größeren Bildschirmen keinen Button benötigen, um die Navigation zu öffnen. Die Links sind direkt sichtbar und können angeklickt werden.
+
+Dafür nutzen wir eine Media Query.
+
+Füge den folgenden Code am Ende deiner style.css an:
+
+<Figure caption="Responsive Anpassung für den Desktop.">
+```css ins={6-32}
+#main-nav {
+  /* Dein bisheriges CSS */
+
+  /* Media Query: Gilt nur, wenn die
+  Bildschirmbreite GRÖSSER als 48em ist */
+  @media (width > 48em) {
+    button {
+      display: none;
+    }
+
+    /* 2. Das Styling der Navigationsliste
+    zurücksetzen und anpassen */
+    ul {
+      position: static; /* Nicht mehr fixiert, sondern normal im Fluss */
+
+      block-size: auto; /* Höhe und Breite automatisch */
+      inline-size: auto;
+
+      background-color: transparent; /* Keinen eigenen Hintergrund */
+      box-shadow: none;
+
+      padding: 0;
+
+      /* Wichtig: Position wieder auf 0 setzen */
+      transform: translateX(0);
+
+      /* Links horizontal anordnen */
+      display: flex;
+      flex-direction: row;
+      gap: 2ch; /* Abstand zwischen den Links */
+    }
+  }
+}
+```
+</Figure>
+
+Mit den folgenden Regeln wird die Navigation auf größeren Bildschirmen angepasst:
+
+- Mit `@media (width > 48em) { … }` definieren wir einen Block, dessen Regeln nur dann angewendet werden, wenn die Breite des Browserfensters größer ist als 48em (ca. 768px).
+- Der Button wird mit `button { display: none; }` ausgeblendet.
+- Schlussendlich passen wir die Liste `ul` selbst an und überschreiben damit die Mobile-Styles. Die Liste ist jetzt statisch positioniert, also ein normaler Teil des Headers. Mit `display: flex` und `flex-direction: row` ordnen wir die Links nebeneinander an. `transform: translateX(0)` stellt sicher, dass die Liste sichtbar ist, falls das JavaScript sie (auf Mobile) ausgeblendet hatte.
+
+## Der finale Schliff
+
+Da du nun die grundlegende Logik verstanden hast, solltest du die Navigation nun noch verbessern. In dem folgenden Beispiel verwenden wir fortgeschrittenere Techniken zur Gestaltung und Barrierefreiheit, also eine robustere Version der Navigation, die wir erstellt haben.
+
+<Codepen id="MWNRWEp" height="500" tab="html,result"/>
+
+Folgende Änderungen wurden vorgenommen:
+
+CSS-Selektoren
+: Statt der Klasse `.is-open` wird direkt auf das aria-Attribut selektiert: `[aria-expanded="true"] + ul`. Das ist eleganter, da das Styling direkt an den Zustand der Barrierefreiheit gekoppelt ist.
+
+Animation des Icons
+: Das SVG im Button wird animiert, sodass aus dem Hamburger-Icon ein "X" wird.
+
+Tastatur-Navigation
+: Man kann das Menü mit der Escape-Taste schliessen.
+
+Body-Scrolling
+: Die moderne :has()-Pseudo-Klasse im CSS verhindert das Scrollen der Seite, wenn das Menü geöffnet ist.
+
+Schau dir das Beispiel genau an und ersetze den Code in deiner Implementierung durch den Code aus deinem Beispiel.
