@@ -73,6 +73,11 @@ main {
   padding-inline: var(--sp-content);
   transition: padding-inline var(--transition);
 
+  &:has(.content.wide),
+  &:has(.content.medium) {
+    max-width: unset;
+  }
+
   width: 100%;
   flex: 1;
 
@@ -97,8 +102,12 @@ main {
     width: 100%;
     max-width: var(--content-max-width);
 
+    &.medium {
+      max-width: var(--layout-max-width-medium);
+    }
+
     &.wide {
-      max-width: unset;
+      max-width: var(--layout-max-width-large);
     }
   }
 

@@ -15,7 +15,7 @@ export async function getStaticPaths() {
 }
 
 const { title, description, related, learningPaths } = Astro.props
-const layout = 'wide'
+const layout = 'medium'
 const tutorials = await getCollection('tutorials')
 
 const collection = (related ?? []).map((id: string) => {

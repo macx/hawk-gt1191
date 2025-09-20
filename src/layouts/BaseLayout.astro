@@ -37,7 +37,12 @@ const asideConfig = aside ? aside : false
 
     <main id='main'>
       <div class:list={['stage', { 'with-articles': asideConfig }]}>
-        <div class:list={['content', { wide: layout === 'wide' }]}>
+        <div
+          class:list={[
+            'content',
+            { wide: layout === 'wide', medium: layout === 'medium' }
+          ]}
+        >
           <slot />
         </div>
 
