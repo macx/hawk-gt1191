@@ -1,10 +1,10 @@
 ---
 layout: ../layouts/BaseLayout.astro
 title: 'Das Website-Starterkit von GT 1191'
-description: 'Mit dem Starterkit für Single- und Multi-Page-Websites sparst du bei der Erstellung viel Zeit und kannst dich aufs Lernen konzentrieren.'
+description: 'Erstelle mit dem Starterkit innerhalb von Sekunden eine neue Website. So bleibt dir mehr Zeit zum Lernen.'
 navTitle: 'Starterkit'
-toc: false
-sort: 3
+toc: true
+sort: 4
 visible: true
 ---
 
@@ -16,9 +16,20 @@ import Button from '@components/Button.astro'
 
 <Lead text={frontmatter.description} />
 
-Die Entwicklung einer modernen Website erfordert viele Einzelschritte. Ein Bild, das auf allen Endgeräten gut aussieht und Ladezeiten reduziert, muss dafür in mehreren Größen vorliegen. Dessen Erstellung ist in der Regel ein Ping-Pong-Spiel zwischen Bildbearbeitung und Website-Entwicklung. Das Starterkit nimmt dir diese und viele anderen Aufgaben ab.
+<Figure
+  imagePath='/src/images/pages/terminal-starterkit.png'
+  caption='Mit nur einer Zeile im Terminal erstellst du eine neue Website.'
+  alt='Zeigt das Terminal bei der Verwendung des Website-Starterkits.'
+  lazy={false}
+/>
 
-## So erstellst eine neue Website
+## Was ist das Starterkit?
+
+Das Prozedere der Website-Erstellung ist immer gleich: Du legst eine HTML- und CSS-Datei an und verknüpfst diese. Danach fügst du Bilder, Texte und weitere Inhalte hinzu und kümmerst dich darum, dass diese im Browser angezeigt werden. Dann stellst du fest, dass deine Bilder noch gar nicht optimiert sind, die Ladezeit mies ist und die Seite auf dem Smartphone nicht gut aussieht.
+
+Bis auf die Bildauswahl und die Texte übernimmt das Website-Starterkit all diese Aufgaben für dich. Es erstellt dir eine Website, die du nur noch mit deinem Design und den Inhalten füllen musst.
+
+## Das Starterkit nutzen
 
 Öffne das Terminal und gebe folgenden Befehl ein und folge den Anweisungen:
 
@@ -27,6 +38,8 @@ npm create website-starterkit@latest
 ```
 
 > **Hinweis:** Wenn du bisher noch nicht mit dem Terminal gearbeitet hast oder dir `npm` unbekannt ist, schau dir bitte die [Installationsanleitung](https://starterguide.dev/) an.
+
+## Varianten
 
 Du hast beim Website-Starterkit die Auswahl zwischen mehreren Varianten. Das sind unter anderem:
 
@@ -38,6 +51,8 @@ Multipager
 
 Onepager
 : Für Websites, die nur aus einer Seite bestehen.
+
+Alle Varianten sind bereits so vorkonfiguriert, dass deine Bilder optimiert werden können, du einfach eigene Schriftarten einbinden kannst und du weniger Code schreiben musst.
 
 <Button
   type='link'
