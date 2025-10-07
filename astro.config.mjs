@@ -124,7 +124,20 @@ export default defineConfig({
       }
     })
   ],
-  vite: { css: { preprocessorOptions: { scss: { api: 'modern-compiler' } } } },
+  vite: {
+    css: { preprocessorOptions: { scss: { api: 'modern-compiler' } } },
+    build: {
+      rollupOptions: {
+        output: {
+          // Use content hashes for cache-busting of generated JS/CSS/assets
+          entryFileNames: 'assets/[name].[hash].js',
+          chunkFileNames: 'assets/[name].[hash].js',
+          // Use Rollup pattern tokens so we don't rely on chunkInfo.name (deprecated)
+          assetFileNames: 'assets/[name].[hash][extname]'
+        }
+      }
+    }
+  },
   image: { responsiveStyles: true },
   experimental: {}
 })
