@@ -313,7 +313,7 @@ blockquote {
   margin-trim: block;
 
   @supports not (margin-trim: block) {
-    > :where(h2, h3):first-child {
+    & > :where(h2, h3):first-child {
       margin-block-start: 0;
     }
 

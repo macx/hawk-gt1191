@@ -170,7 +170,7 @@ main {
     align-items: center;
     gap: var(--sp-l);
 
-    > div:last-child {
+    & > div:last-child {
       flex: 1 0 auto;
       text-align: right;
     }
