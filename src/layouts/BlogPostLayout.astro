@@ -51,7 +51,7 @@ const toc = true
     {
       cover && (
         <Figure
-          imagePath={cover.path}
+          src={'image' in cover ? (cover as any).image : (cover as any).path}
           caption={cover.caption}
           alt={cover.alt}
           lazy={false}

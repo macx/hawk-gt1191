@@ -320,7 +320,7 @@ function buildToc(headings: Array<Heading>) {
   }
 </script>
 
-<style>
+<style is:global>
   .toc {
     @media screen and (width >= 57.5em) {
       position: sticky;
@@ -331,7 +331,7 @@ function buildToc(headings: Array<Heading>) {
       max-block-size: calc(100dvh - var(--header-height) - var(--sp-l));
       overscroll-behavior: contain;
 
-      .button {
+      & .button {
         display: none !important;
       }
     }
@@ -339,7 +339,7 @@ function buildToc(headings: Array<Heading>) {
 
   .toc-title {
     @media screen and (width < 57.5em) {
-      h2 {
+      & h2 {
         display: none;
       }
     }
@@ -350,15 +350,15 @@ function buildToc(headings: Array<Heading>) {
     padding-inline-start: 0;
     transition: max-height var(--transition-navi);
 
-    > li {
+    & > li {
       list-style: none;
 
-      > a {
+      & > a {
         font-weight: var(--fw-bold);
       }
     }
 
-    a {
+    & a {
       display: flex;
       color: var(--clr-text);
       text-decoration: none;
@@ -370,10 +370,10 @@ function buildToc(headings: Array<Heading>) {
       }
     }
 
-    :where(ul ul) {
+    & :where(ul ul) {
       padding-inline-start: 0;
 
-      li {
+      & li {
         list-style: none;
       }
     }
@@ -385,28 +385,28 @@ function buildToc(headings: Array<Heading>) {
         margin-block: 0;
       }
 
-      > li {
+      & > li {
         margin-block-end: var(--sp-xs);
 
-        + li {
+        & + li {
           padding-block-start: var(--sp-xs);
           border-block-start: 1px solid var(--clr-line);
         }
 
         &:has(ul) {
-          > a::after {
+          & > a::after {
             content: ':';
           }
         }
       }
 
-      :where(ul ul) {
+      & :where(ul ul) {
         display: flex;
         column-gap: 1ch;
         flex-wrap: wrap;
 
-        li:not(:last-child) {
-          a::after {
+        & li:not(:last-child) {
+          & a::after {
             content: ',';
           }
         }
@@ -414,11 +414,11 @@ function buildToc(headings: Array<Heading>) {
     }
 
     @media screen and (width >= 57.5em) {
-      li {
+      & li {
         padding-inline-start: 3px;
       }
 
-      a {
+      & a {
         padding-block: 0.5em;
         padding-inline: var(--sp) var(--sp-s);
 
@@ -427,7 +427,7 @@ function buildToc(headings: Array<Heading>) {
         }
       }
 
-      :where(ul ul) {
+      & :where(ul ul) {
         --level: var(--level, 1);
 
         padding-inline-start: var(--sp);

@@ -17,9 +17,18 @@ export async function GET({ props }: Props) {
     return
   }
 
-  // Load images
-  const coverImage = tutorial.data.cover.path.replace(/^\//, '')
-  const tutorialCover = fs.readFileSync(coverImage)
+  // Load images: support both legacy cover.path and optional cover.image
+  const coverField = tutorial.data.cover
+  const coverImagePath =
+    'path' in coverField
+      ? coverField.path.replace(/^\//, '')
+      : (coverField as any).image?.src?.replace(/^\//, '')
+
+  if (!coverImagePath) {
+    return
+  }
+
+  const tutorialCover = fs.readFileSync(coverImagePath)
 
   // Fonts
   const DomineBold = fs.readFileSync(path.resolve('src/fonts/Domine-Bold.ttf'))

@@ -3,7 +3,11 @@ import type { ImageMetadata } from 'astro'
 import { Image } from 'astro:assets'
 import { markdown } from '@astropub/md'
 
+/**
+ * src: Expecting a imported image. For backward compatibility, imagePath is also supported.
+ */
 interface Props {
+  src?: ImageMetadata | string
   imagePath?: string
   imageFormat?: string
   alt?: string
@@ -13,43 +17,50 @@ interface Props {
 }
 
 const {
+  src,
   imagePath,
   imageFormat,
   caption,
   alt,
   lazy = true,
   class: className
-} = Astro.props
+} = Astro.props as Props
 
-let images = undefined
-if (imagePath !== undefined) {
-  images = import.meta.glob<{ default: ImageMetadata }>(
-    '/src/images/**/*.{jpeg,jpg,png}'
-  )
-  if (!images[imagePath]) {
-    throw new Error(
-      `Das Bild "${imagePath}" existiert im angegeben Verzeichnis nicht.`
-    )
+// Einmalige, statische Abbildung aller Bilder in /src/images (wird von Vite zur Buildzeit ersetzt).
+// Hinweis: Nur genutzt, wenn ein String-Pfad übergeben wurde. Für ImageMetadata entfällt dies komplett.
+const IMAGE_MAP = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/images/**/*.{jpeg,jpg,png}'
+)
+
+// Auflösen der Quelle: bevorzugt src, dann (rückwärtskompatibel) imagePath
+const passedPath = typeof src === 'string' ? src : imagePath
+
+let imageMeta: ImageMetadata | undefined
+if (src && typeof src === 'object') {
+  // Direkte Übergabe eines importierten Bildes (empfohlen)
+  imageMeta = src
+} else if (passedPath) {
+  if (IMAGE_MAP[passedPath]) {
+    imageMeta = ((await IMAGE_MAP[passedPath]()) as { default: ImageMetadata })
+      .default
   }
 }
 ---
 
 <figure class:list={['media-item', className]}>
   {
-    imagePath !== undefined && images && images[imagePath] ? (
+    imageMeta ? (
       <Image
-        src={
-          ((await images[imagePath]()) as { default: ImageMetadata }).default
-        }
+        src={imageMeta}
         widths={[380, 670, 710]}
-        sizes={`(max-width: 480px) 380px, (max-width: 800) 670px, 710px`}
+        sizes={`(max-width: 480px) 380px, (max-width: 800px) 670px, 710px`}
         format={imageFormat ?? 'webp'}
         alt={alt}
         loading={lazy ? 'lazy' : 'eager'}
       />
-    ) : imagePath !== undefined ? (
+    ) : passedPath ? (
       <img
-        src={imagePath}
+        src={passedPath}
         alt={alt}
         loading={lazy ? 'lazy' : 'eager'}
         style='max-width: 100%; height: auto; display: block; margin-inline: auto;'

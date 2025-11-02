@@ -1,4 +1,5 @@
 import { defineCollection, reference, z } from 'astro:content'
+import type { ImageMetadata } from 'astro'
 import { glob, file } from 'astro/loaders'
 
 const tutorials = defineCollection({
@@ -12,11 +13,18 @@ const tutorials = defineCollection({
       pubDate: z.coerce.date(),
       updateDate: z.coerce.date().optional(),
       cover: z
-        .object({
-          path: z.string(),
-          alt: z.string(),
-          caption: z.string().or(z.boolean()).optional()
-        })
+        .union([
+          z.object({
+            path: z.string(),
+            alt: z.string(),
+            caption: z.string().or(z.boolean()).optional()
+          }),
+          z.object({
+            image: z.custom<ImageMetadata>(),
+            alt: z.string(),
+            caption: z.string().or(z.boolean()).optional()
+          })
+        ])
         .optional(),
       tags: z.array(z.string()).optional(),
       headings: z.array(z.string()).optional(),

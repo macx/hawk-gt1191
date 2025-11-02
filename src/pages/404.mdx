@@ -7,13 +7,14 @@ visible: false
 
 import Lead from '../components/Lead.astro'
 import Figure from '../components/Figure.astro'
+import img404 from '../images/gt1191-404.png'
 
 # {frontmatter.title}
 
 <Lead text={frontmatter.description} />
 
 <Figure
-  imagePath='/src/images/gt1191-404.png'
+  src={img404}
   caption='Wo sind noch einmal die Socken?'
   alt='Studentin steht vor ihrem Kleiderschrank'
 />
