@@ -16,7 +16,7 @@
     "test": "cypress run",
     "test:ui": "cypress open",
     "lint": "prettier --write --plugin-search-dir=. .",
-    "release": "yarn lint && yarn build && release-it",
+    "release": "pnpm lint && pnpm build && release-it",
     "postinstall": "playwright install chromium"
   },
   "publishConfig": {
@@ -65,5 +65,5 @@
     "prettier-config-standard": "^7.0.0",
     "prettier-plugin-astro": "^0.14.1"
   },
-  "packageManager": "yarn@4.1.1"
+  "packageManager": "pnpm@9.14.2"
 }

@@ -18,8 +18,9 @@ $ git clone git@github.com:macx/hawk-gt1191.git && cd hawk-gt1191
 In order to run this project, you need to install the following depenencies with [Homebrew](https://brew.sh/index_de):
 
 ```sh
-$ brew install yarn
-$ yarn install
+$ brew install node
+$ corepack enable
+$ pnpm install
 ```
 
 ## Development
@@ -28,10 +29,10 @@ You have the following options to run the development tasks:
 
 ```sh
 # Start a development server with live-reload
-$ yarn dev
+$ pnpm dev
 
 # Deploy this site to /public folder
-$ yarn build
+$ pnpm build
 ```
 
 Inside the Projects, you'll see the following folders and files:
