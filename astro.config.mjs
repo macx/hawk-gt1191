@@ -126,7 +126,8 @@ export default defineConfig({
   ],
   vite: {
     css: {
-      devSourcemap: true
+      devSourcemap: true,
+      transformer: 'lightningcss'
     },
     build: {
       cssMinify: 'lightningcss'

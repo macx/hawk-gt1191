@@ -163,16 +163,18 @@ main {
   display: flex;
   flex-direction: column;
   gap: var(--sp);
+}
 
-  @media screen and (width >= 57.5em) {
+@media screen and (width >= 57.5em) {
+  .text-and-button {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     gap: var(--sp-l);
+  }
 
-    & > div:last-child {
-      flex: 1 0 auto;
-      text-align: right;
-    }
+  .text-and-button > div:last-child {
+    flex: 1 0 auto;
+    text-align: right;
   }
 }
