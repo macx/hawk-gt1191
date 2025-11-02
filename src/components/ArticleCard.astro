@@ -24,7 +24,13 @@ if (!images[imagePath]) {
 }
 ---
 
-<article class:list={['article-card', 'media-item-article', { draft: article.data?.isDraft }]}>
+<article
+  class:list={[
+    'article-card',
+    'media-item-article',
+    { draft: article.data?.isDraft }
+  ]}
+>
   {article.data.isDraft && <div class='draft-banner' />}
 
   <a href={`/tutorials/${article.id}`}>
@@ -194,7 +200,6 @@ if (!images[imagePath]) {
 
       &:not(:last-child):not(:first-child) {
         border-radius: 0;
-        // background-color: red;
       }
 
       &:last-child {
