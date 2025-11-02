@@ -129,15 +129,6 @@ export default defineConfig({
       devSourcemap: true
     },
     build: {
-      rollupOptions: {
-        output: {
-          // Use content hashes for cache-busting of generated JS/CSS/assets
-          entryFileNames: 'assets/[name].[hash].js',
-          chunkFileNames: 'assets/[name].[hash].js',
-          // Use Rollup pattern tokens so we don't rely on chunkInfo.name (deprecated)
-          assetFileNames: 'assets/[name].[hash][extname]'
-        }
-      },
       cssMinify: 'lightningcss'
     }
   },

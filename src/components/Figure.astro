@@ -43,7 +43,7 @@ if (imagePath !== undefined) {
         }
         widths={[380, 670, 710]}
         sizes={`(max-width: 480px) 380px, (max-width: 800) 670px, 710px`}
-        format={imageFormat ? 'png' : undefined}
+        format={imageFormat ?? 'webp'}
         alt={alt}
         loading={lazy ? 'lazy' : 'eager'}
       />
