@@ -14,7 +14,7 @@ const collectionProps = currentCollection?.data
 
 {
   collectionProps && (
-    <div class='card'>
+    <div class='card media-item'>
       <p>
         Dieses Tutorial ist Teil des Lernpfads
         <a href={`/tutorials/lernpfade/${collectionProps.slug}`}>
@@ -49,12 +49,8 @@ const collectionProps = currentCollection?.data
   )
 }
 
-<style lang='scss'>
-  @use '../styles/base/mixins';
-
+<style>
   div.card {
-    @include mixins.media-item();
-
     margin-inline: 0;
     font-size: var(--fs-s);
 

@@ -1,5 +1,3 @@
-@use './mixins';
-
 /*
 ┌──────────────────────────────────┐
   HEADLINES
@@ -370,7 +368,7 @@ blockquote {
     box-shadow: var(--image-shadow);
   }
 
-  @include mixins.respond('m') {
+  @media screen and (width >= 37.5em) {
     img {
       margin-inline: calc(var(--sp) * -1) var(--sp);
     }

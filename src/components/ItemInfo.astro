@@ -34,7 +34,7 @@ const { type } = Astro.props as Props
   }
 </span>
 
-<style lang='scss'>
+<style>
   [item-type] {
     display: inline-block;
     background-color: var(--clr-text);
@@ -49,11 +49,15 @@ const { type } = Astro.props as Props
     border-radius: 0.3em;
   }
 
-  $types: 'article', 'game', 'tool';
+  [item-type='article'] {
+    background-color: var(--clr-type-article);
+  }
 
-  @each $type in $types {
-    [item-type='#{$type}'] {
-      background-color: var(--clr-type-#{$type});
-    }
+  [item-type='game'] {
+    background-color: var(--clr-type-game);
+  }
+
+  [item-type='tool'] {
+    background-color: var(--clr-type-tool);
   }
 </style>

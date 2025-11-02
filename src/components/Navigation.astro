@@ -97,11 +97,9 @@ const filteredPages = pages
   </ul>
 </nav>
 
-<style lang='scss'>
-  @use '../styles/base/mixins';
-
+<style>
   .navigation {
-    @include mixins.respond('l', 'to') {
+    @media screen and (width < 57.5em) {
       position: fixed;
       top: var(--header-height);
       inset-block-start: 0;
@@ -117,10 +115,12 @@ const filteredPages = pages
       max-height: 0;
       overflow: hidden;
       transition: max-height var(--transition-navi);
+    }
+  }
 
-      :global(.with-nav) & {
-        max-height: calc(100dvh - var(--header-height));
-      }
+  :global(.with-nav) .navigation {
+    @media screen and (width < 57.5em) {
+      max-height: calc(100dvh - var(--header-height));
     }
   }
 
@@ -157,7 +157,7 @@ const filteredPages = pages
       transition: fill var(--transition);
     }
 
-    @include mixins.respond('l') {
+    @media screen and (width >= 57.5em) {
       display: none;
     }
   }
@@ -193,7 +193,7 @@ const filteredPages = pages
       }
     }
 
-    @include mixins.respond('l', 'to') {
+    @media screen and (width < 57.5em) {
       background-color: var(--clr-bg-nav);
       flex: 0 0 min(100%, 15vh);
       padding-block: var(--sp-l);
@@ -219,7 +219,7 @@ const filteredPages = pages
       }
     }
 
-    @include mixins.respond('m', 'to', 'l') {
+    @media screen and (37.5em <= width < 57.5em) {
       padding-inline: var(--sp-content);
 
       ul {
@@ -236,7 +236,7 @@ const filteredPages = pages
       }
     }
 
-    @include mixins.respond('l') {
+    @media screen and (width >= 57.5em) {
       ul {
         display: flex;
         justify-content: flex-start;

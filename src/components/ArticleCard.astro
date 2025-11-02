@@ -24,7 +24,7 @@ if (!images[imagePath]) {
 }
 ---
 
-<article class:list={['article-card', { draft: article.data?.isDraft }]}>
+<article class:list={['article-card', 'media-item-article', { draft: article.data?.isDraft }]}>
   {article.data.isDraft && <div class='draft-banner' />}
 
   <a href={`/tutorials/${article.id}`}>
@@ -60,15 +60,11 @@ if (!images[imagePath]) {
   </a>
 </article>
 
-<style lang='scss'>
-  @use '../styles/base/mixins';
-
+<style>
   .article-card {
-    @include mixins.media-item('article');
-
+    margin-block: 0;
     position: relative;
     transition: box-shadow var(--transition);
-    margin-block: 0;
     container: article-card / inline-size;
 
     &:hover,

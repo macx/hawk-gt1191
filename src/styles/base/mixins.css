@@ -1,0 +1,67 @@
+/*
+┌──────────────────────────────────┐
+  UTILITY CLASSES
+  Wiederverwendbare CSS-Klassen
+  (ehemals Sass-Mixins)
+└──────────────────────────────────┘
+*/
+
+/* Media Item - Karten-Style für Inhalte */
+.media-item {
+  display: block;
+  margin-block: 1lh var(--sp-content);
+  background-color: var(--clr-bg-card);
+  border-radius: var(--radius);
+  border: 1px solid var(--clr-line);
+  box-shadow: 0 0.53em 1em -0.5rem rgba(0, 0, 0, 0.15);
+  margin-inline: calc(var(--sp) * -1);
+  padding-block: var(--sp);
+  padding-inline: var(--sp);
+}
+
+/* Media Item Variante für Artikel (ohne negative margin) */
+.media-item-article {
+  display: block;
+  margin-block: 1lh var(--sp-content);
+  background-color: var(--clr-bg-card);
+  border-radius: var(--radius);
+  border: 1px solid var(--clr-line);
+  box-shadow: 0 0.53em 1em -0.5rem rgba(0, 0, 0, 0.15);
+}
+
+/* Upper Title - Großbuchstaben-Überschriften */
+.upper-title {
+  margin-block: 0;
+  font-family: var(--ff-headings);
+  font-size: var(--fs);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Focus Style - Einheitlicher Fokus-Stil */
+.focus-style:focus-visible {
+  outline: 3px dotted var(--clr-primary);
+  outline-offset: 2px;
+  outline-style: dotted;
+  box-shadow: 0 0 0 3px var(--clr-inverse);
+}
+
+/* List Item mit Link-Icon */
+.list-item-link {
+  list-style: none;
+  padding-left: 2.1em;
+
+  &::before {
+    display: block;
+    content: '';
+    width: 1.3em;
+    height: 1.3em;
+    float: left;
+    margin: 0.15em 0 0 calc(2.1em * -1);
+
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path fill="%23ff8200" d="M10.59 13.41c.41.39.41 1.03 0 1.42-.39.39-1.03.39-1.42 0a5.003 5.003 0 0 1 0-7.07l3.54-3.54a5.003 5.003 0 0 1 7.07 0 5.003 5.003 0 0 1 0 7.07l-1.49 1.49c.01-.82-.12-1.64-.4-2.42l.47-.48a2.982 2.982 0 0 0 0-4.24 2.982 2.982 0 0 0-4.24 0l-3.53 3.53a2.982 2.982 0 0 0 0 4.24m2.82-4.24c.39-.39 1.03-.39 1.42 0a5.003 5.003 0 0 1 0 7.07l-3.54 3.54a5.003 5.003 0 0 1-7.07 0 5.003 5.003 0 0 1 0-7.07l1.49-1.49c-.01.82.12 1.64.4 2.43l-.47.47a2.982 2.982 0 0 0 0 4.24 2.982 2.982 0 0 0 4.24 0l3.53-3.53a2.982 2.982 0 0 0 0-4.24.973.973 0 0 1 0-1.42Z"/></svg>');
+    background-repeat: no-repeat;
+    background-size: 100%;
+  }
+}

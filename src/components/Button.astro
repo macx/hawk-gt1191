@@ -46,7 +46,7 @@ const {
   )
 }
 
-<style lang='scss'>
+<style>
   .button {
     all: unset;
     cursor: pointer;
@@ -89,9 +89,9 @@ const {
       color: var(--clr-inverse);
       border-color: var(--clr-primary);
     }
+  }
 
-    + #{&} {
-      margin-inline-start: var(--sp-xs);
-    }
+  .button + .button {
+    margin-inline-start: var(--sp-xs);
   }
 </style>

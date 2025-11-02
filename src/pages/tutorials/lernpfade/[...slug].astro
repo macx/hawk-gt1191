@@ -70,9 +70,7 @@ const collection = (related ?? []).map((id: string) => {
   </p>
 </BaseLayout>
 
-<style lang='scss'>
-  @use '../../../styles/base/mixins' as m;
-
+<style>
   .timeline {
     container: timeline / inline-size;
     padding: 0;
@@ -98,7 +96,7 @@ const collection = (related ?? []).map((id: string) => {
       }
     }
 
-    @include m.respond('l') {
+    @media screen and (width >= 57.5em) {
       --tl-dot-size: 3rem;
       --tl-dot-counter-size: 1.5rem;
     }
@@ -180,7 +178,7 @@ const collection = (related ?? []).map((id: string) => {
       }
     }
 
-    @include m.respond('m') {
+    @media screen and (width >= 37.5em) {
       .title-header {
         max-inline-size: unset;
         flex-direction: row;

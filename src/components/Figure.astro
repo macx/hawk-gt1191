@@ -9,9 +9,17 @@ interface Props {
   alt?: string
   caption?: string | boolean
   lazy?: boolean
+  class?: string
 }
 
-const { imagePath, imageFormat, caption, alt, lazy = true } = Astro.props
+const {
+  imagePath,
+  imageFormat,
+  caption,
+  alt,
+  lazy = true,
+  class: className
+} = Astro.props
 
 let images = undefined
 if (imagePath !== undefined) {
@@ -26,7 +34,7 @@ if (imagePath !== undefined) {
 }
 ---
 
-<figure>
+<figure class:list={['media-item', className]}>
   {
     imagePath !== undefined && images && images[imagePath] ? (
       <Image
@@ -58,20 +66,28 @@ if (imagePath !== undefined) {
   }
 </figure>
 
-<style lang='scss' is:global>
-  @use '../styles/base/mixins';
+<style is:global>
+  /* Wende media-item Styles auf figure-Elemente an */
+  figure.beoe,
+  figure:not([class]) {
+    display: block;
+    margin-block: 1lh var(--sp-content);
+    background-color: var(--clr-bg-card);
+    border-radius: var(--radius);
+    border: 1px solid var(--clr-line);
+    box-shadow: 0 0.53em 1em -0.5rem rgba(0, 0, 0, 0.15);
+    margin-inline: calc(var(--sp) * -1);
+    padding-block: var(--sp);
+    padding-inline: var(--sp);
+  }
 
   figure.beoe {
-    @include mixins.media-item();
-
     img {
       margin-inline: auto;
     }
   }
 
   figure:not([class]) {
-    @include mixins.media-item();
-
     .expressive-code {
       margin-block-start: 0;
     }

@@ -125,7 +125,9 @@ export default defineConfig({
     })
   ],
   vite: {
-    css: { preprocessorOptions: { scss: { api: 'modern-compiler' } } },
+    css: {
+      devSourcemap: true
+    },
     build: {
       rollupOptions: {
         output: {
@@ -135,7 +137,8 @@ export default defineConfig({
           // Use Rollup pattern tokens so we don't rely on chunkInfo.name (deprecated)
           assetFileNames: 'assets/[name].[hash][extname]'
         }
-      }
+      },
+      cssMinify: 'lightningcss'
     }
   },
   image: { responsiveStyles: true },

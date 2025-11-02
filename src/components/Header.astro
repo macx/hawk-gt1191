@@ -100,9 +100,7 @@ import { SITE_CONST } from '../const.ts'
   </nav>
 </header>
 
-<style lang='scss'>
-  @use '../styles/base/mixins';
-
+<style>
   .header {
     position: fixed;
     inset-block: 0 auto;
@@ -121,7 +119,7 @@ import { SITE_CONST } from '../const.ts'
     box-shadow: 1.5rem 0 4rem -0.5rem var(--clr-nav-shadow);
     transition: all var(--transition-theme);
 
-    @include mixins.respond('l') {
+    @media screen and (width >= 57.5em) {
       justify-content: flex-start;
     }
   }
@@ -129,7 +127,7 @@ import { SITE_CONST } from '../const.ts'
   .nav-complementary {
     display: none;
 
-    @include mixins.respond('l') {
+    @media screen and (width >= 57.5em) {
       display: block;
       margin-inline-start: auto;
     }
@@ -145,7 +143,7 @@ import { SITE_CONST } from '../const.ts'
       list-style: none;
     }
 
-    @include mixins.respond('l') {
+    @media screen and (width >= 57.5em) {
       display: flex;
       align-items: center;
       flex: 0 1 auto;
@@ -180,20 +178,20 @@ import { SITE_CONST } from '../const.ts'
       display: none;
     }
 
-    :global(.with-nav) & {
-      &.show {
-        display: none;
-      }
-
-      &.hide {
-        display: grid;
-      }
-    }
-
     .navigation-toggle & {
       margin-inline-end: calc((var(--sp-content) / 2) * -1);
     }
+  }
 
+  :global(.with-nav) .header-button.show {
+    display: none;
+  }
+
+  :global(.with-nav) .header-button.hide {
+    display: grid;
+  }
+
+  .header-button {
     &:hover,
     &:focus-visible {
       background-color: var(--clr-primary--hover);
@@ -208,10 +206,13 @@ import { SITE_CONST } from '../const.ts'
     }
 
     &:focus-visible {
-      @include mixins.focus();
+      outline: 3px dotted var(--clr-primary);
+      outline-offset: 2px;
+      outline-style: dotted;
+      box-shadow: 0 0 0 3px var(--clr-inverse);
     }
 
-    @include mixins.respond('l') {
+    @media screen and (width >= 57.5em) {
       &.show,
       &.hide {
         display: none !important;
@@ -252,14 +253,14 @@ import { SITE_CONST } from '../const.ts'
         fill: #fff;
       }
     }
+  }
 
-    :global(html[data-theme='dark']) & .brand-hawk {
-      fill: #fff;
-    }
+  :global(html[data-theme='dark']) .brand .brand-hawk {
+    fill: #fff;
+  }
 
-    :global(html[data-theme='light']) & .brand-hawk {
-      fill: #15232d;
-    }
+  :global(html[data-theme='light']) .brand .brand-hawk {
+    fill: #15232d;
   }
 
   @media (hover: hover) {

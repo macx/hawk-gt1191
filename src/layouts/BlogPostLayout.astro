@@ -71,9 +71,7 @@ const toc = true
   </Fragment>
 </BaseLayout>
 
-<style lang='scss'>
-  @use '../styles/base/mixins';
-
+<style>
   .article {
     container: article / inline-size;
   }
@@ -103,7 +101,7 @@ const toc = true
       content: 'Entwurf';
     }
 
-    @include mixins.respond('l') {
+    @media screen and (width >= 57.5em) {
       inset: calc(var(--header-height) + var(--sp-l)) auto auto 0;
       rotate: -90deg;
       transform: translateX(-100%);

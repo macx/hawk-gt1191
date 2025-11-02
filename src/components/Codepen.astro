@@ -10,7 +10,7 @@ const { id, height = 600, tab = 'html,result' } = Astro.props
 const penHeight = `${height}px`
 ---
 
-<div class='codepen-wrapper'>
+<div class='codepen-wrapper media-item'>
   <p
     class='codepen'
     data-height={penHeight}
@@ -32,12 +32,8 @@ const penHeight = `${height}px`
     is:inline></script>
 </div>
 
-<style lang='scss' define:vars={{ 'pen-height': penHeight }}>
-  @use '../styles/base/mixins';
-
+<style define:vars={{ 'pen-height': penHeight }}>
   .codepen-wrapper {
-    @include mixins.media-item();
-
     height: calc(var(--pen-height) + (var(--sp) * 2));
   }
 </style>

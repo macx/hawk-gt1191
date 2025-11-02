@@ -79,23 +79,23 @@
   --icon-size: 1.5rem;
   --icon-size-header: 1.25rem;
 
-  // Font Families
+  /* Font Families */
   --ff: 'Open Sans Variable', sans-serif;
   --ff-headings: 'Domine Variable', sans-serif;
   --ff-code: 'JetBrains Mono Variable', monospace;
 
-  // Font Weights
+  /* Font Weights */
   --fw: 350;
   --fw-bold: 500;
   --fw-strong: 700;
   --fw-headings: 700;
 
-  // Font Variation Settings
+  /* Font Variation Settings */
   --fvs: 'wght': var(--fw), 'ital': 0;
   --fvs-bold: 'wght': var(--fw-bold), 'ital': 0;
   --fvs-headings: 'wght': var(--fw-headings), 'ital': 0;
 
-  // Font Sizes
+  /* Font Sizes */
   --fs: 1rem;
   --fs-s: 0.9375rem;
   --fs-xs: 0.75rem;
@@ -104,7 +104,7 @@
   --fs-content: clamp(1.125rem, 5vw - 1rem, 1.25rem);
   --fs-code: clamp(1rem, 5vw - 1rem, 1.125rem);
 
-  // Line Heights
+  /* Line Heights */
   --lh: 1.5;
   --lh-s: 1.3;
 
@@ -160,7 +160,7 @@
     --clr-primary: #2f81f7;
     --clr-marker: hsl(60 100% 70% / 0.2);
 
-    // --clr-selection: hsla(40, 22%, 88%, 0.15);
+    /* --clr-selection: hsla(40, 22%, 88%, 0.15); */
     --clr-selection: hsl(215 100% 80% / 0.25);
 
     --clr-nav-shadow: rgb(255 2555 255 / 0.2);

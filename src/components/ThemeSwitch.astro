@@ -43,64 +43,61 @@ import { Icon } from 'astro-icon/components'
   </div>
 </theme-switch>
 
-<style lang='scss'>
-  @use '../styles/base/mixins';
-
+<style>
   .theme-switch {
     --inputs-padding: 0.125rem;
     --icon-radius: 0.5rem;
     --icon-padding-block: 0.25rem;
     --icon-padding-inline: 0.5rem;
 
-    $this: &;
     display: flex;
     align-items: center;
 
     padding-inline-start: var(--sp-xs);
     block-size: var(--header-height);
+  }
 
-    &__inputs {
-      position: relative;
-      display: flex;
-      align-items: center;
-      padding: var(--inputs-padding);
+  .theme-switch__inputs {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: var(--inputs-padding);
 
-      background-color: var(--clr-bg-card);
-      border: 1px solid var(--clr-line);
-      border-radius: calc(var(--icon-radius) + var(--icon-padding-block));
+    background-color: var(--clr-bg-card);
+    border: 1px solid var(--clr-line);
+    border-radius: calc(var(--icon-radius) + var(--icon-padding-block));
+  }
+
+  .theme-switch label {
+    display: block;
+    font-size: var(--icon-size-header);
+    color: var(--clr-text);
+    background-color: transparent;
+    padding-block: var(--icon-padding-block);
+    padding-inline: var(--icon-padding-inline);
+    border-radius: var(--icon-radius);
+    cursor: pointer;
+    transition: background-color var(--transition);
+
+    &:hover,
+    &:focus {
+      color: var(--clr-primary);
     }
+  }
 
-    label {
-      display: block;
-      font-size: var(--icon-size-header);
-      color: var(--clr-text);
-      background-color: transparent;
-      padding-block: var(--icon-padding-block);
-      padding-inline: var(--icon-padding-inline);
-      border-radius: var(--icon-radius);
-      cursor: pointer;
-      transition: background-color var(--transition);
+  .theme-switch__input {
+    position: absolute;
+    inset: 0 0 auto auto;
+    width: 1px;
+    height: 1px;
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(100%);
+    border: 0;
+    white-space: nowrap;
 
-      &:hover,
-      &:focus {
-        color: var(--clr-primary);
-      }
-    }
-
-    &__input {
-      position: absolute;
-      inset: 0 0 auto auto;
-      width: 1px;
-      height: 1px;
-      clip: rect(0, 0, 0, 0);
-      clip-path: inset(100%);
-      border: 0;
-      white-space: nowrap;
-
-      &:checked + label {
-        background-color: var(--clr-primary);
-        color: var(--clr-inverse);
-      }
+    &:checked + label {
+      background-color: var(--clr-primary);
+      color: var(--clr-inverse);
     }
   }
 </style>

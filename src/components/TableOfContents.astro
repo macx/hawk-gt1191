@@ -5,7 +5,6 @@
 
 import TableOfContentsHeading from './TableOfContentsHeading.astro'
 import Button from './Button.astro'
-import '../styles/components/_toc.scss'
 
 const { headings } = Astro.props
 const toc = buildToc(headings)
@@ -52,7 +51,7 @@ function buildToc(headings: Array<Heading>) {
     <aside>
       <nav class='toc'>
         <div class='toc-title'>
-          <h2>Inhalt</h2>
+          <h2 class='upper-title'>Inhalt</h2>
 
           <Button
             type='button'
@@ -320,3 +319,158 @@ function buildToc(headings: Array<Heading>) {
     }
   }
 </script>
+
+<style>
+  .toc {
+    @media screen and (width >= 57.5em) {
+      position: sticky;
+      inset-block-start: calc(var(--header-height) + var(--sp-content));
+      padding-inline-start: 2px;
+
+      overflow-y: auto;
+      max-block-size: calc(100dvh - var(--header-height) - var(--sp-l));
+      overscroll-behavior: contain;
+
+      .button {
+        display: none !important;
+      }
+    }
+  }
+
+  .toc-title {
+    @media screen and (width < 57.5em) {
+      h2 {
+        display: none;
+      }
+    }
+  }
+
+  .toc-list {
+    margin-block: var(--sp) 0;
+    padding-inline-start: 0;
+    transition: max-height var(--transition-navi);
+
+    > li {
+      list-style: none;
+
+      > a {
+        font-weight: var(--fw-bold);
+      }
+    }
+
+    a {
+      display: flex;
+      color: var(--clr-text);
+      text-decoration: none;
+      transition: color 250ms ease;
+
+      &:hover,
+      &:focus {
+        color: var(--clr-primary);
+      }
+    }
+
+    :where(ul ul) {
+      padding-inline-start: 0;
+
+      li {
+        list-style: none;
+      }
+    }
+
+    @media screen and (width < 57.5em) {
+      &.hidden-l {
+        max-height: 0;
+        overflow: hidden;
+        margin-block: 0;
+      }
+
+      > li {
+        margin-block-end: var(--sp-xs);
+
+        + li {
+          padding-block-start: var(--sp-xs);
+          border-block-start: 1px solid var(--clr-line);
+        }
+
+        &:has(ul) {
+          > a::after {
+            content: ':';
+          }
+        }
+      }
+
+      :where(ul ul) {
+        display: flex;
+        column-gap: 1ch;
+        flex-wrap: wrap;
+
+        li:not(:last-child) {
+          a::after {
+            content: ',';
+          }
+        }
+      }
+    }
+
+    @media screen and (width >= 57.5em) {
+      li {
+        padding-inline-start: 3px;
+      }
+
+      a {
+        padding-block: 0.5em;
+        padding-inline: var(--sp) var(--sp-s);
+
+        &.highlight {
+          color: var(--clr-primary);
+        }
+      }
+
+      :where(ul ul) {
+        --level: var(--level, 1);
+
+        padding-inline-start: var(--sp);
+      }
+    }
+  }
+
+  .toc-progress {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    block-size: 100%;
+    inline-size: 100%;
+    user-select: none;
+    pointer-events: none;
+    color: var(--clr-primary);
+
+    @media screen and (width < 57.5em) {
+      display: none;
+    }
+  }
+
+  .toc-marker-start {
+    fill: none;
+    stroke: var(--clr-primary);
+    stroke-width: 2;
+    stroke-dasharray: 0;
+    transition:
+      stroke-dasharray 250ms ease,
+      opacity 500ms ease;
+    opacity: 0;
+  }
+
+  .toc-marker {
+    transition: stroke-dasharray 250ms ease;
+    stroke-width: 2;
+  }
+
+  .toc-marker-end {
+    transition:
+      stroke-dasharray 250ms ease,
+      opacity 500ms ease;
+    transform: translateY(-1px);
+    opacity: 0;
+  }
+</style>

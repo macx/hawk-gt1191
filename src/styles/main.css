@@ -1,0 +1,11 @@
+@charset 'UTF-8';
+
+@import './base/variables.css' layer(base);
+@import './base/mixins.css' layer(base);
+@import './base/layout.css' layer(base);
+@import './base/typo.css' layer(base);
+
+@import './components/content.css' layer(content);
+@import './components/footnotes.css' layer(content);
+
+/* @import './components/media.css' layer(components); */

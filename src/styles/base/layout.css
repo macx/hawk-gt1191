@@ -1,5 +1,3 @@
-@use './mixins' as mx;
-
 *,
 *::before,
 *::after {
@@ -12,7 +10,7 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-height) + var(--sp));
 
-  @include mx.respond('m') {
+  @media screen and (width >= 37.5em) {
     scroll-padding-top: calc(var(--header-height) + var(--sp-l));
   }
 }
@@ -121,7 +119,7 @@ main {
     }
   }
 
-  @include mx.respond('l', 'to') {
+  @media screen and (width < 57.5em) {
     &:has(.toc-list.hidden-l) {
       gap: var(--sp);
     }
@@ -135,7 +133,7 @@ main {
     }
   }
 
-  @include mx.respond('l') {
+  @media screen and (width >= 57.5em) {
     .stage {
       flex-direction: row;
       justify-content: space-between;
@@ -152,7 +150,7 @@ main {
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: var(--sp-content);
 
-  @include mx.respond('l') {
+  @media screen and (width >= 57.5em) {
     .with-articles & {
       display: flex;
       flex-direction: column;
@@ -166,7 +164,7 @@ main {
   flex-direction: column;
   gap: var(--sp);
 
-  @include mx.respond('l') {
+  @media screen and (width >= 57.5em) {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;

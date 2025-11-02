@@ -46,7 +46,7 @@ const sortedTags = tags?.sort((a, b) =>
   )
 }
 
-<style lang='scss'>
+<style>
   .tags {
     display: flex;
     align-items: center;
@@ -76,7 +76,7 @@ const sortedTags = tags?.sort((a, b) =>
   .tag {
     --inline-space: 1ch;
     --background-color: var(--clr-inverse);
-    --text-color: var(--clr-txt);
+    --text-color: var(--clr-text);
 
     position: relative;
     display: inline-block;
@@ -112,9 +112,9 @@ const sortedTags = tags?.sort((a, b) =>
       background-color: var(--clr-primary);
       color: var(--clr-inverse);
     }
+  }
 
-    :global([data-theme='dark']) & {
-      --background-color: var(--clr-bg);
-    }
+  :global([data-theme='dark']) .tag {
+    --background-color: var(--clr-bg);
   }
 </style>
