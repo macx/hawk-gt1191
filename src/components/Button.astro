@@ -7,6 +7,7 @@ interface Props {
   small?: boolean
   listener?: string
   newWindow?: boolean
+  ariaLabel?: string
 }
 
 const {
@@ -16,7 +17,8 @@ const {
   primary = false,
   small = false,
   listener,
-  newWindow = false
+  newWindow = false,
+  ariaLabel
 }: Props = Astro.props
 ---
 
@@ -27,19 +29,26 @@ const {
         href={href}
         class:list={['button', { primary: primary === true }]}
         target='_blank'
-        rel='noopeer noreferrer'
+        rel='noopener noreferrer'
+        aria-label={ariaLabel || label}
       >
         {label}
       </a>
     ) : (
-      <a href={href} class:list={['button', { primary: primary === true }]}>
+      <a
+        href={href}
+        class:list={['button', { primary: primary === true }]}
+        aria-label={ariaLabel || label}
+      >
         {label}
       </a>
     )
   ) : (
     <button
+      type='button'
       class:list={['button', { primary: primary }, { small: small }]}
       data-listener={listener}
+      aria-label={ariaLabel || label}
     >
       {label}
     </button>
@@ -48,11 +57,10 @@ const {
 
 <style>
   .button {
-    all: unset;
-    cursor: pointer;
-
     display: inline-flex;
     align-items: center;
+    user-select: none;
+    cursor: pointer;
 
     background-color: var(--clr-button);
     color: var(--clr-primary);
@@ -67,14 +75,26 @@ const {
     transform: translateY(0);
     transition: all var(--transition-button);
 
-    &:hover,
-    &:focus {
+    &:focus-visible {
+      outline: 3px solid var(--clr-focus);
+      outline-offset: 2px;
+      box-shadow:
+        0 0.2em 1em var(--clr-primary-hover),
+        0 0.5em 0.5em -0.6em var(--clr-primary);
+    }
+
+    &:hover {
       background-color: var(--clr-button-hover);
       border-color: var(--clr-txt);
       box-shadow:
         0 0.2em 1em var(--clr-primary-hover),
         0 0.5em 0.5em -0.6em var(--clr-primary);
       transform: translateY(-0.1em);
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: 0 0.1em 0.5em var(--clr-primary);
     }
 
     &.small {

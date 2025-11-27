@@ -4,6 +4,31 @@
   box-sizing: border-box;
 }
 
+@view-transition {
+  navigation: auto;
+}
+
+:root::view-transition-old(root),
+:root::view-transition-new(root) {
+  animation-duration: 0s;
+}
+
+::view-transition-old(article-title),
+::view-transition-new(article-title) {
+  animation-duration: 280ms;
+  animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+  mix-blend-mode: normal;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root::view-transition-old(root),
+  :root::view-transition-new(root),
+  ::view-transition-old(article-title),
+  ::view-transition-new(article-title) {
+    animation: none !important;
+  }
+}
+
 html {
   color-scheme: light dark;
 

@@ -7,5 +7,3 @@
 
 @import './components/content.css' layer(content);
 @import './components/footnotes.css' layer(content);
-
-/* @import './components/media.css' layer(components); */

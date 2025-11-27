@@ -30,6 +30,7 @@ if (!images[imagePath]) {
     'media-item-article',
     { draft: article.data?.isDraft }
   ]}
+  data-article-id={article.id}
 >
   {article.data.isDraft && <div class='draft-banner' />}
 

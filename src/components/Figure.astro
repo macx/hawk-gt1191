@@ -10,7 +10,7 @@ interface Props {
   src?: ImageMetadata | string
   imagePath?: string
   imageFormat?: string
-  alt?: string
+  alt: string
   caption?: string | boolean
   lazy?: boolean
   class?: string
@@ -45,6 +45,9 @@ if (src && typeof src === 'object') {
       .default
   }
 }
+
+// Generate a unique ID for aria-labelledby connection
+const captionId = `caption-${Math.random().toString(36).substr(2, 9)}`
 ---
 
 <figure class:list={['media-item', className]}>
@@ -57,6 +60,7 @@ if (src && typeof src === 'object') {
         format={imageFormat ?? 'webp'}
         alt={alt}
         loading={lazy ? 'lazy' : 'eager'}
+        aria-labelledby={caption ? captionId : undefined}
       />
     ) : passedPath ? (
       <img
@@ -72,7 +76,7 @@ if (src && typeof src === 'object') {
 
   {
     caption && typeof caption === 'string' ? (
-      <figcaption>{await markdown.inline(caption)}</figcaption>
+      <figcaption id={captionId}>{await markdown.inline(caption)}</figcaption>
     ) : null
   }
 </figure>

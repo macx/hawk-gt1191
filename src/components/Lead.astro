@@ -4,7 +4,7 @@ interface Props {
   wrap?: 'pretty' | 'balance'
 }
 
-const { text, wrap } = Astro.props
+const { text, wrap } = Astro.props as Props
 ---
 
 <div class:list={['lead', wrap === 'pretty' ? 'pretty' : null]}>

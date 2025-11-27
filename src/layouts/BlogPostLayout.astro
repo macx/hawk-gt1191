@@ -22,7 +22,7 @@ const {
   headings,
   layout = 'standard' as Layout,
   readingTime = { minutes: 0, words: 0 }
-} = Astro.props
+} = Astro.props as Props
 
 const toc = true
 ---
@@ -41,7 +41,9 @@ const toc = true
 
   <article class='article'>
     <header>
-      <h1><Fragment set:html={formatTitle(title)} /></h1>
+      <h1 style='view-transition-name: article-title;'>
+        <Fragment set:html={formatTitle(title)} />
+      </h1>
 
       <Lead text={description} />
 

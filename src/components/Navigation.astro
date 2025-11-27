@@ -15,11 +15,15 @@ const filteredPages = pages
   .sort((a: any, b: any) => (a.frontmatter.sort > b.frontmatter.sort ? 0 : -1))
 ---
 
-<nav role='navigation' class='navigation'>
+<nav arial-label='Hauptnavigation' class='navigation'>
   <div class='navigation-items'>
     <ul>
       <li class='home'>
-        <a href='/' class:list={[{ current: `/${currentPath}` === '/' }]}>
+        <a
+          href='/'
+          class:list={[{ current: `/${currentPath}` === '/' }]}
+          aria-current={`/${currentPath}` === '/' ? 'page' : undefined}
+        >
           Das Seminar
         </a>
       </li>
@@ -29,6 +33,7 @@ const filteredPages = pages
             <a
               href={page.url}
               class:list={[{ current: `/${currentPath}` === page.url }]}
+              aria-current={`/${currentPath}` === page.url ? 'page' : undefined}
             >
               {page.frontmatter.navTitle}
             </a>
@@ -39,6 +44,7 @@ const filteredPages = pages
         <a
           href='/tutorials'
           class:list={[{ current: currentPath === 'tutorials' }]}
+          aria-current={currentPath === 'tutorials' ? 'page' : undefined}
         >
           Tutorials
         </a>
