@@ -28,6 +28,7 @@
   --clr-bg-card: hsl(0, 0%, 100%);
   --clr-bg-table-odd: hsl(0, 0%, 98%);
   --clr-bg-table-odd: rgb(0 0 0 / 0.03);
+  --clr-focus: var(--clr-primary);
 
   --clr-bg-table-ws: hsl(141.7, 76.6%, 73.1%);
   --clr-bg-table-symb: hsl(200.60000000000002, 94.4%, 86.1%);
@@ -54,7 +55,6 @@
   --clr-section: hsl(0 0% 100% / 0.5);
   --clr-header: rgba(6, 13, 18, 0.8);
   --clr-marker: hsl(60 100% 70% / 1);
-  --clr-code-title: #94a3b8;
 
   --clr-type-text: #fff;
   --clr-type-article: #334155;
@@ -66,9 +66,14 @@
   --clr-primary: #004fcd;
   --clr-primary-hover: hsl(217 100% 40% / 0.3);
   --clr-primary-light: hsl(217 100% 40% / 0.7);
+  --clr-nav-shadow: rgba(109, 62, 62, 0.2);
   --clr-selection: rgb(0 79 205 / 0.15);
 
-  --clr-nav-shadow: rgba(109, 62, 62, 0.2);
+  /* --clr-code-title: #94a3b8; */
+  --clr-code-title: var(--clr-text);
+  --sn-clr-bg: #eff1f5;
+  --sn-clr-text: var(--clr-code-title);
+  --sn-clr-border: var(--clr-line);
 
   --clr-kb-bg: transparent;
   --clr-kb-text: var(--clr-text);
@@ -164,6 +169,8 @@
     --clr-selection: hsl(215 100% 80% / 0.25);
 
     --clr-nav-shadow: rgb(255 2555 255 / 0.2);
+
+    --sn-clr-bg: #303446;
 
     --clr-kb-bg: rgb(255 255 255 / 0.05);
     --clr-kb-text: var(--clr-text);
