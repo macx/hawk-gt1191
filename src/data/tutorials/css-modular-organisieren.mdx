@@ -1,0 +1,185 @@
+---
+title: 'CSS clever schreiben: Schaffe Übersicht durch modulare Styles'
+description: 'Desto umfangreicher deine Website wird, desto unübersichtlicher wird dein CSS. Mache dem ein Ende!'
+isDraft: true
+pubDate: 2026-01-16T11:00:00+01:00
+author: david-maciejewski
+cover:
+  path: '/src/images/tutorials/modular-css.png'
+  alt: 'Carina sitzt an einem Tisch und schaut auf ihren großen Monitor und studiert den Code. Sie trägt eine Brille und hat einen Stift in der Hand.'
+  caption: 'Bei einem großen Projekt kann es schnell unübersichtlich werden.'
+tags: ['sass', 'css']
+---
+import Figure from '@components/Figure.astro'
+
+## In Komponenten denken
+
+Die CSS-Datei kann sehr schnell unübersichtlich werden. Hier die Styles für den Header, dort noch was für den Body, dann eine Karte in blau, dann weiter oben noch eine in grün. Dann irgendwo dazwischen noch stylige Buttons und die Galerie findet dann auch noch irgendwo Platz.
+
+Ein modularer Aufbau schafft hier Abhilfe. Du unterteilst deine Styles in Bereiche, also Basis-Styles für das Layout und die Typografie, gefolgt von Modulen und Komponenten. Damit sind Styles gemeint, die du wiederverwendest, wie zum Beispiel ein bestimmtes Aussehen einer Überschrift, die du an unterschiedlichen Orten verwenden möchtest.
+
+Mit CSS können wir mehr Struktur schaffen, wenn wir diese Bestandteile in einzelne Dateien auslagern und sie dann in einer Hauptdatei zusammenführen. So bekommen Header und Navigation zum Beispiel ihre eigenen CSS-Dateien, sodass du schnell die richtigen Stellen findest, wenn du Änderungen vornehmen möchtest, ohne dass du dich durch eine riesige CSS-Datei wühlen musst.
+
+## Best-Practice
+
+Die folgende vereinfachte Struktur hat sich in vielen meiner kleinen und großen Projekte bewährt, die ich dir anschließend erläutern möchte.
+
+<Figure caption='Im Verzeichnis `src` werden die Sass-Dateien organisiert und später als einzelne CSS-Datei im Verzeichnis `dist` (steht für Distrubution) oder `public` abgelegt.'>
+  ```plaintext
+  src/
+  └── styles/
+      ├── base/
+      │   ├── variables.css
+      │   ├── layout.css
+      │   └── typo.css
+      ├── components/
+      │   ├── header.css
+      │   ├── navigation.css
+      │   ├── card.css
+      │   └── gallery.css
+      └── main.css
+  ```
+</Figure>
+
+### Die main.css
+
+In die Website binden wir nur eine CSS-Datei ein, nämlich die `main.css`. Diese enhhält keine Styles, sondern dient quasi nur als Inhaltsverzeichnis für alle anderen Dateien, die wir hier mittelst `@import` einbinden. Schauen wir uns das exemplarisch an:
+
+
+```css title="/src/styles/main.css"
+@charset 'UTF-8';
+
+/* Base */
+@import './base/variables.css' layer(base);
+@import './base/layout.css' layer(base);
+@import './base/typo.css' layer(base);
+
+/* Components */
+@import './components/header.css' layer(content);
+@import './components/footer.css' layer(content);
+```
+
+Wie du siehst, werden in der Hauptdatei keine dedizierten Styles mehr definiert. Vielmehr lade ich an dieser Stelle durch die Verwendung von `@use` (Benutze) die Module `base` und `components`. Da es sich hierbei aber eigentlich um Verzeichnisse handelt, wird in diesen automatisch die Datei `_index.scss` gesucht. Im Prinzip handelt sich dann um ein Inhaltsverzeichnis, in den die Dateien aufgelistet werden, die wir verwenden möchten.
+
+### Die Basis
+
+Im Ordner `base` lege ich alle Styles und sogenannte Tokens ab, die für das Grundgerüst der Seite benötigt werden. Dazu gehören ein CSS-Reset, Fonts, Variablen, Typografie, Mixins und nicht zu vergessen das Layout an sich.
+
+In der Datei `_index.scss` definiere ich nun, welche Dateien ich in welcher Reihenfolge geladen haben möchte:
+
+```scss title="/src/base/_index.scss"
+@forward 'fonts';
+@forward 'mixins';
+@forward 'variables';
+@forward 'layout';
+@forward 'typo';
+```
+
+Mit `@forward` werden die Inhalte der einzelnen Dateien in die Hauptdatei geladen. Das ist sozusagen das Gegenstück zu `@use`. Stelle dir am Besten vor, dass du alle Styles in dieser Auflistung an die Hauptdatei weiterleitest (englisch: <span lang="en">to forward</span>).
+
+> Achte darauf, dass du die Unterstriche `_` und die Dateiendung `.scss` nicht mit angeben musst. Sass ist an dieser Stelle smart genug.
+
+### Module im Überblick
+
+Schauen wir uns kurz an, welche Dateien ich für welchen Zweck angelegt habe.
+
+`_font.scss`
+: Die Font-Face-Definitionen der lokal eingebunden Schriftarten, die auch zuerst geladen werden müssen.
+
+`_mixins.scss`
+: Das Herzstück aller Sass-Funtionen, die [Mixins](https://sass-lang.com/documentation/at-rules/mixin/), beheimaten mein Breakpoint-Mixin und immer wieder verwendete Styles, die ich an anderer Stelle nur noch mit einem `@import` einbinden muss.
+
+`_variables.scss`
+: Enhält alle CSS-Custom-Properties, also die Variablen zu den Fonts, Farben, Größen und Abständen.
+
+`_layout.scss`
+: Hier werden alle Basiselement des Layouts definiert, also der CSS-Reset, die Definition für `html`, `body`, `main` und so weiter.
+
+`_typo.scss`
+: Grunsätzliche Basis-Styles für die Typografie, wie zum Beispiel die Definition von `h1` bis `h5`, `p`, `a` und `blockquote`.
+
+### Die Komponenten
+
+Alles andere, was über diese Basisdefintion hinausgeht, wird in den `components` abgelegt -- wobei es eigentlich egal ist, wie du sie nennst. Als Komponente kannst du dir zum Beispiel einr in sich geschlossenes Box mit Inhalten vorstellen. Dessen Styles brauchen wir außerhalb nicht und wünschen uns wahrscheinlich auch nicht, dass Styles von außen Einfluss haben soll. Legen wir uns also die Datei `_navigation.scss` an. Dann eine Datei für den Header, eine für den Content und so weiter.
+
+Die Einbindung dieser Dateien in der Hauptdatei `main.scss` erfolgt analog zu den Basis-Styles in der `src/components/_index.scss`.
+
+## Ein Modul erstellen
+
+Schauen wir uns also nun also mal eine Komponente an, die möglichst modular verwerdet werden kann.
+
+Stell dir vor, du hast eine Karte mit Überschrift, Bild und einen Text. Diese möchtest du auf den Unterseiten deiner Projekte, Fotografien und Ausstellungen verwenden.
+
+<Figure imagePath="/src/images/tutorials/karten-mockup.jpeg" caption="Eine Karte mit Überschrift, Bild und Text" alt="" />
+
+Die Karten möchtest du nun aber je nach Seite bzw. Kategorie eine andere Hintergrundfarbe geben. Dafür jetzt jeweils eine eigene Klasse zu erstellen, also `.card1`, `.card2` usw., wäre nicht nur unnötig, sondern entspricht eben auch nicht dem Ansatz Mobil first[^2]. Denn im Grunde genommen sind die Styles für alle Karten identisch, mit Außnahme der Hintergrundfarbe. Styles, die doppelt oder dreifach definiert werden, ist ein No-Go.
+
+### HTML-Markup
+
+Der Code einer Karte könnte dann so aussehen:
+
+```html
+<a href="/projekte" class="card projects">
+  <div class="title">Projekte</div>
+
+  <div class="image">
+    <img src="/images/projekte.jpg" alt="Projekte" />
+  </div>
+
+  <div class="text">Das sind meine Projekte</div>
+</a>
+```
+
+Achte darauf, dass die Karte zwei Klassen erhalten hat: `.card` und `.projects`.
+
+### Sass-Styles
+
+Nun erstellen wir die Styles für die Karte in einer eigenen Datei namens `_card.scss` im Verzeichnis `src/styles/components` und binden diese in der `src/styles/components/_index.scss` ein. Da alle Karten gleich aussehen sollen, bekommen diese die Klasse `.card`. Die Styles dafür könnten so aussehen:
+
+```scss title="_card.scss"
+.card {
+  background-color: rgb(255 255 255);
+  box-shadow: 0 0 1rem rgb(0 0 0 / o.1);
+
+  .title,
+  .text {
+    padding-block: 0.5rem;
+    padding-inline: 1rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .image {
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+}
+```
+
+Nun zu den Variaten. Die Karten auf der Seite **Projekte** erhalten zusätzlich die Klasse `.projects`, die Karten auf der Seite **Fotografien** die Klasse `.photos` und so weiter. Ergänze dazu am Ende der Klasse `.card` folgende Styles:
+
+```scss title="_card.scss"
+.card {
+  /* Stelle dir hier den Code aus dem vorherigen Beispiel vor. */
+
+  &.projects {
+    background-color: rgb(254 215 170);
+  }
+
+  &.photos {
+    background-color: rgb(167 243 208);
+  }
+}
+```
+
+Mit diesen Styles hast du dir nun eine gute Basis geschaffen. Wenn du von nun an Änderungen an den Karten machen möchtest, öffne dazu einfach die Datei `_cards.scss`. Schaue dir nun an, welche Inhalte du noch in einer eigenen Komponente zusammenstellen könntest.
+
+Viel Spaß beim Ausprobieren!
+
+[^1]: Ein Präprozessor ist ein Programm, das den Quellcode eines Computerprogramms verarbeitet, bevor dieser von einem Compiler oder Interpreter verarbeitet wird. Der Präprozessor kann beispielsweise Makros ersetzen, Dateien einbinden oder bedingte Kompilierung ermöglichen. ([Wikipedia](https://de.wikipedia.org/wiki/Pr%C3%A4prozessor))
+[^2]: Mobil First ist ein Ansatz, bei dem die Seite zuerst für mobile Geräte entwickelt wird und dann erst für größere Bildschirme. Ein Hauptaugebmerk liegt dabei bei der Usability und Ladezeit. ([Wikipedia](https://de.wikipedia.org/wiki/Responsive_Webdesign))

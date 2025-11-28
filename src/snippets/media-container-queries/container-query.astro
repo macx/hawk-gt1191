@@ -1,0 +1,139 @@
+---
+import Snippet from '@components/Snippet.astro'
+---
+
+<Snippet title='Interaktive Demo'>
+  <Fragment slot='settings'>
+    <div class='sn-settings'>
+      <div class='sn-value'>
+        <label for='el-size-input'>Box-Breite:</label>
+        <input
+          type='range'
+          name='size'
+          id='el-size-input'
+          min='50'
+          max='100'
+          step='10'
+          value='50'
+          list='el-size-markers'
+        />
+        <span>
+          <output id='el-size-output'>50</output>%
+        </span>
+
+        <datalist id='el-size-markers'>
+          <option value='50'></option>
+          <option value='60'></option>
+          <option value='70'></option>
+          <option value='80'></option>
+          <option value='90'></option>
+          <option value='100'></option>
+        </datalist>
+      </div>
+    </div>
+  </Fragment>
+
+  <Fragment>
+    <div class='demo-bg-color'>
+      <div class='container'>
+        <div class='sn-element child'>
+          <span class='code'>&#x3C;div class='container'&#x3E;</span>
+
+          <div class='sn-element'>
+            <span class='code'>&#x3C;div class='card'&#x3E;</span>
+
+            <div class='sn-content'>
+              <div class='sn-element sn-frame'>
+                <span class='code'>&#x3C;div class='image'&#x3E;</span>
+
+                <div class='sn-element sn-image'>Bild</div>
+              </div>
+
+              <div class='sn-element sn-title-text'>
+                <span class='code'>&#x3C;div class='text'&#x3E;</span>
+
+                <div class='sn-element sn-headline'>Lorem ipsum</div>
+
+                <div class='sn-element t-small'>Lorem ipsum dolor sit amet</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Fragment>
+
+  <style>
+    @scope (.demo-bg-color) {
+      :scope {
+        .container {
+          --width: 50%;
+          container: demo-container / inline-size;
+          min-width: 12rem;
+          max-width: var(--width);
+          transition: max-width ease-out 120ms;
+
+          .code {
+            margin-block-end: var(--sp-xs);
+          }
+        }
+
+        .child {
+          .sn-frame {
+            margin-block-end: var(--sp-s);
+          }
+
+          .sn-image {
+            margin-block-end: var(--sp-xs);
+            aspect-ratio: 4 / 3;
+          }
+
+          .sn-headline {
+            margin-block-end: var(--sp-xs);
+          }
+
+          @container demo-container (width >= 65cqw) {
+            .sn-content {
+              display: flex;
+              gap: var(--sp);
+            }
+
+            .sn-frame {
+              width: 155px;
+            }
+
+            .sn-title-text {
+              flex: 1;
+            }
+          }
+        }
+      }
+    }
+
+    @scope (.sn-settings) {
+      :scope {
+        #el-size-output {
+          display: inline-block;
+          inline-size: 3ch;
+          text-align: end;
+          margin-inline-end: 0.2em;
+        }
+      }
+    }
+  </style>
+
+  <script is:inline>
+    ;(function () {
+      const snInput = document.querySelector('#el-size-input')
+      const snOnput = document.querySelector('#el-size-output')
+      const demoContainer = document.querySelector('.container')
+
+      snOnput.textContent = snInput.value
+
+      snInput.addEventListener('input', (event) => {
+        snOnput.textContent = event.target.value
+        demoContainer.style.setProperty('--width', `${event.target.value}%`)
+      })
+    })()
+  </script>
+</Snippet>

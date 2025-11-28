@@ -1,0 +1,156 @@
+---
+title: 'Responsiv: So nutzt du Media & Container Queries'
+description: 'Ziehe deiner Website die Hammelbeine lang und passe das Design an verschiedene Bildschirm- oder Containergrößen an'
+isDraft: false
+pubDate: 2025-11-28T09:15:00+00:00
+author: david-maciejewski
+cover:
+  path: '/src/images/tutorials/media-and-container-queries.png'
+  alt: 'Carina sitzt an einem Tisch und schaut auf ihren großen Monitor und studiert den Code. Sie trägt eine Brille und hat einen Stift in der Hand.'
+  caption: 'Bei einem großen Projekt kann es schnell unübersichtlich werden.'
+tags: ['css', 'layout', 'responsive', 'media-queries', 'container-queries', 'webdesign']
+---
+import Figure from '@components/Figure.astro'
+
+import SnippetMediaQuery from '@snippets/media-container-queries/media-query.astro'
+import SnippetContainerQuery from '@snippets/media-container-queries/container-query.astro'
+
+## Responsive Techniken
+
+Die Statistiken aus dem Jahr 2025 zeigen sehr deutlich: **66 %** des weltweiten Web-Traffics stammt von mobilen Geräten, **32 %** von Desktops und Laptops und **2 %** von Tablets -- sowohl in Deutschland als auch weltweit.
+
+Deshalb setzen wir konsequent auf den Ansatz **Mobile First**[^1], bei dem das Design auf mobile Endgeräte optimiert wird. Aber was passiert, wenn der Bildschirm größer wird und mehr Platz zur Verfügung steht? Wie können wir sicherstellen, dass unser Design auf verschiedenen Bildschirmgrößen gut aussehen und funktionieren?
+
+Genau hier setzen zwei CSS-Techniken an: Die Media- und Container Queries. „Queries“ heißt übersetzt so viel wie Abfragen. Beide Techniken ermöglichen es uns, CSS-Regeln basierend auf bestimmten Bedingungen anzuwenden. Der Unterschied liegt jedoch darin, worauf sich diese Bedingungen beziehen:
+
+Media Queries (`@media`)
+: Sie ermöglichen es uns, Styles basierend auf der **Größe des Viewports** (des sichtbaren Bereichs des Browsers) anzupassen.
+
+Container Queries (`@container`)
+: Sie erlauben es uns, Styles basierend auf der **Größe des übergeordneten Containers** -- dem Elternelement -- anzupassen. Das ist besonders nützlich in modularen Layouts, in denen Komponenten in verschiedenen Kontexten verwendet werden können.
+
+## Media Queries
+
+Schauen wir uns zunächst einmal die allgemeine Syntax[^2] einer Media Query an. Diese kann als eigenständige Regel oder innerhalb einer anderen CSS-Regel definiert werden. Wir präferiren die Einbindung am Ende einer CSS-Regel, da dies die Lesbarkeit erhöht und die Struktur klarer macht.
+
+```css ins={5-7}
+.card {
+  color: black;
+  background-color: aquamarine;
+
+  @media (width >= 48em) {
+    background-color: lightcoral;
+  }
+}
+```
+
+Die Media Query ist eine At-Regel[^3], die Anweisungen enthält, die nur angewendet werden, wenn die Bedingung erfüllt ist. Die Bedingung wird in runden Klammern angegeben und kann verschiedene Eigenschaften des Viewports abfragen, wie z. B. die Breite <span class="t-nowrap">(`width`)</span>, Höhe <span class="t-nowrap">(`height`)</span>, Ausrichtung <span class="t-nowrap">(`orientation`)</span> und vieles mehr.
+
+In unserem Fall überprüfen wir, ob der Viewport mindestens (größer oder gleich) `48em`, also ca. 768 Pixel, breit ist. Damit addressieren wir typischerweise Tablets und größere Geräte. Smartphones hingegen können diese Regel ignorieren, da wir hier auf `max-width`-Bedingungen verzichten. Das spart Resourcen und sorgt für eine bessere Performance.
+
+### Breakpoints
+
+Zurück zu unserem Code von oben: An genau dem Punkt von `48em` erstellen wir mit der Media Query einen **Breakpoint**[^4], also einen definierten Punkt, an dem sich das Layout ändern soll. Das heißt, dass die Attribute und Werte innerhalb einer CSS-Regel zunächst immer für **alle Bildschirmgrößen** gelten. Erst wenn die Bedingung der Media Query erfüllt ist, also der Viewport mindestens `48em` breit ist, werden die Styles innerhalb der `@media`-Anweisung angewendet und überschreiben die vorherigen Werte.
+
+Unsere Karte (`.card`) hat standardmäßig einen aquamarinfarbenen Hintergrund. Sobald der Viewport aber größer ist als 48em, ändert sich die Hintergrundfarbe zu einem hellen Korallenrot. Die Schriftfarbe bleibt in beiden Fällen schwarz.
+
+### Demo
+
+Schauen wir uns die Auswirkung unserer Media Query einmal in einer interaktiven Demo an:
+
+<Figure caption="Mach das Browserfenster am Desktop schmaler oder breiter oder drehe dein Smartphone, um die Änderung der Hintergrundfarbe zu sehen.">
+  <SnippetMediaQuery />
+</Figure>
+
+## Container Queries
+
+Die Syntax einer Container Query ähnelt der einer Media Query. Anstelle von `@media` verwenden wir nun aber `@container`:
+
+```css ins={5-7}
+.card {
+  display: flex;
+  flex-direction: column;
+
+  @container (width >= 25em) {
+    flex-direction: row;
+  }
+}
+```
+
+Im Gegensatz zu Media Queries, bezieht sich die Bedingung der Container Query auf die Größe des Containers, in dem sich die Karte befindet. Das könnte z. B. der breite Hauptbereich und die schmalen Seitenleiste sein, wenn wir in beiden Bereichen die gleiche Karte einbinden.
+
+In unserem Beispiel prüfen wir, ob der Container mindestens `25em` breit ist. Wenn das der Fall ist, ändern wir die Anordnung der Elemente innerhalb der Karte von einer Spalte (`column`) zur einer Reihe (`row`). Jetzt müssen wir nur noch definieren, **woran** sich die Karte orientieren soll, also an welchen Container.
+
+### Der Container
+
+Um einen Container zu definieren, verwenden wir die CSS-Eigenschaft `container-type` oder die Kurzform `container`.
+
+```css
+.main,
+.sidebar {
+  container-type: inline-size;
+}
+```
+
+Stell dir vor, du hast eine Karte (`.card`), die ein Bild und einen Textblock enthält. Bietet diese Karte wenig Platz, sollen Bild und Text untereinander angeordnet sein. Sobald die Karte aber mindestens `25em` (400 Pixel) Platz hat, möchtest du, dass Bild und Text nebeneinander angezeigt werden.
+
+
+Wenn du beispielsweise die Karte einmal in den breiten Bauptbereich deiner Seite und einmal in eine schmale Seitenleiste einfügst, und du beiden Elementen die Eigenschaft `container-type: inline-size;` gibst, dann wird die Anordnung der Elemente innerhalb der Karte jeweils an die Breite des Containers angepasst.
+
+### Demo
+
+Wir erstellen uns nun die angesprochene Karte mit Bild und Text und fügen sie in einen Container ein, dessen Breite du in der Demo mit einem Schieberegler anpassen kannst:
+
+<Figure caption="Passe mit dem Schieberegler die Breite an.">
+  ```html title="HTML"
+  <main class="container">
+    <h1>Unsere Pflanzen</h1>
+
+    <div class="card">
+      <div class="image">
+        <img src="der-baum.webp" alt="Der Baum in meinem Garten">
+      </div>
+
+      <div class="text">
+        <h2>Der Baum</h2>
+
+        <p>
+          Ein Baum ist ein mehrjähriges, verholztes Pflanzengewächs mit einem einzelnen, meist aufrechten Stamm, der sich in Äste und Zweige verzweigt und eine Krone bildet.
+        </p>
+      </div>
+    </div>
+  </main>
+  ```
+
+  ```css title="CSS"
+  .container {
+    container-type: inline-size;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    @container (width >= 25em) {
+      flex-direction: row;
+    }
+  }
+  ```
+
+  <SnippetContainerQuery />
+</Figure>
+
+## Wann setzt du was ein?
+
+Media Queries sind ideal, wenn du das Layout deiner gesamten Seite basierend auf der Bildschirmgröße anpassen möchtest. Sie sind besonders nützlich für grundlegende Layoutänderungen, die sich auf das gesamte Design auswirken.
+
+Container Queries hingegen sind hervorragend geeignet, wenn du einzelne Komponenten oder Module innerhalb deines Designs anpassen möchtest, unabhängig von der Gesamtgröße des Viewports. Sie ermöglichen es dir, flexiblere und wiederverwendbare Komponenten zu erstellen, die sich an verschiedene Layouts anpassen können.
+
+Worauf wartest du nun? Teste es selbst aus und integriere Media- und Container Queries in deine nächsten Projekte!
+
+
+[^1]: Mobile First bedeutet, dass du deine Website zuerst für kleine Bildschirme (Smartphones) gestaltest und dann für größere Bildschirme (Tablets, Desktops) anpasst.
+[^2]: Als Syntax bezeichnet man die Art und Weise, wie Code geschrieben wird, also die Regeln und Strukturen einer Programmiersprache oder eines Markup-Sprachstandards.
+[^3]: At-Regeln sind CSS-Anweisungen, die mit einem "@"-Symbol beginnen und spezielle Anweisungen oder Regeln definieren, wie z. B. `@media` für Media Queries oder `@import` zum Einbinden von externen CSS-Dateien.
+[^4]: Ein Breakpoint ist ein definierter Punkt in der Bildschirmgröße oder eines Elternelements, an dem das Layout angepasst wird, um eine optimale Darstellung zu gewährleisten.

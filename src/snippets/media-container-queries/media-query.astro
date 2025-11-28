@@ -1,0 +1,33 @@
+---
+import Snippet from '@components/Snippet.astro'
+---
+
+<Snippet title='Demo'>
+  <Fragment>
+    <div class='demo-media-query'>
+      <div class='sn-element card'>
+        <span class='code'>&#x3C;div class='card'&#x3E;</span>
+      </div>
+    </div>
+  </Fragment>
+
+  <style>
+    @scope (.demo-media-query) {
+      :scope {
+        .code {
+          margin-block-end: var(--sp-xs);
+          color: #000;
+        }
+
+        .card {
+          aspect-ratio: 16 / 9;
+          background-color: aquamarine;
+
+          @media (width >= 600px) {
+            background-color: lightcoral;
+          }
+        }
+      }
+    }
+  </style>
+</Snippet>
