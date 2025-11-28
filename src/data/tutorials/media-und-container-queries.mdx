@@ -19,7 +19,7 @@ import SnippetContainerQuery from '@snippets/media-container-queries/container-q
 
 Die Statistiken aus dem Jahr 2025 zeigen sehr deutlich: **66 %** des weltweiten Web-Traffics stammt von mobilen Geräten, **32 %** von Desktops und Laptops und **2 %** von Tablets -- sowohl in Deutschland als auch weltweit.
 
-Deshalb setzen wir konsequent auf den Ansatz **Mobile First**[^1], bei dem das Design auf mobile Endgeräte optimiert wird. Aber was passiert, wenn der Bildschirm größer wird und mehr Platz zur Verfügung steht? Wie können wir sicherstellen, dass unser Design auf verschiedenen Bildschirmgrößen gut aussehen und funktionieren?
+Deshalb setzen wir konsequent auf den Ansatz **Mobile First**[^1], bei dem das Design auf mobile Endgeräte optimiert wird. Aber was passiert, wenn der Bildschirm größer wird und mehr Platz zur Verfügung steht? Wie können wir sicherstellen, dass unser Design auf verschiedenen Bildschirmgrößen gut aussieht und funktioniert?
 
 Genau hier setzen zwei CSS-Techniken an: Die Media- und Container Queries. „Queries“ heißt übersetzt so viel wie Abfragen. Beide Techniken ermöglichen es uns, CSS-Regeln basierend auf bestimmten Bedingungen anzuwenden. Der Unterschied liegt jedoch darin, worauf sich diese Bedingungen beziehen:
 
@@ -31,7 +31,7 @@ Container Queries (`@container`)
 
 ## Media Queries
 
-Schauen wir uns zunächst einmal die allgemeine Syntax[^2] einer Media Query an. Diese kann als eigenständige Regel oder innerhalb einer anderen CSS-Regel definiert werden. Wir präferiren die Einbindung am Ende einer CSS-Regel, da dies die Lesbarkeit erhöht und die Struktur klarer macht.
+Schauen wir uns zunächst einmal die allgemeine Syntax[^2] einer Media Query an. Diese kann als eigenständige Regel oder innerhalb einer anderen CSS-Regel definiert werden. Wir präferieren die Einbindung am Ende einer CSS-Regel, da dies die Lesbarkeit erhöht und die Struktur klarer macht.
 
 ```css ins={5-7}
 .card {
@@ -46,7 +46,7 @@ Schauen wir uns zunächst einmal die allgemeine Syntax[^2] einer Media Query an.
 
 Die Media Query ist eine At-Regel[^3], die Anweisungen enthält, die nur angewendet werden, wenn die Bedingung erfüllt ist. Die Bedingung wird in runden Klammern angegeben und kann verschiedene Eigenschaften des Viewports abfragen, wie z. B. die Breite <span class="t-nowrap">(`width`)</span>, Höhe <span class="t-nowrap">(`height`)</span>, Ausrichtung <span class="t-nowrap">(`orientation`)</span> und vieles mehr.
 
-In unserem Fall überprüfen wir, ob der Viewport mindestens (größer oder gleich) `48em`, also ca. 768 Pixel, breit ist. Damit addressieren wir typischerweise Tablets und größere Geräte. Smartphones hingegen können diese Regel ignorieren, da wir hier auf `max-width`-Bedingungen verzichten. Das spart Resourcen und sorgt für eine bessere Performance.
+In unserem Fall überprüfen wir, ob der Viewport mindestens (größer oder gleich) `48em`, also ca. 768 Pixel, breit ist. Damit adressieren wir typischerweise Tablets und größere Geräte. Smartphones hingegen ignorieren diese Regel einfach, da die Bedingung nicht zutrifft. Durch den Verzicht auf `max-width` vermeiden wir, dass Styles erst angewendet und dann für größere Bildschirme wieder mühsam überschrieben werden müssen. Das hält den Code sauberer und reduziert die Komplexität für den Browser beim Rendern der Seite.
 
 ### Breakpoints
 
@@ -77,9 +77,9 @@ Die Syntax einer Container Query ähnelt der einer Media Query. Anstelle von `@m
 }
 ```
 
-Im Gegensatz zu Media Queries, bezieht sich die Bedingung der Container Query auf die Größe des Containers, in dem sich die Karte befindet. Das könnte z. B. der breite Hauptbereich und die schmalen Seitenleiste sein, wenn wir in beiden Bereichen die gleiche Karte einbinden.
+Im Gegensatz zu Media Queries, bezieht sich die Bedingung der Container Query auf die Größe des Containers, in dem sich die Karte befindet. Das könnte z. B. der breite Hauptbereich und die schmale Seitenleiste sein, wenn wir in beiden Bereichen die gleiche Karte einbinden.
 
-In unserem Beispiel prüfen wir, ob der Container mindestens `25em` breit ist. Wenn das der Fall ist, ändern wir die Anordnung der Elemente innerhalb der Karte von einer Spalte (`column`) zur einer Reihe (`row`). Jetzt müssen wir nur noch definieren, **woran** sich die Karte orientieren soll, also an welchen Container.
+In unserem Beispiel prüfen wir, ob der Container mindestens `25em` breit ist. Wenn das der Fall ist, ändern wir die Anordnung der Elemente innerhalb der Karte von einer Spalte (`column`) zu einer Reihe (`row`). Jetzt müssen wir nur noch definieren, **woran** sich die Karte orientieren soll, also an welchem Container.
 
 ### Der Container
 
@@ -94,8 +94,11 @@ Um einen Container zu definieren, verwenden wir die CSS-Eigenschaft `container-t
 
 Stell dir vor, du hast eine Karte (`.card`), die ein Bild und einen Textblock enthält. Bietet diese Karte wenig Platz, sollen Bild und Text untereinander angeordnet sein. Sobald die Karte aber mindestens `25em` (400 Pixel) Platz hat, möchtest du, dass Bild und Text nebeneinander angezeigt werden.
 
+Wenn du beispielsweise die Karte einmal in den breiten Hauptbereich deiner Seite und einmal in eine schmale Seitenleiste einfügst, und du beiden Elementen die Eigenschaft `container-type: inline-size;` gibst, dann wird die Anordnung der Elemente innerhalb der Karte jeweils an die Breite des Containers angepasst.
 
-Wenn du beispielsweise die Karte einmal in den breiten Bauptbereich deiner Seite und einmal in eine schmale Seitenleiste einfügst, und du beiden Elementen die Eigenschaft `container-type: inline-size;` gibst, dann wird die Anordnung der Elemente innerhalb der Karte jeweils an die Breite des Containers angepasst.
+### Container Query Units
+
+Ein weiterer Vorteil von Container Queries sind die speziellen Einheiten, die sich auf die Größe des Containers beziehen. Mehr dazu erfährst du im Tutorial [Absolute und relative Einheiten](/tutorials/absolute-und-relative-einheiten#relativ-zum-container).
 
 ### Demo
 
