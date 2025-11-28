@@ -68,6 +68,30 @@ function buildToc(headings: Array<Heading>) {
         </ul>
 
         <svg class='toc-progress' xmlns='http://www.w3.org/2000/svg'>
+          <path
+            class='toc-marker-background'
+            fill='none'
+            stroke='currentColor'
+            stroke-linecap='round'
+            stroke-width='2'
+            stroke-linejoin='round'
+          />
+          <circle
+            class='toc-marker-start-background'
+            cx='5'
+            cy='45'
+            r='4'
+            fill='currentColor'
+          />
+          <line
+            class='toc-marker-end-background'
+            x1='1'
+            y1='100%'
+            x2='9'
+            y2='100%'
+            stroke='currentColor'
+            stroke-width='3'
+          />
           <circle
             class='toc-marker-start'
             cx='5'
@@ -91,7 +115,7 @@ function buildToc(headings: Array<Heading>) {
             x2='9'
             y2='100%'
             stroke='currentColor'
-            stroke-width='2'
+            stroke-width='3'
           />
         </svg>
       </nav>
@@ -104,9 +128,12 @@ function buildToc(headings: Array<Heading>) {
 
   if (toc) {
     const links: NodeListOf<HTMLAnchorElement> = toc.querySelectorAll('a')
-    const sections: NodeListOf<HTMLElement> = document.querySelectorAll(
-      '.content :is(h2[id], h3[id], h4[id])'
-    )
+    const sections = Array.from(links)
+      .map((link) => {
+        const href = link.getAttribute('href')
+        return href ? document.getElementById(href.substring(1)) : null
+      })
+      .filter((section): section is HTMLElement => !!section)
 
     if (sections.length > 1 && links.length > 1) {
       const HIGHLIGHT_CLASS: string = 'highlight'
@@ -119,6 +146,7 @@ function buildToc(headings: Array<Heading>) {
       // bottom of each link
       const linkStarts = new WeakMap()
       const linkEnds = new WeakMap()
+      let lastActiveLink: HTMLAnchorElement | null = null
 
       enableToggleButton()
       addIntersectionObserver()
@@ -143,22 +171,82 @@ function buildToc(headings: Array<Heading>) {
       }
 
       function addIntersectionObserver() {
-        const observer = new IntersectionObserver((sections) => {
-          sections.forEach((section) => {
-            const { id } = section.target
+        const headingStates = new Map()
+        const TOP_OFFSET = 80
 
-            // Get the link to this section's heading
-            const link = toc.querySelector(`a[href="#${id}"]`)
-            if (!link) return
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              const { target, isIntersecting, boundingClientRect } = entry
+              const state = isIntersecting
+                ? 'visible'
+                : boundingClientRect.top < TOP_OFFSET
+                  ? 'above'
+                  : 'below'
+              headingStates.set(target, state)
+            })
 
-            // Add/remove the .active class based on whether the
-            // section is visible
-            const addRemove = section.intersectionRatio > 0 ? 'add' : 'remove'
-            link.classList[addRemove](HIGHLIGHT_CLASS)
-          })
+            let activeHeading: HTMLElement | null = null
+            // Find the last heading that is above or visible
+            sections.forEach((section) => {
+              const state = headingStates.get(section)
+              if (state === 'above' || state === 'visible') {
+                activeHeading = section
+              }
+            })
 
-          updatePath()
-        })
+            if (!activeHeading && sections.length > 0) {
+              activeHeading = sections[0]
+            }
+
+            const activeLinks = new Set<HTMLElement>()
+            if (activeHeading) {
+              const heading = activeHeading as HTMLElement
+              const link = toc.querySelector(`a[href="#${heading.id}"]`)
+              if (link) {
+                activeLinks.add(link as HTMLElement)
+
+                // Check if it's the first child in a nested list
+                const listItem = link.closest('li')
+                const parentList = listItem?.parentElement
+                if (
+                  listItem &&
+                  parentList &&
+                  parentList.tagName === 'UL' &&
+                  !parentList.classList.contains('toc-list')
+                ) {
+                  if (parentList.firstElementChild === listItem) {
+                    const parentListItem = parentList.closest('li')
+                    const parentLink = parentListItem?.querySelector('a')
+                    if (parentLink) {
+                      const parentHref = parentLink.getAttribute('href')
+                      const parentSection = parentHref
+                        ? document.getElementById(parentHref.substring(1))
+                        : null
+                      if (
+                        parentSection &&
+                        headingStates.get(parentSection) === 'visible'
+                      ) {
+                        activeLinks.add(parentLink as HTMLElement)
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
+            links.forEach((link) => {
+              if (activeLinks.has(link)) {
+                link.classList.add(HIGHLIGHT_CLASS)
+              } else {
+                link.classList.remove(HIGHLIGHT_CLASS)
+              }
+            })
+
+            updatePath()
+          },
+          { rootMargin: '-80px 0px -66% 0px' }
+        )
 
         // Observe all sections/headlines
         sections.forEach((section) => {
@@ -176,7 +264,17 @@ function buildToc(headings: Array<Heading>) {
       }
 
       function drawPath() {
-        const path = document.querySelector('.toc-marker') as SVGPathElement
+        const path = toc.querySelector('.toc-marker') as SVGPathElement
+        const pathBackground = toc.querySelector(
+          '.toc-marker-background'
+        ) as SVGPathElement
+        const markerStartBackground = toc.querySelector(
+          '.toc-marker-start-background'
+        ) as SVGCircleElement
+        const markerStart = toc.querySelector(
+          '.toc-marker-start'
+        ) as SVGCircleElement
+
         if (!links.length) return
 
         // Start with an empty array of path data values (joinded with sapces later)
@@ -207,48 +305,89 @@ function buildToc(headings: Array<Heading>) {
             // The top of the first link starts at 0px along the path.
             linkStarts.set(link, 0)
 
-            y = y + MarkerPaddingInlineLeft * 2 + 1
-            height = height - MarkerPaddingInlineLeft * 2 - 2
+            y = y + MarkerPaddingInlineLeft
+            height = height - MarkerPaddingInlineLeft - 2
+
+            if (markerStartBackground) {
+              markerStartBackground.setAttribute('cx', x.toString())
+              markerStartBackground.setAttribute('cy', y.toString())
+            }
+            if (markerStart) {
+              markerStart.setAttribute('cx', x.toString())
+              markerStart.setAttribute('cy', y.toString())
+            }
 
             // Like drawing with a pen...
-            // 'M'ove to the top left of the first link,
-            // and then draw a 'L'ine to the bottom left
-            pathData.push(
-              'M',
-              x.toString(),
-              y.toString(),
-              'L',
-              x.toString(),
-              (y + height).toString()
-            )
+            // 'M'ove to the top left of the first link
+            pathData.push('M', x.toString(), (y + 4).toString())
           } else {
             // If the current link is indented differently than the last,
             // then come down to the current link's top before moving
             // left or right. This ensures we get 90-degrees angle at the
             // corners.
-            if (left !== x) pathData.push('L', left.toString(), y.toString())
+            if (left !== x) {
+              const r = 10
+              const radius = Math.min(r, Math.abs(x - left) / 2)
+              const xDir = x > left ? 1 : -1
 
-            // Draw a line to the top left of the current link
-            pathData.push('L', x.toString(), y.toString())
+              pathData.push('L', left.toString(), (y - radius).toString())
+              pathData.push(
+                'Q',
+                left.toString(),
+                y.toString(),
+                (left + xDir * radius).toString(),
+                y.toString()
+              )
+              pathData.push('L', (x - xDir * radius).toString(), y.toString())
+              pathData.push(
+                'Q',
+                x.toString(),
+                y.toString(),
+                x.toString(),
+                (y + radius).toString()
+              )
+            } else {
+              pathData.push('L', x.toString(), y.toString())
+            }
 
             // Apply the current path data to the path element
-            path.setAttribute('d', pathData.join(' '))
+            const d = pathData.join(' ')
+            path.setAttribute('d', d)
+            pathBackground?.setAttribute('d', d)
 
             // Get the total length of the path now that it extends
             // to the top of this link, and store it in our linkStarts
             // WeakMap.
             linkStarts.set(link, path.getTotalLength())
-
-            // Draw a line to the bottom left of the current link
-            pathData.push('L', x.toString(), (y + height).toString())
           }
+
+          // Calculate where the vertical line should end for this link
+          let endY = y + height
+          if (i < links.length - 1) {
+            const nextLink = links[i + 1]
+            const nextX = nextLink.offsetLeft
+            const nextY = nextLink.offsetTop
+
+            if (nextX !== x) {
+              const r = 10
+              const radius = Math.min(r, Math.abs(nextX - x) / 2)
+              if (nextY - radius < endY) {
+                endY = nextY - radius
+              }
+            }
+          }
+
+          // Draw a line to the bottom left of the current link (or capped end)
+          pathData.push('L', x.toString(), endY.toString())
 
           // Save the current link's x position to compare with the next
           // link
           left = x
 
           // Apply the current path data to the path element again
-          path.setAttribute('d', pathData.join(' '))
+          const d = pathData.join(' ')
+          path.setAttribute('d', d)
+          pathBackground?.setAttribute('d', d)
 
           // Get the length of the path that now extends to the
           // bottom of this link, and store it in our linkEnds WeakMap.
@@ -264,7 +403,9 @@ function buildToc(headings: Array<Heading>) {
           '.toc-marker-start'
         ) as SVGCircleElement
         const markerEnd = toc.querySelector('.toc-marker-end') as SVGLineElement
-        const markerEndSize = 7
+        const markerEndBackground = toc.querySelector(
+          '.toc-marker-end-background'
+        ) as SVGLineElement
 
         const pathLength = path.getTotalLength()
         const activeLinks = toc.querySelectorAll(`a.${HIGHLIGHT_CLASS}`)
@@ -272,43 +413,75 @@ function buildToc(headings: Array<Heading>) {
 
         let linkStart = pathLength
         let linkEnd = 0
+        let duration = '250ms'
 
-        activeLinks.forEach((link) => {
-          // Set linkStart to the top of the earliest active link
-          linkStart = Math.min(linkStart, linkStarts.get(link))
-          // Set linkEnd to the bottom of the furthest active link
-          linkEnd = Math.max(linkEnd, linkEnds.get(link))
-        })
+        if (activeLinks.length > 0) {
+          const activeLink = activeLinks[0] as HTMLAnchorElement
+          if (lastActiveLink && activeLink !== lastActiveLink) {
+            if (activeLink.offsetLeft !== lastActiveLink.offsetLeft) {
+              duration = '600ms'
+            }
+          }
+          lastActiveLink = activeLink
+        }
+
+        path.style.transitionDuration = duration
+        markerStart.style.transitionDuration = duration
+        markerEnd.style.transitionDuration = duration
+
+        if (activeLinks.length > 0) {
+          const firstActive = activeLinks[0] as HTMLAnchorElement
+          const lastActive = activeLinks[
+            activeLinks.length - 1
+          ] as HTMLAnchorElement
+
+          linkStart = linkStarts.get(firstActive)
+          linkEnd = linkEnds.get(lastActive)
+
+          const index = Array.from(links).indexOf(lastActive)
+          if (index >= 0 && index < links.length - 1) {
+            const nextLink = links[index + 1]
+            if (lastActive.offsetLeft !== nextLink.offsetLeft) {
+              linkEnd += 12
+            }
+          }
+
+          const firstIndex = Array.from(links).indexOf(firstActive)
+          if (firstIndex > 0) {
+            const prevLink = links[firstIndex - 1]
+            if (firstActive.offsetLeft !== prevLink.offsetLeft) {
+              linkStart -= 12
+            }
+          }
+        }
 
         // If there are no active links, hide the path
+        const wasHidden = path.style.display === 'none'
         path.style.display = activeLinks.length ? 'inline' : 'none'
 
-        markerStart.style.opacity = links[0].classList.contains(HIGHLIGHT_CLASS)
-          ? '1'
-          : '0'
-        markerEnd.style.opacity = lastLink.classList.contains(HIGHLIGHT_CLASS)
-          ? '1'
-          : '0'
+        const isStartVisible = links[0].classList.contains(HIGHLIGHT_CLASS)
+        const isEndVisible = lastLink.classList.contains(HIGHLIGHT_CLASS)
 
-        markerEnd?.setAttribute(
-          'x1',
-          (lastLinkLevel > 1
-            ? markerOffset -
-              MarkerPaddingInlineLeft * lastLinkLevel +
-              MarkerPaddingInlineLeft
-            : 0
-          ).toString()
-        )
-        markerEnd?.setAttribute(
-          'x2',
-          (
-            markerOffset +
-            markerEndSize -
-            (MarkerPaddingInlineLeft * lastLinkLevel -
-              MarkerPaddingInlineLeft) -
-            1
-          ).toString()
-        )
+        markerStart.style.opacity = isStartVisible ? '1' : '0'
+        markerStart.style.transitionDelay =
+          isStartVisible && !wasHidden ? duration : '0s'
+
+        markerEnd.style.opacity = isEndVisible ? '1' : '0'
+        markerEnd.style.transitionDelay = isEndVisible ? duration : '0s'
+
+        const lastLinkEndY = lastLink.offsetTop + lastLink.offsetHeight
+
+        markerEnd?.setAttribute('y1', lastLinkEndY.toString())
+        markerEnd?.setAttribute('y2', lastLinkEndY.toString())
+
+        markerEndBackground?.setAttribute('y1', lastLinkEndY.toString())
+        markerEndBackground?.setAttribute('y2', lastLinkEndY.toString())
+
+        markerEnd?.setAttribute('x1', (markerOffset - 3.5).toString())
+        markerEnd?.setAttribute('x2', (markerOffset + 3.5).toString())
+
+        markerEndBackground?.setAttribute('x1', (markerOffset - 3.5).toString())
+        markerEndBackground?.setAttribute('x2', (markerOffset + 3.5).toString())
 
         // FINALLY, do the thing!
         path.setAttribute(
@@ -450,6 +623,23 @@ function buildToc(headings: Array<Heading>) {
     }
   }
 
+  .toc-marker-background,
+  .toc-marker-start-background {
+    stroke: var(--clr-line);
+    stroke-width: 2;
+    opacity: 1;
+  }
+
+  .toc-marker-end-background {
+    stroke: var(--clr-line);
+    stroke-width: 3;
+    opacity: 1;
+  }
+
+  .toc-marker-start-background {
+    fill: none;
+  }
+
   .toc-marker-start {
     fill: none;
     stroke: var(--clr-primary);
@@ -472,5 +662,6 @@ function buildToc(headings: Array<Heading>) {
       opacity 500ms ease;
     transform: translateY(-1px);
     opacity: 0;
+    stroke-width: 3;
   }
 </style>
