@@ -47,7 +47,7 @@ if (src && typeof src === 'object') {
 }
 
 // Generate a unique ID for aria-labelledby connection
-const captionId = `caption-${Math.random().toString(36).substr(2, 9)}`
+const captionId = `caption-${Math.random().toString(36).substring(2, 11)}`
 ---
 
 <figure class:list={['media-item', className]}>

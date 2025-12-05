@@ -139,7 +139,6 @@ function buildToc(headings: Array<Heading>) {
       const HIGHLIGHT_CLASS: string = 'highlight'
 
       const MarkerPaddingInlineLeft = 3
-      let lastLinkLevel = 1
       let markerOffset = 0
 
       // Create some WeakMaps to store the distances to the top and
@@ -287,19 +286,6 @@ function buildToc(headings: Array<Heading>) {
           let y = link.offsetTop
           let height = link.offsetHeight
           markerOffset = x
-
-          // Tweek for the the last link
-          if (i === links.length - 1) {
-            lastLinkLevel = Number(
-              getComputedStyle(links[links.length - 1]).getPropertyValue(
-                '--level'
-              ) || 1
-            )
-
-            // if (lastLinkLevel === 1) {
-            //   x = x + MarkerPaddingInlineLeft
-            // }
-          }
 
           if (i === 0) {
             // The top of the first link starts at 0px along the path.
