@@ -22,7 +22,7 @@ const { entries } = Astro.props
           entry.slug && (
             <li>
               <a
-                href={entry.slug}
+                href={`/tutorials/lernpfade/${entry.slug}`}
                 class:list={[currentPath === entry.slug ? 'current' : null]}
               >
                 {entry.title}

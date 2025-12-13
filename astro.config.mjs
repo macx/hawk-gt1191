@@ -3,6 +3,7 @@ import mdx from '@astrojs/mdx'
 import icon from 'astro-icon'
 import sitemap from '@astrojs/sitemap'
 import expressiveCode from 'astro-expressive-code'
+import linkValidator from 'astro-link-validator'
 
 import { remarkModifiedTime } from './remark-plugins/remark-modified-time.mjs'
 import { remarkReadingTime } from './remark-plugins/remark-reading-time.mjs'
@@ -122,6 +123,10 @@ export default defineConfig({
           }
         ]
       }
+    }),
+    linkValidator({
+      failOnBrokenLinks: true,
+      checkExternal: process.env.NODE_ENV === 'production'
     })
   ],
   vite: {
