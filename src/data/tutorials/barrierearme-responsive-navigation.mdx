@@ -16,7 +16,7 @@ import Codepen from '@components/Codepen.astro'
 
 ## Einführung
 
-Für eine Navigation, die sich automatisch der Größe des Bildschirms anpasst, gibt es viele Ansätze. In diesem Tutorial schauen wir uns zunächst die Grundsätze an. Im Nächsten Schritt rüsten wir technisch auf und machen die Navigation barrierefrei. Das bedeutet, dass sie nicht nur auf Smartphones und Tablets funktioniert, sondern auch für Menschen mit Behinderungen zugänglich ist.
+Für eine Navigation, die sich automatisch der Größe des Bildschirms anpasst, gibt es viele Ansätze. In diesem Tutorial schauen wir uns zunächst die Grundsätze an. Im nächsten Schritt rüsten wir technisch auf und machen die Navigation barrierefrei. Das bedeutet, dass sie nicht nur auf Smartphones und Tablets funktioniert, sondern auch für Menschen mit Behinderungen zugänglich ist.
 
 Das ist insofern wichtig, als dass wir allen Nutzern eine optimale Benutzererfahrung bieten möchten. Aber auch der Gesetzgeber verpflichtet Unternehmen mit dem <abbr title="Barrierefreiheitsstärkungsgesetz">BFSG</abbr>, ihre digitalen Angebote barrierefrei zu gestalten.
 
@@ -62,13 +62,13 @@ Diese Struktur ist einfach, aber effektiv. Sie enthält:
 - `<nav>`: Dieses Element signalisiert, dass hier die Navigation zu finden ist. Das `aria-label` ist eine wichtige Ergänzung für die Zugänglichkeit, da es Screenreadern genau sagt, um welche Art von Navigation es sich handelt.
 - `<ul>`: Eine ungeordnete Liste ist die semantisch korrekte Art, eine Gruppe von Navigationslinks darzustellen. Die Reihenfolge ist dabei nicht relevant.
 
-> Damit wir die Navigation auch gleich in Aktion sehen können, füge doch im `<main>`-Bereich ein paar Paragrafen Blindtext ein. Auf der Seite [Assets](/assets#text) findet du Links zu Blindtext-Generatoren.
+> Damit wir die Navigation auch gleich in Aktion sehen können, füge doch im `<main>`-Bereich ein paar Paragrafen Blindtext ein. Auf der Seite [Assets](/assets#text) findest du Links zu Blindtext-Generatoren.
 
 Im Moment sieht das noch sehr unspektakulär aus. Das ändern wir jetzt mit CSS.
 
-### Styes für mobile Endgeräte
+### Styles für mobile Endgeräte
 
-Der Kopf der Website `<header>` soll in unserem Szenario beim scrollen am oberen Rand des Bildschirms bleiben, während die Navigation als Overlay von rechts ins Bild fährt, wenn man auf einen Menü-Button tippt. Den Button gibt es noch nicht, aber wir bereiten das Styling schon mal vor.
+Der Kopf der Website `<header>` soll in unserem Szenario beim Scrollen am oberen Rand des Bildschirms bleiben, während die Navigation als Overlay von rechts ins Bild fährt, wenn man auf einen Menü-Button tippt. Den Button gibt es noch nicht, aber wir bereiten das Styling schon mal vor.
 
 <Figure caption="Das Grundgerüst unserer Navigation.">
 ```css {24} {36} {46-49} {58}

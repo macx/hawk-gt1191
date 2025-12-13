@@ -20,11 +20,11 @@ import Codepen from '@components/Codepen.astro'
 
 Werfen wir doch einmal direkt einen Blick auf die Website der Postbank, genauer gesagt auf deren [Kreditantrag](https://www.postbank.de/privatkunden/produkte/kredite/privatkredit-direkt.html).
 
-Naturgemäß ist der Kreditantrag ein Prozess, der einige Zeit in Anspruch nimmt, da viele Formularfelder auszufüllen sind. Die Postbank hat das zum Zeitpunkt meines Checks im März 2024 sehr gut gelöst. Die Website ist Mobile First umgesetzt und setzt neben dem Unveiling-Konzept[^1] auch auf ein Bildmotiv, dass auf allen gängigen Endgeräten nicht nur gut aussieht, sondern auch schnell lädt. Schauen wir uns das nun genauer an.
+Naturgemäß ist der Kreditantrag ein Prozess, der einige Zeit in Anspruch nimmt, da viele Formularfelder auszufüllen sind. Die Postbank hat das zum Zeitpunkt meines Checks im März 2024 sehr gut gelöst. Die Website ist Mobile First umgesetzt und setzt neben dem Unveiling-Konzept[^1] auch auf ein Bildmotiv, das auf allen gängigen Endgeräten nicht nur gut aussieht, sondern auch schnell lädt. Schauen wir uns das nun genauer an.
 
 ## Das Grundgerüst
 
-Das Bildmotiv wird bei der Postbank mit dem Titel kombiniert. Auf Smartphones erscheint dieser unter dem Bild, auf größeren Bildschirmen wird er auf das Foto platziert.
+Das Bildmotiv wird bei der Postbank mit dem Titel kombiniert. Auf Smartphones erscheint dieser unter dem Bild, auf größeren Bildschirmen wird er auf dem Foto platziert.
 
 <Figure imagePath="/src/images/tutorials/postbank-compare-screens.png" caption="Das Bildmotiv auf dem Smartphone, Tablet und großen Bildschirm." alt="Alt" />
 
@@ -67,7 +67,7 @@ In dem folgenden Code wird dem Browser über das `<source>`-Element und dessen `
 
 Die Angabe `790w` hinter dem Dateinamen informiert den Browser, dass dieses Bild tatsächlich 790 Pixel breit ist (`w` = width). Das `sizes=""`-Attribut definiert, wie groß das Bild auf dem Bildschirm dargestellt werden soll. In diesem Fall wird das Bild auf 1060 Pixel skaliert, wenn der Bildschirm mindestens 1060 Pixel breit ist. Ansonsten wird das Bild auf die volle Bildschirmbreite (100&#8239;% des Viewports) skaliert.
 
-Dieses `<source>`-Element gibt es gleich dreimal. Entscheidener Unterschied ist die Dateiendung, sowie das das dazu passende Attribut `type=""`. Zuerst wird ein sehr gut kompromiertes Bild im AVIF-Format deklariert, das kleiner ist als ein WebP-Bild ist, das wiederum kleiner ist als ein JPEG-Bild. Das wirkt sich auf die Ladezeit aus. Unterstützt der Browser also AVIF, lädt er das. Tut er das nicht, wird auf WebP zurückgegriffen. Und ist er auch dazu nicht in der Lage, wird das JPEG geladen. Auf der Seite [Can I use](https://caniuse.com/?search=image%20format) erfährst du mehr darüber, welche Browser welche Bildformate unterstützten.
+Dieses `<source>`-Element gibt es gleich dreimal. Entscheidender Unterschied ist die Dateiendung, sowie das dazu passende Attribut `type=""`. Zuerst wird ein sehr gut komprimiertes Bild im AVIF-Format deklariert, das kleiner ist als ein WebP-Bild ist, das wiederum kleiner ist als ein JPEG-Bild. Das wirkt sich auf die Ladezeit aus. Unterstützt der Browser also AVIF, lädt er das. Tut er das nicht, wird auf WebP zurückgegriffen. Und ist er auch dazu nicht in der Lage, wird das JPEG geladen. Auf der Seite [Can I use](https://caniuse.com/?search=image%20format) erfährst du mehr darüber, welche Browser welche Bildformate unterstützen.
 
 ### B: Tablets
 
@@ -84,7 +84,7 @@ Auch für Geräte in der Größenordnung eines Tablets gibt es drei `<source>`-E
 
 ### C: Smartphones
 
-Bei kleinen Geräten wie Smartphones, wird das Bild `image-400x170` geladen, wenn der Bildschirm maximal 439 Pixel breit ist. Das 400 Pixel breite Bild wird auf die volle Bildschirmbreite skaliert.
+Bei kleinen Geräten wie Smartphones wird das Bild `image-400x170` geladen, wenn der Bildschirm maximal 439 Pixel breit ist. Das 400 Pixel breite Bild wird auf die volle Bildschirmbreite skaliert.
 
 ```html
 <!-- C: Smartphones-->

@@ -1,6 +1,6 @@
 ---
 title: 'Webfonts: So bindest du Schriftarten in deine Website ein'
-description: 'Arial, Helvetia und Times New Roman sind dir zu langweilig? Dann binde doch eigene Webfonts ein. Hier lernst du, wie das funktioniert.'
+description: 'Arial, Helvetica und Times New Roman sind dir zu langweilig? Dann binde doch eigene Webfonts ein. Hier lernst du, wie das funktioniert.'
 isDraft: false
 pubDate: 2024-08-06T15:30:00+01:00
 author: david-maciejewski
@@ -40,7 +40,7 @@ Bindest du Webfonts direkt von der Website eines Anbieters ein, kann das das Dat
 
 ## Schriftart auswählen
 
-Anbieter von Webfonts gibt es im Prinzip wie Sand am Meer. Die wohl bekanntesten sind [Google Fonts](https://fonts.google.com/) und komerzielle Anbieter wie [MyFonts](https://www.myfonts.com/). Manche Designer vertreiben ihre Schriftarten aber auch über ihre eigene Website. Im Bereich [Assets](/assets#fonts) habe ich dir weitere Quellen verlinkt.
+Anbieter von Webfonts gibt es im Prinzip wie Sand am Meer. Die wohl bekanntesten sind [Google Fonts](https://fonts.google.com/) und kommerzielle Anbieter wie [MyFonts](https://www.myfonts.com/). Manche Designer vertreiben ihre Schriftarten aber auch über ihre eigene Website. Im Bereich [Assets](/assets#fonts) habe ich dir weitere Quellen verlinkt.
 
 ### Schriftschnitte
 
@@ -49,7 +49,7 @@ Wähle ein oder zwei Schriftarten aus, die zu deiner Website passen. Oft werden 
 
 <Figure imagePath="/src/images/tutorials/gupter-google-fonts.png" caption="Google Fonts zeigt die erhältlichen Schriftschnitte im Vergleich." alt="Screenshot von Google Fonts, zeigt die Schriftart Gupter."/>
 
-Für den Fließtext wähle den Schriftschnitt „Regular“ bzw. „Normal“ mit der Ziffer 400, sowie „Medium“ (500) oder „Bold“ (700) für fettgeschriebenen Text und Überschriften. Merke dir die Zahlen, denn sie spielen im CSS eine entscheidene Rolle. Desto kleiner die Zahl, desto dünner ist der Schriftschnitt, desto größer die Zahl, desto fetter ist der Schriftschnitt.
+Für den Fließtext wähle den Schriftschnitt „Regular“ bzw. „Normal“ mit der Ziffer 400, sowie „Medium“ (500) oder „Bold“ (700) für fettgeschriebenen Text und Überschriften. Merke dir die Zahlen, denn sie spielen im CSS eine entscheidende Rolle. Je kleiner die Zahl, desto dünner ist der Schriftschnitt, je größer die Zahl, desto fetter ist der Schriftschnitt.
 
 ### Variable Schriftarten
 
@@ -85,13 +85,13 @@ In diesem Beispiel wird die Schriftart „Gupter“ mit dem Schriftschnitt „Re
 
 Definiere `local()` nur dann an, wenn du sicher bist, dass die Schrift auf dem Gerät des Nutzers auch genau so heißt, bzw. die Wahrscheinlichkeit, dass dieser die Schriftart auf dem Gerät hat, sehr hoch ist. Bei der Schriftart Gupter ist das eher unwahrscheinlich, bei Roboto schon eher wahrscheinlich. Wenn du dir nicht sicher bist, lass es lieber weg.
 
-> **Wichtig:** Den Code solltest auf oberste Ebene in deine CSS-Datei einbinden. Einfach ausgedrückt: Definiere zuerst die Schriften, dann gestalte deine Website.
+> **Wichtig:** Den Code solltest du auf oberster Ebene in deine CSS-Datei einbinden. Einfach ausgedrückt: Definiere zuerst die Schriften, dann gestalte deine Website.
 
 ### Über einen Dienst wie Google Fonts
 
-Die Einbindung über Google Fonts ist die einfachste Methode, um Schriftarten in deine Website einzubinden, denn die oben gezeigte `@font-face`-Deklation kommt dabei von Googles Servern. Das ist wie bereits erwähnt datenschutzrechtlich bedenklich.
+Die Einbindung über Google Fonts ist die einfachste Methode, um Schriftarten in deine Website einzubinden, denn die oben gezeigte `@font-face`-Deklaration kommt dabei von Googles Servern. Das ist wie bereits erwähnt datenschutzrechtlich bedenklich.
 
-Um die Schriftart nutzen zu können, musst nur den Code einfügen, den dir Google Fonts unter „Embed code“ zur Verfügung stellt, nachdem du die Schriftschnitte ausgewählt hast.
+Um die Schriftart nutzen zu können, musst du nur den Code einfügen, den dir Google Fonts unter „Embed code“ zur Verfügung stellt, nachdem du die Schriftschnitte ausgewählt hast.
 
 Entweder bindest du den Code über das `link`-Element im `<head>`-Bereich deiner Website ein, oder du wählst die Option „@import“ und fügst den `style`-Block dort ein. So sieht das aus:
 

@@ -1,6 +1,6 @@
 ---
 title: 'CSS clever schreiben: Schaffe Übersicht durch modulare Styles'
-description: 'Desto umfangreicher deine Website wird, desto unübersichtlicher wird dein CSS. Mache dem ein Ende!'
+description: 'Je umfangreicher deine Website wird, desto unübersichtlicher wird dein CSS. Mache dem ein Ende!'
 isDraft: true
 pubDate: 2026-01-16T11:00:00+01:00
 author: david-maciejewski
@@ -24,7 +24,7 @@ Mit CSS können wir mehr Struktur schaffen, wenn wir diese Bestandteile in einze
 
 Die folgende vereinfachte Struktur hat sich in vielen meiner kleinen und großen Projekte bewährt, die ich dir anschließend erläutern möchte.
 
-<Figure caption='Im Verzeichnis `src` werden die Sass-Dateien organisiert und später als einzelne CSS-Datei im Verzeichnis `dist` (steht für Distrubution) oder `public` abgelegt.'>
+<Figure caption='Im Verzeichnis `src` werden die Sass-Dateien organisiert und später als einzelne CSS-Datei im Verzeichnis `dist` (steht für Distribution) oder `public` abgelegt.'>
   ```plaintext
   src/
   └── styles/
@@ -43,7 +43,7 @@ Die folgende vereinfachte Struktur hat sich in vielen meiner kleinen und großen
 
 ### Die main.css
 
-In die Website binden wir nur eine CSS-Datei ein, nämlich die `main.css`. Diese enhhält keine Styles, sondern dient quasi nur als Inhaltsverzeichnis für alle anderen Dateien, die wir hier mittelst `@import` einbinden. Schauen wir uns das exemplarisch an:
+In die Website binden wir nur eine CSS-Datei ein, nämlich die `main.css`. Diese enthält keine Styles, sondern dient quasi nur als Inhaltsverzeichnis für alle anderen Dateien, die wir hier mittels `@import` einbinden. Schauen wir uns das exemplarisch an:
 
 
 ```css title="/src/styles/main.css"
@@ -59,7 +59,7 @@ In die Website binden wir nur eine CSS-Datei ein, nämlich die `main.css`. Diese
 @import './components/footer.css' layer(content);
 ```
 
-Wie du siehst, werden in der Hauptdatei keine dedizierten Styles mehr definiert. Vielmehr lade ich an dieser Stelle durch die Verwendung von `@use` (Benutze) die Module `base` und `components`. Da es sich hierbei aber eigentlich um Verzeichnisse handelt, wird in diesen automatisch die Datei `_index.scss` gesucht. Im Prinzip handelt sich dann um ein Inhaltsverzeichnis, in den die Dateien aufgelistet werden, die wir verwenden möchten.
+Wie du siehst, werden in der Hauptdatei keine dedizierten Styles mehr definiert. Vielmehr lade ich an dieser Stelle durch die Verwendung von `@use` (Benutze) die Module `base` und `components`. Da es sich hierbei aber eigentlich um Verzeichnisse handelt, wird in diesen automatisch die Datei `_index.scss` gesucht. Im Prinzip handelt es sich dann um ein Inhaltsverzeichnis, in dem die Dateien aufgelistet werden, die wir verwenden möchten.
 
 ### Die Basis
 
@@ -84,19 +84,19 @@ Mit `@forward` werden die Inhalte der einzelnen Dateien in die Hauptdatei gelade
 Schauen wir uns kurz an, welche Dateien ich für welchen Zweck angelegt habe.
 
 `_font.scss`
-: Die Font-Face-Definitionen der lokal eingebunden Schriftarten, die auch zuerst geladen werden müssen.
+: Die Font-Face-Definitionen der lokal eingebundenen Schriftarten, die auch zuerst geladen werden müssen.
 
 `_mixins.scss`
-: Das Herzstück aller Sass-Funtionen, die [Mixins](https://sass-lang.com/documentation/at-rules/mixin/), beheimaten mein Breakpoint-Mixin und immer wieder verwendete Styles, die ich an anderer Stelle nur noch mit einem `@import` einbinden muss.
+: Das Herzstück aller Sass-Funktionen, die [Mixins](https://sass-lang.com/documentation/at-rules/mixin/), beheimaten mein Breakpoint-Mixin und immer wieder verwendete Styles, die ich an anderer Stelle nur noch mit einem `@import` einbinden muss.
 
 `_variables.scss`
-: Enhält alle CSS-Custom-Properties, also die Variablen zu den Fonts, Farben, Größen und Abständen.
+: Enthält alle CSS-Custom-Properties, also die Variablen zu den Fonts, Farben, Größen und Abständen.
 
 `_layout.scss`
-: Hier werden alle Basiselement des Layouts definiert, also der CSS-Reset, die Definition für `html`, `body`, `main` und so weiter.
+: Hier werden alle Basiselemente des Layouts definiert, also der CSS-Reset, die Definition für `html`, `body`, `main` und so weiter.
 
 `_typo.scss`
-: Grunsätzliche Basis-Styles für die Typografie, wie zum Beispiel die Definition von `h1` bis `h5`, `p`, `a` und `blockquote`.
+: Grundsätzliche Basis-Styles für die Typografie, wie zum Beispiel die Definition von `h1` bis `h5`, `p`, `a` und `blockquote`.
 
 ### Die Komponenten
 

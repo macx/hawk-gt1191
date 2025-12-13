@@ -6,7 +6,7 @@ pubDate: 2024-04-25T14:40:00+00:00
 author: david-maciejewski
 cover:
   path: '/src/images/tutorials/two-students-in-the-classroom.png'
-  alt: 'Zwei Stundeniernde blicken fragend in Richtung Kamera.'
+  alt: 'Zwei Studierende blicken fragend in Richtung Kamera.'
   caption: 'Die Umstellung auf logische Eigenschaften in CSS kann anfangs verwirrend sein.'
 tags: ['css']
 ---
@@ -17,9 +17,9 @@ import Codepen from '@components/Codepen.astro'
 
 ## Hintergründe
 
-Seit der Entwicklung von <abbr title='Cascading Stylesheets'>CSS</abbr>[^1] im Jahr 1996 durch das World Wide Web Consortium (W3C), wird die Größe von Elementen einer Website traditionell nach den physischen Abmessungen des Bildschirms bemessen. Boxen haben eine Breite (`width`) und Höhe (`height`) und dessen Abstände, Position oder Ränder werden über `top`, `right`, `bottom` oder `left` bestimmt.
+Seit der Entwicklung von <abbr title='Cascading Stylesheets'>CSS</abbr>[^1] im Jahr 1996 durch das World Wide Web Consortium (W3C), wird die Größe von Elementen einer Website traditionell nach den physischen Abmessungen des Bildschirms bemessen. Boxen haben eine Breite (`width`) und Höhe (`height`) und deren Abstände, Position oder Ränder werden über `top`, `right`, `bottom` oder `left` bestimmt.
 
-<Figure caption="Auch das die Kurzschreibweise `padding` verwendet physische Abmessungen.">
+<Figure caption="Auch die Kurzschreibweise `padding` verwendet physische Abmessungen.">
   ```css
   .box {
     max-width: 200px; /* maximale Breite */
@@ -36,7 +36,7 @@ Das funktioniert in den Sprachen und Kulturen gut, in denen die Leserichtung von
 
 Mit der Eigenschaft `writing-mode: vertical-rl` können wir den Text in CSS vertikal von rechts nach links und mit `writing-mode: vertical-lr` von links nach rechts fließen lassen, um die Leserichtung zu ändern und die oben genannten Sprachen zu unterstützen.
 
-Wenn wir wie im Beispiel oben den blauen Rand aber weiterhin mit `border-left` festlegen, bleibt dieser stets links und nicht jedoch am Anfang des Textes, wie wir uns gedacht haben. Deshalb wurden logische Eigenschaften und Werte in CSS eingeführt. Diese basieren nicht mehr auf den physikalischen Eigenschaften, sondern auf der Leserichtung.
+Wenn wir wie im Beispiel oben den blauen Rand aber weiterhin mit `border-left` festlegen, bleibt dieser stets links und jedoch nicht am Anfang des Textes, wie wir uns gedacht haben. Deshalb wurden logische Eigenschaften und Werte in CSS eingeführt. Diese basieren nicht mehr auf den physikalischen Eigenschaften, sondern auf der Leserichtung.
 
 ### Demo
 
@@ -46,7 +46,7 @@ Auf der [folgenden Seite](https://codepen.io/macx/full/ZEZwVmw) habe ich dir ein
 
 ## Logische Eigenschaften und Werte
 
-Logische Eigenschaften und Werte verwenden die abstrakten Begriffe `block` und `ìnline`, um die Richtung zu beschreiben. Die physische Bedeutung dieser Begriffe hängt vom Schreibmodus ab.
+Logische Eigenschaften und Werte verwenden die abstrakten Begriffe `block` und `inline`, um die Richtung zu beschreiben. Die physische Bedeutung dieser Begriffe hängt vom Schreibmodus ab.
 
 `block`
 : Die Dimension senkrecht zum Textfluss. Im horizontalen Schreibmodus entspricht dies der vertikalen Richtung, im vertikalen Schreibmodus der horizontalen Richtung.
@@ -58,7 +58,7 @@ Statt `top`, `right`, `bottom` und `left` verwenden wir `block-start`, `inline-e
 
 Das Beispiel von oben sähe mit logischen Eigenschaften so aus:
 
-<Figure caption="Hier könnte ebenfalls die Kurzschreibweise `padding` verwendet werden, sofern alle Seite gleich sind. Andernfalls ist diese Schreibweise zu bevorzugen. ">
+<Figure caption="Hier könnte ebenfalls die Kurzschreibweise `padding` verwendet werden, sofern alle Seiten gleich sind. Andernfalls ist diese Schreibweise zu bevorzugen. ">
   ```css
   .box {
     max-inline-size: 100px;

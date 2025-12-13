@@ -6,7 +6,7 @@ pubDate: 2024-10-17T15:40:00+00:00
 author: david-maciejewski
 cover:
   path: '/src/images/tutorials/jahrmarkt-aepfel.png'
-  alt: 'Zwei Stundeniernde blicken fragend in Richtung Kamera.'
+  alt: 'Zwei Studierende blicken fragend in Richtung Kamera.'
   caption: 'Wie viele Äpfel kaufst du auf dem Markt? 12 oder 50 Prozent aus der Kiste?'
 tags: ['css']
 ---
@@ -29,13 +29,13 @@ Jede CSS-Deklaration enthält ein Paar aus Eigenschaft und Wert. Bei Längen- od
 ```
 </Figure>
 
-Wenn du dem Verkäufer auf dem Jahrmarkt bittest, dir 12 Äpfel zu verkaufen, dann ist das ein absoluter Wert. Wenn du dir hingegen die Hälfte der Äpfel aus der Kiste nimmst, dann ist das ein relativer Wert, abhängig von der Gesamtanzahl.
+Wenn du den Verkäufer auf dem Jahrmarkt bittest, dir 12 Äpfel zu verkaufen, dann ist das ein absoluter Wert. Wenn du dir hingegen die Hälfte der Äpfel aus der Kiste nimmst, dann ist das ein relativer Wert, abhängig von der Gesamtanzahl.
 
 Auch in CSS gibt es absolute und relative Werte. Ein Beispiel: Der Bildschirm des Apple-Tablets iPad hat Pixelmaße von 1024x768. Möchtest du jetzt zwei Boxen nebeneinander darstellen und verwendest dabei fixe Werte wie `width: 512px`, dann wird dir das auf dem Smartphone um die Ohren fliegen. Zum einen sind die Dimensionen des Smartphones kleiner, zum anderen wird die Box auf dem iPad nicht nebeneinander dargestellt, weil der Platz nicht ausreicht.
 
-Wenn du hingegen relative Einheiten wie Prozente (z.B. `width: 50%`) verwendest, dann passt sich die Box immer an die Größe des Elternelements[^1] an. Und das wiederum passt sich an die Größe des eigenen Elternelements an. Das geht so lang weiter bis zum obersten Element, dem Root-Elements[^2] `html`. Das ist im Übrigen 100&#8239;% des Viewport[^3] breit, also der Breite des Bildschirms. Das folende responsive Beispiel illustriert das:
+Wenn du hingegen relative Einheiten wie Prozente (z.B. `width: 50%`) verwendest, dann passt sich die Box immer an die Größe des Elternelements[^1] an. Und das wiederum passt sich an die Größe des eigenen Elternelements an. Das geht so lang weiter bis zum obersten Element, dem Root-Elements[^2] `html`. Das ist im Übrigen 100&#8239;% des Viewport[^3] breit, also der Breite des Bildschirms. Das folgende responsive Beispiel illustriert das:
 
-<Figure caption="Was glaubst du? Wie lang ist die kleinste Box und woran orentiert sie sich?">
+<Figure caption="Was glaubst du? Wie lang ist die kleinste Box und woran orientiert sie sich?">
   <SnippetNestedBoxes title="Demo" />
 </Figure>
 
@@ -45,7 +45,7 @@ Die relativen Einheiten unterteilen sich in verschiedene Kategorien, abhängig v
 
 ### Relative Schriftlängen
 
-Neben der Angabe in Prozent, die du bereits schon kenngelernt hast, gibt es auch noch folgende Einheiten:
+Neben der Angabe in Prozent, die du bereits kenngelernt hast, gibt es auch noch folgende Einheiten:
 
 <Table mode="responsive">
 | Einheit | Relativ zu |
@@ -57,11 +57,11 @@ Neben der Angabe in Prozent, die du bereits schon kenngelernt hast, gibt es auch
 | `lh`    | Zeilenhöhe eines Elements |
 </Table>
 
-`em` ist dabei die gebräuchliste Einheit. Sie bezieht sich auf die Schriftgröße des Elternelements. `1em` entspricht 100&#8239;%, 150&#8239;% wären dann `1.5em`. Schauen wir uns exemplarisch das folgende Beispiel an.
+`em` ist dabei die gebräuchlichste Einheit. Sie bezieht sich auf die Schriftgröße des Elternelements. `1em` entspricht 100&#8239;%, 150&#8239;% wären dann `1.5em`. Schauen wir uns exemplarisch das folgende Beispiel an.
 
 In der Box soll der Fließtext 18 Pixel groß sein, also etwas größer als der Fließtext der anderen Elemente auf der Website. Die Überschrift soll 150&#8239;% der Schriftgröße unserer Box betragen.
 
-<Figure caption="Die Schriftgrößer der Überschrift wird relativ zum Elternelement, also der Announcement-Box&nbsp;gesetzt.">
+<Figure caption="Die Schriftgröße der Überschrift wird relativ zum Elternelement, also der Announcement-Box&nbsp;gesetzt.">
   ```html
   <section class="announcement">
     <h2>Bekanntmachung</h2>
@@ -79,7 +79,7 @@ Die Überschrift entspräche umgerechnet `27px`. Die Formel dazu lautet: `18px *
 
 ### Relativ zum Root-Element
 
-Wenn du die 18 Pixel der Announcement-Box vom Beispiel oben ebenfalls relativ angeben möchtest, und das solltest du, dann kannst du das auch mit `em` tun. Der Haken an der Sache: Wenn du in die Announcement-Box eine weitere Announcement-Box einfügst, dann orientiert sich die zweite an der ersten Box. Desto mehr Boxen du ineinander verschachtelst, desto größer wird jeweils die Schrift. Während `1.5em` in der ersten Box 27 Pixel entsprechen, entsprechen `1.5em` in der zweiten Box 40.5 Pixel.
+Wenn du die 18 Pixel der Announcement-Box vom Beispiel oben ebenfalls relativ angeben möchtest, und das solltest du, dann kannst du das auch mit `em` tun. Der Haken an der Sache: Wenn du in die Announcement-Box eine weitere Announcement-Box einfügst, dann orientiert sich die zweite an der ersten Box. Je mehr Boxen du ineinander verschachtelst, desto größer wird jeweils die Schrift. Während `1.5em` in der ersten Box 27 Pixel entsprechen, entsprechen `1.5em` in der zweiten Box 40.5 Pixel.
 
 Klingt kompliziert und ist es auch. Besser wäre es, die Einheit `rem` zu verwenden. Das **r** in `rem` steht für **root** und bezieht sich dabei auf das Root-Element. Der Browser gibt vor, dass die Standardgröße für Fließtext **16 Pixel** groß ist, kann aber auch vom User in den Einstellungen verändert werden.
 

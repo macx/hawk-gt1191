@@ -46,7 +46,7 @@ Auch die [Leserichtung](/tutorials/logische-eigenschaften-in-css) bestimmt, wie 
 
 Jedes HTML-Element hat die Eigenschaft `display`, die festlegt, wie das Element auf der Seite angezeigt wird. Block-Elemente haben dabei im normalen Fluss den Wert `block`, Inline-Elemente den Wert `inline`. Das kannst du aber auch ändern, um das Layout deiner Seite zu beeinflussen.
 
-Ein Link innerhalb eines Absatzes wird standardmäßig inline angezeigt, da das `<a>`-Element mit `display: inline` vorbelegt ist. Wenn du eine ganze Gruppe von HTML-Elementen verlinken möchtest, solltest du den Wert auf `display: block` ändern, damit dieser wie ein Block-Element behandelt wird und in eine neue Zeile umbricht. Denn bei Inline-Elementen kann die Höhe und Breite nicht verändernt werden, da diese durch ihren Inhalt bestimmt werden.
+Ein Link innerhalb eines Absatzes wird standardmäßig inline angezeigt, da das `<a>`-Element mit `display: inline` vorbelegt ist. Wenn du eine ganze Gruppe von HTML-Elementen verlinken möchtest, solltest du den Wert auf `display: block` ändern, damit dieser wie ein Block-Element behandelt wird und in eine neue Zeile umbricht. Denn bei Inline-Elementen kann die Höhe und Breite nicht verändert werden, da diese durch ihren Inhalt bestimmt werden.
 
 <Figure caption="Block-Elemente werden untereinander, Inline-Elemente nebeneinander angeordnet.">
   ```html title="HTML"
@@ -76,7 +76,7 @@ Flexbox ist eine eindimensionale Layouttechnik, Elemente horizontal in einer Zei
 
 Möchtest du beispielsweise in deinem Header das Logo links und die Navigation rechts platzieren, kannst du das mit Flexbox einfach umsetzen:
 
-<Figure caption="Mit Flebox kannst du sogar Block-Elemente leicht nebeneinander platzieren.">
+<Figure caption="Mit Flexbox kannst du sogar Block-Elemente leicht nebeneinander platzieren.">
   ```html title="HTML"
   <header class="site-header">
     <div>Logo</div>
@@ -93,7 +93,7 @@ Möchtest du beispielsweise in deinem Header das Logo links und die Navigation r
   <SnippetFlebox />
 </Figure>
 
-Damit das Logo und die Navigation am Ende tatächlich links und rechts platziert werden, benötigst du noch weitere Eigenschaften: `justify-content` ordnet die Elemente auf der Hauptachse an, `align-items` auf der Querachse.
+Damit das Logo und die Navigation am Ende tatsächlich links und rechts platziert werden, benötigst du noch weitere Eigenschaften: `justify-content` ordnet die Elemente auf der Hauptachse an, `align-items` auf der Querachse.
 
 ### Haupt- und Querachse
 
