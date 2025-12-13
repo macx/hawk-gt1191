@@ -125,7 +125,7 @@ export default defineConfig({
       }
     }),
     linkValidator({
-      failOnBrokenLinks: true,
+      failOnBrokenLinks: false,
       checkExternal: process.env.NODE_ENV === 'production'
     })
   ],

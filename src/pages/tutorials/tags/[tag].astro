@@ -3,7 +3,7 @@ import { type CollectionEntry, getCollection } from 'astro:content'
 import BaseLayout from '@layouts/BaseLayout.astro'
 import ArticleCard from '@components/ArticleCard.astro'
 import Tags from '@components/Tags.astro'
-import { getTagLongform } from '../../../const'
+import { getTagLongform } from '../../../const.ts'
 
 export async function getStaticPaths() {
   const posts = await getCollection('tutorials', ({ data }) => {

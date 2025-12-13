@@ -1,8 +1,8 @@
 // Tutorial by:
 // https://www.kozhuhds.com/blog/generating-static-open-graph-og-images-in-astro-using-vercel-og/
 import { getCollection, type CollectionEntry } from 'astro:content'
-import fs from 'fs'
-import path from 'path'
+import fs from 'node:fs'
+import path from 'node:path'
 import { ImageResponse } from '@vercel/og'
 
 interface Props {
@@ -132,10 +132,14 @@ export async function GET({ props }: Props) {
       width: 1200,
       height: 630,
       fonts: [
-        { name: 'Domine Bold', data: DomineBold.buffer, style: 'normal' },
+        {
+          name: 'Domine Bold',
+          data: DomineBold.buffer as ArrayBuffer,
+          style: 'normal'
+        },
         {
           name: 'Open Sans SemiBold',
-          data: OpenSansSemiBold.buffer,
+          data: OpenSansSemiBold.buffer as ArrayBuffer,
           style: 'normal'
         }
       ]
