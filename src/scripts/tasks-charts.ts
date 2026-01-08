@@ -180,7 +180,9 @@ document.querySelectorAll('.tasks').forEach(hydrateTasks)
 const resetTasks = (root: Element): void => {
   const storageKey = root.getAttribute('data-storage-key') || 'tasks'
   const inputs = Array.from(
-    root.querySelectorAll<HTMLInputElement>('input[type="checkbox"][data-task-id]')
+    root.querySelectorAll<HTMLInputElement>(
+      'input[type="checkbox"][data-task-id]'
+    )
   )
 
   inputs.forEach((input) => {
