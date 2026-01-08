@@ -123,9 +123,9 @@ const playSound = (audio: HTMLAudioElement | null): void => {
   }
 }
 
-const stopSounds = (audios: Array<HTMLAudioElement | null>): void => {
-  audios.forEach((audio) => {
-    if (!audio) return
+const stopSounds = (audios: ArrayLike<HTMLAudioElement>): void => {
+  Array.from(audios).forEach((audio) => {
+    if (audio.paused) return
     try {
       audio.pause()
       audio.currentTime = 0
@@ -133,6 +133,13 @@ const stopSounds = (audios: Array<HTMLAudioElement | null>): void => {
       // Ignore stop errors (autoplay restrictions, etc.).
     }
   })
+}
+
+const stopAllTaskSounds = (): void => {
+  const audios = document.querySelectorAll<HTMLAudioElement>(
+    '[data-tasks-audio-fill], [data-tasks-audio-empty], [data-tasks-audio-applause]'
+  )
+  stopSounds(audios)
 }
 
 const hydrateTasks = (root: Element): void => {
@@ -172,7 +179,7 @@ const hydrateTasks = (root: Element): void => {
           state[id] = input.checked
           saveState(storageKey, state)
         }
-        stopSounds([fillAudio, emptyAudio, applauseAudio])
+        stopAllTaskSounds()
         const allChecked =
           sectionInputs.length > 0 &&
           Array.from(sectionInputs).every((item) => item.checked)
