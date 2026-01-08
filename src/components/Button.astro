@@ -18,7 +18,8 @@ const {
   small = false,
   listener,
   newWindow = false,
-  ariaLabel
+  ariaLabel,
+  ...rest
 }: Props = Astro.props
 ---
 
@@ -31,6 +32,7 @@ const {
         target='_blank'
         rel='noopener noreferrer'
         aria-label={ariaLabel || label}
+        {...rest}
       >
         {label}
       </a>
@@ -39,6 +41,7 @@ const {
         href={href}
         class:list={['button', { primary: primary === true }]}
         aria-label={ariaLabel || label}
+        {...rest}
       >
         {label}
       </a>
@@ -49,6 +52,7 @@ const {
       class:list={['button', { primary: primary }, { small: small }]}
       data-listener={listener}
       aria-label={ariaLabel || label}
+      {...rest}
     >
       {label}
     </button>

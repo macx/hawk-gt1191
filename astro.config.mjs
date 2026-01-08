@@ -32,6 +32,7 @@ export default defineConfig({
     '/links': { status: 301, destination: '/dokumentation' },
     '/hilfe': '/dokumentation',
     '/seminar': '/',
+    '/starterkit': '/studium/starterkit',
     '/tutorials/lernpfade': '/tutorials/lernpfade/einfuehrung',
     '/tutorials/art-direction-im-kreditantragsprozess': {
       status: 301,

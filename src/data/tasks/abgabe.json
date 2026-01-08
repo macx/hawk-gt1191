@@ -1,0 +1,104 @@
+{
+  "categories": [
+    {
+      "title": "Stack",
+      "items": [
+        {
+          "title": "HTML5-Website",
+          "description": "Lauffähige Website als Single- oder Multipager mit index.html, CSS- und JavaScript-Datei."
+        },
+        {
+          "title": "Fehlerfrei formatiert mit Prettier",
+          "description": "Code entspricht der Prettier-Formatierung."
+        },
+        {
+          "title": "Website ist responsiv und Mobile first",
+          "description": "Layouts werden für kleine Screens erstellt und für größere angepasst."
+        },
+        {
+          "title": "Standards gesetzt",
+          "description": "Meta Viewport, box-sizing und Bildskalierung sind eingebunden."
+        },
+        {
+          "title": "Verwendung semantischer HTML-Elemente",
+          "description": "Struktur nutzt überwiegend semantische Elemente wie header, main, nav."
+        }
+      ]
+    },
+    {
+      "title": "Module",
+      "items": [
+        {
+          "title": "Sticky Header mit Logo und Navigation",
+          "description": "Header bleibt beim Scrollen sichtbar."
+        },
+        {
+          "title": "Navigation in zwei Versionen",
+          "description": "Mobil nur per Button erreichbar, beim Desktop immer sichtbar."
+        },
+        {
+          "title": "Hero-Image als Picture-Element",
+          "description": "Großes Hero-Bild, mit einem picture-Element umgesetzt."
+        },
+        {
+          "title": "Sonstige Bilder",
+          "description": "Binde mindestens ein weiteres optimietes Bild ein."
+        }
+      ]
+    },
+    {
+      "title": "Styles",
+      "items": [
+        {
+          "title": "Inhalt mit maximaler Breite",
+          "description": "z. B. 45–75 Zeichen pro Zeile (oder alternativ ähnliche Werte in px, em, rem)"
+        },
+        {
+          "title": "Formatierte Paragraphen/Absätze",
+          "description": "z. B. am Anfang mit 0, am Ende mit 1em"
+        },
+        {
+          "title": "Accessibility",
+          "description": "Die Schrift muss immer gut lesbar sein (Farbkontrast zum Hintergrund, Größe, Zeilenhöhe)."
+        },
+        {
+          "title": "Usability",
+          "description": "Große Klickflächen, leicht zugängliche Inhalte."
+        },
+        {
+          "title": "Eigene Schriftart",
+          "description": "Selbst eingebundene Schriftart(en) für Fließtext und Überschriften (nicht den Standard vom Starterkit)."
+        },
+        {
+          "title": "Dynamische Schriftgroesse",
+          "description": "z. B. Mobil (1–1.125rem), Desktop (1.25–1.375rem)"
+        },
+        {
+          "title": "Verwendung von Custom Properties",
+          "description": "z. B. var(--clr-text)."
+        },
+        {
+          "title": "Verwendung von Logical Properties",
+          "description": "z. B. margin-block-end statt margin-bottom."
+        }
+      ]
+    },
+    {
+      "title": "Extras",
+      "items": [
+        {
+          "title": "Interaktionselemente",
+          "description": "Erweitertes HTML oder JavaScript"
+        },
+        {
+          "title": "Typografie, Design oder Animation",
+          "description": "Hoher Anspruch, im Detail aufeinander abgestimmt"
+        },
+        {
+          "title": "Quantität mit Qualität",
+          "description": "Großer Umfang bei gleichbleibender Qualität."
+        }
+      ]
+    }
+  ]
+}

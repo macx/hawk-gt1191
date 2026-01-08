@@ -1,0 +1,11 @@
+---
+import { formatTitle } from '@plugins/remark-widont.mjs'
+
+const { text } = Astro.props
+---
+
+<div class='title-header'>
+  <h1>
+    <Fragment set:html={formatTitle(text)} />
+  </h1>
+</div>

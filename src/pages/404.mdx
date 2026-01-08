@@ -7,9 +7,10 @@ visible: false
 
 import Lead from '../components/Lead.astro'
 import Figure from '../components/Figure.astro'
+import PageTitle from '../components/PageTitle.astro'
 import img404 from '../images/gt1191-404.png'
 
-# {frontmatter.title}
+<PageTitle text={frontmatter.title} />
 
 <Lead text={frontmatter.description} />
 

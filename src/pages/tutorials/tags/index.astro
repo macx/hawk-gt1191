@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content'
 import BaseLayout from '@layouts/BaseLayout.astro'
 import Tags from '@components/Tags.astro'
 import Lead from '@components/Lead.astro'
+import { formatTitle } from '@plugins/remark-widont.mjs'
 
 const posts = await getCollection('tutorials')
 const tags = [...new Set(posts.flatMap((post) => post.data.tags))] as string[]
@@ -21,7 +22,9 @@ export const layout = 'wide'
 ---
 
 <BaseLayout title={title} description={description} layout={layout}>
-  <h1>{title}</h1>
+  <h1>
+    <Fragment set:html={formatTitle(title)} />
+  </h1>
 
   <Lead text={description} />
 

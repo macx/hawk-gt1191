@@ -1,0 +1,139 @@
+---
+layout: ../../layouts/BaseLayout.astro
+title: 'Abgabe und Anforderungen'
+description: 'Hier findest du alles, was du für einen erfolgreichen Abschluss deines Projekts wissen musst. Nutze diese Seite als interaktiven Leitfaden für deine Website-Abgabe.'
+navTitle: 'Abgabe'
+heroImage: '/src/images/pages/laptop-website-rocket.png'
+toc: true
+---
+
+import Tasks from '@components/Tasks.astro'
+import checklist from '../../data/tasks/abgabe.json'
+
+import Lead from '@components/Lead.astro'
+import Figure from '@components/Figure.astro'
+import PageTitle from '@components/PageTitle.astro'
+import Button from '@components/Button.astro'
+
+<PageTitle text={frontmatter.title} />
+
+<Lead text={frontmatter.description} />
+
+<Figure
+  imagePath='/src/images/pages/laptop-website-rocket.png'
+  caption='Bereit für den Launch? Nutze die unten stehende Checkliste, um dein Projekt Schritt für Schritt zum Erfolg zu führen.'
+  alt='Ein lichtdurchfluteter, minimalistischer Arbeitsplatz mit einem Laptop auf einem Holzschreibtisch. Aus dem Bildschirm, der einen Code-Editor zeigt, steigen eine stilisierte 3D-Rakete sowie schwebende Häkchen-Icons und Programmiersymbole plastisch in den Raum auf.'
+  lazy={false}
+/>
+
+## Dein Fahrplan zur Bestnote
+
+Nutze diese Checkliste, um dein Projekt Schritt für Schritt zu vervollständigen. Dein Echtzeit-Score zeigt dir dabei immer genau, wie nah du der vollen Punktzahl bereits bist. **So setzt sich deine Note zusammen:**
+
+Die Benotung in **GT 1191** basiert auf einem einheitlichen Notenschlüssel. Deine Aufgaben werden in vier Bereichen bewertet, wobei jede Aufgabe je nach Erfüllungsgrad **0, 50 oder 100 %** erreichen kann.
+
+Pflichtaufgaben (Bereich 1–3)
+: Diese müssen bearbeitet werden. Erreichst du hier überall 100 %, erhältst du die Note&nbsp;1,0.
+
+Optionale Aufgaben (Bereich 4)
+: Hier kannst du Zusatzpunkte sammeln. Diese helfen dir, deine Note zu verbessern oder Punktabzüge aus den Pflichtbereichen auszugleichen.
+
+Deine Endnote ergibt sich am Ende aus der Gesamtsumme deiner erreichten Punkte aus allen vier Bereichen.
+
+## Deine Aufgabe
+
+Erstelle eine statische Website auf Basis des [Website-Starterkits](/studium/starterkit) und reiche diese gemäß der unten stehenden Kriterien ein.
+
+> **⚠️ Wichtig:** Abgaben, die nicht mit dem offiziellen Starterkit erstellt wurden, oder nicht lauffähig sind, können nicht benotet werden.
+
+### KI-Unterstützung
+
+Du kannst eine KI wie ChatGPT zur Unterstützung nutzen. Beachte jedoch, dass eine rein KI-generierte Lösung weder zu einem echten Lernerfolg noch zu einer guten Note führt. Weiterführende Infos findest du hier: [Figma, ChatGPT und KI](/grundlagen#figma-chatgpt-undki).
+
+### Deine Checkliste
+
+Nutze die folgende Liste, um sicherzustellen, dass du alle Anforderungen erfüllst.
+
+> **💡 Gut zu wissen:** Dein Fortschritt wird automatisch lokal im Browser gespeichert. Du kannst die Seite jederzeit schließen und später genau dort weitermachen, wo du aufgehört hast.
+
+## Bewertungsbereiche
+
+### 🛠️ Stack
+
+Hier dreht sich alles um das technische Fundament. In diesem Bereich stellst du sicher, dass dein Setup korrekt ist, das Starterkit richtig genutzt wird und die technische Infrastruktur deiner Website steht.
+
+<Tasks
+  data={{ categories: [checklist.categories[0]] }}
+  storageKey='studium-abgabe'
+  idPrefix='stack'
+  showCategoryHeadings={true}
+/>
+
+### 🧩 Module
+
+Hier prüfst du die Funktionalität: Sind alle benötigten Komponenten eingebaut und arbeiten sie so zusammen, wie sie sollen? In diesem Bereich bewerten wir die inhaltliche und funktionale Umsetzung deiner Website.
+
+<Tasks
+  data={{ categories: [checklist.categories[1]] }}
+  storageKey='studium-abgabe'
+  idPrefix='module'
+  showCategoryHeadings={true}
+/>
+
+### 🎨 Styles
+
+Hier steht die Ästhetik im Fokus. Dieser Bereich fasst alle Anforderungen an das Layout, die Typografie und die visuelle Gestaltung zusammen – damit deine Website nicht nur funktioniert, sondern auch gut aussieht.
+
+<Tasks
+  data={{ categories: [checklist.categories[2]] }}
+  storageKey='studium-abgabe'
+  idPrefix='styles'
+  showCategoryHeadings={true}
+/>
+
+### ✨ Extras (optional)
+
+Die Extras sind ein freiwilliges Angebot, um das Bewertungssystem für alle fair zu gestalten:
+
+Die 1,0 ist Standard
+: Erfüllst du alle Pflichtaufgaben (Bereich 1–3) zu 100 %, erhältst du bereits die Note 1,0. Die Extras sind dafür nicht notwendig.
+
+Dein Sicherheitsnetz
+: Falls du in den Pflichtbereichen kleine Flüchtigkeitsfehler machst oder Punkte verlierst, kannst du dies durch die Extras ausgleichen. So hast du die Chance, trotz kleinerer Fehler dein Ziel zu erreichen.
+
+> ⚠️ **Wichtig zu beachten:** Extras erfordern Verbindlichkeit. Wenn du eine Zusatzaufgabe beginnst, muss diese korrekt bearbeitet werden. Unvollständige oder fehlerhafte Versuche bei den Extras führen zu Punktabzug.
+
+Nutze die Extras also gezielt als „Puffer“, wenn du dir bei den Pflichtaufgaben unsicher bist oder deine Note absichern möchtest.
+
+<Tasks
+  data={{ categories: [checklist.categories[3]] }}
+  storageKey='studium-abgabe'
+  idPrefix='extras'
+  showCategoryHeadings={true}
+/>
+
+## Abgabe: Geschafft! 🚀
+
+Schau noch einmal auf deinen Score oben: Zeigt dein Fortschritt überall, dass alle Aufgaben erfüllt sind? Wenn ja, bist du bereit für die Abgabe! Folge einfach diesen Schritten, um dein Projekt einzureichen:
+
+Build erstellen
+: Gib in deinem Terminal den Befehl `npm run deliver` ein. Dadurch wird automatisch eine versandfertige Version deiner Website im Ordner `dist` erstellt.
+
+Ordner umbenennen
+: Benenne das Verzeichnis `dist` nach dem Schema `Vorname_Nachname_Matrikelnummer` um.
+
+ZIP-Archiv erstellen
+: Komprimiere diesen Ordner nun als ZIP-Datei. Der Dateiname sollte lauten: `Vorname_Nachname_Matrikelnummer.zip`.
+
+Abschicken
+: Sende die ZIP-Datei per E-Mail an: david.maciejewski@hawk.de.
+
+> **Tipp:** Achte darauf, dass die ZIP-Datei nicht zu groß ist (alle nötigen Assets sollten im dist-Ordner sein, aber keine unnötigen Rohdaten wie .git oder node_modules).
+
+Ich freue mich auf deine Ergebnisse!
+
+<Button
+  label='Von vorn anfangen'
+  data-tasks-reset
+  data-storage-key='studium-abgabe'
+/>

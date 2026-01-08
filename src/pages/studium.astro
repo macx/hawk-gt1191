@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Lead from '@components/Lead.astro'
+import ArticleCard from '@components/ArticleCard.astro'
+import { formatTitle } from '@plugins/remark-widont.mjs'
+
+export const frontmatter = {
+  title: 'Studium',
+  description:
+    'Ressourcen und Hilfsmittel, die dir während deines Studiums helfen können.',
+  navTitle: 'Studium',
+  visible: true,
+  sort: 2,
+  toc: false
+}
+
+const { title, description } = frontmatter
+
+type StudiumPage = {
+  url: string
+  frontmatter?: {
+    title?: string
+    description?: string
+    heroImage?: string
+  }
+}
+
+const pages = import.meta.glob<StudiumPage>('./studium/*.mdx', { eager: true })
+const starterkit = pages['./studium/starterkit.mdx']
+const abgabe = pages['./studium/abgabe.mdx']
+
+const entries = [
+  { key: 'starterkit', page: starterkit, cta: 'Zum Starterkit' },
+  { key: 'abgabe', page: abgabe, cta: 'Zur Abgabeuebersicht' }
+]
+  .filter((entry) => entry.page)
+  .map((entry) => ({
+    ...entry,
+    url: entry.page.url,
+    title: entry.page.frontmatter?.title,
+    description: entry.page.frontmatter?.description,
+    heroImage: entry.page.frontmatter?.heroImage
+  }))
+---
+
+<BaseLayout title={title} description={description}>
+  <h1>
+    <Fragment set:html={formatTitle(title)} />
+  </h1>
+
+  <Lead text={description} />
+
+  <ul class='studium-cards' data-entries={entries.length}>
+    {
+      entries.map((entry) => (
+        <li>
+          <ArticleCard
+            card={{
+              title: entry.title,
+              description: entry.description,
+              href: entry.url,
+              imagePath: entry.heroImage
+            }}
+          />
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>
+
+<style>
+  .studium-cards {
+    container: timeline / inline-size;
+    padding: 0;
+    margin-block: var(--sp);
+  }
+
+  .studium-cards li {
+    list-style: none;
+    margin-block: 0 24px;
+  }
+
+  .studium-cards li:last-child {
+    margin-block-end: 0;
+  }
+</style>

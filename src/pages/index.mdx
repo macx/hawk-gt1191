@@ -9,6 +9,7 @@ studipLink: 'https://studip.hawk.de/dispatch.php/course/overview?cid=ac11c4e2ac2
 
 import Lead from '@components/Lead.astro'
 import Figure from '@components/Figure.astro'
+import PageTitle from '@components/PageTitle.astro'
 import { YouTube } from 'astro-embed'
 import { getImage } from 'astro:assets'
 
@@ -20,7 +21,7 @@ export const youtubePoster = await getImage({
   format: 'webp'
 })
 
-# Lerne im Seminar GT&#160;1191, wie du Websites erstellst
+<PageTitle text='Lerne im Seminar GT&#160;1191, wie du Websites erstellst' />
 
 <Lead>{frontmatter.description}</Lead>
 

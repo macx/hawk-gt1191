@@ -10,6 +10,7 @@ toc: true
 
 import Lead from '@components/Lead.astro'
 import Figure from '@components/Figure.astro'
+import PageTitle from '@components/PageTitle.astro'
 import { YouTube } from 'astro-embed'
 import { getImage } from 'astro:assets'
 
@@ -21,7 +22,7 @@ export const youtubePoster = await getImage({
   format: 'webp'
 })
 
-# Das erwartet dich in GT 1191
+<PageTitle text='Das erwartet dich in GT 1191' />
 
 <Lead text={frontmatter.description} />
 

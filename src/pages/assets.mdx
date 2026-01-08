@@ -3,14 +3,15 @@ layout: ../layouts/BaseLayout.astro
 title: 'Assets'
 description: 'Nutze diese kuratierten Assets und Inhalte, falls du noch noch keine eigenen Inhalte erstellt hast.'
 navTitle: 'Assets'
-sort: 3
+sort: 4
 visible: true
 toc: true
 ---
 
 import Lead from '@components/Lead.astro'
+import PageTitle from '@components/PageTitle.astro'
 
-# Assets für deine Website
+<PageTitle text='Assets für deine Website' />
 
 <Lead text={frontmatter.description} />
 

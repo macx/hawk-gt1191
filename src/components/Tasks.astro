@@ -1,0 +1,380 @@
+---
+import fillSoundOgg from '../audio/click.ogg?url'
+import fillSoundMp3 from '../audio/click.mp3?url'
+import emptySoundOgg from '../audio/woosh.ogg?url'
+import emptySoundMp3 from '../audio/woosh.mp3?url'
+
+interface TaskItem {
+  title: string
+  description?: string
+}
+
+interface TaskCategory {
+  title: string
+  items: TaskItem[]
+}
+
+interface TasksData {
+  categories: TaskCategory[]
+}
+
+interface TasksProps {
+  data?: TasksData
+  storageKey?: string
+  idPrefix?: string
+  showCategoryHeadings?: boolean
+}
+
+const {
+  data,
+  storageKey = 'tasks',
+  idPrefix,
+  showCategoryHeadings = true
+} = Astro.props as TasksProps
+const categories = data?.categories ?? []
+const normalizedPrefix = idPrefix
+  ? idPrefix
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '')
+  : ''
+---
+
+<div class='tasks' data-storage-key={storageKey}>
+  <audio
+    class='tasks-audio'
+    data-tasks-audio-fill
+    preload='auto'
+    aria-hidden='true'
+    tabindex='-1'
+  >
+    <source src={fillSoundOgg} type='audio/ogg; codecs=opus' />
+    <source src={fillSoundMp3} type='audio/mpeg' />
+  </audio>
+  <audio
+    class='tasks-audio'
+    data-tasks-audio-empty
+    preload='auto'
+    aria-hidden='true'
+    tabindex='-1'
+  >
+    <source src={emptySoundOgg} type='audio/ogg; codecs=opus' />
+    <source src={emptySoundMp3} type='audio/mpeg' />
+  </audio>
+  {
+    categories.map((category, categoryIndex) => (
+      <section class='media-item-article'>
+        {showCategoryHeadings && (
+          <header class='tasks-header'>
+            <h3 class='tasks-heading'>{category.title}</h3>
+          </header>
+        )}
+        <ul class='tasks-list'>
+          {category.items.map((item, itemIndex) => {
+            const idBase = normalizedPrefix
+              ? `${normalizedPrefix}-${categoryIndex}`
+              : `task-${categoryIndex}`
+            const id = `${idBase}-${itemIndex}`
+            return (
+              <li class='tasks-item'>
+                <label class='tasks-label' for={id}>
+                  <input
+                    class='tasks-checkbox'
+                    id={id}
+                    type='checkbox'
+                    data-task-id={id}
+                  />
+                  <span class='tasks-text'>
+                    <span class='tasks-title'>{item.title}</span>
+                    {item.description && (
+                      <span class='tasks-description'>{item.description}</span>
+                    )}
+                  </span>
+                </label>
+              </li>
+            )
+          })}
+        </ul>
+
+        <footer class='tasks-footer'>
+          <p class='tasks-summary' data-tasks-summary>
+            Du hast <span data-tasks-done>0</span> von
+            <span data-tasks-total>0</span> Aufgaben erledigt.
+            <span class='tasks-percent' data-tasks-percent>
+              0%
+            </span>
+          </p>
+
+          <div class='tasks-chart'>
+            <canvas
+              class='tasks-chart-canvas'
+              data-tasks-chart
+              aria-label='Aufgabenfortschritt'
+              role='img'
+            />
+            <svg
+              class='tasks-celebrate'
+              data-tasks-celebrate
+              viewBox='0 0 200 200'
+              aria-hidden='true'
+            >
+              <g class='burst'>
+                <circle class='burst-ring' cx='100' cy='100' r='38' />
+                <circle class='burst-ring' cx='100' cy='100' r='62' />
+              </g>
+              <g class='burst-dots'>
+                <circle cx='100' cy='18' r='9' />
+                <circle cx='140' cy='28' r='8' />
+                <circle cx='170' cy='60' r='8.5' />
+                <circle cx='182' cy='100' r='8' />
+                <circle cx='170' cy='142' r='8.5' />
+                <circle cx='140' cy='172' r='8' />
+                <circle cx='100' cy='182' r='9' />
+                <circle cx='60' cy='172' r='8' />
+                <circle cx='30' cy='140' r='8.5' />
+                <circle cx='18' cy='100' r='8' />
+                <circle cx='30' cy='60' r='8.5' />
+                <circle cx='60' cy='28' r='8' />
+              </g>
+              <g class='burst-sticks'>
+                <rect x='94' y='0' width='12' height='28' rx='4' />
+                <rect
+                  x='154'
+                  y='16'
+                  width='11'
+                  height='26'
+                  rx='4'
+                  transform='rotate(30 160 29)'
+                />
+                <rect x='182' y='92' width='11' height='26' rx='4' />
+                <rect
+                  x='154'
+                  y='158'
+                  width='11'
+                  height='26'
+                  rx='4'
+                  transform='rotate(-30 160 171)'
+                />
+                <rect x='94' y='172' width='12' height='28' rx='4' />
+                <rect
+                  x='32'
+                  y='158'
+                  width='11'
+                  height='26'
+                  rx='4'
+                  transform='rotate(30 38 171)'
+                />
+                <rect x='6' y='92' width='11' height='26' rx='4' />
+                <rect
+                  x='32'
+                  y='16'
+                  width='11'
+                  height='26'
+                  rx='4'
+                  transform='rotate(-30 38 29)'
+                />
+              </g>
+            </svg>
+          </div>
+        </footer>
+      </section>
+    ))
+  }
+</div>
+
+<script src='../scripts/tasks-charts.ts'></script>
+
+<style>
+  .tasks {
+    --tasks-chart-size: 2.5rem;
+  }
+
+  .tasks-audio {
+    display: none;
+  }
+
+  .tasks-list {
+    list-style: none;
+    padding-inline-start: 0;
+
+    .tasks-item {
+      padding-inline: var(--sp);
+      margin-block-end: var(--sp);
+
+      &:hover,
+      &:focus {
+        .tasks-title {
+          color: var(--clr-primary);
+        }
+      }
+    }
+
+    .tasks-label {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: var(--sp);
+      align-items: start;
+      cursor: pointer;
+    }
+
+    .tasks-checkbox {
+      margin-top: 0.3rem;
+      inline-size: 1.1rem;
+      block-size: 1.1rem;
+      accent-color: var(--clr-primary);
+    }
+
+    .tasks-text {
+      display: grid;
+      /* gap: 0.25rem; */
+    }
+
+    .tasks-title {
+      font-weight: 600;
+      transition: color var(--transition);
+    }
+
+    .tasks-description {
+      font-size: 0.9em;
+      font-size: var(--fs-s);
+    }
+  }
+
+  .tasks-header {
+    padding-block: var(--sp-s);
+    padding-inline: var(--sp);
+    border-block-end: 1px dashed var(--clr-line);
+    position: sticky;
+    top: var(--header-height);
+    z-index: 2;
+    background: var(--clr-bg-card);
+  }
+
+  .tasks-heading {
+    display: block;
+    font-family: var(--ff-code);
+    font-size: var(--fs-xs);
+    margin: 0;
+    color: var(--clr-code-title);
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .tasks-footer {
+    padding-block: var(--sp-s);
+    padding-inline: var(--sp);
+    border-top: 1px dashed var(--clr-line);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--sp);
+
+    position: sticky;
+    bottom: 0;
+    background: var(--clr-bg-card);
+    border-inline-end-radius: var(--br);
+    border-inline-start-radius: var(--br);
+    z-index: 1;
+
+    .tasks-chart {
+      inline-size: var(--tasks-chart-size);
+      block-size: var(--tasks-chart-size);
+      position: relative;
+      overflow: visible;
+    }
+
+    .tasks-chart-canvas {
+      inline-size: 100%;
+      block-size: 100%;
+    }
+
+    .tasks-celebrate {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      inline-size: 220px;
+      block-size: 220px;
+      transform: translate(calc(-50% - 2px), calc(-50% + 5px));
+      opacity: 0;
+      pointer-events: none;
+      transform-origin: 50% 50%;
+      z-index: 2;
+    }
+
+    .tasks-summary {
+      margin: 0;
+      font-size: var(--fs-s);
+
+      span {
+        font-weight: var(--fw-bold);
+      }
+    }
+
+    .tasks-percent {
+      display: inline-block;
+      margin-inline-start: 0.25rem;
+      background-color: var(--clr-text);
+      color: var(--clr-bg);
+      font-weight: var(--fw-bold);
+      border-radius: 0.5em;
+      padding-inline: 0.4em;
+      line-height: 1.4;
+    }
+  }
+
+  .tasks-celebrate.is-active {
+    animation: burst-pop 1100ms ease-out both;
+    opacity: 1;
+  }
+
+  .tasks-celebrate .burst-ring {
+    fill: none;
+    stroke: #f97316;
+    stroke-width: 4;
+    opacity: 0.8;
+  }
+
+  .tasks-celebrate .burst-dots circle {
+    fill: #f97316;
+  }
+
+  .tasks-celebrate .burst-sticks rect {
+    fill: #38bdf8;
+  }
+
+  .tasks-celebrate .burst-dots circle:nth-child(2n) {
+    fill: #22c55e;
+  }
+
+  .tasks-celebrate .burst-dots circle:nth-child(3n) {
+    fill: #f472b6;
+  }
+
+  .tasks-celebrate .burst-dots circle:nth-child(4n) {
+    fill: #facc15;
+  }
+
+  .tasks-celebrate .burst-sticks rect:nth-child(2n) {
+    fill: #a78bfa;
+  }
+
+  .tasks-celebrate .burst-sticks rect:nth-child(3n) {
+    fill: #34d399;
+  }
+
+  @keyframes burst-pop {
+    0% {
+      opacity: 0;
+      transform: translate(calc(-50% - 3px), calc(-50% + 6px)) scale(0.6);
+    }
+    30% {
+      opacity: 1;
+      transform: translate(calc(-50% - 3px), calc(-50% + 6px)) scale(1.12);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(calc(-50% - 3px), calc(-50% + 6px)) scale(1.4);
+    }
+  }
+</style>

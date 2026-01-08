@@ -305,12 +305,14 @@ del code {
 
 blockquote {
   background-color: var(--clr-bg-card);
-  margin-block: var(--sp-content);
+  margin-block: var(--sp);
   margin-inline: 0;
   padding-block: var(--sp);
   padding-inline: var(--sp) var(--sp-content);
   border-inline-start: 1ch solid var(--clr-primary);
   margin-trim: block;
+  font-size: 0.9em;
+  line-height: 1.43;
 
   @supports not (margin-trim: block) {
     & > :where(h2, h3):first-child {

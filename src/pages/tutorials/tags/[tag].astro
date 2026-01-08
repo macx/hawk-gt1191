@@ -4,6 +4,7 @@ import BaseLayout from '@layouts/BaseLayout.astro'
 import ArticleCard from '@components/ArticleCard.astro'
 import Tags from '@components/Tags.astro'
 import { getTagLongform } from '../../../const.ts'
+import { formatTitle } from '@plugins/remark-widont.mjs'
 
 export async function getStaticPaths() {
   const posts = await getCollection('tutorials', ({ data }) => {
@@ -42,7 +43,9 @@ const layout = 'wide'
 ---
 
 <BaseLayout title={title} description={description} layout={layout}>
-  <h1>{title}</h1>
+  <h1>
+    <Fragment set:html={formatTitle(title)} />
+  </h1>
 
   <Tags tags={tags} />
 

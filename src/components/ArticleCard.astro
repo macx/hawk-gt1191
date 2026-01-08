@@ -5,21 +5,40 @@ import { Image } from 'astro:assets'
 import { formatTitle, widont } from '@plugins/remark-widont.mjs'
 import FormattedDate from './FormattedDate.astro'
 
-const { article } = Astro.props
-const imagePath = article.data.cover.path
+const { article, card } = Astro.props
+const isContentArticle = Boolean(article)
+const title = card?.title ?? article?.data?.title
+const description = card?.description ?? article?.data?.description
+const href = card?.href ?? (article ? `/tutorials/${article.id}` : '#')
+const coverPath = card?.imagePath ?? article?.data?.cover?.path
+const coverAlt = card?.imageAlt ?? article?.data?.cover?.alt ?? coverPath
+const coverImage = article?.data?.cover?.image
+const isDraft = article?.data?.isDraft
+const safeTitle = title ?? ''
+const safeDescription = description ?? ''
+const safeAlt = coverAlt ?? safeTitle
+
 const images = import.meta.glob<{ default: ImageMetadata }>(
   '/src/images/**/*.{jpeg,jpg,png}'
 )
-const { remarkPluginFrontmatter } = await render(article)
-const minutesToRead = remarkPluginFrontmatter.minutesToRead
-const readingTime = {
-  minutes: Number(minutesToRead.minutes.toFixed(0)),
-  words: minutesToRead.words
+let readingTime: { minutes: number; words: number } | undefined
+let pubDate: Date | undefined
+
+if (isContentArticle) {
+  const { remarkPluginFrontmatter } = await render(article)
+  const minutesToRead = remarkPluginFrontmatter.minutesToRead
+  readingTime = {
+    minutes: Number(minutesToRead.minutes.toFixed(0)),
+    words: minutesToRead.words
+  }
+  pubDate = article.data.pubDate
 }
 
-if (!images[imagePath]) {
+const hasMeta = Boolean(pubDate && readingTime)
+
+if (coverPath && !images[coverPath] && !coverImage) {
   throw new Error(
-    `Das Bild "${imagePath}" existiert im angegeben Verzeichnis nicht.`
+    `Das Bild "${coverPath}" existiert im angegeben Verzeichnis nicht.`
   )
 }
 ---
@@ -28,39 +47,49 @@ if (!images[imagePath]) {
   class:list={[
     'article-card',
     'media-item-article',
-    { draft: article.data?.isDraft }
+    { draft: isDraft, 'has-meta': hasMeta }
   ]}
-  data-article-id={article.id}
+  data-article-id={article?.id}
 >
-  {article.data.isDraft && <div class='draft-banner' />}
+  {isDraft && <div class='draft-banner' />}
 
-  <a href={`/tutorials/${article.id}`}>
+  <a href={href}>
     <header>
       <h3 class='title'>
-        <Fragment set:html={formatTitle(article.data.title)} />
+        <Fragment set:html={formatTitle(safeTitle)} />
       </h3>
 
-      <FormattedDate
-        date={article.data.pubDate}
-        readingTime={readingTime.minutes}
-      />
+      {
+        pubDate && readingTime && (
+          <FormattedDate date={pubDate} readingTime={readingTime.minutes} />
+        )
+      }
     </header>
 
     <div class='image'>
       {
-        imagePath && article.data.cover.path && (
+        coverImage ? (
           <Image
-            src={images[imagePath]()}
+            src={coverImage}
             widths={[380, 670, 710]}
             sizes={`(max-width: 480px) 380px, (max-width: 800) 670px, 710px`}
-            alt={article.data.cover.path}
+            alt={safeAlt}
           />
+        ) : (
+          coverPath && (
+            <Image
+              src={images[coverPath]()}
+              widths={[380, 670, 710]}
+              sizes={`(max-width: 480px) 380px, (max-width: 800) 670px, 710px`}
+              alt={safeAlt}
+            />
+          )
         )
       }
     </div>
 
     <div class='description'>
-      <p>{widont(article.data.description)}</p>
+      <p>{widont(safeDescription)}</p>
 
       <span class='more'>Weiterlesen</span>
     </div>
@@ -121,7 +150,6 @@ if (!images[imagePath]) {
     .title {
       font-size: 1.3rem;
       font-family: var(--ff);
-      min-height: 2lh;
       margin-block: 0 0.5em;
       transition: all var(--transition);
     }
@@ -157,9 +185,27 @@ if (!images[imagePath]) {
       }
     }
 
-    @container article-card (width < 20em) {
+    &:not(.has-meta) {
+      header {
+        padding-block-end: 0;
+      }
+
       .title {
-        min-height: 3lh;
+        margin-block-end: 0;
+      }
+    }
+
+    &.has-meta {
+      .title {
+        min-height: 2lh;
+      }
+    }
+
+    @container article-card (width < 20em) {
+      &.has-meta {
+        .title {
+          min-height: 3lh;
+        }
       }
     }
 

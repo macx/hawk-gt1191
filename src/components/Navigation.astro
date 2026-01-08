@@ -8,7 +8,9 @@ const currentPath = pathname.split('/').slice(0, 2).join('').trim()
 const { siteLinks } = Astro.props
 
 // Get Pages for Navigation
-const pages = Object.values(import.meta.glob('../pages/*.mdx', { eager: true }))
+const pages = Object.values(
+  import.meta.glob('../pages/*.{mdx,astro}', { eager: true })
+)
 
 const filteredPages = pages
   .filter((page: any) => page.frontmatter.visible === true)
