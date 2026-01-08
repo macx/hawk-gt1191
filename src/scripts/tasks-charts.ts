@@ -123,8 +123,20 @@ const playSound = (audio: HTMLAudioElement | null): void => {
   }
 }
 
+const stopSounds = (audios: Array<HTMLAudioElement | null>): void => {
+  audios.forEach((audio) => {
+    if (!audio) return
+    try {
+      audio.pause()
+      audio.currentTime = 0
+    } catch {
+      // Ignore stop errors (autoplay restrictions, etc.).
+    }
+  })
+}
+
 const hydrateTasks = (root: Element): void => {
-  const storageKey = root.getAttribute('data-storage-key') || 'tasks'
+  const storageKey = (root as HTMLElement).dataset.storageKey || 'tasks'
   const inputs = root.querySelectorAll<HTMLInputElement>(
     'input[type="checkbox"][data-task-id]'
   )
@@ -134,6 +146,9 @@ const hydrateTasks = (root: Element): void => {
   )
   const emptyAudio = root.querySelector<HTMLAudioElement>(
     '[data-tasks-audio-empty]'
+  )
+  const applauseAudio = root.querySelector<HTMLAudioElement>(
+    '[data-tasks-audio-applause]'
   )
 
   inputs.forEach((input) => {
@@ -157,7 +172,13 @@ const hydrateTasks = (root: Element): void => {
           state[id] = input.checked
           saveState(storageKey, state)
         }
-        if (input.checked) {
+        stopSounds([fillAudio, emptyAudio, applauseAudio])
+        const allChecked =
+          sectionInputs.length > 0 &&
+          Array.from(sectionInputs).every((item) => item.checked)
+        if (allChecked) {
+          playSound(applauseAudio)
+        } else if (input.checked) {
           playSound(fillAudio)
         } else {
           playSound(emptyAudio)
@@ -178,7 +199,7 @@ const hydrateTasks = (root: Element): void => {
 document.querySelectorAll('.tasks').forEach(hydrateTasks)
 
 const resetTasks = (root: Element): void => {
-  const storageKey = root.getAttribute('data-storage-key') || 'tasks'
+  const storageKey = (root as HTMLElement).dataset.storageKey || 'tasks'
   const inputs = Array.from(
     root.querySelectorAll<HTMLInputElement>(
       'input[type="checkbox"][data-task-id]'
@@ -199,10 +220,10 @@ document
   .querySelectorAll<HTMLElement>('[data-tasks-reset]')
   .forEach((button) => {
     button.addEventListener('click', () => {
-      const targetKey = button.getAttribute('data-storage-key')
+      const targetKey = button.dataset.storageKey
       const roots = document.querySelectorAll('.tasks')
       roots.forEach((root) => {
-        const key = root.getAttribute('data-storage-key') || 'tasks'
+        const key = (root as HTMLElement).dataset.storageKey || 'tasks'
         if (!targetKey || targetKey === key) {
           resetTasks(root)
         }
