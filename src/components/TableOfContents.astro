@@ -525,7 +525,7 @@ function buildToc(headings: Array<Heading>) {
 
       &:hover,
       &:focus {
-        color: var(--clr-primary);
+        color: var(--clr-link);
       }
     }
 
@@ -549,7 +549,8 @@ function buildToc(headings: Array<Heading>) {
 
         & + li {
           padding-block-start: var(--sp-xs);
-          border-block-start: 1px solid var(--clr-line);
+          border-block-start: 1px solid
+            color-mix(in oklab, var(--clr-bg), var(--clr-link) 28%);
         }
 
         &:has(ul) {
@@ -582,7 +583,7 @@ function buildToc(headings: Array<Heading>) {
         padding-inline: var(--sp) var(--sp-s);
 
         &.highlight {
-          color: var(--clr-primary);
+          color: var(--clr-link);
         }
       }
 

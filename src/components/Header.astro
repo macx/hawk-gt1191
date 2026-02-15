@@ -196,7 +196,11 @@ import { SITE_CONST } from '../const.ts'
     &:focus-visible {
       background-color: var(--clr-primary--hover);
       text-decoration: none;
-      color: var(--clr-primary);
+      color: var(--clr-link);
+
+      svg {
+        fill: var(--clr-link);
+      }
 
       &::before {
         opacity: 1;

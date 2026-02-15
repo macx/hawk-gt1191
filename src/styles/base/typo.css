@@ -104,7 +104,7 @@ sup {
 
   a {
     font-size: 0.8125rem;
-    color: var(--clr-primary);
+    color: var(--clr-link);
 
     &:target {
       background: var(--clr-marker) !important;

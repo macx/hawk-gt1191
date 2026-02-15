@@ -64,6 +64,8 @@
   --clr-warning: #b91c1c;
   --clr-success: #1f9d55;
   --clr-primary: #004fcd;
+  --clr-link: var(--clr-primary);
+  --clr-primary-soft: color-mix(in oklab, var(--clr-bg), var(--clr-primary) 12%);
   --clr-primary-hover: hsl(217 100% 40% / 0.3);
   --clr-primary-light: hsl(217 100% 40% / 0.7);
   --clr-nav-shadow: rgba(109, 62, 62, 0.2);
@@ -141,46 +143,47 @@
 
     --clr-mix-modifier: hsl(0 0% 100%);
 
-    --clr-bg: hsl(240, 55%, 7%);
+    --clr-bg: hsl(210 30% 9%);
     --clr-bg-card: color-mix(
       in oklab,
       var(--clr-bg),
-      var(--clr-mix-modifier) 10%
+      var(--clr-mix-modifier) 11%
     );
     --clr-bg-table-odd: rgb(0 0 0 / 0.08);
 
-    --clr-line: color-mix(in oklab, var(--clr-bg), var(--clr-mix-modifier) 22%);
+    --clr-line: color-mix(in oklab, var(--clr-bg), var(--clr-text) 28%);
     --clr-table-line: color-mix(
       in oklab,
       var(--clr-bg),
-      var(--clr-mix-modifier) 16%
+      var(--clr-text) 20%
     );
 
-    --clr-text: #d9d9d9;
+    --clr-text: hsl(210 18% 92%);
     --clr-text-inverse: rgb(15, 23, 42);
-    --clr-text-light: rgba(217, 217, 217, 0.7);
-    --clr-header: rgba(20, 35, 45, 0.8);
+    --clr-text-light: hsl(210 12% 80% / 0.78);
+    --clr-header: hsl(210 35% 12% / 0.9);
     --clr-inverse: rgb(255 255 255 / 1);
 
-    --clr-primary: #2f81f7;
-    --clr-marker: hsl(60 100% 70% / 0.2);
+    --clr-primary: #004fcd;
+    --clr-link: hsl(212 100% 72%);
+    --clr-marker: hsl(60 90% 70% / 0.18);
 
     /* --clr-selection: hsla(40, 22%, 88%, 0.15); */
-    --clr-selection: hsl(215 100% 80% / 0.25);
+    --clr-selection: hsl(213 90% 56% / 0.24);
 
-    --clr-nav-shadow: rgb(255 2555 255 / 0.2);
+    --clr-nav-shadow: rgb(255 255 255 / 0.18);
 
-    --sn-clr-bg: #303446;
+    --sn-clr-bg: hsl(210 28% 16%);
 
-    --clr-kb-bg: rgb(255 255 255 / 0.05);
+    --clr-kb-bg: rgb(255 255 255 / 0.06);
     --clr-kb-text: var(--clr-text);
-    --clr-kb-border: rgb(255 255 255 / 0.3);
+    --clr-kb-border: rgb(255 255 255 / 0.28);
     --clr-kb-shadow:
       0 1px 1px rgba(255, 255, 255, 0.2),
       0 2px 0 0 rgba(255, 255, 255, 0.1) inset;
 
-    --clr-bg-table-ws: hsl(141.7, 76.6%, 20%);
-    --clr-bg-table-symb: hsl(200.60000000000002, 94.4%, 20%);
+    --clr-bg-table-ws: hsl(142 50% 22%);
+    --clr-bg-table-symb: hsl(204 65% 22%);
 
     --footer-bg: linear-gradient(
       to bottom,

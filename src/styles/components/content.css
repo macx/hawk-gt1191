@@ -34,7 +34,7 @@
 
         &:hover,
         &:focus {
-          color: var(--clr-primary);
+          color: var(--clr-link);
         }
       }
     }
@@ -46,7 +46,7 @@
     }
 
     ::marker {
-      color: var(--clr-primary);
+      color: var(--clr-link);
     }
   }
 
@@ -67,7 +67,7 @@
       &::before {
         display: inline-block;
         content: counter(ordered-list) '.';
-        color: var(--clr-primary);
+        color: var(--clr-link);
         font-weight: var(--fw-bold);
         float: left;
         margin-inline-start: calc(var(--padding-inline) * -1);
@@ -152,17 +152,17 @@
   /* a:any-link */
   a:not([class]) {
     font-weight: var(--fw-bold);
-    color: var(--clr-primary);
+    color: var(--clr-link);
 
     text-decoration-line: underline;
-    text-decoration-color: var(--clr-primary);
+    text-decoration-color: var(--clr-link);
     text-decoration-color: transparent;
     text-decoration-thickness: 0.1em;
     text-underline-offset: 0.2em;
     transition: text-decoration-color 200ms ease-out;
 
     &:hover {
-      text-decoration-color: var(--clr-primary);
+      text-decoration-color: var(--clr-link);
     }
   }
 
