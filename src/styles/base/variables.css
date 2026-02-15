@@ -65,7 +65,11 @@
   --clr-success: #1f9d55;
   --clr-primary: #004fcd;
   --clr-link: var(--clr-primary);
-  --clr-primary-soft: color-mix(in oklab, var(--clr-bg), var(--clr-primary) 12%);
+  --clr-primary-soft: color-mix(
+    in oklab,
+    var(--clr-bg),
+    var(--clr-primary) 12%
+  );
   --clr-primary-hover: hsl(217 100% 40% / 0.3);
   --clr-primary-light: hsl(217 100% 40% / 0.7);
   --clr-nav-shadow: rgba(109, 62, 62, 0.2);
@@ -152,11 +156,7 @@
     --clr-bg-table-odd: rgb(0 0 0 / 0.08);
 
     --clr-line: color-mix(in oklab, var(--clr-bg), var(--clr-text) 28%);
-    --clr-table-line: color-mix(
-      in oklab,
-      var(--clr-bg),
-      var(--clr-text) 20%
-    );
+    --clr-table-line: color-mix(in oklab, var(--clr-bg), var(--clr-text) 20%);
 
     --clr-text: hsl(210 18% 92%);
     --clr-text-inverse: rgb(15, 23, 42);

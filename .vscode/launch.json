@@ -3,7 +3,14 @@
   "configurations": [
     {
       "command": "pnpm dev",
-      "name": "Development",
+      "name": "🚀 Development",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+    {
+      "command": "pnpm release",
+      "cwd": "${workspaceFolder}",
+      "name": "🚢 Release & Deploy",
       "request": "launch",
       "type": "node-terminal"
     }
