@@ -1,0 +1,59 @@
+---
+layout: ../layouts/BaseLayout.astro
+title: 'Studium'
+description: 'Ressourcen und Hilfsmittel, die dir während deines Studiums helfen können.'
+navTitle: 'Studium'
+visible: true
+sort: 2
+toc: true
+---
+
+import Lead from '@components/Lead.astro'
+import ArticleCard from '@components/ArticleCard.astro'
+import PageTitle from '@components/PageTitle.astro'
+import { abgabe, entries, starterkit } from '../data/studium-entries'
+
+<PageTitle text={frontmatter.title} />
+
+<Lead text={frontmatter.description} />
+
+## Zentrale Ressourcen
+
+Die beiden wichtigsten Ankerpunkte sind das Starterkit und die Abgabeübersicht.
+Das Starterkit ist dein Werkzeug für die tägliche Arbeit, die Abgabeübersicht
+deine interaktive Checkliste für alle Abgabeanforderungen.
+
+<section class='l-articles'>
+  {entries.map((entry) => (
+    <ArticleCard
+      card={{
+        title: entry.title,
+        description: entry.description,
+        href: entry.url,
+        imagePath: entry.heroImage
+      }}
+    />
+  ))}
+</section>
+
+## Studienstruktur in der Praxis
+
+So kannst du dein Studium sinnvoll aufbauen, ohne dich zu verzetteln:
+
+1. Mit der [Einführung der Lernpfade](/tutorials/lernpfade/einfuehrung) starten:
+   Du arbeitest dort klassisch mit HTML- und CSS-Dateien, damit du beides von
+   Grund auf lernst.
+2. Danach das [Starterkit](/studium/starterkit) über die Kommandozeile installieren
+   und einrichten. Es legt dir die Projektstruktur an und bringt die wichtigsten
+   Features mit, die du für die Webentwicklung brauchst.
+3. Als Nächstes den Lernpfad [Grundlagen](/tutorials/lernpfade/grundlagen)
+   durcharbeiten. Dort lernst du Layout-Techniken, semantische Strukturierung
+   und weitere Basisprinzipien fürs Web.
+4. Nun widmest du dich wieder den kuratierten Tutorials im Lernpfad. Weiter geht es mit
+   [Gestaltung](/tutorials/lernpfade/gestaltung), das auf Einführung und
+   Grundlagen aufbaut.
+5. Die Seiten [Assets](/assets) und [Dokumentation](/dokumentation) früh und
+   regelmäßig nutzen. Assets helfen dir beim Bauen, Dokumentationen vertiefen
+   das Verständnis von HTML und CSS neben den Tutorials.
+6. Zum Abschluss führt dich [Abgabe und Anforderungen](/studium/abgabe) durch die
+   komplette Checkliste, damit du nichts vergisst.
