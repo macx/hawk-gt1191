@@ -147,7 +147,7 @@
 
     --clr-mix-modifier: hsl(0 0% 100%);
 
-    --clr-bg: hsl(210 30% 9%);
+    --clr-bg: hsl(224 71% 4%);
     --clr-bg-card: color-mix(
       in oklab,
       var(--clr-bg),
