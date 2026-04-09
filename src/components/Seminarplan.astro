@@ -1,0 +1,161 @@
+---
+import ArticleCard from '@components/ArticleCard.astro'
+
+type Termin = {
+  title: string
+  date: string
+  startTime: string
+  endTime: string
+  description: string
+  location: string
+  recordingUrl?: string
+}
+
+type CardLink = {
+  label: string
+  href: string
+  kind: 'zoom' | 'archive'
+}
+
+interface Props {
+  semester?: string
+  zoomUrl?: string
+  entries: Termin[]
+}
+
+const { semester = '', zoomUrl = '', entries = [] } = Astro.props
+
+const now = new Date()
+
+const sortedEntries = [...entries].sort(
+  (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+)
+
+const activeIndex = sortedEntries.findIndex((entry) => {
+  const eventEnd = new Date(`${entry.date}T${entry.endTime}:00`)
+  return eventEnd.getTime() > now.getTime()
+})
+
+const getWeekStart = (date: Date) => {
+  const d = new Date(date)
+  const day = d.getDay()
+  const diffToMonday = day === 0 ? -6 : 1 - day
+  d.setDate(d.getDate() + diffToMonday)
+  d.setHours(0, 0, 0, 0)
+  return d
+}
+
+const weekStart = getWeekStart(now)
+const weekEnd = new Date(weekStart)
+weekEnd.setDate(weekStart.getDate() + 6)
+weekEnd.setHours(23, 59, 59, 999)
+
+Astro.response.headers.set(
+  'Cache-Control',
+  'no-store, no-cache, must-revalidate, max-age=0'
+)
+---
+
+{
+  sortedEntries.length > 0 ? (
+    <section>
+      {semester && (
+        <p>
+          Aktuelles Semester:
+          <br />
+          {semester}
+        </p>
+      )}
+
+      <ul class='timeline' data-articles={sortedEntries.length}>
+        {sortedEntries.map((entry, index) => {
+          const eventStart = new Date(`${entry.date}T${entry.startTime}:00`)
+          const eventEnd = new Date(`${entry.date}T${entry.endTime}:00`)
+          const eventDay = new Date(entry.date)
+          eventDay.setHours(0, 0, 0, 0)
+
+          const nowDay = new Date(now)
+          nowDay.setHours(0, 0, 0, 0)
+
+          const isDone = now.getTime() >= eventEnd.getTime()
+          const isToday = eventDay.getTime() === nowDay.getTime()
+          const isInCurrentWeek =
+            eventDay.getTime() >= weekStart.getTime() &&
+            eventDay.getTime() <= weekEnd.getTime()
+
+          const showZoomCta =
+            Boolean(zoomUrl) &&
+            isInCurrentWeek &&
+            now.getTime() < eventEnd.getTime()
+
+          const statusText = isDone
+            ? 'Aufzeichnung verfügbar'
+            : isToday
+              ? 'Heute'
+              : ''
+          const isActive = index === activeIndex
+          const recordingHref = entry.recordingUrl ?? ''
+          const links: CardLink[] = []
+
+          if (showZoomCta && isActive) {
+            links.push({
+              label: 'Zum Zoom-Meeting (live)',
+              href: zoomUrl,
+              kind: 'zoom'
+            })
+          }
+
+          if (now.getTime() >= eventStart.getTime() && recordingHref) {
+            links.push({
+              label: 'Aufzeichnung und Code-Beispiele',
+              href: recordingHref,
+              kind: 'archive'
+            })
+          }
+          const months = [
+            'Jan',
+            'Feb',
+            'Mär',
+            'Apr',
+            'Mai',
+            'Jun',
+            'Jul',
+            'Aug',
+            'Sep',
+            'Okt',
+            'Nov',
+            'Dez'
+          ]
+          const calendarMonth = months[eventDay.getMonth()].toUpperCase()
+          const calendarDay = eventDay.getDate()
+
+          return (
+            <li>
+              <div class='calendar-block' aria-hidden='true'>
+                <span class='calendar-block-month'>{calendarMonth}</span>
+                <span class='calendar-block-day'>{calendarDay}</span>
+              </div>
+              <ArticleCard
+                card={{
+                  title: entry.title,
+                  description: entry.description,
+                  isTimelineCalendar: true,
+                  meta: {
+                    location: entry.location,
+                    status: statusText,
+                    statusType: isDone ? 'done' : isToday ? 'today' : ''
+                  },
+                  isActive,
+                  links,
+                  showMore: false
+                }}
+              />
+            </li>
+          )
+        })}
+      </ul>
+    </section>
+  ) : (
+    <p>Aktuell sind noch keine Termine eingetragen.</p>
+  )
+}

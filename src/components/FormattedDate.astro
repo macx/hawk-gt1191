@@ -22,7 +22,7 @@ const { date, readingTime, wordCount } = Astro.props as Props
   </time>
 
   {
-    readingTime && (
+    readingTime > 0 && (
       <div class='reading-time' title='Lesezeit'>
         <Icon name='material-symbols:schedule-outline' />
         <b>{readingTime} Min.</b>
@@ -37,6 +37,7 @@ const { date, readingTime, wordCount } = Astro.props as Props
       align-items: center;
       gap: var(--sp);
       font-size: var(--fs-s);
+      inline-size: 100%;
 
       time {
         display: block;
@@ -51,6 +52,7 @@ const { date, readingTime, wordCount } = Astro.props as Props
       display: inline-flex;
       align-items: center;
       gap: 1ch;
+      margin-inline-start: auto;
 
       svg {
         font-size: 1.125rem;

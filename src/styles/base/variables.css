@@ -38,6 +38,11 @@
     var(--clr-bg) 15%,
     var(--clr-mix-modifier) 15%
   );
+  --clr-line-dark: color-mix(
+    in oklab,
+    var(--clr-bg),
+    var(--clr-mix-modifier) 25%
+  );
   --clr-table-line: color-mix(
     in oklab,
     var(--clr-bg) 15%,
@@ -99,6 +104,7 @@
   --fw: 350;
   --fw-bold: 500;
   --fw-strong: 700;
+  --fw-very-strong: 900;
   --fw-headings: 700;
 
   /* Font Variation Settings */
@@ -156,6 +162,7 @@
     --clr-bg-table-odd: rgb(0 0 0 / 0.08);
 
     --clr-line: color-mix(in oklab, var(--clr-bg), var(--clr-text) 28%);
+    --clr-line-dark: color-mix(in oklab, var(--clr-bg), var(--clr-text) 40%);
     --clr-table-line: color-mix(in oklab, var(--clr-bg), var(--clr-text) 20%);
 
     --clr-text: hsl(210 18% 92%);
