@@ -20,7 +20,14 @@ import rehypeSlug from 'rehype-slug'
 import rehypeMermaid from '@beoe/rehype-mermaid'
 import { getCache } from '@beoe/cache'
 
-const cache = await getCache()
+const cache = await (async () => {
+  try {
+    return await getCache()
+  } catch (error) {
+    console.warn('[astro] Falling back to in-memory Mermaid cache:', error)
+    return new Map()
+  }
+})()
 
 // https://astro.build/config
 export default defineConfig({
