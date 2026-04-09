@@ -1,6 +1,7 @@
-import { defineCollection, reference, z } from 'astro:content'
+import { defineCollection, reference } from 'astro:content'
 import type { ImageMetadata } from 'astro'
 import { glob, file } from 'astro/loaders'
+import { z } from 'zod'
 
 const tutorials = defineCollection({
   loader: glob({ pattern: '**/*.mdx', base: './src/data/tutorials' }),
