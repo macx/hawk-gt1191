@@ -3,6 +3,7 @@
 import { getCollection, type CollectionEntry } from 'astro:content'
 import fs from 'node:fs'
 import path from 'node:path'
+import sharp from 'sharp'
 import { ImageResponse } from '@vercel/og'
 
 interface Props {
@@ -28,7 +29,11 @@ export async function GET({ props }: Props) {
     return
   }
 
-  const tutorialCover = fs.readFileSync(coverImagePath)
+  const rawCover = fs.readFileSync(coverImagePath)
+  const tutorialCover = await sharp(rawCover)
+    .resize({ width: 800, withoutEnlargement: true })
+    .png()
+    .toBuffer()
 
   // Fonts
   const DomineBold = fs.readFileSync(path.resolve('src/fonts/Domine-Bold.ttf'))
@@ -50,7 +55,6 @@ export async function GET({ props }: Props) {
           props: {
             tw: 'absolute top-0 left-0 w-full h-full opacity-40 flex',
             style: {
-              zIndex: '0',
               filter: 'blur(10px)'
             },
             children: [
