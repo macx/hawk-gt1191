@@ -3,12 +3,11 @@
   "include": [".astro/types.d.ts", "**/*"],
   "exclude": ["dist"],
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
-      "@components/*": ["src/components/*"],
-      "@layouts/*": ["src/layouts/*"],
-      "@plugins/*": ["remark-plugins/*"],
-      "@snippets/*": ["src/snippets/*"]
+      "@components/*": ["./src/components/*"],
+      "@layouts/*": ["./src/layouts/*"],
+      "@plugins/*": ["./remark-plugins/*"],
+      "@snippets/*": ["./src/snippets/*"]
     },
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
