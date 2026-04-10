@@ -189,22 +189,24 @@ if (coverPath && !images[coverPath] && !coverImage) {
 
       {
         cardLinks.length > 0 && (
-          <h4>Links:</h4>
+          <>
+            <h4>Links:</h4>
 
-          <ul class='card-links' aria-label='Zusatzlinks zum Seminartermin'>
-            {cardLinks.map((link) => (
-              <li>
-                <a
-                  class:list={['more', 'card-link']}
-                  href={link.href}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
+            <ul class='card-links' aria-label='Zusatzlinks zum Seminartermin'>
+              {cardLinks.map((link) => (
+                <li>
+                  <a
+                    class:list={['more', 'card-link']}
+                    href={link.href}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </>
         )
       }
     </div>
