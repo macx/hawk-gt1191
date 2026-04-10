@@ -9,16 +9,19 @@
       "endTime": "13:00",
       "description": "Alle Informationen zum Seminar und die Ziele. Einführung in HTML und CSS.",
       "location": "Campus Weinberg, Haus.E, Raum 08 (HIWEE08)",
-      "recordingUrl": "https://drive.google.com/drive/folders/19ZIdXzTwbacJWgQhOzdPLnKA341d7o0D?usp=drive_link"
+      "recordingUrl": "https://drive.google.com/drive/folders/19ZIdXzTwbacJWgQhOzdPLnKA341d7o0D?usp=drive_link",
+      "showRecording": true
     },
     {
-      "title": "TBA",
+      "title": "Layoutmethoden in CSS, Preview Starterkit",
       "date": "2026-04-17",
       "startTime": "09:00",
       "endTime": "13:00",
       "description": "Inhalte werden noch bekanntgegeben.",
       "location": "Nur Online",
-      "recordingUrl": "https://drive.google.com/drive/folders/1CAQUDCeQc1BjqltlP-aJ1MSpDNbBydIP?usp=drive_link"
+      "recordingUrl": "https://drive.google.com/drive/folders/1CAQUDCeQc1BjqltlP-aJ1MSpDNbBydIP?usp=drive_link",
+      "isNext": true,
+      "showZoom": true
     },
     {
       "title": "TBA",

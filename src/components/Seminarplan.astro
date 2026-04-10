@@ -9,6 +9,9 @@ type Termin = {
   description: string
   location: string
   recordingUrl?: string
+  isNext?: boolean
+  showZoom?: boolean
+  showRecording?: boolean
 }
 
 type CardLink = {
@@ -25,30 +28,9 @@ interface Props {
 
 const { semester = '', zoomUrl = '', entries = [] } = Astro.props
 
-const now = new Date()
-
 const sortedEntries = [...entries].sort(
   (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
 )
-
-const activeIndex = sortedEntries.findIndex((entry) => {
-  const eventEnd = new Date(`${entry.date}T${entry.endTime}:00`)
-  return eventEnd.getTime() > now.getTime()
-})
-
-const getWeekStart = (date: Date) => {
-  const d = new Date(date)
-  const day = d.getDay()
-  const diffToMonday = day === 0 ? -6 : 1 - day
-  d.setDate(d.getDate() + diffToMonday)
-  d.setHours(0, 0, 0, 0)
-  return d
-}
-
-const weekStart = getWeekStart(now)
-const weekEnd = new Date(weekStart)
-weekEnd.setDate(weekStart.getDate() + 6)
-weekEnd.setHours(23, 59, 59, 999)
 
 Astro.response.headers.set(
   'Cache-Control',
@@ -59,45 +41,16 @@ Astro.response.headers.set(
 {
   sortedEntries.length > 0 ? (
     <section>
-      {semester && (
-        <p>
-          Aktuelles Semester:
-          <br />
-          {semester}
-        </p>
-      )}
+      {semester && <h3>{semester}</h3>}
 
       <ul class='timeline' data-articles={sortedEntries.length}>
-        {sortedEntries.map((entry, index) => {
-          const eventStart = new Date(`${entry.date}T${entry.startTime}:00`)
-          const eventEnd = new Date(`${entry.date}T${entry.endTime}:00`)
+        {sortedEntries.map((entry) => {
           const eventDay = new Date(entry.date)
-          eventDay.setHours(0, 0, 0, 0)
-
-          const nowDay = new Date(now)
-          nowDay.setHours(0, 0, 0, 0)
-
-          const isDone = now.getTime() >= eventEnd.getTime()
-          const isToday = eventDay.getTime() === nowDay.getTime()
-          const isInCurrentWeek =
-            eventDay.getTime() >= weekStart.getTime() &&
-            eventDay.getTime() <= weekEnd.getTime()
-
-          const showZoomCta =
-            Boolean(zoomUrl) &&
-            isInCurrentWeek &&
-            now.getTime() < eventEnd.getTime()
-
-          const statusText = isDone
-            ? 'Aufzeichnung verfügbar'
-            : isToday
-              ? 'Heute'
-              : ''
-          const isActive = index === activeIndex
           const recordingHref = entry.recordingUrl ?? ''
           const links: CardLink[] = []
+          const statusText = entry.showRecording ? 'Aufzeichnung verfügbar' : ''
 
-          if (showZoomCta && isActive) {
+          if (entry.showZoom && zoomUrl) {
             links.push({
               label: 'Zum Zoom-Meeting (live)',
               href: zoomUrl,
@@ -105,7 +58,7 @@ Astro.response.headers.set(
             })
           }
 
-          if (now.getTime() >= eventStart.getTime() && recordingHref) {
+          if (entry.showRecording && recordingHref) {
             links.push({
               label: 'Aufzeichnung und Code-Beispiele',
               href: recordingHref,
@@ -143,9 +96,9 @@ Astro.response.headers.set(
                   meta: {
                     location: entry.location,
                     status: statusText,
-                    statusType: isDone ? 'done' : isToday ? 'today' : ''
+                    statusType: entry.showRecording ? 'done' : ''
                   },
-                  isActive,
+                  isActive: entry.isNext === true,
                   links,
                   showMore: false
                 }}
