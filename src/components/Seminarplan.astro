@@ -11,6 +11,7 @@ type Termin = {
   recordingUrl?: string
   isNext?: boolean
   showZoom?: boolean
+  showCode?: boolean
   showRecording?: boolean
 }
 
@@ -52,7 +53,7 @@ Astro.response.headers.set(
 
           if (entry.showZoom && zoomUrl) {
             links.push({
-              label: 'Zum Zoom-Meeting (live)',
+              label: 'Zoom-Meeting (live)',
               href: zoomUrl,
               kind: 'zoom'
             })
@@ -64,7 +65,14 @@ Astro.response.headers.set(
               href: recordingHref,
               kind: 'archive'
             })
+          } else if (entry.showCode && recordingHref) {
+            links.push({
+              label: 'Code-Beispiele',
+              href: recordingHref,
+              kind: 'archive'
+            })
           }
+
           const months = [
             'Jan',
             'Feb',
