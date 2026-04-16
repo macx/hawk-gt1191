@@ -17,11 +17,12 @@
       "date": "2026-04-17",
       "startTime": "09:00",
       "endTime": "13:00",
-      "description": "Inhalte werden noch bekanntgegeben.",
+      "description": "Layouts erstellen mit CSS: Box-Modell, Flexbox, Grid. Einführung in das Terminal und das Starterkit.",
       "location": "Nur Online",
       "recordingUrl": "https://drive.google.com/drive/folders/1CAQUDCeQc1BjqltlP-aJ1MSpDNbBydIP?usp=drive_link",
       "isNext": true,
-      "showZoom": true
+      "showZoom": true,
+      "showRecording": true
     },
     {
       "title": "TBA",

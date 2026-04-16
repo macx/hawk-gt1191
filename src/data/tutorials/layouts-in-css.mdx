@@ -171,6 +171,46 @@ Verändere im folgenden Beispiel in der interaktiven Demo die Mindestbreite mit 
 
 > Auch für CSS Grid hat Josh Comeau einen [interaktiven Leitfaden](https://www.joshwcomeau.com/css/interactive-guide-to-grid/) erstellt, der dir die wichtigsten Eigenschaften und deren Anwendung näherbringt.
 
+### Grid Lanes (Masonry)
+
+Die Fotobibliotheken von Google, Apple und auch Pinterest nutzen ein sogenanntes Masonry-Layout, um Bilder in einem Raster anzuordnen. Dabei werden unterschiedlich hohe Bilder in Spalten angeordnet, sodass die Lücken zwischen den Bildern gefüllt werden.
+
+<Figure imagePath="/src/images/tutorials/grid-lanes.webp" caption="Grid-Spalten in Aktion">
+  ```html title="HTML"
+  <div class="gallery">
+    <figure><img src="item-1.webp"></figure>
+    <figure><img src="item-2.webp"></figure>
+    <figure><img src="item-3.webp"></figure>
+    <!-- … -->
+  </div>
+  ```
+  ```css title="CSS"
+  .gallery {
+    display: grid-lanes;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.25rem;
+  }
+  ```
+</Figure>
+
+Da mit Stand April 2026 nur Vorversionen von Safari und Chrome die CSS-Spalten [unterstützen](https://caniuse.com/?search=grid-lanes), ist die `grid-lanes`-Eigenschaft derzeit noch nicht für den produktiven Einsatz geeignet. Du solltest daher unbedingt die Unterstützung abfragen und einen Fallback bereitstellen:
+
+<Figure caption="Mit einem Fallback kannst du die Funktionalität auch in älteren Browsern gewährleisten.">
+  ```css title="CSS"
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.25rem;
+
+    @supports (display: grid-lanes) {
+      display: grid-lanes;
+    }
+  }
+  ```
+</Figure>
+
+> Im [Webkit-Blog](https://webkit.org/blog/17660/introducing-css-grid-lanes/) kannst du mehr über die `grid-lanes`-Eigenschaft erfahren. Auf der [Demo-Seite](https://webkit.org/demos/grid3/) kannst du die Funktionsweise der Grid-Spalten selbst ausprobieren.
+
 ## Floats
 
 Ein gefloatetes Element ändert das Verhalten vom Element und den umliegenden Elementen im normalem Fluss. Das Element wird dabei nach links oder rechts verschoben und aus dem normalen Fluss entfernt, sodass der umliegende Inhalt um das Element herumfließt.
