@@ -13,25 +13,26 @@
       "showRecording": true
     },
     {
-      "title": "Layoutmethoden in CSS, Preview Starterkit",
+      "title": "Layoutmethoden in CSS, Media Queries",
       "date": "2026-04-17",
       "startTime": "09:00",
       "endTime": "13:00",
-      "description": "Layouts erstellen mit CSS: Box-Modell, Flexbox, Grid. Einführung in das Terminal und das Starterkit.",
+      "description": "Layouts erstellen mit CSS: Flexbox, Grid und Media Queries.",
       "location": "Nur Online",
       "recordingUrl": "https://drive.google.com/drive/folders/1CAQUDCeQc1BjqltlP-aJ1MSpDNbBydIP?usp=drive_link",
-      "isNext": true,
-      "showZoom": true,
-      "showCode": true
+      "showRecording": true
     },
     {
-      "title": "TBA",
+      "title": "Karten, Fotogalerien, Preview Starterkit",
       "date": "2026-04-23",
       "startTime": "09:00",
       "endTime": "13:00",
-      "description": "Inhalte werden noch bekanntgegeben.",
+      "description": "TBA",
       "location": "Nur Online",
-      "recordingUrl": "https://drive.google.com/drive/folders/1A3aEfQ9R0klS6FKVxzQzYp2RB3H-EY1A?usp=drive_link"
+      "recordingUrl": "https://drive.google.com/drive/folders/1A3aEfQ9R0klS6FKVxzQzYp2RB3H-EY1A?usp=drive_link",
+      "isNext": true,
+      "showZoom": true,
+      "showCode": true
     },
     {
       "title": "TBA",
