@@ -129,7 +129,7 @@
       .new {
         display: inline-block;
         background-color: var(--clr-primary);
-        color: var(--clr-text-inverse);
+        color: var(--clr-inverse);
         font-size: var(--fs-xs);
         padding-inline: 1ch;
         margin-inline-start: 1.5ch;
