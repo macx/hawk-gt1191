@@ -23,28 +23,30 @@
       "showRecording": true
     },
     {
-      "title": "Einheiten, Semantik, Layout & Breakpoints, Vorstellung Starterkit",
+      "title": "Einheiten, Semantik, Layout, Navigation und Starterkit",
       "date": "2026-04-23",
       "startTime": "09:00",
       "endTime": "13:00",
-      "description": "Weiterer Grundlagenaufbau zur Festigung der Kenntnisse in HTML und CSS. Plus: Einführung in das Starterkit, mit dem wir zukünftig arbeiten werden.",
+      "description": "Wir schauen uns die Einheiten von CSS an, lernen die Semantik von HTML kennen, erstellen ein Layout mit einer One-Pager-Navigationund und werfen einen Blick auf das Starterkit.",
       "location": "Nur Online",
       "recordingUrl": "https://drive.google.com/drive/folders/1A3aEfQ9R0klS6FKVxzQzYp2RB3H-EY1A?usp=drive_link",
+      "showRecording": true,
+      "showCode": true
+    },
+    {
+      "title": "Responsive Navigation",
+      "date": "2026-05-07",
+      "startTime": "09:00",
+      "endTime": "13:00",
+      "description": "Wir erstellen mit dem Starterkit eine responsive Navigation, die sich an verschiedene Bildschirmgrößen anpasst.",
+      "location": "Nur Online",
+      "recordingUrl": "https://drive.google.com/drive/folders/1LpbqSiTtDtsJbaraRtNgS1wRGjxcQ81H?usp=drive_link",
       "isNext": true,
       "showZoom": true,
       "showCode": true
     },
     {
-      "title": "TBA",
-      "date": "2026-05-08",
-      "startTime": "09:00",
-      "endTime": "13:00",
-      "description": "Inhalte werden noch bekanntgegeben.",
-      "location": "Nur Online",
-      "recordingUrl": "https://drive.google.com/drive/folders/1LpbqSiTtDtsJbaraRtNgS1wRGjxcQ81H?usp=drive_link"
-    },
-    {
-      "title": "TBA",
+      "title": "",
       "date": "2026-05-22",
       "startTime": "09:00",
       "endTime": "13:00",
