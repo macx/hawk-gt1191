@@ -14,6 +14,9 @@ max_retries = 3
 # Number of concurrent requests
 max_concurrency = 8
 
+# Root directory for resolving root-relative links (e.g. /tutorials/...) in local HTML files
+root_dir = "./dist"
+
 # Cache results across runs to avoid redundant checks
 cache = true
 max_cache_age = "1d"

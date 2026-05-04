@@ -1,6 +1,9 @@
 # build
 dist/
 
+# lychee link checker cache
+.lycheecache
+
 # generated types
 .astro/
 
