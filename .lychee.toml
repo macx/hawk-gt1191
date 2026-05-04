@@ -14,34 +14,32 @@ max_retries = 3
 # Number of concurrent requests
 max_concurrency = 8
 
-# Do not check anchor fragments
-include_fragments = false
-
 # Cache results across runs to avoid redundant checks
 cache = true
 max_cache_age = "1d"
 
 # Exclude known false-positive domains:
 # (sites that block automated HEAD/GET requests or require browser-like headers)
+# Values are treated as regular expressions.
 exclude = [
   # Cloudflare-protected
-  "https://codepen.io",
+  "^https://codepen\\.io",
   # Microsoft (blocks automated requests)
-  "https://marketplace.visualstudio.com",
+  "^https://marketplace\\.visualstudio\\.com",
   # Facebook/Meta (blocks bots)
-  "https://developers.facebook.com",
+  "^https://developers\\.facebook\\.com",
   # Google Fonts (redirects on HEAD)
-  "https://fonts.google.com",
-  "https://fonts.googleapis.com",
-  "https://fonts.gstatic.com",
+  "^https://fonts\\.google\\.com",
+  "^https://fonts\\.googleapis\\.com",
+  "^https://fonts\\.gstatic\\.com",
   # Postbank (bot protection)
-  "https://www.postbank.de",
+  "^https://(www\\.)?postbank\\.de",
   # MyFonts (redirect behavior)
-  "https://www.myfonts.com",
+  "^https://www\\.myfonts\\.com",
   # LinkedIn (blocks bots)
-  "https://www.linkedin.com",
+  "^https://(www\\.)?linkedin\\.com",
 ]
 
 # HTTP status codes considered valid
 # 429 = Too Many Requests (rate limit, not a broken link)
-accept = ["100..=103", "200..=299", "429"]
+accept = ["200..=299", "429"]
