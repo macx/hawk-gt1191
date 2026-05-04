@@ -10,13 +10,14 @@
     "dev": "astro dev --watch --open",
     "start": "astro dev",
     "build": "astro check && tsc --noEmit && astro build",
+    "check-links": "lychee --config .lychee.toml './dist/**/*.html'",
     "preview": "astro preview",
     "astro": "astro",
     "validate": "astro check",
     "test": "cypress run",
     "test:ui": "cypress open",
     "lint": "prettier --write --plugin-search-dir=. .",
-    "release": "pnpm lint && pnpm build && release-it",
+    "release": "pnpm lint && pnpm build && pnpm check-links && release-it",
     "postinstall": "playwright install chromium"
   },
   "publishConfig": {
@@ -44,7 +45,6 @@
     "astro-expressive-code": "^0.41.7",
     "astro-icon": "^1.1.5",
     "astro-link": "^1.2.1",
-    "astro-link-validator": "github:rodgtr1/astro-link-validator",
     "chart.js": "^4.5.1",
     "install": "^0.13.0",
     "mdast-util-to-string": "^4.0.0",

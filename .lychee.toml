@@ -1,0 +1,47 @@
+# lychee link checker configuration
+# Docs: https://lychee.cli.rs/configuration/
+
+# Only check HTTP/HTTPS links (no mailto:, tel:, etc.)
+# Input files/directories are passed as CLI arguments: lychee './dist/**/*.html'
+scheme = ["https", "http"]
+
+# Timeout per request in seconds
+timeout = 20
+
+# Number of retries on failure (HEAD with automatic GET fallback is built in)
+max_retries = 3
+
+# Number of concurrent requests
+max_concurrency = 8
+
+# Do not check anchor fragments
+include_fragments = false
+
+# Cache results across runs to avoid redundant checks
+cache = true
+max_cache_age = "1d"
+
+# Exclude known false-positive domains:
+# (sites that block automated HEAD/GET requests or require browser-like headers)
+exclude = [
+  # Cloudflare-protected
+  "https://codepen.io",
+  # Microsoft (blocks automated requests)
+  "https://marketplace.visualstudio.com",
+  # Facebook/Meta (blocks bots)
+  "https://developers.facebook.com",
+  # Google Fonts (redirects on HEAD)
+  "https://fonts.google.com",
+  "https://fonts.googleapis.com",
+  "https://fonts.gstatic.com",
+  # Postbank (bot protection)
+  "https://www.postbank.de",
+  # MyFonts (redirect behavior)
+  "https://www.myfonts.com",
+  # LinkedIn (blocks bots)
+  "https://www.linkedin.com",
+]
+
+# HTTP status codes considered valid
+# 429 = Too Many Requests (rate limit, not a broken link)
+accept = ["100..=103", "200..=299", "429"]
