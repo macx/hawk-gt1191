@@ -1,0 +1,71 @@
+---
+/**
+ * BunnyVideo.astro
+ *
+ * This component embeds videos directly from the Bunny.net CDN.
+ * It avoids the standard iframe player to ensure maximum
+ * GDPR compliance and performance.
+ */
+
+import { markdown } from '@astropub/md'
+
+interface Props {
+  videoId: string
+  alt?: string
+  caption?: string | boolean
+  quality?: '480p' | '720p' | '1080p'
+  autoplay?: boolean
+  loop?: boolean
+}
+
+const {
+  videoId,
+  alt = 'Code-Demonstration',
+  caption,
+  quality = '480p',
+  autoplay = false,
+  loop = true
+} = Astro.props
+
+const HOSTNAME = 'vz-d7a8dbbd-860.b-cdn.net'
+const videoUrl = `https://${HOSTNAME}/${videoId}/play_${quality}.mp4`
+const posterUrl = `https://${HOSTNAME}/${videoId}/thumbnail.jpg`
+
+// Generate a unique ID for aria-labelledby connection
+const captionId = `video-caption-${Math.random().toString(36).substring(2, 11)}`
+---
+
+<figure class:list={['media-item', 'video']}>
+  <video
+    controls
+    autoplay={autoplay}
+    muted
+    loop={loop}
+    playsinline
+    preload='metadata'
+    poster={`${posterUrl}`}
+    class='bunny-video'
+    aria-label={caption ? undefined : alt}
+    aria-labelledby={caption ? captionId : undefined}
+    loading='lazy'
+  >
+    <source src={`${videoUrl}`} type='video/mp4' />
+    <p>
+      Browser unterstützt kein Video. <a href={`${videoUrl}`}>Download</a>
+    </p>
+  </video>
+
+  {
+    caption && typeof caption === 'string' ? (
+      <figcaption id={captionId}>{await markdown.inline(caption)}</figcaption>
+    ) : null
+  }
+</figure>
+
+<style>
+  .media-item.video {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+</style>

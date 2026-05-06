@@ -249,6 +249,10 @@ if (coverPath && !images[coverPath] && !coverImage) {
       color: var(--clr-text);
       text-decoration: none;
       min-height: 100%;
+
+      .image + .description {
+        padding-block-start: var(--sp);
+      }
     }
 
     &.is-link .card-shell {
