@@ -10,7 +10,7 @@ export async function getStaticPaths() {
   const posts = await getCollection('tutorials', ({ data }) => {
     return import.meta.env.PROD ? data.isDraft !== true : true
   })
-  const tags = [...new Set(posts.flatMap((post) => post.data.tags))]
+  const tags = [...new Set(posts.flatMap((post) => post.data.tags ?? []))]
 
   return tags.map((tag) => {
     const filteredPosts = posts.filter((post) =>
