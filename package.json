@@ -10,7 +10,7 @@
     "dev": "astro dev --watch --open",
     "start": "astro dev",
     "build": "astro check && tsc --noEmit && astro build",
-    "check-links": "lychee --config .lychee.toml './dist/**/*.html'",
+    "check-links": "lychee --config .lychee.toml --remap 'https://hawk-gt1191.de file://$PWD/dist' './dist/**/*.html'",
     "preview": "astro preview",
     "astro": "astro",
     "validate": "astro check",
