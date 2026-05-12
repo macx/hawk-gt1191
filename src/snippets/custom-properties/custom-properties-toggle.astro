@@ -1,0 +1,112 @@
+---
+import Snippet from '@components/Snippet.astro'
+---
+
+<Snippet title='Interaktive Demo'>
+  <Fragment slot='settings'>
+    <div class='sn-settings'>
+      <button
+        type='button'
+        class='cp-toggle'
+        data-cp-toggle
+        aria-pressed='false'
+      >
+        Auf Grün umschalten
+      </button>
+    </div>
+  </Fragment>
+
+  <Fragment>
+    <div class='demo-custom-properties' data-cp-demo data-theme='danger'>
+      <div class='cp-grid'>
+        <article class='cp-card'>Karte 1</article>
+        <article class='cp-card'>Karte 2</article>
+        <article class='cp-card'>Karte 3</article>
+      </div>
+    </div>
+  </Fragment>
+
+  <style>
+    @scope (.demo-custom-properties) {
+      :scope {
+        --surface: #ff5a5a;
+        --text-color: #1d1d1d;
+
+        &[data-theme='success'] {
+          --surface: #2bb673;
+        }
+
+        .cp-grid {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: var(--sp-xs);
+        }
+
+        .cp-card {
+          background-color: var(--surface);
+          color: var(--text-color);
+          border-radius: var(--radius);
+          border: 1px solid color-mix(in oklab, var(--surface), #000 20%);
+          padding-block: 1.2rem;
+          text-align: center;
+          font-weight: 700;
+          transition:
+            background-color 200ms ease,
+            border-color 200ms ease;
+        }
+      }
+    }
+
+    @scope (.sn-settings) {
+      :scope {
+        .cp-toggle {
+          all: unset;
+          cursor: pointer;
+          border: 1px solid var(--sn-clr-border);
+          border-radius: var(--radius);
+          padding: 0.5rem 0.8rem;
+          font-weight: 600;
+          background-color: var(--clr-bg-card);
+
+          &:focus-visible {
+            outline: 3px solid currentColor;
+            outline-offset: 2px;
+          }
+        }
+      }
+    }
+  </style>
+
+  <script is:inline>
+    ;(() => {
+      document.querySelectorAll('[data-cp-demo]').forEach((demo) => {
+        const snippet = demo.closest('.snippet')
+        const toggleButton = snippet?.querySelector('[data-cp-toggle]')
+        const figure = snippet?.closest('figure')
+        const htmlDanger = figure?.querySelector('[data-cp-html="danger"]')
+        const htmlSuccess = figure?.querySelector('[data-cp-html="success"]')
+
+        if (!toggleButton) {
+          return
+        }
+
+        toggleButton.addEventListener('click', () => {
+          const isSuccess = demo.getAttribute('data-theme') === 'success'
+          const nextTheme = isSuccess ? 'danger' : 'success'
+          const nextLabel = isSuccess
+            ? 'Auf Grün umschalten'
+            : 'Auf Rot umschalten'
+
+          demo.setAttribute('data-theme', nextTheme)
+          toggleButton.setAttribute('aria-pressed', String(!isSuccess))
+          toggleButton.textContent = nextLabel
+
+          if (htmlDanger && htmlSuccess) {
+            htmlDanger.hidden = nextTheme !== 'danger'
+            htmlSuccess.hidden = nextTheme !== 'success'
+          }
+        })
+      })
+    })()
+  </script>
+</Snippet>

@@ -1,0 +1,167 @@
+---
+title: 'CSS Custom Properties: Variablen für wartbares Design'
+description: 'Schluss mit Copy-paste: Wer CSS Custom Properties kennt, ändert Farben, Abstände und Größen an genau einer Stelle – und spart sich damit Stunden'
+isDraft: false
+pubDate: 2026-05-12T16:00:00+00:00
+author: david-maciejewski
+cover:
+  path: '/src/images/tutorials/css-custom-properties.png'
+  alt: 'Ein Student sitzt am Schreibtisch vor einem großen Monitor und sieht eine Oberfläche zu CSS Custom Properties mit umgeschalteten Karten von Rot auf Grün.'
+  caption: 'Ein Wert im Theme wechselt und alle Karten folgen sofort: Genau dafür sind CSS Custom Properties gemacht.'
+tags: ['css', 'custom-properties', 'variablen', 'design-tokens']
+---
+
+import Figure from '@components/Figure.astro'
+import SnippetCustomPropertiesToggle from '@snippets/custom-properties/custom-properties-toggle.astro'
+
+## Einführung
+
+Wenn du die Lernpfade [Einführung](/tutorials/lernpfade/einfuehrung/) und [Grundlagen](/tutorials/lernpfade/grundlagen/) durchgearbeitet hast, kennst du bereits Selektoren, Kaskade und responsive Layouts. Jetzt folgt der nächste Hebel für sauberes CSS: **Custom Properties**, auch bekannt als CSS-Variablen.
+
+Variablen kennt jeder aus der Mathematik: `x = 5` – hier steht `x` für den Wert `5`. Und wer in Mathe nicht aufgepasst hat: Stell dir vor, jemand kommt in den Seminarraum und fragt: „Wo ist der Dozent?" -- Mal ist das David, mal jemand anderes. Aber die Frage bleibt dieselbe. „Dozent" ist hier der Platzhalter, also die Variable. Wer sich dahinter verbirgt, kann sich ändern, ohne dass die Frage neu formuliert werden muss.
+
+In CSS heißen diese Platzhalter **Custom Properties**. Statt eine Farbe wie `#c0392b` an zehn Stellen im Code einzutragen, legst du sie einmal unter einem Namen ab -- und verwendest nur noch den Namen. Ändert sich die Farbe, reicht eine einzige Anpassung. Und als Bonus: Namen sind viel verständlicher als kryptische Hex-Codes.
+
+In größeren Projekten nennt man solche zentralen Werte oft **Design-Tokens**: einheitliche Namen für Farben, Abstände, Größen oder Schattierungen, die überall im System gleich genutzt werden.
+
+## Die Syntax
+
+CSS-Variablen schreibst du mit zwei Bindestrichen und einem Namen. Am besten legst du sie im `:root` ab, dann gelten sie auf der ganzen Seite. `:root` ist das oberste HTML-Element, also das `<html>`-Tag. Das sieht dann so aus:
+
+```css
+:root {
+  --color-accent: #c0392b;
+}
+```
+
+Wenn du diese Farbe später in deinem CSS verwenden möchtest, nutzt du die Funktion `var()`:
+
+```css
+.button {
+  background-color: var(--color-accent);
+}
+```
+
+`--color-accent` ist der Variablenname. Mit `var(--color-accent)` liest du den Wert aus.
+
+### Scope: global und lokal
+
+Werte im `:root` gelten global für die ganze Seite. Innerhalb einer Komponente kannst du sie gezielt überschreiben:
+
+```css
+:root {
+  --color-surface: #f8f8f8;
+}
+
+.card {
+  --color-surface: #ffe8e8;
+  background-color: var(--color-surface);
+}
+```
+
+Die Karte nutzt hier ihren lokalen Wert, andere Elemente behalten den globalen Wert.
+
+### Fallbacks mit var()
+
+Wenn eine Variable noch nicht definiert ist, kannst du einen Fallback angeben:
+
+```css
+.badge {
+  background-color: var(--color-badge, #999);
+}
+```
+
+Der zweite Wert wird nur verwendet, wenn `--color-badge` fehlt.
+
+### Praktische Anwendungsfälle
+
+Im Alltag geht es oft genau darum: Du hast eine Grundfarbe, willst aber sofort eine passende hellere oder dunklere Variante dazu. Genau das kannst du mit `color-mix()` berechnen lassen. Schau dir dazu direkt den Code an:
+
+```css
+:root {
+  --color-surface: #c0392b;
+  --color-surface-light: color-mix(in oklab, var(--color-surface), white 20%);
+  --color-surface-dark: color-mix(in oklab, var(--color-surface), black 20%);
+}
+```
+
+Auch Layout-Werte wie `flex-direction` oder `gap` kannst du in Variablen ablegen: Bei kleinen Bildschirmen stehen die Elemente untereinander, bei größeren nebeneinander.
+
+```css
+.card {
+  display: flex;
+  flex-direction: var(--layout-direction, column);
+  gap: var(--layout-gap, 0.5rem);
+
+  @media (width >= 37.5em) {
+    --layout-direction: row;
+    --layout-gap: 1rem;
+  }
+}
+```
+
+> **Tipp**: Wie du dein Layout an verschiedene Bildschirme anpasst, erfährst du im Tutorial [Media- und Container-Queries](/tutorials/media-und-container-queries).
+
+## Interaktive Demo
+
+In Projekten kommt oft die Anforderung, eine Farbe oder einen Zustand an mehreren Stellen gleichzeitig zu ändern. Genau dafür reicht es hier, nur die Variable anzupassen -- und die Werte ändern sich überall, wie du gelernt hast. In der folgenden Demo kannst du das direkt ausprobieren.
+
+Mit dem Button setzen wir beim Demo-Container ein `data-theme`-Attribut. `data-*`-Attribute sind zusätzliche HTML-Attribute für solche Zustände. Hier nutzen wir `data-theme` als Schalter: Steht es auf `danger`, zeigt die Demo Rot, bei `success` wechselt sie auf Grün.
+
+<Figure caption='Per Toggle wird eine CSS-Variable umgestellt. Alle Karten reagieren sofort.'>
+  <div data-cp-html='danger'>
+
+  ```html title='HTML'
+  <button type='button' class='toggle'>
+    Auf Grün umschalten
+  </button>
+
+  <div class='demo' data-theme='danger'>
+    <article class='card'>Karte 1</article>
+    <article class='card'>Karte 2</article>
+    <article class='card'>Karte 3</article>
+  </div>
+  ```
+
+  </div>
+
+  <div data-cp-html='success' hidden>
+
+  ```html title='HTML'
+  <button type='button' class='toggle'>
+    Auf Rot umschalten
+  </button>
+
+  <div class='demo' data-theme='success'>
+    <article class='card'>Karte 1</article>
+    <article class='card'>Karte 2</article>
+    <article class='card'>Karte 3</article>
+  </div>
+  ```
+
+  </div>
+
+  ```css title='CSS'
+  .demo {
+    --color-surface: #ff5a5a;
+  }
+
+  .demo[data-theme='success'] {
+    --color-surface: #2bb673;
+  }
+
+  .card {
+    background-color: var(--color-surface);
+  }
+  ```
+
+  <SnippetCustomPropertiesToggle />
+</Figure>
+
+## Übung
+
+1. Kontrolliere deinen bisher geschriebenen Code und verwende nun konsequent Variablen, statt die Werte direkt einzutragen.
+2. Erstelle dir doch selbst einmal Design-Tokens, also eine Grundfarbe und dazu fünf passende Varianten, z. B. für Hover- oder Fokus-Zustände. Nutze dafür `color-mix()` oder lege die Werte manuell fest.
+3. Setze auch für Abstände, Größen oder andere Werte Variablen anstelle von direkten Werten ein.
+
+Wenn das klappt, hast du verstanden, wie du zukünftig dein CSS wartbar und flexibel gestaltest. Oder wie du eine KI mit einem Prompt anweisen kannst, dir gleich vernünftigen Code zu schreiben.
