@@ -366,9 +366,8 @@ if (nav && navList && navButtonTpl) {
 
 ### CSS für robusten Zustand ergänzen
 
-Im letzten Schritt ergänzen wir das bestehende CSS um drei Dinge:
+Im letzten Schritt ergänzen wir das bestehende CSS um folgende Dinge:
 
-- Scroll-Sperre auf Mobile, solange das Menü offen ist
 - Zustandslogik, damit die Liste nur bei vorhandenem Toggle-Button versteckt wird
 - Styling und Animation für das SVG-Icon im Button
 
@@ -425,7 +424,7 @@ Wichtig für Progressive Enhancement: Ohne JavaScript gibt es keinen Toggle-Butt
 
 Du hast jetzt bereits eine solide Navigation, die auf verschiedenen Bildschirmgrößen funktioniert und per `aria-expanded` gesteuert wird. Das ist ein guter Ausgangspunkt, um sie weiter zu verfeinern.
 
-## Vollständig ausgereifte Variante
+## Ausgereiftere Variante
 
 Folgende Dinge könntest du noch in Betracht ziehen, um deine Navigation noch besser zu machen:
 
@@ -438,7 +437,7 @@ Unbeabsichtigtes Scrollen verhindern
 Semantik für den aktiven Link
 : Über `aria-current="page"` wird die aktuell aktive Seite für Screenreader eindeutig markiert.
 
-Ich habe für dich ein vollständiges Beispiel mit all diesen Verbesserungen als CodePen zusammengestellt:
+Ich habe für dich ein vollständiges Beispiel mit all diesen Verbesserungen als CodePen zusammengestellt. Schaue es dir gern an, um zu sehen, wie die einzelnen Teile zusammenwirken.
 
 <Codepen id="MWNRWEp" height="500" tab="html,result"/>
 
