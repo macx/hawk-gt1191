@@ -29,26 +29,6 @@ import { SITE_CONST } from '../const.ts'
 
   <Navigation siteLinks={SITE_CONST.links} />
 
-  <div class='navigation-toggle'>
-    <button
-      type='button'
-      class='header-button menu show js-toggle-nav'
-      aria-label='Navigation öffnen'
-    >
-      <Icon name='material-symbols:menu' />
-      <span class='sr-only'>Navigation öffnen</span>
-    </button>
-
-    <button
-      type='button'
-      class='header-button menu hide js-toggle-nav'
-      aria-label='Navigation schließen'
-    >
-      <Icon name='material-symbols:close' />
-      <span class='sr-only'>Navigation schließen</span>
-    </button>
-  </div>
-
   <nav
     class='nav-complementary'
     role='navigation'
@@ -168,27 +148,6 @@ import { SITE_CONST } from '../const.ts'
       fill: var(--clr-text);
       transition: fill var(--transition);
     }
-
-    &.menu svg {
-      inline-size: var(--icon-size);
-      block-size: var(--icon-size);
-    }
-
-    &.hide {
-      display: none;
-    }
-
-    .navigation-toggle & {
-      margin-inline-end: calc((var(--sp-content) / 2) * -1);
-    }
-  }
-
-  :global(.with-nav) .header-button.show {
-    display: none;
-  }
-
-  :global(.with-nav) .header-button.hide {
-    display: grid;
   }
 
   .header-button {
@@ -214,13 +173,6 @@ import { SITE_CONST } from '../const.ts'
       outline-offset: 2px;
       outline-style: dotted;
       box-shadow: 0 0 0 3px var(--clr-inverse);
-    }
-
-    @media screen and (width >= 57.5em) {
-      &.show,
-      &.hide {
-        display: none !important;
-      }
     }
   }
 

@@ -17,7 +17,24 @@ const filteredPages = pages
   .sort((a: any, b: any) => (a.frontmatter.sort > b.frontmatter.sort ? 0 : -1))
 ---
 
-<nav arial-label='Hauptnavigation' class='navigation'>
+<nav id='main-navigation' aria-label='Hauptnavigation' class='navigation'>
+  <template id='main-nav-button'>
+    <button
+      type='button'
+      class='navigation-toggle js-toggle-nav'
+      aria-label='Navigation öffnen'
+      aria-controls='main-navigation'
+      aria-expanded='false'
+    >
+      <svg viewBox='0 0 24 24' aria-hidden='true' class='nav-icon'>
+        <path d='M4 6h16' class='line top'></path>
+        <path d='M4 12h16' class='line middle'></path>
+        <path d='M4 18h16' class='line bottom'></path>
+      </svg>
+      <span class='sr-only js-toggle-label'>Navigation öffnen</span>
+    </button>
+  </template>
+
   <div class='navigation-items'>
     <ul>
       <li class='home'>
@@ -94,11 +111,7 @@ const filteredPages = pages
       <ThemeButton />
     </li>
     <li>
-      <a
-        href='#top'
-        class='header-button js-toggle-nav'
-        title='Nach oben scrollen'
-      >
+      <a href='#top' class='header-button' title='Nach oben scrollen'>
         <Icon name='material-symbols:arrow-upward-rounded' />
       </a>
     </li>
@@ -109,10 +122,10 @@ const filteredPages = pages
   .navigation {
     @media screen and (width < 57.5em) {
       position: fixed;
-      top: var(--header-height);
-      inset-block-start: 0;
+      inset-block-start: var(--header-height);
       inset-inline: 0;
-      height: calc(100vh - var(--header-height));
+      block-size: auto;
+      max-block-size: calc(100dvh - var(--header-height));
       z-index: 20;
 
       display: flex;
@@ -120,15 +133,152 @@ const filteredPages = pages
 
       background-color: var(--clr-header);
       backdrop-filter: blur(5px);
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height var(--transition-navi);
+      border-block-end: 1px solid var(--clr-line-dark);
+      overflow: auto;
+      transform-origin: top right;
+      will-change: clip-path, transform, opacity;
+      transition:
+        clip-path 620ms cubic-bezier(0.22, 1, 0.36, 1),
+        transform 620ms cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 320ms ease-out;
     }
   }
 
-  :global(.with-nav) .navigation {
+  /* Progressive Enhancement: Nav nur verstecken, wenn der Toggle-Button per JS eingefügt wurde */
+  :global(.js-toggle-nav ~ .navigation) {
     @media screen and (width < 57.5em) {
-      max-height: calc(100dvh - var(--header-height));
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-0.5rem) scale(0.98);
+      clip-path: circle(
+        0 at calc(100% - (var(--header-height) / 2))
+          calc(var(--header-height) / 2)
+      );
+    }
+  }
+
+  :global(.js-toggle-nav[aria-expanded='true'] ~ .navigation) {
+    @media screen and (width < 57.5em) {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+      clip-path: circle(
+        150vmax at calc(100% - (var(--header-height) / 2))
+          calc(var(--header-height) / 2)
+      );
+    }
+  }
+
+  @supports (top: anchor(--main-nav-toggle bottom)) {
+    :global(.js-toggle-nav ~ .navigation) {
+      @media screen and (width < 57.5em) {
+        clip-path: circle(
+          0 at anchor(--main-nav-toggle right) anchor(--main-nav-toggle center)
+        );
+      }
+    }
+
+    :global(.js-toggle-nav[aria-expanded='true'] ~ .navigation) {
+      @media screen and (width < 57.5em) {
+        clip-path: circle(
+          150vmax at anchor(--main-nav-toggle right)
+            anchor(--main-nav-toggle center)
+        );
+      }
+    }
+  }
+
+  /* Toggle-Button: global, da dynamisch per JS injiziert */
+  :global(.navigation-toggle) {
+    all: unset;
+
+    display: grid;
+    place-items: center;
+    position: relative;
+    z-index: 21;
+
+    padding-inline: var(--sp-xs);
+    block-size: var(--header-height);
+    cursor: pointer;
+    transition: background-color var(--transition);
+    margin-inline-end: calc((var(--sp-content) / 2) * -1);
+
+    &:hover,
+    &:focus-visible {
+      background-color: var(--clr-primary--hover);
+    }
+
+    &:focus-visible {
+      outline: 3px dotted var(--clr-primary);
+      outline-offset: 2px;
+      outline-style: dotted;
+      box-shadow: 0 0 0 3px var(--clr-inverse);
+    }
+
+    @media screen and (width >= 57.5em) {
+      display: none;
+    }
+
+    @media screen and (width < 57.5em) {
+      anchor-name: --main-nav-toggle;
+    }
+  }
+
+  /* Hamburger-Icon */
+  :global(.nav-icon) {
+    inline-size: var(--icon-size);
+    block-size: var(--icon-size);
+
+    .line {
+      fill: none;
+      stroke: var(--clr-text);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition:
+        stroke var(--transition),
+        transform 200ms ease,
+        opacity 200ms ease;
+    }
+  }
+
+  :global(.js-toggle-nav[aria-expanded='true'] .nav-icon) {
+    .top {
+      transform: rotate(45deg) translate(5px, -6px);
+      transform-origin: 0 0;
+    }
+
+    .middle {
+      opacity: 0;
+    }
+
+    .bottom {
+      transform: rotate(-45deg) translate(0, -6px);
+      transform-origin: 50% 50%;
+    }
+  }
+
+  @media screen and (width < 57.5em) {
+    :global(body::before) {
+      content: '';
+      position: fixed;
+      inset: var(--header-height) 0 0 0;
+      z-index: 19;
+      opacity: 0;
+      pointer-events: none;
+      backdrop-filter: blur(10px);
+      background-color: rgb(0 0 0 / 10%);
+      transition: opacity 260ms ease;
+    }
+
+    :global(body.nav-open) {
+      overflow: hidden;
+      overscroll-behavior: none;
+      touch-action: none;
+    }
+
+    :global(body.nav-open::before) {
+      opacity: 1;
     }
   }
 
@@ -232,7 +382,7 @@ const filteredPages = pages
 
       ul {
         display: flex;
-        justify-content: flex-start;
+        justify-content: center;
         flex-wrap: wrap;
         column-gap: var(--sp);
         row-gap: var(--sp-xs);
@@ -286,32 +436,45 @@ const filteredPages = pages
 </style>
 
 <script>
-  const navigaton = document.querySelector('.navigation')
-  const navButtons = document.querySelectorAll('.js-toggle-nav')
+  const navigation = document.querySelector<HTMLElement>('.navigation')
+  const navButtonTpl =
+    document.querySelector<HTMLTemplateElement>('#main-nav-button')
 
-  const toggleNavigation = function () {
-    document.body.classList.toggle('with-nav')
-  }
+  if (navigation && navButtonTpl) {
+    const clone = navButtonTpl.content.cloneNode(true) as DocumentFragment
+    const navButton = clone.querySelector<HTMLButtonElement>('button')!
 
-  const closeNavigation = function () {
-    document.body.classList.remove('with-nav')
-  }
+    // Button vor der Navigation einfügen – so greift der CSS-Sibling-Selektor
+    navigation.parentElement?.insertBefore(clone, navigation)
 
-  if (navButtons) {
-    navButtons.forEach((button) => {
-      button.addEventListener('click', toggleNavigation)
+    const setNavigationState = (isOpen: boolean) => {
+      navButton.setAttribute('aria-expanded', String(isOpen))
+      navButton.setAttribute(
+        'aria-label',
+        isOpen ? 'Navigation schließen' : 'Navigation öffnen'
+      )
+      document.body.classList.toggle('nav-open', isOpen)
+
+      const label = navButton.querySelector('.js-toggle-label')
+
+      if (label) {
+        label.textContent = isOpen
+          ? 'Navigation schließen'
+          : 'Navigation öffnen'
+      }
+    }
+
+    navButton.addEventListener('click', () => {
+      setNavigationState(navButton.getAttribute('aria-expanded') !== 'true')
     })
-  }
 
-  navigaton?.addEventListener('click', (event) => {
-    if (event.target !== event.currentTarget) return
+    navigation.addEventListener('click', (event) => {
+      if (event.target !== event.currentTarget) return
+      setNavigationState(false)
+    })
 
-    closeNavigation()
-  })
-
-  const toTopButton = document.querySelector('[href="#top"]')
-
-  if (toTopButton) {
-    toTopButton.addEventListener('click', closeNavigation)
+    document.querySelector('[href="#top"]')?.addEventListener('click', () => {
+      setNavigationState(false)
+    })
   }
 </script>

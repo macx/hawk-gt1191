@@ -26,18 +26,14 @@ const {
   class: className
 } = Astro.props as Props
 
-// Einmalige, statische Abbildung aller Bilder in /src/images (wird von Vite zur Buildzeit ersetzt).
-// Hinweis: Nur genutzt, wenn ein String-Pfad übergeben wurde. Für ImageMetadata entfällt dies komplett.
 const IMAGE_MAP = import.meta.glob<{ default: ImageMetadata }>(
   '/src/images/**/*.{jpeg,jpg,png}'
 )
 
-// Auflösen der Quelle: bevorzugt src, dann (rückwärtskompatibel) imagePath
 const passedPath = typeof src === 'string' ? src : imagePath
 
 let imageMeta: ImageMetadata | undefined
 if (src && typeof src === 'object') {
-  // Direkte Übergabe eines importierten Bildes (empfohlen)
   imageMeta = src
 } else if (passedPath) {
   if (IMAGE_MAP[passedPath]) {
@@ -82,7 +78,6 @@ const captionId = `caption-${Math.random().toString(36).substring(2, 11)}`
 </figure>
 
 <style is:global>
-  /* Wende media-item Styles auf figure-Elemente an */
   figure.beoe,
   figure.media-item,
   figure:not([class]) {
