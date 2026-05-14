@@ -49,7 +49,7 @@
     var(--clr-mix-modifier) 15%
   );
 
-  --clr-bg-nav: var(--clr-bg-card);
+  --clr-bg-nav: color-mix(in oklab, var(--clr-bg-card) 50%, transparent);
 
   --clr-shade: #cfd8dc;
   --clr-text: rgb(15, 23, 42);
