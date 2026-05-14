@@ -2,13 +2,13 @@
 import { getCollection } from 'astro:content'
 import type { CollectionEntry } from 'astro:content'
 import BaseLayout from '@layouts/BaseLayout.astro'
-import { formatTitle } from '@plugins/remark-widont.mjs'
 import ArticleCard from '@components/ArticleCard.astro'
 import Pagination from '@components/Pagination.astro'
-import Button from '@components/Button.astro'
+import LearningPathsHero from '@components/LearningPathsHero.astro'
 
 const { page } = Astro.props
 const articles = (page as any).data
+const isFirstPage = (page as any).currentPage === 1
 
 const title: string = 'Tutorials: Moderne Websites mit HTML und CSS erstellen'
 const description: string =
@@ -37,27 +37,20 @@ export async function getStaticPaths({ paginate }: any) {
       visible={visible}
       layout='wide'
     >
-      <div class='title-header'>
-        <h1>
-          <Fragment set:html={formatTitle(title)} />
-        </h1>
-      </div>
-
-      <blockquote class='text-and-button'>
-        <div>
-          Die Tutorials sind nach Veröffentlichungsdatum sortiert. In den{' '}
-          <b>Lernpfaden</b> bauen die Tutorials aufeinander&nbsp;auf.
+      {isFirstPage && (
+        <div class='title-header'>
+          <h1>Tutorials</h1>
         </div>
+      )}
 
-        <div>
-          <Button
-            label='Zu den Lernpfaden'
-            href='/tutorials/lernpfade/einfuehrung'
-            type='link'
-            primary={true}
-          />
-        </div>
-      </blockquote>
+      {isFirstPage ? (
+        <>
+          <LearningPathsHero />
+          <h2 class='all-tutorials-heading'>Alle Tutorials</h2>
+        </>
+      ) : (
+        <p class='page-indicator'>Seite {(page as any).currentPage}</p>
+      )}
 
       <section class='l-articles'>
         {articles.map((article: CollectionEntry<'tutorials'>) => (

@@ -1,8 +1,8 @@
 {
-  "title": "Techniken",
+  "title": "Pro-Tricks",
   "slug": "techniken",
   "path": "/tutorials/lernpfade/techniken",
-  "description": "steigen wir tiefer in die Techniken von Websites ein. Dabei betrachten wir verschiedene Ansätze und Methoden, um Webseiten effektiver zu gestalten.",
+  "description": "lernst du Pro-Tricks für den Entwickleralltag: modulares CSS, clevere Architektur-Entscheidungen und bewährte Methoden für professionelle Projekte.",
   "order": 4,
-  "related": ["social-media-meta-elemente"]
+  "related": ["10-strategien-modulares-css", "social-media-meta-elemente"]
 }

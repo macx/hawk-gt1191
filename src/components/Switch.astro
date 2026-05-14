@@ -23,7 +23,9 @@ const { entries } = Astro.props
             <li>
               <a
                 href={`/tutorials/lernpfade/${entry.slug}`}
+                data-slug={entry.slug}
                 class:list={[currentPath === entry.slug ? 'current' : null]}
+                aria-current={currentPath === entry.slug ? 'page' : undefined}
               >
                 {entry.title}
               </a>
@@ -45,10 +47,7 @@ const { entries } = Astro.props
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     padding: 0;
     margin-block: 0 var(--sp);
-
-    background-color: var(--clr-bg-card);
-    border: 1px solid var(--clr-line);
-    border-radius: calc(var(--sw-radius) + var(--sw-padding-block-start));
+    gap: 0.65rem;
 
     li {
       list-style: none;
@@ -56,23 +55,62 @@ const { entries } = Astro.props
     }
 
     a {
+      --path-accent: var(--clr-primary);
       display: block;
       padding-block: var(--sw-padding-block-start) var(--sw-padding-block-end);
       padding-inline: var(--sw-padding-inline);
       border-radius: var(--sw-radius);
+      border: 1px solid
+        color-mix(in oklab, var(--path-accent) 40%, var(--clr-line));
+      background-color: color-mix(
+        in oklab,
+        var(--path-accent) 16%,
+        var(--clr-bg-card)
+      );
       text-decoration: none;
       text-align: center;
       color: var(--clr-text);
-      transition: color var(--transition);
+      font-weight: var(--fw);
+      transition:
+        color var(--transition),
+        border-color var(--transition),
+        background-color var(--transition);
+
+      &[data-slug='einfuehrung'] {
+        --path-accent: var(--clr-learning-path-1-accent);
+      }
+
+      &[data-slug='grundlagen'] {
+        --path-accent: var(--clr-learning-path-2-accent);
+      }
+
+      &[data-slug='gestaltung'] {
+        --path-accent: var(--clr-learning-path-3-accent);
+      }
+
+      &[data-slug='techniken'] {
+        --path-accent: var(--clr-learning-path-4-accent);
+      }
 
       &:hover,
-      &:focus {
-        color: var(--clr-primary);
+      &:focus-visible {
+        color: var(--clr-text);
+        border-color: var(--path-accent);
+        background-color: color-mix(
+          in oklab,
+          var(--path-accent) 24%,
+          var(--clr-bg-card)
+        );
       }
 
       &.current {
-        background-color: var(--clr-primary);
-        color: var(--clr-inverse);
+        border-color: var(--path-accent);
+        background-color: color-mix(
+          in oklab,
+          var(--path-accent) 24%,
+          var(--clr-bg-card)
+        );
+        color: var(--clr-text);
       }
     }
   }

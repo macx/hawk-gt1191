@@ -1,8 +1,8 @@
 {
-  "title": "Gestaltung",
+  "title": "UI & Gestaltung",
   "slug": "gestaltung",
   "path": "/tutorials/lernpfade/gestaltung",
-  "description": "geht es um die Ausgestaltung deiner Website. Du lernst, wie du Webfonts und Bilder einbindest und Text richtig auszeichnest.",
+  "description": "gestaltest du deine Benutzeroberfläche: Webfonts, Typografie, Bilder und eine zugängliche, responsive Navigation.",
   "order": 3,
   "related": [
     "webfonts-schriften-einbinden",

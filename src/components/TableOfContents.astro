@@ -118,6 +118,8 @@ function buildToc(headings: Array<Heading>) {
             stroke-width='3'
           />
         </svg>
+
+        <slot />
       </nav>
     </aside>
   )
@@ -492,6 +494,12 @@ function buildToc(headings: Array<Heading>) {
 
       & .button {
         display: none !important;
+      }
+    }
+
+    @media screen and (width < 57.5em) {
+      &:has(.toc-list.hidden-l) .learning-path-card {
+        display: none;
       }
     }
   }

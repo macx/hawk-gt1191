@@ -1,8 +1,8 @@
 {
-  "title": "Einführung",
+  "title": "Einstieg",
   "slug": "einfuehrung",
   "path": "/tutorials/lernpfade",
-  "description": "erfährst du, was HTML und CSS ist, wie man es anwendet und wie man mit ihnen Websites erstellen kann.",
+  "description": "startest du mit den Basics: Was sind HTML und CSS, wie funktioniert eine Website und wie richtest du deine Arbeitsumgebung ein.",
   "order": 1,
   "related": [
     "wie-funktioniert-eigentlich-eine-website",

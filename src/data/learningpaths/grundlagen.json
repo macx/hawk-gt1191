@@ -1,8 +1,8 @@
 {
-  "title": "Grundlagen",
+  "title": "Kernkonzepte",
   "slug": "grundlagen",
   "path": "/tutorials/lernpfade/grundlagen",
-  "description": "lernst du, wie du Inhalte semantisch strukturierst, Layouts aufbaust, Einheiten sinnvoll einsetzt und mit responsiven Techniken sowie Custom Properties wartbares CSS schreibst.",
+  "description": "lernst du die Kernkonzepte des Web-Frontends: semantisches HTML, Layouts, Einheiten, responsive Techniken und Custom Properties für wartbares CSS.",
   "order": 2,
   "related": [
     "einfuehrung-in-semantisches-html",

@@ -1,0 +1,134 @@
+---
+import { getCollection } from 'astro:content'
+
+const learningPaths = await getCollection('learningPaths')
+const sorted = learningPaths.sort((a, b) => a.data.order - b.data.order)
+---
+
+<div class='learning-paths-hero media-item'>
+  <p class='upper-title'>Strukturiert lernen</p>
+  <h2 class='hero-heading'>Mit den Lernpfaden zum Ziel</h2>
+  <p class='hero-intro'>
+    Die Tutorials sind in vier Lernpfaden kuratiert – aufeinander aufbauend, vom
+    Einstieg bis zu den Pro&#8209;Tricks.
+  </p>
+
+  <div class='paths-grid'>
+    {
+      sorted.map((path) => (
+        <a
+          href={`/tutorials/lernpfade/${path.data.slug}`}
+          class='path-card'
+          data-order={path.data.order}
+        >
+          <span class='path-number' aria-hidden='true'>
+            {String(path.data.order).padStart(2, '0')}
+          </span>
+          <strong class='path-title'>{path.data.title}</strong>
+          <span class='path-desc'>Du {path.data.description}</span>
+        </a>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .learning-paths-hero {
+    container: learning-paths-hero / inline-size;
+    margin-inline: 0;
+  }
+
+  .hero-heading {
+    margin-block-start: 0.25em;
+    margin-block-end: 0.3em;
+  }
+
+  .hero-intro {
+    margin-block: 0 var(--sp);
+    color: var(--clr-text-muted, var(--clr-text));
+  }
+
+  .paths-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--sp-s, 0.75rem);
+
+    @container learning-paths-hero (width >= 30em) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @container learning-paths-hero (width >= 50em) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .path-card {
+    --path-accent: var(--clr-primary);
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    gap: 0.2em;
+    padding: var(--sp);
+    border-radius: var(--radius);
+    border: 1px solid
+      color-mix(in oklab, var(--path-accent) 40%, var(--clr-line));
+    background-color: color-mix(
+      in oklab,
+      var(--path-accent) 16%,
+      var(--clr-bg-card)
+    );
+    color: inherit;
+    text-decoration: none;
+    transition:
+      border-color var(--transition),
+      background-color var(--transition);
+
+    &:hover,
+    &:focus-visible {
+      border-color: var(--path-accent);
+      background-color: color-mix(
+        in oklab,
+        var(--path-accent) 24%,
+        var(--clr-bg-card)
+      );
+    }
+  }
+
+  .path-card[data-order='1'] {
+    --path-accent: var(--clr-learning-path-1-accent);
+  }
+
+  .path-card[data-order='2'] {
+    --path-accent: var(--clr-learning-path-2-accent);
+  }
+
+  .path-card[data-order='3'] {
+    --path-accent: var(--clr-learning-path-3-accent);
+  }
+
+  .path-card[data-order='4'] {
+    --path-accent: var(--clr-learning-path-4-accent);
+  }
+
+  .path-number {
+    font-family: var(--ff-headings);
+    font-size: var(--fs-s);
+    font-weight: var(--fw-bold);
+    color: var(--path-accent);
+    letter-spacing: 0.05em;
+  }
+
+  .path-title {
+    font-family: var(--ff-headings);
+    font-size: var(--fs-l, 1.1rem);
+    font-weight: var(--fw-bold);
+    line-height: 1.2;
+  }
+
+  .path-desc {
+    display: block;
+    margin-block-start: 0.4em;
+    font-size: var(--fs-s);
+    color: var(--clr-text-muted, var(--clr-text));
+    line-height: 1.4;
+  }
+</style>

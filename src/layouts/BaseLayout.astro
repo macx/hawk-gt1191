@@ -49,7 +49,15 @@ const asideConfig = aside ? aside : false
           <slot />
         </div>
 
-        {toc && headings && <TableOfContent headings={headings} />}
+        {
+          toc && headings ? (
+            <TableOfContent headings={headings}>
+              <slot name='sidebar' />
+            </TableOfContent>
+          ) : (
+            <slot name='sidebar' />
+          )
+        }
         {asideConfig && <Aside tutorials={asideConfig.tutorials} />}
       </div>
 

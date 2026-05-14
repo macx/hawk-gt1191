@@ -63,10 +63,12 @@ const toc = true
 
     <slot name='article' />
 
-    <slot name='learning-path' />
-
     <Tags tags={tags as string[]} divider={true} />
   </article>
+
+  <Fragment slot='sidebar'>
+    <slot name='learning-path' />
+  </Fragment>
 
   <Fragment slot='page-footer'>
     <slot name='related' />

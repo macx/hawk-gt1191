@@ -80,6 +80,11 @@
   --clr-nav-shadow: rgba(109, 62, 62, 0.2);
   --clr-selection: rgb(0 79 205 / 0.15);
 
+  --clr-learning-path-1-accent: hsl(197 70% 34%);
+  --clr-learning-path-2-accent: hsl(151 55% 30%);
+  --clr-learning-path-3-accent: hsl(26 74% 34%);
+  --clr-learning-path-4-accent: hsl(272 48% 38%);
+
   /* --clr-code-title: #94a3b8; */
   --clr-code-title: var(--clr-text);
   --sn-clr-bg: #eff1f5;
@@ -179,6 +184,11 @@
     --clr-selection: hsl(213 90% 56% / 0.24);
 
     --clr-nav-shadow: rgb(255 255 255 / 0.18);
+
+    --clr-learning-path-1-accent: hsl(194 72% 72%);
+    --clr-learning-path-2-accent: hsl(152 62% 70%);
+    --clr-learning-path-3-accent: hsl(35 90% 72%);
+    --clr-learning-path-4-accent: hsl(270 70% 76%);
 
     --sn-clr-bg: hsl(210 28% 16%);
 

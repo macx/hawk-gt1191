@@ -3,59 +3,113 @@ import { getCollection } from 'astro:content'
 
 const { currentPathname } = Astro.props
 const learningPaths = await getCollection('learningPaths')
-const tutorials = await getCollection('tutorials')
 
 const currentCollection = learningPaths.find((collection) =>
   collection.data.related?.some((article) => article === currentPathname)
 )
 
 const collectionProps = currentCollection?.data
+const pathOrder = collectionProps?.order
+const pathNumber =
+  typeof pathOrder === 'number' ? String(pathOrder).padStart(2, '0') : ''
+const bridgeText = 'Tutorial ist Teil des Lernpfads.'
+const learningText = collectionProps?.description
+  ? `Hier ${collectionProps.description}`
+  : ''
 ---
 
 {
   collectionProps && (
-    <div class='card media-item'>
-      <p>
-        Dieses Tutorial ist Teil des Lernpfads
-        <a href={`/tutorials/lernpfade/${collectionProps.slug}`}>
-          {collectionProps.title}
-        </a>
-        {'.'}
-        Lernpfade sind kuratierte Tutorials in logischer Reihenfolge zum
-        schrittweisen Erlernen eines Themas.
-      </p>
-
-      {collectionProps.related.filter((id) => id !== currentPathname).length >
-        0 && (
-        <>
-          Weitere Artikel aus diesem Lernpfad:
-          <ul>
-            {collectionProps.related
-              .filter((id) => id !== currentPathname)
-              .map((id) => {
-                const tutorial = tutorials.find((c) => c.id === id)
-                return tutorial ? (
-                  <li>
-                    <a href={`/tutorials/${tutorial.id}`}>
-                      {tutorial.data.title}
-                    </a>
-                  </li>
-                ) : null
-              })}
-          </ul>
-        </>
-      )}
+    <div class='learning-path-card media-item' data-order={pathOrder}>
+      <h3>
+        <span class='path-number' aria-hidden='true'>
+          {pathNumber}
+        </span>
+        {collectionProps.title}
+      </h3>
+      <p class='learning-path-bridge'>{bridgeText}</p>
+      {learningText && <p class='learning-path-desc'>{learningText}</p>}
     </div>
   )
 }
 
 <style>
-  div.card {
+  .learning-path-card.media-item {
+    --path-accent: var(--clr-primary);
     margin-inline: 0;
+    margin-block: var(--sp) 0;
     font-size: var(--fs-s);
+    border: 1px solid
+      color-mix(in oklab, var(--path-accent) 40%, var(--clr-line));
+    background-color: color-mix(
+      in oklab,
+      var(--path-accent) 16%,
+      var(--clr-bg-card)
+    );
 
-    ul {
+    &[data-order='1'] {
+      --path-accent: var(--clr-learning-path-1-accent);
+    }
+
+    &[data-order='2'] {
+      --path-accent: var(--clr-learning-path-2-accent);
+    }
+
+    &[data-order='3'] {
+      --path-accent: var(--clr-learning-path-3-accent);
+    }
+
+    &[data-order='4'] {
+      --path-accent: var(--clr-learning-path-4-accent);
+    }
+
+    h3 {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      margin-block: 0 0.3rem;
+      font-size: var(--fs-l);
+      line-height: 1.2;
+    }
+
+    .path-number {
+      color: var(--path-accent);
+      font-family: var(--ff-headings);
+      font-size: var(--fs-s);
+      font-weight: var(--fw-bold);
+      letter-spacing: 0.04em;
+    }
+
+    p {
+      margin-block: 0.2rem;
+    }
+
+    .learning-path-desc {
       margin-block-end: 0;
+      color: var(--clr-text-light, var(--clr-text));
+    }
+
+    .learning-path-bridge {
+      margin-block: 0.2rem;
+      font-weight: var(--fw-bold);
+      color: var(--clr-text-light, var(--clr-text));
+    }
+
+    @media screen and (width < 57.5em) {
+      padding-block: 0.6rem;
+      padding-inline: 0.8rem;
+
+      h3 {
+        margin-block-end: 0.15rem;
+      }
+
+      .learning-path-desc {
+        display: none;
+      }
+
+      .learning-path-bridge {
+        margin-block-end: 0;
+      }
     }
   }
 </style>
