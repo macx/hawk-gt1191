@@ -2,13 +2,14 @@
 import type { ImageMetadata } from 'astro'
 import { render } from 'astro:content'
 import { Image } from 'astro:assets'
+import { Icon } from 'astro-icon/components'
 import { formatTitle, widont } from '@plugins/remark-widont.mjs'
 import FormattedDate from './FormattedDate.astro'
 
 type CardLink = {
   href: string
   label: string
-  kind?: 'zoom' | 'archive'
+  kind?: 'zoom' | 'archive' | 'custom'
 }
 
 const { article, card } = Astro.props
@@ -201,7 +202,25 @@ if (coverPath && !images[coverPath] && !coverImage) {
                     target='_blank'
                     rel='noopener noreferrer'
                   >
-                    {link.label}
+                    {link.kind === 'zoom' ? (
+                      <Icon
+                        name='material-symbols:videocam-outline-rounded'
+                        aria-hidden='true'
+                        class='card-link-icon'
+                      />
+                    ) : link.kind === 'archive' ? (
+                      <Icon
+                        name='material-symbols:folder-open-outline-rounded'
+                        aria-hidden='true'
+                        class='card-link-icon'
+                      />
+                    ) : (
+                      <span
+                        class='card-link-icon card-link-dot'
+                        aria-hidden='true'
+                      />
+                    )}
+                    <span class='card-link-label'>{link.label}</span>
                   </a>
                 </li>
               ))}
@@ -363,7 +382,7 @@ if (coverPath && !images[coverPath] && !coverImage) {
     &.is-timeline-calendar {
       header,
       .description {
-        padding-inline-start: var(--sp-m);
+        padding-inline-start: 1.75rem;
       }
 
       .description p {
@@ -402,23 +421,25 @@ if (coverPath && !images[coverPath] && !coverImage) {
     }
 
     .card-links {
-      margin-block: 0;
-      list-style: disc;
-      list-style-position: inside;
+      list-style: none;
       padding-inline-start: 0;
+      margin-block: 0;
       margin-inline: 0;
-      gap: 0.35rem;
+      line-height: var(--lh-s);
     }
 
     .card-links li {
       margin-block: 0;
 
       & + li {
-        margin-block-start: 0.35em;
+        margin-block-start: 0.5em;
       }
     }
 
     .card-link {
+      display: flex;
+      align-items: center;
+      gap: 1.25ch;
       color: currentColor;
       text-decoration: none;
 
@@ -431,13 +452,48 @@ if (coverPath && !images[coverPath] && !coverImage) {
       &:focus-visible {
         color: var(--clr-link);
         text-decoration: none;
-
-        &::after {
-          transform: translate(0, -0.1em);
-          scale: 2;
-          opacity: 1;
-        }
       }
+    }
+
+    .card-link.more::after {
+      margin-inline-start: 0.25ch;
+      transform: translateX(-1ch);
+    }
+
+    .card-link.more:hover::after,
+    .card-link.more:focus-visible::after {
+      transform: translate(0, -0.1em);
+      scale: 2;
+      opacity: 1;
+    }
+
+    .card-link-icon {
+      inline-size: 1rem;
+      block-size: 1rem;
+      flex: 0 0 1rem;
+      color: var(--clr-link);
+    }
+
+    .card-link-dot {
+      --dot-size: 0.35em;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--clr-link);
+
+      &::before {
+        content: '';
+        display: block;
+        inline-size: var(--dot-size);
+        block-size: var(--dot-size);
+        border-radius: 50%;
+        background-color: currentColor;
+      }
+    }
+
+    .card-link-label {
+      display: inline;
     }
 
     &:not(.has-meta) {

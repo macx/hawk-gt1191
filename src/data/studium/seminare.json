@@ -26,14 +26,28 @@
     },
     {
       "title": "Einheiten, Semantik, Layout, Navigation und Starterkit",
-      "date": "2026-04-23",
+      "date": "2026-04-24",
       "startTime": "09:00",
       "endTime": "13:00",
       "description": "Wir schauen uns die Einheiten von CSS an, lernen die Semantik von HTML kennen, erstellen ein Layout mit einer One-Pager-Navigationund und werfen einen Blick auf das Starterkit.",
       "location": "Nur Online",
       "recordingUrl": "https://drive.google.com/drive/folders/1A3aEfQ9R0klS6FKVxzQzYp2RB3H-EY1A?usp=drive_link",
       "showRecording": true,
-      "showCode": true
+      "showCode": true,
+      "customLinks": [
+        {
+          "label": "Farbpalette",
+          "href": "https://colorpalette.pro/?color=oklch%2872.6%25+0.142+236%29&paletteType=ana&paletteStyle=square&colorFormat=oklch&effects=0%2C0%2C0%2C0"
+        },
+        {
+          "label": "Starterkit (Intro)",
+          "href": "https://starterguide.dev/starterkit/intro/"
+        },
+        {
+          "label": "Starterkit (Installation von NodeJS)",
+          "href": "https://starterguide.dev/guides/nodejs/"
+        }
+      ]
     },
     {
       "title": "Responsive Navigation, Logical and Custom Properties",
@@ -44,7 +58,13 @@
       "location": "Nur Online",
       "recordingUrl": "https://drive.google.com/drive/folders/1mQ3OZNAxXeuy3IrprTHQSmlCdWfABS21?usp=drive_link",
       "showRecording": true,
-      "showCode": true
+      "showCode": true,
+      "customLinks": [
+        {
+          "label": "CSS Logical Properties",
+          "href": "https://hawk-gt1191.de/tutorials/logische-eigenschaften-in-css"
+        }
+      ]
     },
     {
       "title": "Webfonts und Typografie",
@@ -56,7 +76,8 @@
       "recordingUrl": "https://drive.google.com/drive/folders/1Gvsh9cYU_upswAQ_G5k6j1Cno1_bz6aF?usp=drive_link",
       "isNext": true,
       "showZoom": true,
-      "showCode": true
+      "showCode": true,
+      "customLinks": []
     },
     {
       "title": "Bilder für das Web",

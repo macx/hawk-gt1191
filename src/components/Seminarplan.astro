@@ -1,6 +1,11 @@
 ---
 import ArticleCard from '@components/ArticleCard.astro'
 
+type CustomLink = {
+  label: string
+  href: string
+}
+
 type Termin = {
   title: string
   date: string
@@ -13,12 +18,13 @@ type Termin = {
   showZoom?: boolean
   showCode?: boolean
   showRecording?: boolean
+  customLinks?: CustomLink[]
 }
 
 type CardLink = {
   label: string
   href: string
-  kind: 'zoom' | 'archive'
+  kind: 'zoom' | 'archive' | 'custom'
 }
 
 interface Props {
@@ -51,6 +57,7 @@ Astro.response.headers.set(
           const links: CardLink[] = []
           const statusText = entry.showRecording ? 'Aufzeichnung verfügbar' : ''
 
+          // Dynamic Links
           if (entry.showZoom && zoomUrl) {
             links.push({
               label: 'Zoom-Meeting (live)',
@@ -61,16 +68,26 @@ Astro.response.headers.set(
 
           if (entry.showRecording && recordingHref) {
             links.push({
-              label: 'Aufzeichnung und Code-Beispiele',
+              label: 'Aufzeichnung und Seminar-Quellcode',
               href: recordingHref,
               kind: 'archive'
             })
           } else if (entry.showCode && recordingHref) {
             links.push({
-              label: 'Code-Beispiele',
+              label: 'Seminar-Quellcode',
               href: recordingHref,
               kind: 'archive'
             })
+          }
+
+          // Custom links
+          if (entry.customLinks && entry.customLinks.length > 0) {
+            links.push(
+              ...entry.customLinks.map((customLink) => ({
+                ...customLink,
+                kind: 'custom' as const
+              }))
+            )
           }
 
           const months = [
