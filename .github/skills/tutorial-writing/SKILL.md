@@ -33,6 +33,7 @@ Use it for creating new tutorials and polishing existing MDX tutorials.
 - Prefer short, precise sections over long text blocks.
 - Explain concepts simply first, then confirm with code.
 - Use figure context for demo-related code where it improves understanding.
+- When documenting CSS specificity, use hyphen notation (`0-1-0`) instead of comma notation (`0,1,0`).
 
 ## Structure For New Tutorials
 
