@@ -14,7 +14,7 @@ export async function getStaticPaths() {
   }))
 }
 
-const { title, description, related, learningPaths } = Astro.props
+const { title, description, related, learningPaths, order } = Astro.props
 const layout = 'medium'
 const tutorials = await getCollection('tutorials')
 
@@ -55,7 +55,7 @@ const collection = (related ?? []).map((id: string) => {
 
   {
     collection && collection.length > 0 && (
-      <ul class='timeline' data-articles={collection.length}>
+      <ul class='timeline' data-articles={collection.length} data-order={order}>
         {collection.map((tutorial: any) => (
           <li>
             <ArticleCard article={tutorial} />
@@ -71,6 +71,47 @@ const collection = (related ?? []).map((id: string) => {
 </BaseLayout>
 
 <style>
+  .timeline {
+    --path-accent: var(--clr-primary);
+
+    &[data-order='1'] {
+      --path-accent: var(--clr-learning-path-1-accent);
+    }
+
+    &[data-order='2'] {
+      --path-accent: var(--clr-learning-path-2-accent);
+    }
+
+    &[data-order='3'] {
+      --path-accent: var(--clr-learning-path-3-accent);
+    }
+
+    &[data-order='4'] {
+      --path-accent: var(--clr-learning-path-4-accent);
+    }
+
+    li :global(.article-card.media-item-article) {
+      transition:
+        background-color var(--transition),
+        border-color var(--transition),
+        box-shadow var(--transition);
+    }
+
+    li :global(.article-card.is-link:hover),
+    li :global(.article-card.is-link:focus-within) {
+      background-color: color-mix(
+        in oklab,
+        var(--path-accent) 8%,
+        var(--clr-bg-card)
+      );
+      border-color: color-mix(
+        in oklab,
+        var(--path-accent) 35%,
+        var(--clr-line)
+      );
+    }
+  }
+
   .learnpath-header {
     margin-block-end: var(--sp-l);
 

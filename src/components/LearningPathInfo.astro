@@ -20,7 +20,12 @@ const learningText = collectionProps?.description
 
 {
   collectionProps && (
-    <div class='learning-path-card media-item' data-order={pathOrder}>
+    <a
+      class='learning-path-card media-item'
+      data-order={pathOrder}
+      href={`/tutorials/lernpfade/${collectionProps.slug}`}
+      aria-label={`Zum Lernpfad ${collectionProps.title}`}
+    >
       <h3>
         <span class='path-number' aria-hidden='true'>
           {pathNumber}
@@ -29,7 +34,7 @@ const learningText = collectionProps?.description
       </h3>
       <p class='learning-path-bridge'>{bridgeText}</p>
       {learningText && <p class='learning-path-desc'>{learningText}</p>}
-    </div>
+    </a>
   )
 }
 
@@ -39,6 +44,8 @@ const learningText = collectionProps?.description
     margin-inline: 0;
     margin-block: var(--sp) 0;
     font-size: var(--fs-s);
+    color: var(--clr-text);
+    text-decoration: none;
     border: 1px solid
       color-mix(in oklab, var(--path-accent) 40%, var(--clr-line));
     background-color: color-mix(
@@ -46,6 +53,23 @@ const learningText = collectionProps?.description
       var(--path-accent) 16%,
       var(--clr-bg-card)
     );
+    transition:
+      box-shadow var(--transition),
+      border-color var(--transition),
+      background-color var(--transition);
+
+    &:hover,
+    &:focus-visible {
+      color: var(--clr-text);
+      text-decoration: none;
+      border-color: var(--path-accent);
+      background-color: color-mix(
+        in oklab,
+        var(--path-accent) 24%,
+        var(--clr-bg-card)
+      );
+      box-shadow: 0 0.53em 1em -0.5rem rgba(0, 0, 0, 0.2);
+    }
 
     &[data-order='1'] {
       --path-accent: var(--clr-learning-path-1-accent);

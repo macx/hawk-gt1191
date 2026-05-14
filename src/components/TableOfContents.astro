@@ -129,7 +129,8 @@ function buildToc(headings: Array<Heading>) {
   const toc: HTMLElement = document.querySelector('.toc')!
 
   if (toc) {
-    const links: NodeListOf<HTMLAnchorElement> = toc.querySelectorAll('a')
+    const links: NodeListOf<HTMLAnchorElement> =
+      toc.querySelectorAll('.toc-list a')
     const sections = Array.from(links)
       .map((link) => {
         const href = link.getAttribute('href')
@@ -396,7 +397,9 @@ function buildToc(headings: Array<Heading>) {
         ) as SVGLineElement
 
         const pathLength = path.getTotalLength()
-        const activeLinks = toc.querySelectorAll(`a.${HIGHLIGHT_CLASS}`)
+        const activeLinks = toc.querySelectorAll(
+          `.toc-list a.${HIGHLIGHT_CLASS}`
+        )
         const lastLink = links[links.length - 1]
 
         let linkStart = pathLength
