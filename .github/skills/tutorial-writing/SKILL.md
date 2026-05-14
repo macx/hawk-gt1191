@@ -52,6 +52,31 @@ Use it for creating new tutorials and polishing existing MDX tutorials.
 5. Use human-readable link labels (not raw paths).
 6. Align cover alt text and caption with the real image content.
 
+## Didactic Best Practices
+
+### Structure & Order
+
+- **News-Style Over Complexity Pyramid**: Present strategies by impact, not entry difficulty. Learners want to understand _why_ something matters first. "Most important first" works better than "simple → complex".
+- **Recognize Didactic Dependencies**: If Concept B depends on A (e.g., @scope requires understanding specificity), place A _before_ B, even if A seems harder. Correct order prevents "but why?" questions.
+- **Build Mental Models Explicitly**: Follow the pattern: Problem → Concept Explanation → Code Example → Differentiation. When comparing (Nesting vs @scope), clarify _real_ differences (specificity, not syntax).
+- **Link Repeated Concepts with Context**: Instead of "as shown in Point 3", write: "The code from Point 2 with components can be optimized further...". This keeps readers in the narrative flow.
+
+### Terminology & Precision
+
+- **Use Terminology Consistently**: Mixing "Aufgabe", "Verantwortung", and "Verantwortlichkeiten" confuses readers. Choose one term (e.g., "Zuständigkeit") and apply it throughout — including in figure captions and section titles.
+- **Name Concepts First, Then Show Practically**: Lead with the principle: "The DRY principle — 'Don't Repeat Yourself' — means...". Then show the practical application (components, examples). Titles should reflect this: "The DRY Principle: Components Over Pages" not just "Components Over Pages".
+- **Use Definition Lists for Bonus Tips**: Definition lists (using `: explanation`) structure bonus sections better than bullet points. They create clear visual hierarchy between concept and explanation.
+
+### Cover Images (Frontmatter)
+
+- **YouTube-Thumbnail Style for Impact**: Use large, high-contrast numbers/headlines + optional engaged person + clean background. Avoid busy checklists — keep it punchy and instantly recognizable even at thumbnail size.
+- **Concise Alt Text & Captions**: Alt text should describe the visual ("enthusiastic woman presenting with code editor in background"). Caption should communicate the learning outcome ("10 Pro Strategies for Clean CSS").
+
+### Quality Assurance
+
+- **Targeted Spelling Checks**: At the end, grep for common typos and apply fixes systematically across the file.
+- **Consistency Passes Before Publish**: Scan all section numbers, all cross-references, and all terminology. Small inconsistencies feel unprofessional.
+
 ## Project Context
 
 - Tutorial files: `src/data/tutorials/*.mdx`
