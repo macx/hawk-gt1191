@@ -60,8 +60,19 @@ const allPages = [
           <li>
             <a
               href={page.url}
-              class:list={[{ current: `/${currentPath}` === page.url || currentPath === page.url.replace('/', '') }]}
-              aria-current={`/${currentPath}` === page.url || currentPath === page.url.replace('/', '') ? 'page' : undefined}
+              class:list={[
+                {
+                  current:
+                    `/${currentPath}` === page.url ||
+                    currentPath === page.url.replace('/', '')
+                }
+              ]}
+              aria-current={
+                `/${currentPath}` === page.url ||
+                currentPath === page.url.replace('/', '')
+                  ? 'page'
+                  : undefined
+              }
             >
               {page.title}
             </a>
