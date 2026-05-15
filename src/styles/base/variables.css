@@ -80,10 +80,10 @@
   --clr-nav-shadow: rgba(109, 62, 62, 0.2);
   --clr-selection: rgb(0 79 205 / 0.15);
 
-  --clr-learning-path-1-accent: hsl(197 70% 34%);
-  --clr-learning-path-2-accent: hsl(151 55% 30%);
-  --clr-learning-path-3-accent: hsl(26 74% 34%);
-  --clr-learning-path-4-accent: hsl(272 48% 38%);
+  --clr-learning-path-1-accent: hsl(197 80% 28%);
+  --clr-learning-path-2-accent: hsl(151 70% 26%);
+  --clr-learning-path-3-accent: hsl(26 88% 30%);
+  --clr-learning-path-4-accent: hsl(272 62% 34%);
 
   /* --clr-code-title: #94a3b8; */
   --clr-code-title: var(--clr-text);

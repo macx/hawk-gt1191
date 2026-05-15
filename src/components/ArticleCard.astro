@@ -246,17 +246,38 @@ if (coverPath && !images[coverPath] && !coverImage) {
 <style>
   .article-card {
     --path-border: var(--clr-line);
+    --path-glow: transparent;
+
     margin-block: 0;
     position: relative;
     transition: box-shadow var(--transition);
     container: article-card / inline-size;
     border-block-start-color: var(--path-border);
+    overflow: visible;
+    box-shadow: 0 0.53em 1em -0.5rem rgba(0, 0, 0, 0.15);
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      inset-inline: 0.55rem;
+      block-size: 1px;
+      background: transparent;
+      pointer-events: none;
+      z-index: -1;
+      box-shadow: 0 -0.15rem 0.8rem 0.04rem var(--path-glow);
+    }
 
     &[data-learning-path-order='1'] {
       --path-border: color-mix(
         in oklab,
         var(--clr-learning-path-1-accent) 65%,
         var(--clr-line)
+      );
+      --path-glow: color-mix(
+        in srgb,
+        var(--clr-learning-path-1-accent) 48%,
+        transparent
       );
     }
 
@@ -266,6 +287,11 @@ if (coverPath && !images[coverPath] && !coverImage) {
         var(--clr-learning-path-2-accent) 65%,
         var(--clr-line)
       );
+      --path-glow: color-mix(
+        in srgb,
+        var(--clr-learning-path-2-accent) 48%,
+        transparent
+      );
     }
 
     &[data-learning-path-order='3'] {
@@ -274,6 +300,11 @@ if (coverPath && !images[coverPath] && !coverImage) {
         var(--clr-learning-path-3-accent) 65%,
         var(--clr-line)
       );
+      --path-glow: color-mix(
+        in srgb,
+        var(--clr-learning-path-3-accent) 48%,
+        transparent
+      );
     }
 
     &[data-learning-path-order='4'] {
@@ -281,6 +312,43 @@ if (coverPath && !images[coverPath] && !coverImage) {
         in oklab,
         var(--clr-learning-path-4-accent) 65%,
         var(--clr-line)
+      );
+      --path-glow: color-mix(
+        in srgb,
+        var(--clr-learning-path-4-accent) 48%,
+        transparent
+      );
+    }
+
+    :root[data-theme='dark'] &[data-learning-path-order='1'] {
+      --path-glow: color-mix(
+        in srgb,
+        var(--clr-learning-path-1-accent) 54%,
+        transparent
+      );
+    }
+
+    :root[data-theme='dark'] &[data-learning-path-order='2'] {
+      --path-glow: color-mix(
+        in srgb,
+        var(--clr-learning-path-2-accent) 54%,
+        transparent
+      );
+    }
+
+    :root[data-theme='dark'] &[data-learning-path-order='3'] {
+      --path-glow: color-mix(
+        in srgb,
+        var(--clr-learning-path-3-accent) 54%,
+        transparent
+      );
+    }
+
+    :root[data-theme='dark'] &[data-learning-path-order='4'] {
+      --path-glow: color-mix(
+        in srgb,
+        var(--clr-learning-path-4-accent) 54%,
+        transparent
       );
     }
 
