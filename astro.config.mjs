@@ -33,11 +33,21 @@ export default defineConfig({
   trailingSlash: 'never',
   build: { format: 'directory' },
   redirects: {
-    '/komponenten': { status: 301, destination: '/assets' },
+    '/grundlagen': { status: 301, destination: '/startklar' },
+    '/studium': { status: 301, destination: '/startklar' },
+    '/studium/starterkit': {
+      status: 301,
+      destination: '/startklar/starterkit'
+    },
+    '/studium/seminarplan': {
+      status: 301,
+      destination: '/startklar/seminarplan'
+    },
+    '/studium/abgabe': { status: 301, destination: '/startklar/abgabe' },
     '/links': { status: 301, destination: '/dokumentation' },
     '/hilfe': '/dokumentation',
     '/seminar': '/',
-    '/starterkit': '/studium/starterkit',
+    '/starterkit': '/startklar/starterkit',
     '/tutorials/lernpfade': '/tutorials/lernpfade/einfuehrung',
     '/tutorials/art-direction-im-kreditantragsprozess': {
       status: 301,

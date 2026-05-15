@@ -14,7 +14,16 @@ const pages = Object.values(
 
 const filteredPages = pages
   .filter((page: any) => page.frontmatter.visible === true)
-  .sort((a: any, b: any) => (a.frontmatter.sort > b.frontmatter.sort ? 0 : -1))
+  .map((page: any) => ({
+    url: page.url,
+    title: page.frontmatter.navTitle,
+    sort: page.frontmatter.sort || 99
+  }))
+
+const allPages = [
+  ...filteredPages,
+  { url: '/tutorials', title: 'Tutorials', sort: 2 }
+].sort((a: any, b: any) => (a.sort > b.sort ? 1 : -1))
 ---
 
 <nav id='main-navigation' aria-label='Hauptnavigation' class='navigation'>
@@ -47,27 +56,18 @@ const filteredPages = pages
         </a>
       </li>
       {
-        filteredPages.map((page: any) => (
+        allPages.map((page: any) => (
           <li>
             <a
               href={page.url}
-              class:list={[{ current: `/${currentPath}` === page.url }]}
-              aria-current={`/${currentPath}` === page.url ? 'page' : undefined}
+              class:list={[{ current: `/${currentPath}` === page.url || currentPath === page.url.replace('/', '') }]}
+              aria-current={`/${currentPath}` === page.url || currentPath === page.url.replace('/', '') ? 'page' : undefined}
             >
-              {page.frontmatter.navTitle}
+              {page.title}
             </a>
           </li>
         ))
       }
-      <li>
-        <a
-          href='/tutorials'
-          class:list={[{ current: currentPath === 'tutorials' }]}
-          aria-current={currentPath === 'tutorials' ? 'page' : undefined}
-        >
-          Tutorials
-        </a>
-      </li>
     </ul>
   </div>
 

@@ -1,9 +1,9 @@
 ---
 layout: ../layouts/BaseLayout.astro
-title: 'Dax Seminar'
-description: 'Lerne im Seminar GT 1191, wie du Websites mit HTML, CSS und guter UI/UX erstellst.'
+title: 'HTML, CSS und UI/UX lernen'
+description: 'Lerne, wie aus einem Design robuste Frontends werden: mit UX-Fokus, sauberem HTML/CSS und praxiserprobten Methoden aus dem HAWK-Seminar GT 1191.'
 toc: false
-aside: { tutorials: 3 }
+aside: { tutorials: 4 }
 studipLink: 'https://studip.hawk.de/dispatch.php/course/details?sem_id=87f196e7d14fafcff5a02932763c108a'
 ---
 
@@ -21,11 +21,11 @@ export const youtubePoster = await getImage({
   format: 'webp'
 })
 
-<PageTitle text='Lerne im Seminar GT&#160;1191, wie du Websites erstellst' />
+<PageTitle text='Websites frustfrei umsetzen mit HTML, CSS und UX' />
 
-<Lead>{frontmatter.description}</Lead>
+<Lead text={frontmatter.description} />
 
-<Figure caption='Worum es in diesem Seminar geht, erfährst du in diesem Video.'>
+<Figure caption='Worum es auf dieser Website geht und wie du die Inhalte nutzen kannst, erfährst du in diesem Video.'>
   <YouTube
     id='https://youtu.be/ioEGZMuh4BE'
     params='rel=0'
@@ -33,16 +33,16 @@ export const youtubePoster = await getImage({
   />
 </Figure>
 
-## Im Überblick
+## Was du hier findest
+
+Diese Website ist ein öffentliches Lernangebot für alle, die bessere Websites gestalten und entwickeln möchten. Du findest hier frei zugängliche Tutorials und Beispiele, kuratierte Links für das Studium sowie seminarbezogene Hinweise für Teilnehmende.
 
 **GT 1191** ist ein Seminar des Studiengangs Bachelor of Arts (BA) der Fakultät Gestaltung im [Kompetenzfeld Digital Environments](https://www.hawk.de/de/studium/studiengaenge/ba-gestaltung-hildesheim/kompetenzfelder/digital-environments) an der HAWK Hochschule für angewandte Wissenschaft und Kunst in Hildesheim. Es findet hybrid statt, also in Präsenz und online.
 
-**[David Maciejewski](https://www.hawk.de/de/hochschule/organisation-und-personen/personenverzeichnis/david-maciejewski)** ist seit 2015 Dozent an der HAWK im Seminar GT 1191. Er ist Senior UI/UX Engineer und hat diverse Großkundenprojekte betreut. Mit über 25 Jahren Berufserfahrung in Projektteams und als Selbstständiger weiß er, welche Fallstricke bei der Umsetzung von kreativen Ideen auftreten können.
+**[David Maciejewski](https://www.hawk.de/de/hochschule/organisation-und-personen/personenverzeichnis/david-maciejewski)** ist seit 2015 Dozent an der HAWK im Seminar GT 1191. Er ist Senior UI/UX Frontend Engineer, hat viele Großkundenprojekte betreut und bringt über 30 Jahre Berufserfahrung in Projektteams und als Selbstständiger mit. Diese Praxisnähe prägt die Inhalte und den Fokus auf umsetzbare Lösungen.
 
-Auf dieser Seite erwarten dich kuratierte Links für das Studium, eine umfangreiche Sammlung von Tutorials, sowie Antworten auf Fragen zum Seminar.
-
-> ### Anmeldung
+> ### Für Studierende (HAWK): Anmeldung
 >
-> Du möchtest dabei sein? Prima. Dann zögere nicht und trage dich bei <a href={frontmatter.studipLink} target="_blank" rel="noopener">StudIP</a> in die Warteliste ein.
+> Du möchtest im nächsten Semester dabei sein? Prima. Dann zögere nicht und trage dich bei <a href={frontmatter.studipLink} target="_blank" rel="noopener">StudIP</a> in die Warteliste ein.
 >
 > Wenn du einen der begehrten Plätze ergattert hast, bekommst du rechtzeitig vor dem Start über StudIP eine Nachricht mit allen relevanten Informationen zur Teilnahme. Beachte bitte die Anmelderegeln und die Veranstaltungszuordnung.

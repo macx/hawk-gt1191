@@ -15,13 +15,13 @@ type StudiumPage = {
   }
 }
 
-const pages = import.meta.glob<StudiumPage>('../pages/studium/*.mdx', {
+const pages = import.meta.glob<StudiumPage>('../pages/startklar/*.mdx', {
   eager: true
 })
 
-export const starterkit = pages['../pages/studium/starterkit.mdx']
-export const abgabe = pages['../pages/studium/abgabe.mdx']
-export const seminarplan = pages['../pages/studium/seminarplan.mdx']
+export const starterkit = pages['../pages/startklar/starterkit.mdx']
+export const abgabe = pages['../pages/startklar/abgabe.mdx']
+export const seminarplan = pages['../pages/startklar/seminarplan.mdx']
 
 export const entries = [
   {
@@ -29,11 +29,11 @@ export const entries = [
     page: starterkit,
     cta: 'Zum Starterkit',
     fallback: {
-      url: '/studium/starterkit',
+      url: '/startklar/starterkit',
       title: 'Das Website-Starterkit',
       description:
         'Erstelle mit dem Starterkit innerhalb von Sekunden eine neue Website. So bleibt dir mehr Zeit zum Lernen.',
-      heroImage: '/src/images/pages/terminal-starterkit.png'
+      heroImage: '/src/images/pages/gt1191-starterkit.png'
     }
   },
   {
@@ -41,7 +41,7 @@ export const entries = [
     page: seminarplan,
     cta: 'Zum Seminarplan',
     fallback: {
-      url: '/studium/seminarplan',
+      url: '/startklar/seminarplan',
       title: 'Seminarplan',
       description:
         'Alle Seminare im Semester mit Ort, Kurzinfo und direkten Links zu Aufzeichnungen und Dateien.',
@@ -53,7 +53,7 @@ export const entries = [
     page: abgabe,
     cta: 'Zur Abgabeübersicht',
     fallback: {
-      url: '/studium/abgabe',
+      url: '/startklar/abgabe',
       title: 'Abgabe und Anforderungen',
       description:
         'Hier findest du alles, was du für einen erfolgreichen Abschluss deines Projekts wissen musst. Nutze diese Seite als interaktiven Leitfaden für deine Website-Abgabe.',

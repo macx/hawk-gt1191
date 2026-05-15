@@ -72,7 +72,7 @@ const captionId = `caption-${Math.random().toString(36).substring(2, 11)}`
 
   {
     caption && typeof caption === 'string' ? (
-      <figcaption id={captionId}>{await markdown.inline(caption)}</figcaption>
+      <figcaption id={captionId} set:html={await markdown.inline(caption)} />
     ) : null
   }
 </figure>
