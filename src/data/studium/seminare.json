@@ -9,9 +9,27 @@
       "endTime": "13:00",
       "description": "Alle Informationen zum Seminar und die Ziele. Einführung in HTML und CSS.",
       "location": "Campus Weinberg, Haus.E, Raum 08 (HIWEE08)",
-      "recordingUrl": "https://drive.google.com/drive/folders/19ZIdXzTwbacJWgQhOzdPLnKA341d7o0D?usp=drive_link",
+      "recordingUrl": "https://drive.google.com/drive/folders/1gGhVmTDX3iHgpBqD_jAWN_mGm2M0pTam?usp=drive_link",
       "showRecording": true,
-      "showCode": true
+      "showCode": true,
+      "customLinks": [
+        {
+          "label": "Tutorial: Wie funktioniert eine Website",
+          "href": "https://hawk-gt1191.de/tutorials/wie-funktioniert-eigentlich-eine-website"
+        },
+        {
+          "label": "Tutorial: Einstieg in HTML",
+          "href": "https://hawk-gt1191.de/tutorials/einstieg-in-html"
+        },
+        {
+          "label": "Tutorial: Einstieg in CSS",
+          "href": "https://hawk-gt1191.de/tutorials/einstieg-in-css"
+        },
+        {
+          "label": "Tutorial: Website mit Visual Studio Code erstellen",
+          "href": "https://hawk-gt1191.de/tutorials/website-mit-visual-studio-code"
+        }
+      ]
     },
     {
       "title": "Layoutmethoden in CSS, Media Queries",
@@ -20,9 +38,19 @@
       "endTime": "13:00",
       "description": "Layouts erstellen mit CSS: Flexbox, Grid und Media Queries.",
       "location": "Nur Online",
-      "recordingUrl": "https://drive.google.com/drive/folders/1CAQUDCeQc1BjqltlP-aJ1MSpDNbBydIP?usp=drive_link",
+      "recordingUrl": "https://drive.google.com/drive/folders/13R4OfNlmTw62NIjnAkjKZNXqxeWDL1LA?usp=drive_link",
       "showRecording": true,
-      "showCode": true
+      "showCode": true,
+      "customLinks": [
+        {
+          "label": "Tutorial: Display Grid, Flexbox und Co. erklärt",
+          "href": "https://hawk-gt1191.de/tutorials/layouts-in-css"
+        },
+        {
+          "label": "Tutorial: Media & Container Queries",
+          "href": "https://hawk-gt1191.de/tutorials/media-und-container-queries"
+        }
+      ]
     },
     {
       "title": "Einheiten, Semantik, Layout, Navigation und Starterkit",
@@ -31,21 +59,25 @@
       "endTime": "13:00",
       "description": "Wir schauen uns die Einheiten von CSS an, lernen die Semantik von HTML kennen, erstellen ein Layout mit einer One-Pager-Navigationund und werfen einen Blick auf das Starterkit.",
       "location": "Nur Online",
-      "recordingUrl": "https://drive.google.com/drive/folders/1A3aEfQ9R0klS6FKVxzQzYp2RB3H-EY1A?usp=drive_link",
+      "recordingUrl": "https://drive.google.com/drive/folders/1cWJZgsQeXbjl2R0MAQ9pFvX9iIBI2cLU?usp=drive_link",
       "showRecording": true,
       "showCode": true,
       "customLinks": [
         {
-          "label": "Farbpalette",
-          "href": "https://colorpalette.pro/?color=oklch%2872.6%25+0.142+236%29&paletteType=ana&paletteStyle=square&colorFormat=oklch&effects=0%2C0%2C0%2C0"
+          "label": "Tutorial: Semantik in HTML",
+          "href": "https://hawk-gt1191.de/tutorials/einfuehrung-in-semantisches-html"
         },
         {
-          "label": "Starterkit (Intro)",
+          "label": "Starterkit: Intro",
           "href": "https://starterguide.dev/starterkit/intro/"
         },
         {
-          "label": "Starterkit (Installation von NodeJS)",
+          "label": "Starterkit: Installation von NodeJS",
           "href": "https://starterguide.dev/guides/nodejs/"
+        },
+        {
+          "label": "Farbpalette",
+          "href": "https://colorpalette.pro/?color=oklch%2872.6%25+0.142+236%29&paletteType=ana&paletteStyle=square&colorFormat=oklch&effects=0%2C0%2C0%2C0"
         }
       ]
     },
@@ -56,13 +88,17 @@
       "endTime": "13:00",
       "description": "Wir erstellen mit dem Starterkit eine responsive Navigation, die sich an verschiedene Bildschirmgrößen anpasst.",
       "location": "Nur Online",
-      "recordingUrl": "https://drive.google.com/drive/folders/1mQ3OZNAxXeuy3IrprTHQSmlCdWfABS21?usp=drive_link",
+      "recordingUrl": "https://drive.google.com/drive/folders/11MdF-OAm8aWZJl0dW-1Y06kWk2mXqBmb?usp=drive_link",
       "showRecording": true,
       "showCode": true,
       "customLinks": [
         {
-          "label": "CSS Logical Properties",
+          "label": "Tutorial: CSS Logical Properties",
           "href": "https://hawk-gt1191.de/tutorials/logische-eigenschaften-in-css"
+        },
+        {
+          "label": "Tutorial: Absolute und relative Einheiten in CSS",
+          "href": "https://hawk-gt1191.de/tutorials/absolute-und-relative-einheiten"
         }
       ]
     },
@@ -73,11 +109,28 @@
       "endTime": "13:00",
       "description": "Wir schauen uns an, wie wir eigene Schriftarten einbinden können. Außerdem bringen wir unsere Typografie-Skills auf ein neues Level.",
       "location": "Nur Online",
-      "recordingUrl": "https://drive.google.com/drive/folders/1Gvsh9cYU_upswAQ_G5k6j1Cno1_bz6aF?usp=drive_link",
+      "recordingUrl": "https://drive.google.com/drive/folders/1u9QRqwjnB5q6cxOwSEfP1K9jc6zvMklV?usp=drive_link",
       "isNext": true,
       "showZoom": true,
       "showCode": true,
-      "customLinks": []
+      "customLinks": [
+        {
+          "label": "Tutorial: Schriftarten in die Website einbinden",
+          "href": "https://hawk-gt1191.de/tutorials/webfonts-schriften-einbinden"
+        },
+        {
+          "label": "Starterkit: Eigene Schriftarten einbinden",
+          "href": "https://starterguide.dev/starterkit/fonts/"
+        },
+        {
+          "label": "Tutorial: Grundlagen der Mikrotypografie",
+          "href": "https://hawk-gt1191.de/tutorials/grundlagen-der-mikrotypografie"
+        },
+        {
+          "label": "Tutorial: Schriften, Abstände, Ligaturen im Layout",
+          "href": "https://hawk-gt1191.de/tutorials/schriften-abstaende-ligaturen-und-layout"
+        }
+      ]
     },
     {
       "title": "Bilder für das Web",
@@ -86,7 +139,7 @@
       "endTime": "13:00",
       "description": "Hero-Images, responsive Bilder und Bildoptimierungen sind heute unser Thema.",
       "location": "Nur Online",
-      "recordingUrl": "https://drive.google.com/drive/folders/1Gqi67nbl-z9TZEPtgccLybDv2omFNInD?usp=drive_link"
+      "recordingUrl": "https://drive.google.com/drive/folders/1aVr6aR_jQ4nlB_FQYusGCu1qwzPQgQEZ?usp=drive_link"
     },
     {
       "title": "TBA",
@@ -95,7 +148,7 @@
       "endTime": "13:00",
       "description": "Inhalte werden noch bekanntgegeben.",
       "location": "Nur Online",
-      "recordingUrl": "https://drive.google.com/drive/folders/13R_BSE2jov5giH-AyUMKtfkGEBV6Eyt2?usp=drive_link"
+      "recordingUrl": "https://drive.google.com/drive/folders/16oDnrwkwYiVHOQsbAfw3uKaY5BFFYPuH?usp=drive_link"
     },
     {
       "title": "TBA",
@@ -104,7 +157,7 @@
       "endTime": "13:00",
       "description": "Inhalte werden noch bekanntgegeben.",
       "location": "Nur Online",
-      "recordingUrl": "https://drive.google.com/drive/folders/1A8S7DaFQqesKLj2Ybx6ppJeNQTYe4KAr?usp=drive_link"
+      "recordingUrl": "https://drive.google.com/drive/folders/1CfaGObmc4hFLfr4_Fhh877ad1qBAdP1n?usp=drive_link"
     },
     {
       "title": "TBA",
@@ -113,16 +166,16 @@
       "endTime": "13:00",
       "description": "Inhalte werden noch bekanntgegeben.",
       "location": "Nur Online",
-      "recordingUrl": "https://drive.google.com/drive/folders/10FQvK82A8_BIbYJLZl0oOVOuOntBNZ6R?usp=drive_link"
+      "recordingUrl": "https://drive.google.com/drive/folders/19OdV5nCeTWFhn1y8vYreLLh6rP_5ZqL7?usp=drive_link"
     },
     {
       "title": "TBA",
-      "date": "2026-06-26",
+      "date": "2026-06-25",
       "startTime": "09:00",
       "endTime": "13:00",
       "description": "Inhalte werden noch bekanntgegeben.",
       "location": "Nur Online",
-      "recordingUrl": "https://drive.google.com/drive/folders/1Xn7S997X4hdDaK9prIVuzErNfKsKwtL3?usp=drive_link"
+      "recordingUrl": ""
     },
     {
       "title": "TBA",
@@ -131,7 +184,7 @@
       "endTime": "13:00",
       "description": "Inhalte werden noch bekanntgegeben.",
       "location": "Nur Online",
-      "recordingUrl": "https://drive.google.com/drive/folders/1eRj7nR0BNfW7leKCzonciyEPekzVWK12?usp=drive_link"
+      "recordingUrl": "https://drive.google.com/drive/folders/1mxXbWt099q2qDqBDA_FlQqlfUZx_YMPE?usp=drive_link"
     },
     {
       "title": "TBA",
@@ -140,7 +193,7 @@
       "endTime": "13:00",
       "description": "Inhalte werden noch bekanntgegeben.",
       "location": "Nur Online",
-      "recordingUrl": "https://drive.google.com/drive/folders/1SpxEXJ-uNvna91lJ525ix3D7ZHanzV7f?usp=drive_link"
+      "recordingUrl": "https://drive.google.com/drive/folders/1plYDPsdBsscerDypJvrykPUMObxxhIAD?usp=drive_link"
     },
     {
       "title": "TBA",
@@ -149,7 +202,7 @@
       "endTime": "13:00",
       "description": "Inhalte werden noch bekanntgegeben.",
       "location": "Nur Online",
-      "recordingUrl": "https://drive.google.com/drive/folders/1mXvof0dwljjOqqm7umIa6QGWGHqlAI4D?usp=drive_link"
+      "recordingUrl": "https://drive.google.com/drive/folders/1hGqnJ4wp_fw7UVPhYuAwlF_AE_AcuXdC?usp=drive_link"
     },
     {
       "title": "TBA",
@@ -158,7 +211,7 @@
       "endTime": "13:00",
       "description": "Inhalte werden noch bekanntgegeben.",
       "location": "Nur Online",
-      "recordingUrl": "https://drive.google.com/drive/folders/1y-uPA7JIqtmQJcOszIaoxjuBv_aWvxM5?usp=drive_link"
+      "recordingUrl": "https://drive.google.com/drive/folders/1EkYBfK5LwLvO4CbZ5K96y1nYr3WFsn5U?usp=drive_link"
     },
     {
       "title": "Abgabe",
@@ -166,7 +219,8 @@
       "startTime": "09:00",
       "endTime": "13:00",
       "description": "An diesem Donnerstag ist die Abgabe. Du hast Zeit bis zum Ende des Tages. Die Benotung deiner Arbeit findet direkt am folgenden Tag statt.",
-      "location": "Nur Online"
+      "location": "Nur Online",
+      "recordingUrl": "https://drive.google.com/drive/folders/1GxLeayxqaDuunkmgua4ISiLWvYykBPCe?usp=drive_link"
     }
   ]
 }
