@@ -136,26 +136,36 @@
       "date": "2026-05-29",
       "startTime": "09:00",
       "endTime": "13:00",
-      "description": "Hero-Images, Responsive Images, Art Direction Images: Wie du Bilder für das Web optimierst. Am Beispiel einer fiktiven Website für ein Restaurant von Steffen Hensler.",
+      "description": "Hero-Images, Responsive Images, Art Direction Images: Wie du Bilder für das Web optimierst.",
       "location": "Nur Online",
-      "isNext": true,
-      "showZoom": true,
+      "showRecording": true,
       "showCode": true,
       "recordingUrl": "https://drive.google.com/drive/folders/1aVr6aR_jQ4nlB_FQYusGCu1qwzPQgQEZ?usp=drive_link",
       "customLinks": [
         {
           "label": "Tutorial: Bilder für das Web optimieren",
           "href": "https://hawk-gt1191.de/tutorials/responsive-images"
+        },
+        {
+          "label": "Starterguide: Mit Bildern arbeiten",
+          "href": "https://starterguide.dev/starterkit/images/"
+        },
+        {
+          "label": "Sqoosh: Bilder optimieren",
+          "href": "https://squoosh.app/"
         }
       ]
     },
     {
-      "title": "TBA",
+      "title": "Bilder für das Web Teil 2",
       "date": "2026-06-05",
       "startTime": "09:00",
       "endTime": "13:00",
-      "description": "Inhalte werden noch bekanntgegeben.",
+      "description": "Wir machen dort weiter, wo wir letzten Mal aufgehört haben, schauen uns aber nun an, wie wir Bilder bei einem Grid richtig opimiert.",
       "location": "Nur Online",
+      "isNext": true,
+      "showZoom": true,
+      "showCode": true,
       "recordingUrl": "https://drive.google.com/drive/folders/16oDnrwkwYiVHOQsbAfw3uKaY5BFFYPuH?usp=drive_link"
     },
     {
