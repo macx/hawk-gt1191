@@ -1,8 +1,9 @@
 import { defineConfig } from 'astro/config'
 import mdx from '@astrojs/mdx'
+import { unified } from '@astrojs/markdown-remark'
 import icon from 'astro-icon'
 import sitemap from '@astrojs/sitemap'
-import expressiveCode from 'astro-expressive-code'
+import rehypeExpressiveCode from 'rehype-expressive-code'
 import { remarkModifiedTime } from './remark-plugins/remark-modified-time.mjs'
 import { remarkReadingTime } from './remark-plugins/remark-reading-time.mjs'
 import { remarkWidont } from './remark-plugins/remark-widont.mjs'
@@ -55,55 +56,59 @@ export default defineConfig({
     }
   },
   markdown: {
-    shikiConfig: { wrap: true },
-    gfm: true,
-    smartypants: true,
-    remarkPlugins: [
-      remarkWidont,
-      remarkDefinitionList,
-      remarkModifiedTime,
-      remarkReadingTime
-    ],
-    rehypePlugins: [
-      rehypeSlug,
-      [
-        rehypeMermaid,
-        {
-          strategy: 'file',
-          fsPath: 'public/beoe',
-          webPath: '/beoe',
-          darkScheme: 'class',
-          cache
-        }
-      ],
-      [
-        rehypeAutoLinkHeadings,
-        {
-          content: {
-            type: 'element',
-            tagName: 'span',
-            properties: { className: 'heading-icon' },
-            children: []
-          }
-        }
-      ],
-      [rehypeExternalLinks, {}]
-    ]
-  },
-  integrations: [
-    expressiveCode({
-      themes: ['catppuccin-frappe', 'catppuccin-latte'],
-      themeCssSelector: (theme) => `[data-code-theme='${theme.name}']`,
-      styleOverrides: {}
-    }),
-    mdx({
+    syntaxHighlight: false,
+    processor: unified({
+      gfm: true,
+      smartypants: true,
       remarkRehype: {
         handlers: { ...defListHastHandlers },
         footnoteLabel: 'Fußnoten',
         footnoteBackLabel: 'Zurück zum Inhalt'
       },
-      gfm: true
-    }),
+      remarkPlugins: [
+        remarkWidont,
+        remarkDefinitionList,
+        remarkModifiedTime,
+        remarkReadingTime
+      ],
+      rehypePlugins: [
+        rehypeSlug,
+        [
+          rehypeMermaid,
+          {
+            strategy: 'file',
+            fsPath: 'public/beoe',
+            webPath: '/beoe',
+            darkScheme: 'class',
+            cache
+          }
+        ],
+        [
+          rehypeAutoLinkHeadings,
+          {
+            content: {
+              type: 'element',
+              tagName: 'span',
+              properties: { className: 'heading-icon' },
+              children: []
+            }
+          }
+        ],
+        [
+          rehypeExpressiveCode,
+          {
+            themes: ['catppuccin-frappe', 'catppuccin-latte'],
+            themeCssSelector: (theme) => `[data-code-theme='${theme.name}']`,
+            useDarkModeMediaQuery: false,
+            styleOverrides: {}
+          }
+        ],
+        [rehypeExternalLinks, {}]
+      ]
+    })
+  },
+  integrations: [
+    mdx(),
     sitemap({
       lastmod: new Date(),
       filter: (page) =>
