@@ -14,6 +14,10 @@ user-invocable: true
 This skill standardizes how tutorials in this project are written and revised.
 Use it for creating new tutorials and polishing existing MDX tutorials.
 
+### Mandatory Activation
+
+- When editing any file in `src/data/tutorials/*.mdx`, this skill must be applied before making content or frontmatter changes.
+
 ### Use When
 
 - Creating a new tutorial in `src/data/tutorials/`.
@@ -81,6 +85,13 @@ Create frontmatter with these fields:
 - `author`: author identifier
 - `tags`: array of relevant keywords
 - `cover`: optional path and alt text object
+
+### Update Metadata Policy
+
+- If tutorial content changes meaningfully, maintain `updateDate` and `updateNotes` in frontmatter.
+- Never add or edit `updateDate` / `updateNotes` silently.
+- Ask the user explicitly first (for example: "Soll ich updateDate/updateNotes aktualisieren?") and only apply changes after confirmation.
+- Keep `updateNotes` short and reader-oriented (service note style, not full changelog).
 
 ### Cover Image Guidelines
 
