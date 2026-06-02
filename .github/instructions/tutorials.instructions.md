@@ -6,6 +6,12 @@ applyTo: 'src/data/tutorials/**/*.mdx'
 
 # Tutorial Writing Conventions
 
+## Skill Activation (Mandatory)
+
+- Before editing any file matching `src/data/tutorials/**/*.mdx`, always load and follow `.github/skills/tutorial-writing/SKILL.md`.
+- Treat the skill as mandatory for all tutorial edits (content, structure, frontmatter, figures, snippets).
+- For `updateDate` and `updateNotes`, ask the user first before creating or changing those fields.
+
 ## Audience and Tone
 
 - Write for students: clear, direct, and practical.
