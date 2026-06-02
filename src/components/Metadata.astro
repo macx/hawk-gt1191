@@ -184,6 +184,7 @@ const breadcrumbJsonLd =
 {
   websiteJsonLd && (
     <script
+      is:inline
       type='application/ld+json'
       set:html={JSON.stringify(websiteJsonLd)}
     />
@@ -193,6 +194,7 @@ const breadcrumbJsonLd =
 {
   articleJsonLd && (
     <script
+      is:inline
       type='application/ld+json'
       set:html={JSON.stringify(articleJsonLd)}
     />
@@ -202,6 +204,7 @@ const breadcrumbJsonLd =
 {
   breadcrumbJsonLd && (
     <script
+      is:inline
       type='application/ld+json'
       set:html={JSON.stringify(breadcrumbJsonLd)}
     />

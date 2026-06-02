@@ -23,7 +23,14 @@ const cache = await (async () => {
   try {
     return await getCache()
   } catch (error) {
-    console.warn('[astro] Falling back to in-memory Mermaid cache:', error)
+    const reason =
+      error instanceof Error && error.message
+        ? ` (${error.message.split('\n')[0]})`
+        : ''
+    console.warn(
+      `[astro] Falling back to in-memory Mermaid cache${reason}. ` +
+        'Tip: run `pnpm rebuild better-sqlite3` after Node upgrades.'
+    )
     return new Map()
   }
 })()
