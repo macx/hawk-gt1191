@@ -9,6 +9,10 @@ cover:
   path: '/src/images/tutorials/couple-couch-smartphone.png'
   alt: 'Ein Pärchen schaut gemeinsam auf ihr Smartphone und lächelt.'
   caption: 'Einen Kreditantrag auf einem Smartphone ausfüllen? Bei der Postbank geht’s.'
+updateDate: 2026-06-02T14:00:00+01:00
+updateNotes:
+  - 'Didaktik geschärft: Einstieg gestrafft, Strukturteil klarer für Einsteiger formuliert.'
+  - 'Codebeispiele überarbeitet: Attribute (`srcset`, `media`, `sizes`, `type`) gezielt hervorgehoben und `sizes` praxisnah eingeordnet.'
 tags: ['showcase', 'images', 'html', 'responsive']
 ---
 
@@ -16,23 +20,31 @@ import Figure from '@components/Figure.astro'
 import Button from '@components/Button.astro'
 import Codepen from '@components/Codepen.astro'
 
+## Warum responsive Bilder wichtig sind
+
+Bevor wir uns gleich den Code ansehen, lohnt sich ein kurzer Blick auf das Warum: Bilder gehören oft zu den größten Dateien einer Seite und beeinflussen die Ladezeit direkt. Auf dem Smartphone merkt man das besonders schnell, wenn ein Bild zu groß ist oder der Zuschnitt nicht passt.
+
+Bei aktuellen Smartphones sind die Fotos mehrere Megabyte groß und damit fürs Web unnötig schwer. Responsive Images sorgen dafür, dass der Browser je nach Endgerät die passende Bildversion lädt. So bleibt das Motiv lesbar, die Seite lädt schneller und es werden nur die Daten übertragen, die wirklich nötig sind.
+
+Nach diesem Tutorial kannst du mit `picture`, `source`, `srcset` und `sizes` eine mobile-first Bildauslieferung aufbauen und in den Developer Tools überprüfen.
+
 ## Technik-Check bei der Postbank
 
-Werfen wir doch einmal direkt einen Blick auf die Website der Postbank, genauer gesagt auf deren [Kreditantrag](https://www.postbank.de/privatkunden/produkte/kredite/privatkredit-direkt.html).
+Um zu sehen, wie das in der Praxis aussieht, schauen wir uns die Website der Postbank genauer an, konkret den [Kreditantrag](https://www.postbank.de/privatkunden/produkte/kredite/privatkredit-direkt.html).
 
-Naturgemäß ist der Kreditantrag ein Prozess, der einige Zeit in Anspruch nimmt, da viele Formularfelder auszufüllen sind. Die Postbank hat das zum Zeitpunkt meines Checks im März 2024 sehr gut gelöst. Die Website ist Mobile First umgesetzt und setzt neben dem Unveiling-Konzept[^1] auch auf ein Bildmotiv, das auf allen gängigen Endgeräten nicht nur gut aussieht, sondern auch schnell lädt. Schauen wir uns das nun genauer an.
+Ein Kreditantrag besteht aus vielen Formularfeldern und dauert deshalb meist länger als eine einfache Informationsseite. Genau deshalb ist es wichtig, dass solche Seiten Mobile First gedacht sind und Bilder trotzdem schnell laden. Die Postbank hat das zum Zeitpunkt meines Checks im März 2024 gut gelöst: Das Bildmotiv passt sich an verschiedene Endgeräte an und unterstützt damit den Ablauf auf kleinen wie großen Bildschirmen.
 
 ## Das Grundgerüst
 
 Das Bildmotiv wird bei der Postbank mit dem Titel kombiniert. Auf Smartphones erscheint dieser unter dem Bild, auf größeren Bildschirmen wird er auf dem Foto platziert.
 
-<Figure imagePath="/src/images/tutorials/postbank-compare-screens.png" caption="Das Bildmotiv auf dem Smartphone, Tablet und großen Bildschirm." alt="Alt" />
+<Figure imagePath="/src/images/tutorials/postbank-compare-screens.png" caption="Das Bildmotiv auf dem Smartphone, Tablet und großen Bildschirm." alt="Vergleich derselben Postbank-Teaserfläche auf Smartphone, Tablet und Desktop mit unterschiedlichem Bildzuschnitt." />
 
-Das Bild selbst ist als [Picture-Element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture) angelegt, das dem Browser alternative Versionen des Bildes  anbietet. Das könnte für das Smartphone ein hochformatiges Bild sein und für den Desktop ein querformatiges mit unterschiedlichem Ausschnitt. Eine solche Optimierung nennt man **Art Direction**. Ziel ist es, dass der Browser stets das Bild lädt, das für das aktuelle Endgerät am besten geeignet ist.
+Das Bild ist als [Picture-Element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture) angelegt. So können wir pro Bildschirmgröße unterschiedliche Bildausschnitte anbieten (Art Direction).
 
-Schauen wir uns den Code dafür einmal an. Zum besseren Verständnis habe ich diesen in Abschnitte unterteilt und erkläre diese nacheinander.
+Im ersten Schritt geht es nur um den Aufbau mit vier Bereichen: Bereich A steht für große Bildschirme, Bereich B für Tablets, Bereich C für Smartphones und Bereich D bildet den Fallback mit dem `img`-Element.
 
-```html
+```html {5-6,8-9,11-12,14-15}
 <div class="image-with-title">
   <h1>Schnell und einfach zu Ihrem Wunschkredit</h1>
 
@@ -52,20 +64,22 @@ Schauen wir uns den Code dafür einmal an. Zum besseren Verständnis habe ich di
 </div>
 ```
 
+Jeder Block innerhalb des `<picture>`-Elements hat eine bestimmte Funktion. Das `<source>`-Element bietet dem Browser jeweils eine alternative Bildquelle an, die er je nach Bildschirmgröße laden kann. Das `<img>`-Element am Ende dient als Fallback, falls keine der vorherigen Quellen geladen werden kann.
+
 ### A: Große Bildschirme
 
 In dem folgenden Code wird dem Browser über das `<source>`-Element und dessen `srcset=""`-Attribut mitgeteilt, dass das Bild `image-790x280` geladen werden soll, wenn der Bildschirm mindestens 790 Pixel breit ist, was über das `media=""`-Attribut wie in CSS definiert wird. Entweder in der alten Schreibweise `(min-width: 790px)` oder in der neuen `(width >= 790px)`.
 
-```html
+```html {1} "790w" ins="srcset" ins="media" ins="sizes" ins="type"
 <!-- A: Große Bildschirme-->
 <source srcset="image-790x280.avif 790w" media="(min-width: 790px)" sizes="(min-width: 1060px) 1060px, 100vw" type="image/avif">
-
 <source srcset="image-790x280.webp 790w" media="(min-width: 790px)" sizes="(min-width: 1060px) 1060px, 100vw" type="image/webp">
-
 <source srcset="image-790x280.jpg 790w" media="(min-width: 790px)" sizes="(min-width: 1060px) 1060px, 100vw" type="image/jpeg">
 ```
 
 Die Angabe `790w` hinter dem Dateinamen informiert den Browser, dass dieses Bild tatsächlich 790 Pixel breit ist (`w` = width). Das `sizes=""`-Attribut definiert, wie groß das Bild auf dem Bildschirm dargestellt werden soll. In diesem Fall wird das Bild auf 1060 Pixel skaliert, wenn der Bildschirm mindestens 1060 Pixel breit ist. Ansonsten wird das Bild auf die volle Bildschirmbreite (100&#8239;% des Viewports) skaliert.
+
+Wichtig für die Praxis: `sizes` ist nicht in jedem Projekt zwingend nötig, aber in vielen Fällen sehr sinnvoll. Wenn du wie hier mit `w`-Deskriptoren in `srcset` arbeitest, hilft `sizes` dem Browser bei der Auswahl der passenden Datei. Ohne `sizes` nimmt der Browser häufig `100vw` als Annahme. Das kann passen, wenn das Bild wirklich immer die volle Breite hat, führt aber schnell zu unnötig großen Downloads, sobald das Bild im Layout kleiner dargestellt wird.
 
 Dieses `<source>`-Element gibt es gleich dreimal. Entscheidender Unterschied ist die Dateiendung, sowie das dazu passende Attribut `type=""`. Zuerst wird ein sehr gut komprimiertes Bild im AVIF-Format deklariert, das kleiner ist als ein WebP-Bild ist, das wiederum kleiner ist als ein JPEG-Bild. Das wirkt sich auf die Ladezeit aus. Unterstützt der Browser also AVIF, lädt er das. Tut er das nicht, wird auf WebP zurückgegriffen. Und ist er auch dazu nicht in der Lage, wird das JPEG geladen. Auf der Seite [Can I use](https://caniuse.com/?search=image%20format) erfährst du mehr darüber, welche Browser welche Bildformate unterstützen.
 
@@ -73,12 +87,10 @@ Dieses `<source>`-Element gibt es gleich dreimal. Entscheidender Unterschied ist
 
 Auch für Geräte in der Größenordnung eines Tablets gibt es drei `<source>`-Elemente. Hier wird das Bild `image-440x200` geladen, wenn der Bildschirm mindestens 440 Pixel und maximal 789 Pixel breit ist. Das Bild hat eine Größe von 440 Pixel (`440w`) und wird auf die volle Bildschirmbreite skaliert (`100vw`).
 
-```html
+```html {1} "440w" ins="srcset" ins="media" ins="sizes" ins="type"
 <!-- B: Tablets-->
 <source srcset="image-440x200.avif 440w" media="(min-width: 440px) and (max-width: 789px)" sizes="100vw" type="image/avif">
-
 <source srcset="image-440x200.webp 440w" media="(min-width: 440px) and (max-width: 789px)" sizes="100vw" type="image/webp">
-
 <source srcset="image-440x200.jpg 440w" media="(min-width: 440px) and (max-width: 789px)" sizes="100vw" type="image/jpeg">
 ```
 
@@ -86,12 +98,10 @@ Auch für Geräte in der Größenordnung eines Tablets gibt es drei `<source>`-E
 
 Bei kleinen Geräten wie Smartphones wird das Bild `image-400x170` geladen, wenn der Bildschirm maximal 439 Pixel breit ist. Das 400 Pixel breite Bild wird auf die volle Bildschirmbreite skaliert.
 
-```html
+```html {1} "400w" ins="srcset" ins="media" ins="sizes" ins="type"
 <!-- C: Smartphones-->
 <source srcset="image-400x170.avif 400w" media="(max-width: 439px)" sizes="100vw" type="image/avif">
-
 <source srcset="image-400x170.webp 400w" media="(max-width: 439px)" sizes="100vw" type="image/webp">
-
 <source srcset="image-400x170.jpg 400w" media="(max-width: 439px)" sizes="100vw" type="image/jpeg">
 ```
 
@@ -101,7 +111,7 @@ Der Browser geht hier also in jedem Abschnitt von oben nach unten alle Varianten
 
 Erst wenn alle oben aufgeführten Eventualitäten für den Bildschirm nicht greifen, wird das Bild `image-400x170.jpg` geladen. Es ist damit quasi ein Fallback. Gleichzeitig – und das ist wichtig zu verstehen – ist das `img`-Element dasjenige, welches das Bild tatsächlich auch anzeigt. Auch dann, wenn der Browser eine andere Variante wählt.
 
-```html
+```html {1} ins={2}
 <!-- Abschnitt D-->
 <img src="image-400x170.jpg 400w" width="400" height="170" alt="...">
 ```
@@ -128,15 +138,25 @@ Die Bilder werden hier als Block-Elemente dargestellt und in der Breite auf 100&
 
 ## Testen mit den Developer Tools
 
-Welches Bild tatsächlich geladen wird, kannst du in den Developer Tools deines Browsers überprüfen. In Chrome öffnest du die Developer Tools mit <kbd>F12</kbd> unter Windows und <kbd>Cmd</kbd> + <kbd>Option</kbd> + <kbd>I</kbd> unter macOS. Du wählst den Reiter `Network` aus und lädst die Seite über den Reload-Button des Browsers neu. Suche in der Spalte `Name` nach dem Bild. Die Dateiendung, sowie die dazugehörigen Spalte `Type` sollten nun dem Bild enstprechen, welches du für die aktuelle Bildschirmgröße (Viewport) definiert hattest.
+Welches Bild tatsächlich geladen wird, kannst du in den Developer Tools deines Browsers überprüfen. In Chrome öffnest du die Developer Tools mit <kbd>F12</kbd> unter Windows und <kbd>Cmd</kbd> + <kbd>Option</kbd> + <kbd>I</kbd> unter macOS. Du wählst den Reiter `Network` aus und lädst die Seite über den Reload-Button des Browsers neu. Suche in der Spalte `Name` nach dem Bild. Die Dateiendung sowie die dazugehörige Spalte `Type` sollten nun dem Bild entsprechen, das du für die aktuelle Bildschirmgröße (Viewport) definiert hast.
 
-Wenn du den Browser nun kleiner oder größer ziehst, kannst du beobachten, wie die anderen Bilder nachgeladen werden. Lädst du die Seite nun noch einmal neu, wird auch hier nur das Bild geladen, das für den aktuelle Viewport vorgesehen ist.
+Wenn du den Browser nun kleiner oder größer ziehst, kannst du beobachten, wie die anderen Bilder nachgeladen werden. Lädst du die Seite danach noch einmal neu, wird auch hier nur das Bild geladen, das für den aktuellen Viewport vorgesehen ist.
 
 ## Demo zum Ausprobieren
 
 In dem folgenden Codepen[^2] habe ich das Bildmotiv in anderer Konstellation nachgebaut. Ich habe Bilder vorbereitet, die als Motiv die Größe und das Format anzeigen. So kannst du auch ohne Developer Tools nachvollziehen, wann welches Bild geladen wird. Öffne dazu das Codepen und ziehe das Browserfenster kleiner und größer.
 
 <Codepen id="wvZamyR" height="500" tab="html,result"/>
+
+## Transferaufgabe für Einsteiger
+
+Setze das Gelernte direkt an einem eigenen Beispiel um:
+
+1. Wähle ein Motiv und exportiere drei Varianten für Smartphone, Tablet und Desktop.
+2. Binde die Varianten mit `picture`, `source`, `srcset` und `sizes` ein.
+3. Prüfe in den Developer Tools bei drei verschiedenen Viewports, ob jeweils die richtige Datei geladen wird.
+
+Wenn alle drei Viewports die erwartete Bilddatei laden und das Motiv überall gut lesbar bleibt, hast du das Lernziel erreicht.
 
 Ich wünsche viel Spaß beim Ausprobieren!
 
