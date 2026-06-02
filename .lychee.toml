@@ -43,6 +43,8 @@ exclude = [
   "^https://www\\.myfonts\\.com",
   # LinkedIn (blocks bots)
   "^https://(www\\.)?linkedin\\.com",
+  # Google Drive (redirects on HEAD)
+  "^https://drive\\.google\\.com",
 ]
 
 # HTTP status codes considered valid
