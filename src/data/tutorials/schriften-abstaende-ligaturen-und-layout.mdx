@@ -8,6 +8,10 @@ cover:
   path: '/src/images/tutorials/airport-terminal-sign.jpg'
   alt: 'Ein paar Kofferwagen stehen vor einem Wegweiser am Flughafen.'
   caption: 'Typografie am Flughafen. Foto von <a href="https://unsplash.com/de/@etiennegirardet">Etienne Girardet</a> (Unsplash)'
+updateDate: 2026-06-02T09:30:00+01:00
+updateNotes:
+  - 'Neu: Zeilenfall und Silbentrennung im Abschnitt Textauszeichnung.'
+  - 'Interaktive Demo erweitert (text-wrap für Headlines, max-inline-size für Fließtext).'
 tags: ['css', 'typografie', 'layout']
 ---
 
@@ -171,13 +175,6 @@ p {
 
 Die Leserlichkeit kannst du auch mit dem Zeilenabstand beeinflussen. Der Zeilenabstand ist der vertikale Abstand zwischen den Zeilen eines Textes und wird mittels `line-height` eingestellt. Gemessen wird der Zeilenabstand von der Oberkante der Schrift bis zur Oberkante der nächsten Zeile. Er wird in der Regel in einem Verhältnis zur Schriftgröße angegeben, z.&#8239;B. `1.4` oder `1.6`, jeweils ohne die Angabe `px` oder `em`. Ein Wert von `1.4` bedeutet, dass die Linienhöhe 140&#8239;% der Schriftgröße beträgt.
 
-### Interaktive Demo
-
-Lass uns die Theorie in die Praxis testen. In der folgenden interaktiven Demo kannst du die Schriftgröße, Laufweite, Zeilenhöhe und bei kleineren Schriftgrößen auch die Zeilenlänge anpassen und sehen, wie sich das auf den Text und die Lesbarkeit auswirkt. Probiere doch mal aus, die Werte zu ändern.
-
-<Figure caption="Erzeuge ein ausgewogenes Schriftbild durch Anpassung der Attribute.">
-  <SnippetZeilenabstand/>
-</Figure>
 
 ## Textrendering
 
@@ -226,17 +223,56 @@ Indem du die Textfarbe leicht absoftest, kannst du die Optik verbessern, der Kon
 
 ## Textauszeichnung
 
-Im ersten Teil, [der Mikrotypografie](/tutorials/grundlagen-der-mikrotypografie), haben wir uns bereits mit der Textauszeichnung im kleinteiligen Bereich beschäftigt. Entsprechende Maßnahmen im Layout helfen dir aber ebenfalls, die Lesbarkeit des Schriftbildes zu optimieren: Die Vermeidung von Hurenkindern und Schusterjungen, sowie die Unterstützung von Ligaturen.
+Im ersten Teil, [der Mikrotypografie](/tutorials/grundlagen-der-mikrotypografie), haben wir uns mit Zeichen, Abständen und Auszeichnungen im Detail beschäftigt. Auf Layout-Ebene geht es jetzt um den Textfluss im Ganzen: Wie Zeilen fallen, wie Wörter getrennt werden und wie Ligaturen das Satzbild beruhigen.
 
-### Hurenkinder und Schusterjungen
+Typografisch ist das entscheidend, weil ein ruhiger Zeilenfall den Blick führt und die Lesegeschwindigkeit stabil hält. Genau hier setzt die Textauszeichnung im Layout an.
 
-Hurenkinder (auch „Witwen“ genannt) und Schusterjungen („Waisen“) sind in der Typografie zwei unterschiedliche, aber verwandte Typen von Satzfehlern, die den Leserhythmus stören und unästhetisch sind. Ein Hurenkind ist die letzte Zeile eines Absatzes, die oben auf einer Seite oder Spalte steht, während ein Schusterjunge die erste Zeile eines Absatzes ist, die unten auf einer Seite oder Spalte steht.
+### Witwen und Waisen
 
-<Figure caption="Oben: Hurenkind. Unten: Schusterjunge. Beide sollest du vermeiden.">
+Zur Textauszeichnung gehört nicht nur die Wahl der richtigen Zeichen, sondern auch ein sauberer Umbruch im Satzbild. Genau hier kommen **Witwen** und **Waisen** ins Spiel. In älteren Quellen findest du dafür oft noch die historischen Begriffe „Hurenkind“ und „Schusterjunge“.
+
+Gemeint sind zwei verwandte Satzfehler, die den Leserhythmus stören: Eine Witwe ist die letzte Zeile eines Absatzes, die allein am Anfang der nächsten Spalte oder Seite steht. Eine Waise ist die erste Zeile eines Absatzes, die isoliert am Ende der vorherigen Spalte oder Seite steht.
+
+<Figure caption="Beispiel für eine Witwe (historisch: Hurenkind) und eine Waise (historisch: Schusterjunge). Beide solltest du vermeiden.">
   <SnippetHurenkinder title="Kontrast" />
 </Figure>
 
-Einzelne Wörter am Ende eine Absatzes in einer Zeile sind ebenfalls problematisch, sie zählen auch zu den Witwen. Durch ein geschütztes Leerzeichen zwischen den beiden letzten Wörtern kannst du das verhindern. Wie du das setzt, erfährst du [hier](/tutorials/grundlagen-der-mikrotypografie#leerzeichen).
+Für einzelne Problemstellen kannst du weiterhin manuell eingreifen, zum Beispiel mit normalen und geschützten Leerzeichen. Wie du diese Zeichen gezielt setzt, findest du im ersten Teil im Abschnitt [Leerzeichen](/tutorials/grundlagen-der-mikrotypografie#leerzeichen).
+
+Für ganze Absätze und Überschriften ist jedoch ein sauberer Zeilenfall die nachhaltigere Lösung. Genau darum geht es im nächsten Abschnitt.
+
+### Zeilenfall und Silbentrennung
+
+Mit Zeilenfall ist in der Typografie gemeint, wie gleichmäßig Zeilen innerhalb eines Absatzes oder einer Überschrift verteilt sind. Ein guter Zeilenfall sorgt für ein ruhiges Schriftbild und reduziert Stolperstellen beim Lesen.
+
+Während wir im [ersten Teil](/tutorials/grundlagen-der-mikrotypografie#umbrüche-und-trennstriche) mit `&shy;` manuelle Sollbruchstellen gesetzt haben, unterstützt du den Browser hier mit automatischen Regeln für ganze Textbereiche. Das ist besonders hilfreich in responsiven Layouts, in denen sich Breiten ständig ändern und feste manuelle Umbrüche schnell wieder brechen:
+
+`text-wrap: wrap;`
+: Zeilen werden normal umgebrochen, ohne zusätzliche Optimierung. Das ist der Standard.
+
+`text-wrap: balance;`
+: Verteilt den Text auf mehrere Zeilen möglichst ausgewogen. Das ist ideal für Überschriften, damit nicht eine extrem kurze letzte Zeile übrig bleibt.
+
+`text-wrap: pretty;`
+: Vermeidet unschöne Umbrüche im Fließtext, zum Beispiel sehr kurze letzte Zeilen bei Absätzen.
+
+`hyphens: auto;`
+: Aktiviert automatische Silbentrennung bei langen Wörtern. Das funktioniert sinnvoll, wenn die Sprache korrekt gesetzt ist (z. B. `lang="de"`).
+
+In der Praxis heißt das: Für Überschriften ist `text-wrap: balance` oft die beste Wahl, weil dadurch mehrere Zeilen optisch gleichmäßiger wirken. Für längere Absätze ist `text-wrap: pretty` sinnvoll, weil unschöne Endzeilen reduziert werden. `hyphens: auto` hilft zusätzlich bei schmalen Textspalten oder langen deutschen Wörtern, damit der Block nicht auseinandergezogen wird.
+
+<Figure caption="Praktische Kombination für Headlines und Fließtext im responsiven Layout.">
+```css
+h1, h2, h3 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+  hyphens: auto;
+}
+```
+</Figure>
 
 ### Ligaturen
 
@@ -258,9 +294,21 @@ p { font-variant: common-ligatures diagonal-fractions; }
 ```
 </Figure>
 
-## Bist du bereit?
+## Interaktive Demo
 
-Es braucht nicht viel, um eine Website im Schriftbild attraktiv und gut leserlich zu gestalten. Probiere doch einmal ein paar Aspekte aus den beiden Tutorials zur Typografie aus und lasse mich wissen, ob dir Techniken gefallen, die du beibehalten möchtest.
+Lass uns die Theorie in die Praxis testen. In der folgenden interaktiven Demo kannst du Schriftgröße, Laufweite und Zeilenhöhe anpassen. Beim `text-wrap` startest du mit `wrap` (Standard) und kannst auf `pretty` oder `balance` wechseln. Dieser Schalter wirkt bewusst auf die Headline. `max-inline-size` steuert separat die Zeilenlänge des Fließtexts.
+
+<Figure caption="Passe Überschrift und Fließtext getrennt an, um die Wirkung von Umbruch und Zeilenlänge besser beurteilen zu können.">
+  <SnippetZeilenabstand/>
+</Figure>
+
+## Typografie als Gestaltungskraft
+
+Wenn du beide Tutorials zusammen betrachtest, ergibt sich ein klares Bild: Im ersten Teil ging es um Herkunft, Begriffe und mikrotypografische Grundlagen, in diesem Teil um die konkrete Umsetzung im CSS. Genau diese Kombination macht den Unterschied zwischen „Text anzeigen“ und „Text gestalten“.
+
+Vom Buchdruck seit Gutenberg bis zum modernen Web gilt im Kern dieselbe Idee: Guter Satz führt den Blick, schafft Rhythmus und macht Inhalte zugänglich. Ein ruhiger Zeilenfall, sinnvolle Trennung, saubere Abstände und passende Ligaturen geben deinem Layout Struktur, noch bevor Farbe oder Form ins Spiel kommen.
+
+Darum wirken viele starke Designs so aufgeräumt, obwohl sie visuell zurückhaltend sind: Gute Typografie trägt den Entwurf. Wenn das Schriftbild stimmt, brauchst du oft deutlich weniger dekorative Elemente, um eine Website hochwertig wirken zu lassen.
 
 [^1]: Usability beschreibt die Benutzerfreundlichkeit einer Website, also wie einfach und intuitiv sie zu bedienen ist. Auch die Lesbarkeit von Texten ist ein wichtiger Aspekt der Usability.
 [^2]: Das Root-Element ist das oberste Element in der Hierarchie eines Dokuments. In HTML ist das Root-Element das `<html>`-Tag.

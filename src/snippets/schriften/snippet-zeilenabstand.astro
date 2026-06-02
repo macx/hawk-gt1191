@@ -33,7 +33,7 @@ import Snippet from '@components/Snippet.astro'
       </div>
 
       <div class='sn-value'>
-        <label for='el-size-input' class='code'>line-height:</label>
+        <label for='el-lh-input' class='code'>line-height:</label>
         <input
           type='range'
           name='size'
@@ -64,7 +64,7 @@ import Snippet from '@components/Snippet.astro'
       </div>
 
       <div class='sn-value'>
-        <label for='el-size-input' class='code'>letter-spacing:</label>
+        <label for='el-ls-input' class='code'>letter-spacing:</label>
         <input
           type='range'
           name='size'
@@ -94,19 +94,31 @@ import Snippet from '@components/Snippet.astro'
       </div>
 
       <div class='sn-value'>
+        <label for='el-tw-input' class='code'>text-wrap:</label>
+        <select id='el-tw-input' name='text-wrap'>
+          <option value='wrap' selected>wrap (Standard)</option>
+          <option value='pretty'>pretty</option>
+          <option value='balance'>balance</option>
+        </select>
+        <span>
+          <output id='el-tw-output' class='code'>wrap</output>
+        </span>
+      </div>
+
+      <div class='sn-value'>
         <label for='el-mis-input' class='code'>max-inline-size:</label>
         <input
           type='range'
           name='size'
           id='el-mis-input'
           min='30'
-          max='60'
+          max='75'
           step='5'
-          value='45'
+          value='65'
           list='el-mis-markers'
         />
         <span>
-          <output id='el-mis-output' class='code'>45ch</output>
+          <output id='el-mis-output' class='code'>65ch</output>
         </span>
 
         <datalist id='el-mis-markers'>
@@ -117,6 +129,9 @@ import Snippet from '@components/Snippet.astro'
           <option value='50'></option>
           <option value='55'></option>
           <option value='60'></option>
+          <option value='65'></option>
+          <option value='70'></option>
+          <option value='75'></option>
         </datalist>
       </div>
     </div>
@@ -125,15 +140,22 @@ import Snippet from '@components/Snippet.astro'
   <Fragment>
     <div
       class='demo-container'
-      style='--fs: 1.2rem; --lh: 1.4; --ls: 0.025; --mis: 45ch'
+      style='--fs: 1rem; --lh: 1.4; --ls: 0.05em; --mis: 35ch'
     >
-      I was in your presence for an hour or so. Or was it a day? I truly don’t
-      know. Where the sun never set, where the trees hung low. By that soft and
-      shining sea. Did you respect me for what I did. Or for what I didn’t do,
-      or for keeping it hid? Did I lose my mind when I tried to get rid. Of
-      everything you see? In the summertime, ah in the summertime. In the
-      summertime, when you were with me. I got the heart and you got the blood.
-      We cut through iron and.
+      <div class='headline'>
+        Der finale Kilometer: Finjas Kampf um den Polizeidienst
+      </div>
+
+      <p class='bodytext'>
+        Die Lungen brannten wie Feuer und jeder Schritt auf der Aschebahn fühlte
+        sich an wie Blei, doch Finja hielt den Blick starr auf die unbarmherzig
+        ablaufende Uhr gerichtet. Es war der alles entscheidende Cooper-Test für
+        die Aufnahme in den Polizeidienst, bei dem sie nach Wochen des harten
+        Trainings nur noch wenige Meter von ihrem großen Traum trennten. Während
+        andere Bewerber bereits entkräftet aufgeben mussten, mobilisierte sie
+        die allerletzten Reserven, ignorierte den stechenden Schmerz in der
+        Seite und biss sich bis zum erlösenden Signalhorn durch.
+      </p>
     </div>
   </Fragment>
 </Snippet>
@@ -141,26 +163,59 @@ import Snippet from '@components/Snippet.astro'
 <style>
   @scope (.demo-container) {
     :scope {
-      line-height: var(--lh);
       font-size: var(--fs);
+      line-height: var(--lh);
       letter-spacing: var(--ls);
-      max-inline-size: var(--mis);
-      transition: all 120ms linear;
+
+      .headline {
+        font-family: var(--ff-headings);
+        font-size: 1.875em;
+        font-weight: var(--fw-bold);
+        margin-block-end: 0.2em;
+        text-wrap: wrap;
+        transition: all 120ms linear;
+      }
+
+      .bodytext {
+        max-inline-size: var(--mis);
+        transition: all 120ms linear;
+      }
     }
   }
 </style>
 
 <script is:inline>
   ;(function () {
-    const snDemoContainer = document.querySelector('.demo-container')
-    const snFontSizeInput = document.querySelector('#el-fs-input')
-    const snFontSizeOutput = document.querySelector('#el-fs-output')
-    const snLineHeightInput = document.querySelector('#el-lh-input')
-    const snLineHeightOutput = document.querySelector('#el-lh-output')
-    const snLetterSpacingInput = document.querySelector('#el-ls-input')
-    const snLetterSpacingOutput = document.querySelector('#el-ls-output')
-    const snMaxInlineSizeInput = document.querySelector('#el-mis-input')
-    const snMaxInlineSizeOutput = document.querySelector('#el-mis-output')
+    const snippetScope = document.currentScript?.closest('figure') ?? document
+    const snDemoContainer = snippetScope.querySelector('.demo-container')
+    const snHeadline = snippetScope.querySelector('.headline')
+    const snFontSizeInput = snippetScope.querySelector('#el-fs-input')
+    const snFontSizeOutput = snippetScope.querySelector('#el-fs-output')
+    const snLineHeightInput = snippetScope.querySelector('#el-lh-input')
+    const snLineHeightOutput = snippetScope.querySelector('#el-lh-output')
+    const snLetterSpacingInput = snippetScope.querySelector('#el-ls-input')
+    const snLetterSpacingOutput = snippetScope.querySelector('#el-ls-output')
+    const snMaxInlineSizeInput = snippetScope.querySelector('#el-mis-input')
+    const snMaxInlineSizeOutput = snippetScope.querySelector('#el-mis-output')
+    const snTextWrapInput = snippetScope.querySelector('#el-tw-input')
+    const snTextWrapOutput = snippetScope.querySelector('#el-tw-output')
+
+    if (
+      !snDemoContainer ||
+      !snHeadline ||
+      !snFontSizeInput ||
+      !snFontSizeOutput ||
+      !snLineHeightInput ||
+      !snLineHeightOutput ||
+      !snLetterSpacingInput ||
+      !snLetterSpacingOutput ||
+      !snMaxInlineSizeInput ||
+      !snMaxInlineSizeOutput ||
+      !snTextWrapInput ||
+      !snTextWrapOutput
+    ) {
+      return
+    }
 
     // Set initial values
     const snFontSizeValue = parseFloat(snFontSizeInput.value).toFixed(1)
@@ -175,6 +230,15 @@ import Snippet from '@components/Snippet.astro'
       0
     )
     snMaxInlineSizeOutput.textContent = `${snMaxInlineSizeValue}ch`
+    const snTextWrapValue = snTextWrapInput.value
+    snTextWrapOutput.textContent = snTextWrapValue
+
+    // Sync the demo with control defaults on first render.
+    snDemoContainer.style.setProperty('--fs', `${snFontSizeValue}rem`)
+    snDemoContainer.style.setProperty('--lh', snLineHeightValue)
+    snDemoContainer.style.setProperty('--ls', `${snLetterSpacingValue}em`)
+    snDemoContainer.style.setProperty('--mis', `${snMaxInlineSizeValue}ch`)
+    snHeadline.style.setProperty('text-wrap', snTextWrapValue)
 
     // Add Event Listeners
     snFontSizeInput.addEventListener('input', (event) => {
@@ -199,6 +263,12 @@ import Snippet from '@components/Snippet.astro'
       const value = parseFloat(event.target.value).toFixed(0)
       snMaxInlineSizeOutput.textContent = `${value}ch`
       snDemoContainer.style.setProperty('--mis', `${value}ch`)
+    })
+
+    snTextWrapInput.addEventListener('input', (event) => {
+      const value = event.target.value
+      snTextWrapOutput.textContent = value
+      snHeadline.style.setProperty('text-wrap', value)
     })
   })()
 </script>
