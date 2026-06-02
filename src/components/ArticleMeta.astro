@@ -4,6 +4,8 @@ import FormattedDate from '@components/FormattedDate.astro'
 
 interface Props {
   date: Date
+  updateDate?: Date
+  hasUpdateNotes?: boolean
   author: {
     id: string
     [key: string]: any
@@ -14,7 +16,13 @@ interface Props {
   }
 }
 
-const { date, author, readingTime } = Astro.props
+const {
+  date,
+  updateDate,
+  hasUpdateNotes = false,
+  author,
+  readingTime
+} = Astro.props
 const authorProfile = await getEntry('authors', author.id)
 ---
 
@@ -23,6 +31,8 @@ const authorProfile = await getEntry('authors', author.id)
 
   <FormattedDate
     date={date}
+    updateDate={updateDate}
+    hasUpdateNotes={hasUpdateNotes}
     readingTime={readingTime.minutes}
     wordCount={readingTime.words}
   />

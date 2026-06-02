@@ -14,8 +14,18 @@ import Metadata from '@components/Metadata.astro'
 type Layout = 'wide' | 'standard'
 
 const { headings, layout = 'standard' as Layout, redirect } = Astro.props
-const { title, description, pubDate, toc, aside, cover, ogType } =
-  Astro.props.frontmatter || Astro.props
+const {
+  title,
+  description,
+  pubDate,
+  updateDate,
+  author,
+  tags,
+  toc,
+  aside,
+  cover,
+  ogType
+} = Astro.props.frontmatter || Astro.props
 
 const asideConfig = aside ? aside : false
 ---
@@ -28,6 +38,9 @@ const asideConfig = aside ? aside : false
       description={description}
       image={cover}
       pubDate={pubDate}
+      updateDate={updateDate}
+      author={author}
+      tags={tags}
       redirect={redirect}
       type={ogType}
     />

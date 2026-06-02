@@ -1,4 +1,5 @@
 ---
+import { getEntry } from 'astro:content'
 import { SITE_CONST } from '../const.ts'
 
 // Remove trailing slash from URL
@@ -13,11 +14,23 @@ interface Props {
   image?: string
   canonicalUrl?: string
   type?: 'website' | 'article'
-  pubDate?: string
+  pubDate?: string | Date
+  updateDate?: string | Date
+  author?: { id?: string }
+  tags?: string[]
   redirect?: boolean
 }
 
-const { title, description, type = 'website', pubDate, redirect } = Astro.props
+const {
+  title,
+  description,
+  type = 'website',
+  pubDate,
+  updateDate,
+  author,
+  tags,
+  redirect
+} = Astro.props
 
 const canonicalUrl = removeTrailingSlash(
   new URL(Astro.url.pathname, Astro.site).toString().toLowerCase()
@@ -26,6 +39,90 @@ const canonicalUrl = removeTrailingSlash(
 const openGraphImage = Astro.url.pathname.startsWith('/tutorials')
   ? new URL(`${canonicalUrl}/og.png`, Astro.url)
   : new URL('images/website-cover.png', Astro.url)
+
+const datePublished = pubDate ? new Date(pubDate).toISOString() : undefined
+const dateModified = updateDate ? new Date(updateDate).toISOString() : undefined
+const keywords = tags?.length ? tags.join(', ') : undefined
+const isTutorial = Astro.url.pathname.startsWith('/tutorials')
+
+const authorProfile = author?.id ? await getEntry('authors', author.id) : null
+
+const publisher = {
+  '@type': 'Organization',
+  name: SITE_CONST.title,
+  url: SITE_CONST.site
+}
+
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${SITE_CONST.site}#website`,
+  url: SITE_CONST.site,
+  name: SITE_CONST.title,
+  description: SITE_CONST.description,
+  inLanguage: 'de-DE'
+}
+
+const articleJsonLd =
+  type === 'article' && datePublished
+    ? {
+        '@context': 'https://schema.org',
+        '@type': isTutorial ? 'TechArticle' : 'Article',
+        '@id': `${canonicalUrl}#article`,
+        headline: title,
+        description,
+        datePublished,
+        dateModified: dateModified || datePublished,
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': canonicalUrl
+        },
+        url: canonicalUrl,
+        image: openGraphImage?.href,
+        inLanguage: 'de-DE',
+        articleSection: isTutorial ? 'Tutorial' : undefined,
+        keywords,
+        about: tags?.length ? tags : undefined,
+        isPartOf: {
+          '@id': `${SITE_CONST.site}#website`
+        },
+        author: authorProfile
+          ? {
+              '@type': 'Person',
+              name: authorProfile.data.name
+            }
+          : undefined,
+        publisher
+      }
+    : null
+
+const breadcrumbJsonLd =
+  isTutorial && title
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Startseite',
+            item: SITE_CONST.site
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'Tutorials',
+            item: `${SITE_CONST.site}/tutorials`
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: title,
+            item: canonicalUrl
+          }
+        ]
+      }
+    : null
 ---
 
 <!-- Global Metad -->
@@ -38,7 +135,19 @@ const openGraphImage = Astro.url.pathname.startsWith('/tutorials')
 <!-- Primary Meta -->
 <title>{title} | {SITE_CONST.title}</title>
 <meta name='description' content={description} />
-{pubDate && <meta property='article:published_time' content={pubDate} />}
+<meta name='robots' content='index,follow,max-image-preview:large' />
+{keywords && <meta name='keywords' content={keywords} />}
+{
+  datePublished && (
+    <meta property='article:published_time' content={datePublished} />
+  )
+}
+{
+  dateModified && (
+    <meta property='article:modified_time' content={dateModified} />
+  )
+}
+{tags?.map((tag) => <meta property='article:tag' content={tag} />)}
 
 <!-- Icons -->
 <link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png' />
@@ -69,6 +178,33 @@ const openGraphImage = Astro.url.pathname.startsWith('/tutorials')
       <meta property='og:image' content={openGraphImage.href} />
       <meta property='og:image:alt' content={title} />
     </>
+  )
+}
+
+{
+  websiteJsonLd && (
+    <script
+      type='application/ld+json'
+      set:html={JSON.stringify(websiteJsonLd)}
+    />
+  )
+}
+
+{
+  articleJsonLd && (
+    <script
+      type='application/ld+json'
+      set:html={JSON.stringify(articleJsonLd)}
+    />
+  )
+}
+
+{
+  breadcrumbJsonLd && (
+    <script
+      type='application/ld+json'
+      set:html={JSON.stringify(breadcrumbJsonLd)}
+    />
   )
 }
 

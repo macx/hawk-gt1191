@@ -3,23 +3,66 @@ import { Icon } from 'astro-icon/components'
 
 interface Props {
   date: Date
+  updateDate?: Date
+  hasUpdateNotes?: boolean
   readingTime: number
   wordCount?: number
 }
 
-const { date, readingTime, wordCount } = Astro.props as Props
+const {
+  date,
+  updateDate,
+  hasUpdateNotes = false,
+  readingTime,
+  wordCount
+} = Astro.props as Props
 ---
 
 <div class='date-time'>
-  <time datetime={date.toISOString()}>
+  <div class='date-pair'>
+    <time datetime={date.toISOString()}>
+      {
+        date.toLocaleDateString('de-DE', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        })
+      }
+    </time>
+
     {
-      date.toLocaleDateString('de-DE', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-      })
+      updateDate &&
+        (hasUpdateNotes ? (
+          <a
+            class='updated-date'
+            href='#update-notes'
+            aria-label='Zum Abschnitt Neu im letzten Update springen'
+          >
+            (Update:
+            <time datetime={updateDate.toISOString()}>
+              {updateDate.toLocaleDateString('de-DE', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+              })}
+            </time>
+            )
+          </a>
+        ) : (
+          <span class='updated-date'>
+            (Update:
+            <time datetime={updateDate.toISOString()}>
+              {updateDate.toLocaleDateString('de-DE', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+              })}
+            </time>
+            )
+          </span>
+        ))
     }
-  </time>
+  </div>
 
   {
     readingTime > 0 && (
@@ -34,17 +77,61 @@ const { date, readingTime, wordCount } = Astro.props as Props
   <style>
     .date-time {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: var(--sp);
       font-size: var(--fs-s);
       inline-size: 100%;
+      justify-content: space-between;
+
+      @container article-card (width < 25em) {
+        justify-content: space-between;
+      }
+
+      @media (width >= 40em) {
+        align-items: center;
+      }
+    }
+
+    .date-pair {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.4rem;
+      min-width: 0;
 
       time {
         display: block;
       }
 
-      @container article-card (width < 25em) {
-        justify-content: space-between;
+      @media (width >= 40em) {
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+      }
+    }
+
+    .updated-date {
+      color: inherit;
+      font: inherit;
+      line-height: inherit;
+
+      &:is(:link, :visited, :hover, :focus, :focus-visible, :active) {
+        text-decoration: none;
+      }
+
+      &:is(a):hover {
+        color: var(--clr-link);
+      }
+
+      &:is(a):focus-visible {
+        outline: 2px dotted var(--clr-primary);
+        outline-offset: 2px;
+      }
+
+      time {
+        display: inline;
       }
     }
 
@@ -53,6 +140,7 @@ const { date, readingTime, wordCount } = Astro.props as Props
       align-items: center;
       gap: 1ch;
       margin-inline-start: auto;
+      white-space: nowrap;
 
       svg {
         font-size: 1.125rem;

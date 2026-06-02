@@ -121,6 +121,7 @@
   --fs: 1rem;
   --fs-s: 0.9375rem;
   --fs-xs: 0.75rem;
+  --fs-xxs: 0.625rem;
   --fs-l: 1.25rem;
 
   --fs-content: clamp(1.125rem, 5vw - 1rem, 1.25rem);

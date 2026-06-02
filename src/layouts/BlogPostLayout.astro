@@ -15,6 +15,8 @@ const {
   title,
   description,
   pubDate,
+  updateDate,
+  updateNotes,
   author,
   cover,
   tags,
@@ -25,6 +27,14 @@ const {
 } = Astro.props as Props
 
 const toc = true
+const hasUpdateNotes = Boolean(updateNotes && updateNotes.length > 0)
+const formattedUpdateDate = updateDate
+  ? updateDate.toLocaleDateString('de-DE', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    })
+  : null
 ---
 
 <BaseLayout
@@ -34,7 +44,10 @@ const toc = true
   toc={toc}
   layout={layout}
   cover={cover}
+  author={author}
+  tags={tags}
   pubDate={pubDate}
+  updateDate={updateDate}
   ogType='article'
 >
   {isDraft && <div class='draft-banner' />}
@@ -47,7 +60,13 @@ const toc = true
 
       <Lead text={description} />
 
-      <ArticleMeta date={pubDate} author={author} readingTime={readingTime} />
+      <ArticleMeta
+        date={pubDate}
+        updateDate={updateDate}
+        hasUpdateNotes={hasUpdateNotes}
+        author={author}
+        readingTime={readingTime}
+      />
     </header>
 
     {
@@ -62,6 +81,26 @@ const toc = true
     }
 
     <slot name='article' />
+
+    {
+      updateNotes && updateNotes.length > 0 && (
+        <section
+          id='update-notes'
+          class='update-notes'
+          aria-label='Neu im letzten Update'
+        >
+          <h2>
+            Neu im letzten Update
+            {formattedUpdateDate && <> vom {formattedUpdateDate}</>}
+          </h2>
+          <ul>
+            {updateNotes.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
 
     <Tags tags={tags as string[]} divider={true} />
   </article>
@@ -111,6 +150,30 @@ const toc = true
       transform: translateX(-100%);
       transform-origin: 0 0;
       box-shadow: -0.3rem 0 0.3rem -0.1em rgb(0 0 0 / 0.3);
+    }
+  }
+
+  .update-notes {
+    margin-block: var(--sp-content) 0;
+
+    h2 {
+      margin: 0 0 0.5em;
+      font-family: var(--ff);
+      font-size: var(--fs-s);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--clr-text-light);
+    }
+
+    ul {
+      margin: 0;
+      padding-inline-start: 1.3rem;
+      font-size: var(--fs-s);
+      color: var(--clr-text-light);
+    }
+
+    li + li {
+      margin-block-start: 0.35em;
     }
   }
 </style>
