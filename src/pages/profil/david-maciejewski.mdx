@@ -1,0 +1,55 @@
+---
+layout: ../../layouts/BaseLayout.astro
+title: 'David Maciejewski | Profil'
+description: 'Profil von David Maciejewski: Dozent im HAWK-Seminar GT 1191, Senior UI/UX Frontend Engineer und Autor aller Tutorials auf hawk-gt1191.de.'
+toc: false
+---
+
+import { getCollection } from 'astro:content'
+import PageTitle from '@components/PageTitle.astro'
+import Lead from '@components/Lead.astro'
+import Figure from '@components/Figure.astro'
+import Button from '@components/Button.astro'
+
+export const tutorials = (await getCollection('tutorials'))
+  .filter((entry) => !entry.data.isDraft)
+  .sort(
+    (a, b) =>
+      new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+  )
+
+<PageTitle text='David Maciejewski' />
+
+<Lead text='Dozent im HAWK-Seminar GT 1191 seit 2015, Senior UI/UX Frontend Engineer und Autor der frei verfügbaren Tutorials auf dieser Website.' />
+
+<Figure
+  src='/src/images/davideiken.jpg'
+  alt='Porträt von David Maciejewski'
+  caption='Ich zeige in GT 1191, wie aus Gestaltung robuste und barrierearme Frontends werden.'
+  lazy={false}
+/>
+
+## Profil
+
+Ich begleite Studierende im Seminar **GT 1191** dabei, Websites professionell umzusetzen: mit klarem UX-Fokus, sauberem HTML/CSS und nachvollziehbaren Workflows für echte Projekte.
+
+In meiner Arbeit als Senior UI/UX Frontend Engineer habe ich über viele Jahre komplexe Digitalprojekte begleitet. Diese Praxis fließt direkt in die Lehrinhalte ein.
+
+<Button
+  type='link'
+  href='https://www.hawk.de/de/hochschule/organisation-und-personen/personenverzeichnis/david-maciejewski'
+  label='Zum HAWK-Personenprofil'
+  newWindow={true}
+/>
+
+## Alle Tutorials von David Maciejewski
+
+<ul class='tutorial-list'>
+  {tutorials.map((tutorial) => (
+    <li>
+      <a href={`/tutorials/${tutorial.id.replace('.mdx', '')}`}>
+        {tutorial.data.title}
+      </a>
+    </li>
+  ))}
+</ul>

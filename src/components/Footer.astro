@@ -1,68 +1,257 @@
 ---
-
+import { Image } from 'astro:assets'
+import Button from '@components/Button.astro'
+import profilePhoto from '/src/images/davideiken.jpg'
 ---
 
 <footer class='footer'>
-  <div>
-    © David Maciejewski für HAWK GT 1191<br />
-    <nav>
-      <a href='/impressum'> Impressum</a>
-      <a href='/datenschutz'> Datenschutz</a>
-    </nav>
-  </div>
+  <div class='footer-inner'>
+    <section class='footer-profile' aria-label='Autor und Dozent'>
+      <Image
+        src={profilePhoto}
+        width={160}
+        height={160}
+        alt='Porträt von David Maciejewski'
+        class='profile-image'
+        loading='lazy'
+      />
 
-  <div class='report'>
-    <b>Fehler gefunden?</b><br />
-    Diese Website ist Open Source. Bitte <a
-      href='https://github.com/macx/hawk-gt1191/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc'
-      rel='noopener noreferrer'>berichte</a
-    > uns darüber.
+      <div class='profile-content'>
+        <div class='profile-text'>
+          <p class='eyebrow'>Hochschuldozent seit 2015</p>
+
+          <h2>David Maciejewski</h2>
+
+          <p class='lead'>
+            Ich vermittle in GT 1191, wie aus Designentscheidungen robuste,
+            zugängliche und wartbare Frontends werden, die nicht frustrieren.
+            Alle Tutorials auf dieser Website stelle ich kostenlos zur
+            Verfügung, die Website selbst Open&nbsp;Source.
+          </p>
+        </div>
+
+        <div class='profile-aside'>
+          <div class='facts'>
+            <div aria-hidden='true'>David…</div>
+
+            <ul aria-label='Profilfakten'>
+              <li>
+                <span class='sr-only'>David </span>ist Senior UI/UX Frontend
+                Engineer<span class='sr-only'>.</span>
+              </li>
+              <li>
+                <span class='sr-only'>David </span>hat 30 Jahre Projekterfahrung<span
+                  class='sr-only'>.</span
+                >
+              </li>
+              <li>
+                <span class='sr-only'>David </span>lehrt praxisnah an der HAWK<span
+                  class='sr-only'>.</span
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class='actions'>
+            <Button
+              type='link'
+              href='/profil/david-maciejewski'
+              label='Profil'
+              primary={true}
+            />
+            <Button type='link' href='/tutorials' label='Tutorials' />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class='meta'>
+      <div>
+        <p class='copyright'>© David Maciejewski für HAWK GT 1191</p>
+
+        <nav class='legal' aria-label='Rechtliches'>
+          <a href='/impressum'>Impressum</a>
+          <a href='/datenschutz'>Datenschutz</a>
+        </nav>
+      </div>
+
+      <p class='report'>
+        <strong>Fehler gefunden?</strong>
+        Diese Website ist Open Source. Bitte
+        <a
+          href='https://github.com/macx/hawk-gt1191/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc'
+          rel='noopener noreferrer'>berichte uns darüber</a
+        >.
+      </p>
+    </div>
   </div>
 </footer>
 
 <style>
   .footer {
-    position: relative;
-    z-index: 5;
-    padding: var(--sp) var(--sp-content);
-    font-size: var(--fs-xs);
-    line-height: var(--lh-s);
+    font-size: var(--fs-s);
+    line-height: var(--lh);
     border-top: 1px solid var(--clr-line);
     color: var(--clr-text-medium);
     background: var(--footer-bg);
 
-    nav {
+    .footer-inner {
+      max-width: var(--layout-max-width);
+      margin-inline: auto;
+      padding-block: var(--sp-l);
+      padding-inline: var(--sp-content);
+      padding: var(--sp-content) var(--sp-content) var(--sp);
+    }
+
+    .footer-profile {
+      display: grid;
+      grid-template-columns: 7rem 1fr;
+      gap: var(--sp);
+      align-items: start;
+    }
+
+    .profile-image {
+      inline-size: 7rem;
+      block-size: 7rem;
+      object-fit: cover;
+      border-radius: 999px;
+      border: 1px solid var(--clr-line-dark);
+    }
+
+    .profile-content {
+      min-inline-size: 0;
+    }
+
+    .profile-text {
+      min-inline-size: 0;
+    }
+
+    .profile-aside {
+      min-inline-size: 0;
+    }
+
+    .profile-content h2 {
+      margin-block: 0.1em 0.4em;
+      font-size: clamp(1.4rem, 1.4vw + 0.9rem, 1.9rem);
+      line-height: 1.15;
+      color: var(--clr-text);
+    }
+
+    .eyebrow {
+      margin: 0;
+      font-size: var(--fs-xs);
+      font-weight: var(--fw-strong);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--clr-text-light);
+    }
+
+    .lead {
+      margin-block: 0 0.75rem;
+    }
+
+    .facts {
+      > div {
+        font-weight: var(--fw-bold);
+      }
+
+      ul {
+        list-style: disc;
+        padding-inline-start: 1.1rem;
+        margin-block: 0.3em 0;
+      }
+    }
+
+    .facts li::marker {
+      color: var(--clr-link);
+    }
+
+    .actions {
+      margin-block-start: var(--sp);
       display: flex;
-      justify-content: flex-start;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .meta {
+      border-block-start: 1px solid var(--clr-line);
+      padding-block-start: var(--sp-m);
+      margin-block-start: var(--sp-m);
+
+      display: flex;
+      flex-direction: var(--meta-flex-direction, column);
+      justify-content: var(--meta-space-between, flex-start);
+      gap: var(--sp-content);
+
+      font-size: var(--fs-xs);
+      line-height: var(--lh-s);
+    }
+
+    .legal {
+      display: flex;
       align-items: center;
-      gap: 1em;
-      margin-block-start: 0.2em;
+      margin: 0;
     }
 
-    .report {
-      margin-block-start: 1em;
+    .legal a + a {
+      margin-inline-start: 0.75rem;
+      padding-inline-start: 0.75rem;
+      border-inline-start: 1px solid var(--clr-line-dark);
     }
 
-    :any-link {
-      color: var(--clr-primary);
-      text-decoration: none;
+    .legal a,
+    .report a {
+      color: var(--clr-link);
       font-weight: var(--fw-bold);
+      text-decoration: none;
 
       &:hover,
       &:focus {
-        color: var(--clr-primary);
         text-decoration: underline;
       }
     }
 
-    @media screen and (width >= 37.5em) {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .report {
+      margin-block: var(--sp) 0;
+    }
 
-      .report {
+    @media (width >= 57.5em) {
+      --meta-flex-direction: row;
+      --meta-space-between: space-between;
+
+      .profile-content {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: var(--sp-content);
+        align-items: start;
+      }
+
+      .profile-text {
+        min-inline-size: 0;
+      }
+
+      .profile-aside {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--sp);
+        flex-shrink: 0;
+      }
+
+      .actions {
         margin-block-start: 0;
-        text-align: end;
+      }
+    }
+
+    @media (width < 37.5em) {
+      .footer-profile {
+        grid-template-columns: 5.5rem 1fr;
+        gap: var(--sp);
+      }
+
+      .profile-image {
+        inline-size: 5.5rem;
+        block-size: 5.5rem;
       }
     }
   }

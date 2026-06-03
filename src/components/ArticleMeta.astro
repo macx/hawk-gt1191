@@ -27,7 +27,16 @@ const authorProfile = await getEntry('authors', author.id)
 ---
 
 <div class='meta'>
-  {authorProfile && <div class='byline'>Von {authorProfile.data.name}</div>}
+  {
+    authorProfile && (
+      <div class='byline'>
+        Von{' '}
+        <a href='/profil/david-maciejewski' rel='author'>
+          {authorProfile.data.name}
+        </a>
+      </div>
+    )
+  }
 
   <FormattedDate
     date={date}
@@ -41,5 +50,11 @@ const authorProfile = await getEntry('authors', author.id)
 <style>
   .meta {
     margin-block-end: var(--sp-m);
+  }
+
+  .byline :any-link {
+    color: var(--clr-link);
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.12em;
   }
 </style>
