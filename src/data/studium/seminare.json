@@ -157,28 +157,30 @@
       ]
     },
     {
-      "title": "Bilder für das Web Teil 2",
+      "title": "Bilder Teil 2, Developer Tools und Karten",
       "date": "2026-06-05",
       "startTime": "09:00",
       "endTime": "13:00",
-      "description": "Wir machen dort weiter, wo wir letzten Mal aufgehört haben, schauen uns aber nun an, wie wir Bilder bei einem Grid richtig opimiert.",
+      "description": "Wir machen dort weiter, wo wir letzten Mal aufgehört haben, schauen uns aber nun an, wie wir Bilder bei einem Grid richtig optimieren. Darüber hinaus werden wir uns die Developer Tools anschauen, um zu verstehen, wie wir unseren Code untersuchen können. Und als Bonus erstellen wir intarktive Karten.",
       "location": "Nur Online",
-      "isNext": true,
-      "showZoom": true,
+      "showRecording": true,
       "showCode": true,
       "recordingUrl": "https://drive.google.com/drive/folders/16oDnrwkwYiVHOQsbAfw3uKaY5BFFYPuH?usp=drive_link"
     },
     {
-      "title": "TBA",
+      "title": "Vertiefung: Media Queries & Container Queries",
       "date": "2026-06-12",
       "startTime": "09:00",
       "endTime": "13:00",
       "description": "Inhalte werden noch bekanntgegeben.",
       "location": "Nur Online",
+      "isNext": true,
+      "showZoom": true,
+      "showCode": true,
       "recordingUrl": "https://drive.google.com/drive/folders/1CfaGObmc4hFLfr4_Fhh877ad1qBAdP1n?usp=drive_link"
     },
     {
-      "title": "TBA",
+      "title": "Vertiefung: Simple Navigation from Scratch",
       "date": "2026-06-19",
       "startTime": "09:00",
       "endTime": "13:00",
