@@ -49,9 +49,11 @@ export async function getStaticPaths({ paginate }: any) {
           <h2>Alle Tutorials</h2>
         </>
       ) : (
-        <h2 class="mt-0">Alle Tutorials</h2>
+        <>
+          <h2 class='mt-0'>Alle Tutorials</h2>
 
-        <p>Seite {(page as any).currentPage}</p>
+          <p>Seite {(page as any).currentPage}</p>
+        </>
       )}
 
       <section class='l-articles'>
