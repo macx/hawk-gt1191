@@ -1,10 +1,30 @@
 @charset 'UTF-8';
 
+/*
+┌──────────────────────────────────┐
+  BASE
+└──────────────────────────────────┘
+*/
+
 @import './base/variables.css' layer(base);
 @import './base/mixins.css' layer(base);
 @import './base/layout.css' layer(base);
 @import './base/typo.css' layer(base);
 
+/*
+┌──────────────────────────────────┐
+  COMPONENT
+└──────────────────────────────────┘
+*/
+
 @import './components/content.css' layer(content);
 @import './components/footnotes.css' layer(content);
 @import './components/timeline.css' layer(content);
+
+/*
+┌──────────────────────────────────┐
+  UTILITIES
+└──────────────────────────────────┘
+*/
+
+@import './utilities/utilities.css' layer(utilities);

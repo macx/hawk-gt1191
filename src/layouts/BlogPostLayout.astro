@@ -89,10 +89,20 @@ const formattedUpdateDate = updateDate
           class='update-notes'
           aria-label='Neu im letzten Update'
         >
-          <h2>
-            Neu im letzten Update
-            {formattedUpdateDate && <> vom {formattedUpdateDate}</>}
-          </h2>
+          <h2>Änderungen</h2>
+
+          <p class='t-small t-light'>
+            Veröffentlicht am
+            <time datetime={pubDate.toISOString()}>
+              {pubDate.toLocaleDateString('de-DE', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })}
+            </time>
+            {formattedUpdateDate && <> · Geändert: {formattedUpdateDate}</>}
+          </p>
+
           <ul>
             {updateNotes.map((item) => (
               <li>{item}</li>

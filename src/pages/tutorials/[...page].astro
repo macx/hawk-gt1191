@@ -46,10 +46,12 @@ export async function getStaticPaths({ paginate }: any) {
       {isFirstPage ? (
         <>
           <LearningPathsHero />
-          <h2 class='all-tutorials-heading'>Alle Tutorials</h2>
+          <h2>Alle Tutorials</h2>
         </>
       ) : (
-        <p class='page-indicator'>Seite {(page as any).currentPage}</p>
+        <h2 class="mt-0">Alle Tutorials</h2>
+
+        <p>Seite {(page as any).currentPage}</p>
       )}
 
       <section class='l-articles'>

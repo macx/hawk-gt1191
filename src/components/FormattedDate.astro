@@ -20,25 +20,15 @@ const {
 
 <div class='date-time'>
   <div class='date-pair'>
-    <time datetime={date.toISOString()}>
-      {
-        date.toLocaleDateString('de-DE', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric'
-        })
-      }
-    </time>
-
     {
-      updateDate &&
-        (hasUpdateNotes ? (
+      updateDate ? (
+        hasUpdateNotes ? (
           <a
             class='updated-date'
             href='#update-notes'
             aria-label='Zum Abschnitt Neu im letzten Update springen'
           >
-            (Update:
+            Aktualisiert am
             <time datetime={updateDate.toISOString()}>
               {updateDate.toLocaleDateString('de-DE', {
                 year: 'numeric',
@@ -46,11 +36,10 @@ const {
                 day: 'numeric'
               })}
             </time>
-            )
           </a>
         ) : (
           <span class='updated-date'>
-            (Update:
+            Aktualisiert am
             <time datetime={updateDate.toISOString()}>
               {updateDate.toLocaleDateString('de-DE', {
                 year: 'numeric',
@@ -58,9 +47,17 @@ const {
                 day: 'numeric'
               })}
             </time>
-            )
           </span>
-        ))
+        )
+      ) : (
+        <time datetime={date.toISOString()}>
+          {date.toLocaleDateString('de-DE', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          })}
+        </time>
+      )
     }
   </div>
 

@@ -121,10 +121,6 @@ small {
   }
 }
 
-.t-nowrap {
-  white-space: nowrap;
-}
-
 ::selection {
   background-color: var(--clr-selection);
 }
@@ -323,19 +319,6 @@ blockquote {
       margin-block-end: 0;
     }
   }
-}
-
-.sr-only {
-  position: absolute;
-  block-size: 1px;
-  inline-size: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(1px, 1px, 1px, 1px);
-  clip-path: inset(50%);
-  white-space: nowrap;
-  border-width: 0;
 }
 
 .image-with-text {
