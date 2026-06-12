@@ -168,14 +168,13 @@
       "recordingUrl": "https://drive.google.com/drive/folders/16oDnrwkwYiVHOQsbAfw3uKaY5BFFYPuH?usp=drive_link"
     },
     {
-      "title": "Vertiefung: Media Queries & Container Queries",
+      "title": "Tabellen und Formulare",
       "date": "2026-06-12",
       "startTime": "09:00",
       "endTime": "13:00",
-      "description": "Inhalte werden noch bekanntgegeben.",
+      "description": "Wir üben heute gelernte Layoutmuster an Tabellen und Formularen.",
       "location": "Nur Online",
-      "isNext": true,
-      "showZoom": true,
+      "showRecording": true,
       "showCode": true,
       "recordingUrl": "https://drive.google.com/drive/folders/1CfaGObmc4hFLfr4_Fhh877ad1qBAdP1n?usp=drive_link"
     },
@@ -186,6 +185,8 @@
       "endTime": "13:00",
       "description": "Inhalte werden noch bekanntgegeben.",
       "location": "Nur Online",
+      "isNext": true,
+      "showZoom": true,
       "recordingUrl": "https://drive.google.com/drive/folders/19OdV5nCeTWFhn1y8vYreLLh6rP_5ZqL7?usp=drive_link"
     },
     {
