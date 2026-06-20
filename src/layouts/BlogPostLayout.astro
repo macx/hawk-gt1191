@@ -26,32 +26,35 @@ const {
   readingTime = { minutes: 0, words: 0 }
 } = Astro.props as Props
 
-const toc = true;
-const hasUpdates = updates && updates.length > 0;
+const toc = true
+const hasUpdates = updates && updates.length > 0
 const latestUpdateDate = hasUpdates
   ? updates.reduce((latest, cur) => {
-      const curDate = typeof cur === 'object' && 'date' in cur ? cur.date : null;
-      if (!curDate) return latest;
-      return new Date(curDate) > new Date(latest) ? curDate : latest;
+      const curDate = typeof cur === 'object' && 'date' in cur ? cur.date : null
+      if (!curDate) return latest
+      return new Date(curDate) > new Date(latest) ? curDate : latest
     }, updates[0].date)
-  : undefined;
+  : undefined
 const formattedUpdateDate = latestUpdateDate
   ? new Date(latestUpdateDate).toLocaleDateString('de-DE', {
       year: 'numeric',
       month: 'long',
-      day: 'numeric',
+      day: 'numeric'
     })
-  : null;
-const hasUpdateNotes = hasUpdates;
-const updatesByDate = updates.reduce((map, item) => {
-  const d = typeof item === 'object' && 'date' in item ? item.date : null;
-  const n = typeof item === 'object' && 'note' in item ? item.note : item;
-  if (!d) return map;
-  const key = new Date(d).toISOString().split('T')[0];
-  if (!map[key]) map[key] = [];
-  map[key].push(n);
-  return map;
-}, {} as Record<string, string[]>);
+  : null
+const hasUpdateNotes = hasUpdates
+const updatesByDate = updates.reduce(
+  (map, item) => {
+    const d = typeof item === 'object' && 'date' in item ? item.date : null
+    const n = typeof item === 'object' && 'note' in item ? item.note : item
+    if (!d) return map
+    const key = new Date(d).toISOString().split('T')[0]
+    if (!map[key]) map[key] = []
+    map[key].push(n)
+    return map
+  },
+  {} as Record<string, string[]>
+)
 ---
 
 <BaseLayout
@@ -86,16 +89,24 @@ const updatesByDate = updates.reduce((map, item) => {
       />
     </header>
 
-    {cover && <Figure
-      src={'image' in cover ? (cover as any).image : (cover as any).path}
-      caption={cover.caption}
-      alt={cover.alt}
-      lazy={false}
-    />}
+    {
+      cover && (
+        <Figure
+          src={'image' in cover ? (cover as any).image : (cover as any).path}
+          caption={cover.caption}
+          alt={cover.alt}
+          lazy={false}
+        />
+      )
+    }
 
     <slot name='article' />
 
-      <UpdateNotes pubDate={pubDate} formattedUpdateDate={formattedUpdateDate} updatesByDate={updatesByDate} />
+    <UpdateNotes
+      pubDate={pubDate}
+      formattedUpdateDate={formattedUpdateDate}
+      updatesByDate={updatesByDate}
+    />
 
     <Tags tags={tags as string[]} divider={true} />
   </article>

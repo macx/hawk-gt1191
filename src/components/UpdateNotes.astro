@@ -1,109 +1,122 @@
 ---
 // Props definition and destructuring
 export interface Props {
-  pubDate: Date;
-  formattedUpdateDate: string | null;
-  updatesByDate: Record<string, string[]>;
+  pubDate: Date
+  formattedUpdateDate: string | null
+  updatesByDate: Record<string, string[]>
 }
-const { pubDate, formattedUpdateDate, updatesByDate } = Astro.props as Props;
-
+const { pubDate, formattedUpdateDate, updatesByDate } = Astro.props as Props
 ---
 
 <Fragment>
-  <details class="update-notes" id="update-notes" aria-label="Neu im letzten Update">
+  <details
+    class='update-notes'
+    id='update-notes'
+    aria-label='Neu im letzten Update'
+  >
     <summary>
-      <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      <svg class='chevron' viewBox='0 0 24 24' aria-hidden='true'>
+        <path
+          d='M9 6l6 6-6 6'
+          fill='none'
+          stroke='currentColor'
+          stroke-width='2'
+          stroke-linecap='round'
+          stroke-linejoin='round'></path>
       </svg>
 
-      <span class="label">Versionshinweise</span>
+      <span class='label'>Versionshinweise</span>
 
-      <span class="date">
+      <span class='date'>
         {formattedUpdateDate}
       </span>
     </summary>
 
-    <p class="pubdate">
+    <p class='pubdate'>
       Veröffentlicht am
-      {pubDate.toLocaleDateString('de-DE', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      })}
+      {
+        pubDate.toLocaleDateString('de-DE', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        })
+      }
       · Änderungen:
     </p>
 
     <ul>
-      {Object.entries(updatesByDate).map(([dateStr, notes]) => (
-        <li>
-          <time datetime={dateStr} class="t-small t-light">
-            {new Date(dateStr).toLocaleDateString('de-DE', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-            })}
-          </time>
-          {notes.length === 1 ? (
-            <> – {notes[0]}</>
-          ) : (
-            <ul class="subnotes">
-              {notes.map((note: string) => (
-                <li>{note}</li>
-              ))}
-            </ul>
-          )}
-        </li>
-      ))}
+      {
+        Object.entries(updatesByDate).map(([dateStr, notes]) => (
+          <li>
+            <time datetime={dateStr} class='t-small t-light'>
+              {new Date(dateStr).toLocaleDateString('de-DE', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })}
+            </time>
+            {notes.length === 1 ? (
+              <> – {notes[0]}</>
+            ) : (
+              <ul class='subnotes'>
+                {notes.map((note: string) => (
+                  <li>{note}</li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))
+      }
     </ul>
   </details>
 
   <style>
-  .update-notes {
-    margin-block: var(--sp-content) 0;
-    border: 1px solid var(--clr-line);
-    border-radius: var(--radius-sm, 0.25rem);
-    padding: var(--sp-xs) var(--sp-s);
-    font-size: var(--fs-s);
+    .update-notes {
+      margin-block: var(--sp-content) 0;
+      border: 1px solid var(--clr-line);
+      border-radius: var(--radius-sm, 0.25rem);
+      padding: var(--sp-xs) var(--sp-s);
+      font-size: var(--fs-s);
 
-    summary {
-      display: flex;
-      align-items: center;
-      gap: var(--sp-xs);
-      cursor: pointer;
+      summary {
+        display: flex;
+        align-items: center;
+        gap: var(--sp-xs);
+        cursor: pointer;
 
-      .chevron {
-        display: inline-block;
-        inline-size: 1em;
-        block-size: 1em;
-        stroke: currentColor;
-        fill: none;
-        transition: transform 0.2s;
+        .chevron {
+          display: inline-block;
+          inline-size: 1em;
+          block-size: 1em;
+          stroke: currentColor;
+          fill: none;
+          transition: transform 0.2s;
+        }
+
+        .date {
+          margin-inline-start: auto;
+        }
       }
 
-      .date {
-        margin-inline-start: auto;
+      &[open] .chevron {
+        transform: rotate(90deg);
+      }
+
+      .pubdate {
+        margin-block: 0.5em 0;
+        border-block-start: 1px solid var(--clr-line);
+        padding-block: 1em 0;
+      }
+
+      > ul {
+        margin-block: 1em 0;
+        padding-inline: 1.5em;
+
+        ul {
+          margin-block-start: 0.5em;
+          padding-inline: 1.2em;
+        }
       }
     }
-
-    &[open] .chevron {
-      transform: rotate(90deg);
-    }
-
-    .pubdate {
-      margin-block: 0.5em 0;
-      border-block-start: 1px solid var(--clr-line);
-      padding-block: 1em 0;
-    }
-    
-    > ul {
-      margin-block: 1em 0;
-      padding-inline: 1.5em;
-
-      ul {
-        margin-block-start: 0.5em;
-        padding-inline: 1.2em;
-      }
-    }
-  }
-</style>
+  </style>
 </Fragment>
