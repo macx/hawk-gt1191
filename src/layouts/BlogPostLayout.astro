@@ -6,6 +6,7 @@ import Lead from '@components/Lead.astro'
 import ArticleMeta from '@components/ArticleMeta.astro'
 import Tags from '@components/Tags.astro'
 import Figure from '@components/Figure.astro'
+import UpdateNotes from '@components/UpdateNotes.astro'
 
 type Props = CollectionEntry<'tutorials'>['data']
 
@@ -15,8 +16,7 @@ const {
   title,
   description,
   pubDate,
-  updateDate,
-  updateNotes,
+  updates = [],
   author,
   cover,
   tags,
@@ -26,15 +26,32 @@ const {
   readingTime = { minutes: 0, words: 0 }
 } = Astro.props as Props
 
-const toc = true
-const hasUpdateNotes = Boolean(updateNotes && updateNotes.length > 0)
-const formattedUpdateDate = updateDate
-  ? updateDate.toLocaleDateString('de-DE', {
+const toc = true;
+const hasUpdates = updates && updates.length > 0;
+const latestUpdateDate = hasUpdates
+  ? updates.reduce((latest, cur) => {
+      const curDate = typeof cur === 'object' && 'date' in cur ? cur.date : null;
+      if (!curDate) return latest;
+      return new Date(curDate) > new Date(latest) ? curDate : latest;
+    }, updates[0].date)
+  : undefined;
+const formattedUpdateDate = latestUpdateDate
+  ? new Date(latestUpdateDate).toLocaleDateString('de-DE', {
       year: 'numeric',
       month: 'long',
-      day: 'numeric'
+      day: 'numeric',
     })
-  : null
+  : null;
+const hasUpdateNotes = hasUpdates;
+const updatesByDate = updates.reduce((map, item) => {
+  const d = typeof item === 'object' && 'date' in item ? item.date : null;
+  const n = typeof item === 'object' && 'note' in item ? item.note : item;
+  if (!d) return map;
+  const key = new Date(d).toISOString().split('T')[0];
+  if (!map[key]) map[key] = [];
+  map[key].push(n);
+  return map;
+}, {} as Record<string, string[]>);
 ---
 
 <BaseLayout
@@ -47,7 +64,7 @@ const formattedUpdateDate = updateDate
   author={author}
   tags={tags}
   pubDate={pubDate}
-  updateDate={updateDate}
+  updateDate={latestUpdateDate}
   ogType='article'
 >
   {isDraft && <div class='draft-banner' />}
@@ -62,55 +79,23 @@ const formattedUpdateDate = updateDate
 
       <ArticleMeta
         date={pubDate}
-        updateDate={updateDate}
+        updateDate={latestUpdateDate ?? undefined}
         hasUpdateNotes={hasUpdateNotes}
         author={author}
         readingTime={readingTime}
       />
     </header>
 
-    {
-      cover && (
-        <Figure
-          src={'image' in cover ? (cover as any).image : (cover as any).path}
-          caption={cover.caption}
-          alt={cover.alt}
-          lazy={false}
-        />
-      )
-    }
+    {cover && <Figure
+      src={'image' in cover ? (cover as any).image : (cover as any).path}
+      caption={cover.caption}
+      alt={cover.alt}
+      lazy={false}
+    />}
 
     <slot name='article' />
 
-    {
-      updateNotes && updateNotes.length > 0 && (
-        <section
-          id='update-notes'
-          class='update-notes'
-          aria-label='Neu im letzten Update'
-        >
-          <h2>Änderungen</h2>
-
-          <p class='t-small t-light'>
-            Veröffentlicht am
-            <time datetime={pubDate.toISOString()}>
-              {pubDate.toLocaleDateString('de-DE', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-              })}
-            </time>
-            {formattedUpdateDate && <> · Geändert: {formattedUpdateDate}</>}
-          </p>
-
-          <ul>
-            {updateNotes.map((item) => (
-              <li>{item}</li>
-            ))}
-          </ul>
-        </section>
-      )
-    }
+      <UpdateNotes pubDate={pubDate} formattedUpdateDate={formattedUpdateDate} updatesByDate={updatesByDate} />
 
     <Tags tags={tags as string[]} divider={true} />
   </article>
@@ -160,30 +145,6 @@ const formattedUpdateDate = updateDate
       transform: translateX(-100%);
       transform-origin: 0 0;
       box-shadow: -0.3rem 0 0.3rem -0.1em rgb(0 0 0 / 0.3);
-    }
-  }
-
-  .update-notes {
-    margin-block: var(--sp-content) 0;
-
-    h2 {
-      margin: 0 0 0.5em;
-      font-family: var(--ff);
-      font-size: var(--fs-s);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--clr-text-light);
-    }
-
-    ul {
-      margin: 0;
-      padding-inline-start: 1.3rem;
-      font-size: var(--fs-s);
-      color: var(--clr-text-light);
-    }
-
-    li + li {
-      margin-block-start: 0.35em;
     }
   }
 </style>

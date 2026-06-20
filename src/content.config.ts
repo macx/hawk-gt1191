@@ -12,8 +12,10 @@ const tutorials = defineCollection({
       isDraft: z.boolean(),
       author: reference('authors'),
       pubDate: z.coerce.date(),
-      updateDate: z.coerce.date().optional(),
-      updateNotes: z.array(z.string()).optional(),
+      updates: z.array(z.object({
+        date: z.coerce.date(),
+        note: z.string()
+      })).optional(),
       cover: z
         .union([
           z.object({
