@@ -41,6 +41,8 @@ exclude = [
   "^https://(www\\.)?postbank\\.de",
   # MyFonts (redirect behavior)
   "^https://www\\.myfonts\\.com",
+  # Unsplash (bot protection)
+  "^https://(www\\.)?unsplash\\.com",
   # LinkedIn (blocks bots)
   "^https://(www\\.)?linkedin\\.com",
   # Google Drive (redirects on HEAD)
