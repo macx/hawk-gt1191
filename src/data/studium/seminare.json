@@ -198,24 +198,29 @@
       ]
     },
     {
-      "title": "Vorstellung Abgabe & Media- und ContainerQueries in der Praxis",
-      "date": "2026-06-25",
+      "title": "Vorstellung Abgabe, Media- und Container-Queries, Modulare Styles",
+      "date": "2026-07-03",
       "startTime": "09:00",
       "endTime": "13:00",
       "description": "Inhalte werden noch bekanntgegeben.",
       "location": "Nur Online",
       "isNext": true,
       "showZoom": true,
-      "recordingUrl": "https://drive.google.com/drive/folders/1WJT1ZtyVId9nlLA6cBsdfGePqK8utJY0?usp=drive_link"
-    },
-    {
-      "title": "TBA",
-      "date": "2026-07-03",
-      "startTime": "09:00",
-      "endTime": "13:00",
-      "description": "Inhalte werden noch bekanntgegeben.",
-      "location": "Nur Online",
-      "recordingUrl": "https://drive.google.com/drive/folders/1mxXbWt099q2qDqBDA_FlQqlfUZx_YMPE?usp=drive_link"
+      "recordingUrl": "https://drive.google.com/drive/folders/1mxXbWt099q2qDqBDA_FlQqlfUZx_YMPE?usp=drive_link",
+      "customLinks": [
+        {
+          "label": "Abgabe und Anforderungen",
+          "href": "/startklar/abgabe"
+        },
+        {
+          "label": "Tutorial: Media & Container Queries",
+          "href": "/tutorials/media-und-container-queries"
+        },
+        {
+          "label": "Tutorial: Modulare Styles mit System",
+          "href": "/tutorials/10-strategien-modulares-css"
+        }
+      ]
     },
     {
       "title": "TBA",
