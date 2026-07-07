@@ -2,10 +2,12 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "command": "pnpm dev",
       "name": "🚀 Development",
+      "type": "editor-browser",
       "request": "launch",
-      "type": "node-terminal"
+      "url": "http://localhost:4321",
+      "webRoot": "${workspaceFolder}",
+      "preLaunchTask": "pnpm run dev"
     },
     {
       "command": "pnpm release",

@@ -7,7 +7,7 @@
   "author": "David Maciejewski <macx@macx.io>",
   "license": "MIT",
   "scripts": {
-    "dev": "astro dev --watch --open",
+    "dev": "astro dev --watch",
     "start": "astro dev",
     "build": "astro check && tsc --noEmit && astro build",
     "check-links": "lychee --config .lychee.toml --remap 'https://hawk-gt1191.de file://$PWD/dist' './dist/**/*.html'",

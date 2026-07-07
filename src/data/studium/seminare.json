@@ -204,8 +204,7 @@
       "endTime": "13:00",
       "description": "Inhalte werden noch bekanntgegeben.",
       "location": "Nur Online",
-      "isNext": true,
-      "showZoom": true,
+      "showRecording": true,
       "recordingUrl": "https://drive.google.com/drive/folders/1mxXbWt099q2qDqBDA_FlQqlfUZx_YMPE?usp=drive_link",
       "customLinks": [
         {
@@ -223,29 +222,32 @@
       ]
     },
     {
-      "title": "TBA",
+      "title": "Abgabe-Workshop I",
       "date": "2026-07-10",
       "startTime": "09:00",
       "endTime": "13:00",
-      "description": "Inhalte werden noch bekanntgegeben.",
+      "description": "Seid live dabei, wenn wir gemeinsam an der Abgabe arbeiten. Stellt Fragen zur Umsetzbarkeit eurer Ideen und erhaltet Feedback zu eurem Projekt.",
       "location": "Nur Online",
+      "isNext": true,
+      "showCode": true,
+      "showZoom": true,
       "recordingUrl": "https://drive.google.com/drive/folders/1plYDPsdBsscerDypJvrykPUMObxxhIAD?usp=drive_link"
     },
     {
-      "title": "TBA",
+      "title": "Abgabe-Workshop II",
       "date": "2026-07-17",
       "startTime": "09:00",
       "endTime": "13:00",
-      "description": "Inhalte werden noch bekanntgegeben.",
+      "description": "Seid live dabei, wenn wir gemeinsam an der Abgabe arbeiten. Stellt Fragen zur Umsetzbarkeit eurer Ideen und erhaltet Feedback zu eurem Projekt.",
       "location": "Nur Online",
       "recordingUrl": "https://drive.google.com/drive/folders/1hGqnJ4wp_fw7UVPhYuAwlF_AE_AcuXdC?usp=drive_link"
     },
     {
-      "title": "TBA",
+      "title": "Abgabe-Workshop III",
       "date": "2026-07-24",
       "startTime": "09:00",
       "endTime": "13:00",
-      "description": "Inhalte werden noch bekanntgegeben.",
+      "description": "Seid live dabei, wenn wir gemeinsam an der Abgabe arbeiten. Stellt Fragen zur Umsetzbarkeit eurer Ideen und erhaltet Feedback zu eurem Projekt.",
       "location": "Nur Online",
       "recordingUrl": "https://drive.google.com/drive/folders/1EkYBfK5LwLvO4CbZ5K96y1nYr3WFsn5U?usp=drive_link"
     },
