@@ -228,9 +228,7 @@
       "endTime": "13:00",
       "description": "Seid live dabei, wenn wir gemeinsam an der Abgabe arbeiten. Stellt Fragen zur Umsetzbarkeit eurer Ideen und erhaltet Feedback zu eurem Projekt.",
       "location": "Nur Online",
-      "isNext": true,
       "showCode": true,
-      "showZoom": true,
       "recordingUrl": "https://drive.google.com/drive/folders/1plYDPsdBsscerDypJvrykPUMObxxhIAD?usp=drive_link"
     },
     {
@@ -240,6 +238,9 @@
       "endTime": "13:00",
       "description": "Seid live dabei, wenn wir gemeinsam an der Abgabe arbeiten. Stellt Fragen zur Umsetzbarkeit eurer Ideen und erhaltet Feedback zu eurem Projekt.",
       "location": "Nur Online",
+      "isNext": true,
+      "showCode": true,
+      "showZoom": true,
       "recordingUrl": "https://drive.google.com/drive/folders/1hGqnJ4wp_fw7UVPhYuAwlF_AE_AcuXdC?usp=drive_link"
     },
     {
